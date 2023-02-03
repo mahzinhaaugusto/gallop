@@ -13,6 +13,9 @@ npm start
 # INSTALL AXIOS
 npm i axios
 
+# INSTALL ROUTER VERSION 6
+npm install react-router-dom@6
+
 # GO TO THE SERVER DIRECTORY AND INSTALL FOLLOWING THINGS
 
 # INSTALL EXPRESS
