@@ -18,7 +18,7 @@ npm start
 
 npm i axios
 
-#INSTALL ROUTER
+# INSTALL ROUTER
 
 npm install react-router-dom@6
 
