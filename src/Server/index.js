@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
+require("dotenv").config();
 // const db = mysql.createPool({
 //   host: "localhost",
 //   user: "root",
@@ -18,11 +19,12 @@ const mysql = require("mysql");
 //   });
 // });
 //yaroslav
+console.log(process.env.USER_NAME);
 const db = mysql.createPool({
-  host: "test.cukstmmatbd1.us-west-2.rds.amazonaws.com",
-  user: "madhu",
-  password: "hcoe2071",
-  database: "gallop",
+  host: process.env.HOST,
+  user: process.env.USER_NAME,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
 });
 app.use(cors());
 app.use(express.json());
