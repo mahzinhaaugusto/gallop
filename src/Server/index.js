@@ -4,21 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
 require("dotenv").config();
-// const db = mysql.createPool({
-//   host: "localhost",
-//   user: "root",
-//   password: "Hcoe2071@",
-//   database: "ap",
-// });
 
-// app.get("/", (req, res) => {
-//   const sqlInsert =
-//     "INSERT INTO userinfo(userName,userPassword) VALUES('eden','yoyo345');";
-//   db.query(sqlInsert, (err, result) => {
-//     res.send("hello madhu daik");
-//   });
-// });
-//yaroslav
 console.log(process.env.USER_NAME);
 const db = mysql.createPool({
   host: process.env.HOST,

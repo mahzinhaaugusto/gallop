@@ -6,3 +6,6 @@
 /public
 /package.json
 /package-lock.json
+/.DS_Store
+/src/.DS_Store
+/src/server/.DS_Store
