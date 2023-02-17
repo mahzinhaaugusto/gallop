@@ -5,7 +5,6 @@ const cors = require("cors");
 const mysql = require("mysql");
 require("dotenv").config();
 
-console.log(process.env.USER_NAME);
 const db = mysql.createPool({
   host: process.env.HOST,
   user: process.env.USER_NAME,
@@ -17,7 +16,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get", (req, res) => {
-  const sqlSelect = "SELECT userName,userPassword from userinfo;";
+  const sqlSelect = "SELECT email,userPassword from userinfo;";
   db.query(sqlSelect, (er, re) => {
     res.send(re);
   });
