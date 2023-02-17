@@ -7,7 +7,7 @@ input{
   width: 400px;
   height: 50px;
 }
-.loginCont, .signUpCont{
+.loginCont, .signUpCont_form, .signUp2Cont_form{
   display: flex;
   flex-direction: column;
 }
@@ -21,6 +21,9 @@ input{
   display: flex;
   flex-direction: row;
   gap: 0px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-left: -300px;
   
 }
 
@@ -30,6 +33,83 @@ input{
   height: 3px;
   background-color: black;
 }
+.signUpCont_icons_first, .signUpCont_icons_second, .signUp2Cont_icons_first,
+.signUp2Cont_icons_second{
+  position: relative;
+}
+.signUpCont_icons_second, .signUp2Cont_icons_second{
+  margin-top: -45px;
+    left: 23%;
+}
+.signUpCont_icons_first_value1, .signUp2Cont_icons_first_value1{
+  color:white;
+  position: absolute;
+    top: 0%;
+    left: 1.5%;
+    transform: translate(-50%, -50%);
+}
+.signUpCont_icons_second_value2, .signUp2Cont_icons_second_value2 {
+  color: rgb(10, 10, 10);
+  position: absolute;
+  top: 0%;
+  left: 1.5%;
+  transform: translate(-50%, -50%);
+}
+.signUpCont_icons_rectangle, .signUp2Cont_icons_rectangle{
+  
+  width: 300px;
+    position: absolute;
+    height: 5px;
+    top: 40%;
+      left: 2.8%;
+    background-color: gray;
+}
+.signUpCont_steps, .signUp2Cont_steps{
+  display: flex;
+  flex-direction: row;
+  gap:275px;
+}
+.require::after{
+  content: "*";
+  color: red;
+}
+.signUp2Cont_form_image{
+  height: 165px;
+    width: 170px;
+    border: 1px solid black;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 300px;
+  
+}
+
+.signUp2Cont_form_image::before,
+.signUp2Cont_form_image::after {
+  content: "";
+  position: absolute;
+      top: 28%;
+          
+        width: 170px;
+        height: 1px;
+  
+  background-color: black;
+}
+
+.signUp2Cont_form_image::before {
+  transform: rotate(45deg);
+}
+
+.signUp2Cont_form_image::after {
+  transform: rotate(-45deg);
+}
+
+.signUp2Cont_form_camera{
+  position: absolute;
+    top: 31%;
+    left: 31%;
+}
+
 button{
   width: 200px;
   height: 50px;
@@ -37,7 +117,7 @@ button{
   border-radius: 15px;
   background-color: antiquewhite;
 }
-button:hover{
+button:hover, .signUp2Cont_form_camera:hover{
   cursor: pointer;
   background-color: aqua;
 }

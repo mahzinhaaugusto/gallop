@@ -23,7 +23,8 @@ app.get("/api/get", (req, res) => {
 });
 
 app.post("/api/insert", (req, res) => {
-  const userName = req.body.userName;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const userPassword = req.body.userPassword;
   const Email = req.body.Email;
   const Address = req.body.Address;
@@ -31,10 +32,10 @@ app.post("/api/insert", (req, res) => {
   const phoneNumber = req.body.phoneNumber;
 
   const sqlInsert =
-    "INSERT INTO userinfo(userName,userPassword,email,address,website,phoneNumber) VALUES (?,?,?,?,?,?); ";
+    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber) VALUES (?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
-    [userName, userPassword, Email, Address, Website, phoneNumber],
+    [firstName, lastName, userPassword, Email, Address, Website, phoneNumber],
     (err, result) => {
       console.log(result);
     }
