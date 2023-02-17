@@ -4,15 +4,36 @@
   text-align: center;
 }
 input{
-  align-self:center;
   width: 400px;
   height: 50px;
+}
+.loginCont, .signUpCont{
+  display: flex;
+  flex-direction: column;
+}
+.links{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+
+}
+.horizontalCont{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  
+}
+
+.horizontalCont_leftHorizon, .horizontalCont_rightHorizon {
+  
+  width: 100px;
+  height: 3px;
+  background-color: black;
 }
 button{
   width: 200px;
   height: 50px;
   margin-top: 5px;
-  align-self: center;
   border-radius: 15px;
   background-color: antiquewhite;
 }
