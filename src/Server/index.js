@@ -5,7 +5,7 @@ const cors = require("cors");
 const mysql = require("mysql");
 require("dotenv").config();
 
-console.log(process.env.USER_NAME);
+
 const db = mysql.createPool({
   host: process.env.HOST,
   user: process.env.USER_NAME,

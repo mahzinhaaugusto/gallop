@@ -19,6 +19,7 @@ export function SignUp() {
   const [Address, setAddress] = useState("");
   const [Website, setWebsite] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  let navigate = useNavigate();
 
   const submitClicked = () => {
     Axios.post("http://localhost:3002/api/insert", {
@@ -28,9 +29,9 @@ export function SignUp() {
       Address: Address,
       Website: Website,
       phoneNumber: phoneNumber,
-    }).then(() => {
-      setEmail("");
     });
+    alert("data written successfully");
+    navigate("/");
   };
   return (
     <div className="App">
@@ -80,10 +81,11 @@ export function SignUp() {
         type="number"
         name="phoneNumber"
         onChange={(e) => {
-          setPhoneNumber(e.target.value);
+          setPhoneNumber(+e.target.value);
         }}
       ></input>
       <button onClick={submitClicked}>Submit</button>
+      <p>{phoneNumber}</p>
     </div>
   );
 }
