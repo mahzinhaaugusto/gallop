@@ -109,7 +109,10 @@ input{
     top: 31%;
     left: 31%;
 }
-
+.horseDetailCont{
+  display: flex;
+  flex-direction: row;
+}
 button{
   width: 200px;
   height: 50px;
