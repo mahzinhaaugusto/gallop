@@ -3,7 +3,9 @@ import ReactDOM from "react-dom/client";
 import { SignUp } from "./Pages/SignUp";
 import { SignUp2 } from "./Pages/SignUp2";
 import { App, Main } from "./App";
+import { HorseDetail } from "./Pages/HorseDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AddHorse } from "./Pages/AddHorse";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,6 +15,8 @@ root.render(
       <Route path="/signup" element={<SignUp />} />
       <Route path="/home" element={<Main />} />
       <Route path="/signup2" element={<SignUp2 />} />
+      <Route path="/horse-detail" element={<HorseDetail />} />
+      <Route path="/add-horse" element={<AddHorse />} />
     </Routes>
   </BrowserRouter>
 );
