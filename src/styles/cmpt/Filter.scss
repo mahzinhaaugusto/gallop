@@ -4,11 +4,12 @@
     border: 2px $gray solid;
     border-radius: $radius;
     padding: $largePadding;
-    width: 10%;
+    width: auto;
     margin-bottom: $smallMargin;
 }
 
 .filter {
+    position: absolute;
     width: 30%;
     padding: $smallPadding;
     border-radius: $radius;
@@ -42,10 +43,13 @@ label {
     justify-content: space-around;
     margin: $largeMargin 0;
 
+
     .resetFilterSelection,
     .renderFilterSelection {
         margin: $smallMargin;
         width: 100px;
+        padding: $largePadding;
+        border-radius: $radius;
     }
 
     .resetFilterSelection {
@@ -60,6 +64,10 @@ label {
         color: $white;
     }
 
+}
+
+.dropdown_master {
+    margin: 0 $smallMargin;
 }
 
 /* ********************************************************************
@@ -144,16 +152,15 @@ label {
 
     input {
         width: 15px;
+        accent-color: $primary;
+        position: relative;
+        vertical-align: middle;
+        margin-right: $largeMargin;
     }
 
-    label {
-        padding-right: $largePadding;
-    }
-}
-
-#stallion,
-#mare {
-    accent-color: $primary;
+    // label {
+    //     padding-right: $largePadding;
+    // }
 }
 
 /* ********************************************************************
@@ -238,16 +245,15 @@ label {
 
     input {
         width: 15px;
+        accent-color: $primary;
+        position: relative;
+        vertical-align: middle;
+        margin-right: $largeMargin;
     }
 
-    label {
-        padding-right: $largePadding;
-    }
-}
-
-#natural,
-#artificial {
-    accent-color: $primary;
+    // label {
+    //     padding-right: $largePadding;
+    // }
 }
 
 /* ********************************************************************

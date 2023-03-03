@@ -17,12 +17,14 @@ export function BreedingMethod() {
     return (
         <div className="filter_cont_breedingMethod">
             <div className="filter_cont_breedingMethod_natural">
-                <input name="breedingMethod" id="natural" type="checkbox" checked={checkedNatural} onChange={handlerNatural} />
-                <label>Natural</label>
+                <label>
+                    <input name="breedingMethod" id="natural" type="checkbox" checked={checkedNatural} onChange={handlerNatural} />
+                    Natural</label>
             </div>
             <div className="filter_cont_breedingMethod_artificial">
-                <input name="breedingMethod" id="artificial" type="checkbox" checked={checkedArtificial} onChange={handlerArtificial} />
-                <label>Insemination</label>
+                <label>
+                    <input name="breedingMethod" id="artificial" type="checkbox" checked={checkedArtificial} onChange={handlerArtificial} />
+                    Insemination</label>
             </div>
         </div>
     )

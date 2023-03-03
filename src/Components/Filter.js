@@ -1,6 +1,6 @@
 import { useState } from "react";
 import closeIcon from "../icons/CloseIcon.svg";
-import arrowDown from "../icons/ArrowDown.svg";
+import { DropdownIcon } from "./DropdownIcon";
 import { Breed } from "../CmptParts/Breed";
 import { Gender } from "../CmptParts/Gender";
 import { Color } from "../CmptParts/Color";
@@ -17,12 +17,6 @@ export function CloseButton(props) {
         <div className="closeBtn_cont">
             <img src={closeIcon} alt="" className="closeBtn_cont_btn" onClick={onClick} />
         </div>
-    )
-}
-
-export function DropdownIcon({ onClick }) {
-    return (
-        <img src={arrowDown} alt="" className="dropdownIcon" onClick={onClick} />
     )
 }
 
