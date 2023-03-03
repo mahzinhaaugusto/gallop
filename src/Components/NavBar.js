@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "../css/cmpt/NavBar.css";
 
 export function NavBar() {
     return (
