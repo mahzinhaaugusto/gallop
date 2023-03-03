@@ -1,6 +1,4 @@
 import { useState } from "react";
-
-import "../App.css";
 import ellipse from "../icons/Ellipse.svg";
 import ellipse2 from "../icons/Ellipse2.svg";
 import { useNavigate } from "react-router-dom";
