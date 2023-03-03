@@ -2,9 +2,10 @@ import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ellipse from "../icons/Ellipse.svg";
-import ellipse2 from "../icons/Ellipse2.svg";
+
 import camera from "../icons/Camera.svg";
+import horse from "../icons/Horse.png";
+import "../styles/pgs/_signup.scss";
 
 export function SignUp2() {
   const location = useLocation();
@@ -72,78 +73,90 @@ export function SignUp2() {
 
   return (
     <>
-      <div className="signUp2Cont">
-        <h1>Tell Us More About Yourself</h1>
-
-        <div className="signUp2Cont_steps">
-          <p className="signUp2Cont_steps_step1">Step 1</p>
-          <p className="signUp2Cont_steps_step2">Step 2</p>
+      <div className="signUp">
+        <div className="signUpImage">
+          <img className="signUpImage" src={horse} alt="not found" />
         </div>
-        <div className="signUp2Cont_icons">
-          <div className="signUp2Cont_icons_first">
-            <img src={ellipse2} alt="not found" height="40px" width="40px" />
-            <h2 className="signUp2Cont_icons_first_value1">1</h2>
-            <div className="signUp2Cont_icons_rectangle">
-              <hr />
+        <div className="signUpForm">
+          <div className="signUp2Cont">
+            <h1>Tell Us More About Yourself</h1>
+            <div className="icons">
+              <div className="signUp2Cont_steps">
+                <p className="signUp2Cont_steps_step1">Step 1</p>
+                <p className="signUp2Cont_steps_step2">Step 2</p>
+              </div>
+              <div className="signUp2Cont_icons">
+                <div className="signUp2Cont_icons_first">
+                  <span className="drawCircle1"></span>
+                  <h2 className="signUp2Cont_icons_first_value1">1</h2>
+                  <div>
+                    <hr className="signUp2Cont_icons_rectangle" />
+                  </div>
+                </div>
+
+                <div className="signUp2Cont_icons_second">
+                  <span className="signUp2Cont_icons_second_drawCircle2"></span>
+                  <h2 className="signUp2Cont_icons_second_value2">2</h2>
+                </div>
+              </div>
+            </div>
+
+            <div className="signUp2Cont_form">
+              <div className="signUp2Cont_form_image">
+                <img
+                  id="profilePhoto"
+                  src={camera}
+                  alt="not found"
+                  onClick={profilePicture}
+                />
+              </div>
+
+              <div className="camera_Cont" id="cameraCont">
+                <video ref={videoRef}></video>
+                <button onClick={takePhoto}>Click</button>
+                <div className="result">
+                  <canvas ref={photoRef}></canvas>
+                </div>
+              </div>
+
+              <label className="signUp2Cont_form_phoneNumberLabel require">
+                PhoneNumber
+              </label>
+              <input
+                type="number"
+                name="phoneNumber"
+                placeholder="Please include national number."
+                onChange={(e) => {
+                  setPhoneNumber(+e.target.value);
+                }}
+              ></input>
+              <label className="signUp2Cont_form_addressLabel require">
+                Address
+              </label>
+              <input
+                type="text"
+                name="Address"
+                placeholder="Street, City, Province"
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                }}
+              ></input>
+              <label className="signUp2Cont_form_websiteLabel">Website</label>
+              <input
+                type="text"
+                name="Website"
+                onChange={(e) => {
+                  setWebsite(e.target.value);
+                }}
+              ></input>
+              <div className="buttonArray">
+                <button className="secondaryBtn">Back</button>
+                <button className="primaryBtn" onClick={submitClicked}>
+                  Create Account
+                </button>
+              </div>
             </div>
           </div>
-
-          <div className="signUp2Cont_icons_second">
-            <img src={ellipse} alt="not found" height="40px" width="40px" />
-            <h2 className="signUp2Cont_icons_second_value2">2</h2>
-          </div>
-        </div>
-
-        <div className="signUp2Cont_form">
-          <div className="signUp2Cont_form_image">
-            <img
-              id="profilePhoto"
-              src={camera}
-              alt="not found"
-              onClick={profilePicture}
-            />
-          </div>
-
-          <div className="camera_Cont" id="cameraCont">
-            <video ref={videoRef}></video>
-            <button onClick={takePhoto}>Click</button>
-            <div className="result">
-              <canvas ref={photoRef}></canvas>
-            </div>
-          </div>
-
-          <label className="signUp2Cont_form_phoneNumberLabel require">
-            PhoneNumber
-          </label>
-          <input
-            type="number"
-            name="phoneNumber"
-            onChange={(e) => {
-              setPhoneNumber(+e.target.value);
-            }}
-          ></input>
-          <label className="signUp2Cont_form_addressLabel require">
-            Address
-          </label>
-          <input
-            type="text"
-            name="Address"
-            placeholder="Street, City, Province"
-            onChange={(e) => {
-              setAddress(e.target.value);
-            }}
-          ></input>
-          <label className="signUp2Cont_form_websiteLabel">Website</label>
-          <input
-            type="text"
-            name="Website"
-            onChange={(e) => {
-              setWebsite(e.target.value);
-            }}
-          ></input>
-          <button onClick={submitClicked}>Create An Account</button>
-          <button>Back</button>
-          <p>{phoneNumber}</p>
         </div>
       </div>
     </>

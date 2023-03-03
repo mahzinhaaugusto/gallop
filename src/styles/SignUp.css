@@ -1,0 +1,156 @@
+
+.signUp {
+    display: flex;
+    flex-direction: row;
+    gap: 7rem;
+}
+.horizontalCont {
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+
+}
+
+.horizontalCont_Para {
+    margin-top: 2px;
+}
+
+.horizontalCont_leftHorizon,
+.horizontalCont_rightHorizon {
+
+    width: 100px;
+    height: 3px;
+    background-color: black;
+}
+
+.signUpCont_icons_first,
+.signUpCont_icons_second,
+.signUp2Cont_icons_first,
+.signUp2Cont_icons_second {
+    position: relative;
+}
+
+.signUpCont_icons_second,
+.signUp2Cont_icons_second {
+    margin-top: -45px;
+    left: 8%;
+}
+
+.signUpCont_icons_first_value1,
+.signUp2Cont_icons_first_value1 {
+    color: #5A5A5F;
+    position: absolute;
+    top: 10%;
+        left: 6%;
+    transform: translate(-50%, -50%);
+}
+.drawCircle1{
+    height: 40px;
+        width: 40px;
+        border:8px solid #426F38;
+        border-radius: 50%;
+        background-color: #F8F6F2;
+        display: inline-block;
+}
+.drawCircle2 {
+    position: absolute;
+    top: -13px;
+        left: 62%;
+    height: 40px;
+    width: 40px;
+    border: 8px solid #E8F2E6;
+    border-radius: 50%;
+    background-color: #F8F6F2;
+    display: inline-block;
+}
+.signUp2Cont_icons_second_drawCircle2{
+    border: 8px solid #426F38;
+    position: absolute;
+        top: -13px;
+        left: 62%;
+        height: 40px;
+        width: 40px;
+        
+        border-radius: 50%;
+        background-color: #F8F6F2;
+        display: inline-block;
+}
+.signUpCont_icons_second_value2,
+.signUp2Cont_icons_second_value2 {
+    color: #5A5A5F;
+    position: absolute;
+    top: -5px;
+        left: 67%;
+    transform: translate(-50%, -50%);
+}
+
+.signUpCont_icons_rectangle{
+
+    width: 310px;
+    position: absolute;
+    height: 5px;
+    top: 31%;
+    left: 10%;
+    background-image: linear-gradient(to right, #4A6F38,#E8F2E6);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+.signUp2Cont_icons_rectangle{
+
+        width: 310px;
+        position: absolute;
+        height: 5px;
+        top: 31%;
+        left: 10.5%;
+        background-color: #4A6F38;
+        border-radius: 10px;
+        z-index: -1;
+    }
+.signUpCont_steps,
+.signUp2Cont_steps {
+    display: flex;
+    flex-direction: row;
+    gap: 326px;
+}
+.signUp2Cont_form_image {
+   
+
+    margin-left: 12rem;
+}
+
+.signUpForm{
+        margin-top: 12rem;
+}
+
+.signUpCont_form_name{
+    display:flex;
+    flex-direction: row;
+    gap: 1.5rem;
+   
+}
+
+.signUpCont_form_name_first_input, .signUpCont_form_name_last_input{
+    width: 241px !important;
+}
+.signUpCont_form_name_first .signUpCont_form_name_last{
+    display: flex;
+    flex-direction: column;
+}
+.signUp2Cont_form_camera {
+    position: absolute;
+    top: 31%;
+    left: 23%;
+}
+
+.camera_Cont {
+    display: none;
+    z-index: 999;
+}
+.icons{
+    position: relative;
+        left: 10%;
+}
