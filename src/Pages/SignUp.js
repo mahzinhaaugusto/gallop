@@ -1,8 +1,4 @@
 import { useState } from "react";
-import horse from "../icons/Horse.png";
-import "../App.css";
-import "../css/SignUp.css";
-
 import { useNavigate } from "react-router-dom";
 export function SignUp() {
   const [Email, setEmail] = useState("");
