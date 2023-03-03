@@ -17,12 +17,14 @@ export function Gender() {
     return (
         <div className="filter_cont_gender">
             <div className="filter_cont_gender_stallion">
-                <input name="genres" id="stallion" type="checkbox" checked={checkedStallion} onChange={handlerStallion} />
-                <label>Stallion</label>
+                <label>
+                    <input name="genres" id="stallion" type="checkbox" checked={checkedStallion} onChange={handlerStallion} />
+                    Stallion</label>
             </div>
             <div className="filter_cont_gender_mare">
-                <input name="genres" id="mare" type="checkbox" checked={checkedMare} onChange={handlerMare} />
-                <label>Mare</label>
+                <label>
+                    <input name="genres" id="mare" type="checkbox" checked={checkedMare} onChange={handlerMare} />
+                    Mare</label>
             </div>
         </div>
     )

@@ -1,0 +1,35 @@
+// .sortBy {
+//     display: flex;
+//     justify-content: space-between;
+//     border: 2px $gray solid;
+//     border-radius: $radius;
+//     padding: $largePadding;
+//     width: 10%;
+//     margin-bottom: $smallMargin;
+//     width: 30%;
+// }
+
+.sortBy_cont {
+    width: 30%;
+    text-align: left;
+    position: relative;
+    border-radius: $radius;
+    padding: $smallPadding;
+    display: flex;
+    flex-direction: column;
+    background: $accentSand;
+    z-index: 99;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, .25);
+
+    input {
+        width: 15px;
+        accent-color: $primary;
+        position: relative;
+        vertical-align: middle;
+        margin-right: $largeMargin;
+    }
+
+    // label {
+    //     display: block;
+    // }
+}

@@ -1,4 +1,5 @@
-import { CloseButton, DropdownIcon } from "../Components/Filter";
+import { CloseButton } from "../Components/Filter";
+import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import disciplinesList from "../disciplinesList.json";
 

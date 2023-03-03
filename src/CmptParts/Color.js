@@ -1,4 +1,4 @@
-import { DropdownIcon } from "../Components/Filter";
+import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import colorList from "../colorList.json";
 
