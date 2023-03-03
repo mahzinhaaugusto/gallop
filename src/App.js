@@ -1,6 +1,5 @@
 import React from "react";
-
-import "./App.css";
+import "./style.scss";
 import { Login } from "./Pages/Login";
 
 export function Main() {

@@ -61,43 +61,89 @@ input{
   margin-top: -45px;
     left: 18%;
 }
-.signUpCont_icons_first_value1, .signUp2Cont_icons_first_value1{
-  color:white;
-  position: absolute;
+
+.horizontalCont {
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+
+}
+
+.horizontalCont_Para {
+    margin-top: 2px;
+}
+
+.horizontalCont_leftHorizon,
+.horizontalCont_rightHorizon {
+
+    width: 100px;
+    height: 3px;
+    background-color: black;
+}
+
+.signUpCont_icons_first,
+.signUpCont_icons_second,
+.signUp2Cont_icons_first,
+.signUp2Cont_icons_second {
+    position: relative;
+}
+
+.signUpCont_icons_second,
+.signUp2Cont_icons_second {
+    margin-top: -45px;
+    left: 18%;
+}
+
+.signUpCont_icons_first_value1,
+.signUp2Cont_icons_first_value1 {
+    color: white;
+    position: absolute;
     top: 0%;
     left: 1.5%;
     transform: translate(-50%, -50%);
 }
-.signUpCont_icons_second_value2, .signUp2Cont_icons_second_value2 {
-  color: rgb(10, 10, 10);
-  position: absolute;
-  top: 0%;
-  left: 1.5%;
-  transform: translate(-50%, -50%);
+
+.signUpCont_icons_second_value2,
+.signUp2Cont_icons_second_value2 {
+    color: rgb(10, 10, 10);
+    position: absolute;
+    top: 0%;
+    left: 1.5%;
+    transform: translate(-50%, -50%);
 }
-.signUpCont_icons_rectangle, .signUp2Cont_icons_rectangle{
-  
-  width: 300px;
+
+.signUpCont_icons_rectangle,
+.signUp2Cont_icons_rectangle {
+
+    width: 300px;
     position: absolute;
     height: 5px;
     top: 40%;
-      left: 2.8%;
+    left: 2.8%;
     background-color: gray;
 }
-.signUpCont_steps, .signUp2Cont_steps{
-  display: flex;
-  flex-direction: row;
-  gap:275px;
+
+.signUpCont_steps,
+.signUp2Cont_steps {
+    display: flex;
+    flex-direction: row;
+    gap: 275px;
 }
-.require::after{
-  content: "*";
-  color: red;
+
+.require::after {
+    content: "*";
+    color: red;
 }
+
 .signUp2Cont_form_image{
       margin-top: -40px;
        
         margin-left: 7rem;
 }
+
 
 
 
@@ -161,43 +207,82 @@ button{
   border-radius: 15px;
   background-color:#33562B;
 }
-button:hover, .signUp2Cont_form_camera:hover{
-  cursor: pointer;
-  background-color: aqua;
+
+.horseDetail_cont_information_body {
+    display: flex;
+    flex-direction: row;
+}
+
+.horseDetail_cont_one {
+    display: flex;
+    flex-direction: row;
+    margin-right: 30px;
+}
+
+.horseDetail_cont_information_body_lineOne_height {
+    margin-right: 30px;
+}
+
+.horseDetail_cont_information_body_lineTwo_color {
+    margin-right: 40px;
+}
+
+.horseDetail_cont_three {
+    display: flex;
+    flex-direction: row;
+}
+
+.horseDetail_cont {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    margin-top: 5px;
+    border-radius: 15px;
+    background-color: #33562B;
+}
+
+button:hover,
+.signUp2Cont_form_camera:hover {
+    cursor: pointer;
+    background-color: aqua;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+    from {
+        transform: rotate(0deg);
+    }
 
+    to {
+        transform: rotate(360deg);
+    }
+}

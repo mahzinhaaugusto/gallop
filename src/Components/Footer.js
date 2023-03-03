@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "../css/cmpt/Footer.css";
 import horsePhoto from "../icons/HorseFooter.svg";
 import logoFooter from "../icons/LogoFooter.svg";
 
