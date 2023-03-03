@@ -4,11 +4,12 @@
     border: 2px $gray solid;
     border-radius: $radius;
     padding: $largePadding;
-    width: 10%;
+    width: auto;
     margin-bottom: $smallMargin;
 }
 
 .filter {
+    position: absolute;
     width: 30%;
     padding: $smallPadding;
     border-radius: $radius;
@@ -42,10 +43,13 @@ label {
     justify-content: space-around;
     margin: $largeMargin 0;
 
+
     .resetFilterSelection,
     .renderFilterSelection {
         margin: $smallMargin;
         width: 100px;
+        padding: $largePadding;
+        border-radius: $radius;
     }
 
     .resetFilterSelection {
@@ -60,6 +64,10 @@ label {
         color: $white;
     }
 
+}
+
+.dropdown_master {
+    margin: 0 $smallMargin;
 }
 
 /* ********************************************************************
