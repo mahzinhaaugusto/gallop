@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import camera from "../icons/Camera.svg";
 import horse from "../icons/Horse.png";
-import "../css/SignUp.css";
+import "../styles/pgs/_signup.scss";
 
 export function SignUp2() {
   const location = useLocation();
