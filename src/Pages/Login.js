@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import "../styles/pgs/_login.scss";
+
 import horse from "../icons/Horse.png";
 
 import { useNavigate, Link } from "react-router-dom";
