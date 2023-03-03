@@ -3,7 +3,7 @@
   flex-direction: column;
   text-align: center;
 }
-input{
+/* input{
   width: 400px;
   height: 50px;
 }
@@ -61,101 +61,39 @@ input{
   margin-top: -45px;
     left: 18%;
 }
-
-.horizontalCont {
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    margin-top: 50px;
-    margin-bottom: 30px;
-
-
-}
-
-.horizontalCont_Para {
-    margin-top: 2px;
-}
-
-.horizontalCont_leftHorizon,
-.horizontalCont_rightHorizon {
-
-    width: 100px;
-    height: 3px;
-    background-color: black;
-}
-
-.signUpCont_icons_first,
-.signUpCont_icons_second,
-.signUp2Cont_icons_first,
-.signUp2Cont_icons_second {
-    position: relative;
-}
-
-.signUpCont_icons_second,
-.signUp2Cont_icons_second {
-    margin-top: -45px;
-    left: 18%;
-}
-
-.signUpCont_icons_first_value1,
-.signUp2Cont_icons_first_value1 {
-    color: white;
-    position: absolute;
+.signUpCont_icons_first_value1, .signUp2Cont_icons_first_value1{
+  color:white;
+  position: absolute;
     top: 0%;
     left: 1.5%;
     transform: translate(-50%, -50%);
 }
-
-.signUpCont_icons_second_value2,
-.signUp2Cont_icons_second_value2 {
-    color: rgb(10, 10, 10);
-    position: absolute;
-    top: 0%;
-    left: 1.5%;
-    transform: translate(-50%, -50%);
+.signUpCont_icons_second_value2, .signUp2Cont_icons_second_value2 {
+  color: rgb(10, 10, 10);
+  position: absolute;
+  top: 0%;
+  left: 1.5%;
+  transform: translate(-50%, -50%);
 }
-
-.signUpCont_icons_rectangle,
-.signUp2Cont_icons_rectangle {
-
-    width: 300px;
+.signUpCont_icons_rectangle, .signUp2Cont_icons_rectangle{
+  
+  width: 300px;
     position: absolute;
     height: 5px;
     top: 40%;
-    left: 2.8%;
+      left: 2.8%;
     background-color: gray;
 }
-
-.signUpCont_steps,
-.signUp2Cont_steps {
-    display: flex;
-    flex-direction: row;
-    gap: 275px;
+.signUpCont_steps, .signUp2Cont_steps{
+  display: flex;
+  flex-direction: row;
+  gap:275px;
+} */
+.require::after{
+  content: "*";
+  color: red;
 }
 
-.require::after {
-    content: "*";
-    color: red;
-}
-
-.signUp2Cont_form_image{
-      margin-top: -40px;
-       
-        margin-left: 7rem;
-}
-
-
-
-
-.signUp2Cont_form_camera{
-  position: absolute;
-    top: 31%;
-    left: 23%;
-}
-.camera_Cont{
-  display: none;
-  z-index: 999;
-}
 
 .horseDetail{
   margin: 200px;
@@ -200,13 +138,7 @@ input{
   display: flex;
   flex-direction: column;
 }
-button{
-  width: 200px;
-  height: 50px;
-  margin-top: 5px;
-  border-radius: 15px;
-  background-color:#33562B;
-}
+
 
 .horseDetail_cont_information_body {
     display: flex;
