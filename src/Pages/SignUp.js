@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/pgs/_login.scss";
+
 import horse from "../icons/Horse.png";
 export function SignUp() {
   const [Email, setEmail] = useState("");
