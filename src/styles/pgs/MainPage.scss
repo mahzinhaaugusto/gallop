@@ -1,0 +1,38 @@
+// * {
+//     background: $white;
+// }
+
+.mainPage {
+    background: $accentSand;
+    margin: 0;
+}
+
+.mainPage_cont {
+    padding: 10rem 4rem 10rem 10rem;
+    background: $white;
+    margin: 0;
+
+    p {
+        margin: 0;
+    }
+}
+
+.mainPage_cont_allHorses {
+    padding: $largePadding;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        margin: 0;
+        // padding: 0;
+    }
+}
+
+.mainPage_cont_allHorses_dropdowns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $smallPadding;
+}
