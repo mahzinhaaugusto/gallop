@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import "../css/cmpt/NavBar.css";
 
 export function NavBar() {
     return (
-        <div className="navBar">
+        <header className="navBar">
             <NavBarCont />
-        </div>
+        </header>
     );
 }
 

@@ -72,3 +72,10 @@ node index.js
 ```
 
 For the app to work you’ll need to run the server and run the project (steps 10 and 2).
+
+## UPDATES
+
+### 11 - Install SASS
+```
+npm i node-sass --save-dev
+```

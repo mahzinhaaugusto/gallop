@@ -1,0 +1,20 @@
+// Main style, all other will be imported here
+
+// STANDARDS
+@import "./styles/fonts";
+@import "./styles/standard";
+@import "./styles/variables";
+
+
+
+// COMPONENTS
+@import "./styles/cmpt/Filter.scss";
+@import "./styles/cmpt/Footer.scss";
+@import "./styles/cmpt/NavBar.scss";
+
+
+
+
+
+// PAGES
+@import "./styles/pgs/ToReview.scss";
