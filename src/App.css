@@ -1,46 +1,65 @@
 .App {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+input{
+  width: 400px;
+  height: 50px;
+}
+.loginCont, .signUpCont_form, .signUp2Cont_form{
+  display: flex;
+  flex-direction: column;
+      margin-top: 5rem;
+}
+.login{
+  display: flex;
+  flex-direction: row;
+  gap: 7rem;
+}
+.loginCont_RememberCont{
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top:1rem;
+}
+.loginCont_Remember input{
+  width: 25px;
+  height: 25px;
+  margin-right: 1.5rem;
+}
+.links{
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+
+}
+.horizontalCont{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+ 
+  
+}
+.horizontalCont_Para{
+      margin-top: 2px;
 }
 
-input {
-    width: 400px;
-    height: 50px;
+.horizontalCont_leftHorizon, .horizontalCont_rightHorizon {
+  
+  width: 100px;
+  height: 3px;
+  background-color: black;
 }
-
-.loginCont,
-.signUpCont_form,
-.signUp2Cont_form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 5rem;
+.signUpCont_icons_first, .signUpCont_icons_second, .signUp2Cont_icons_first,
+.signUp2Cont_icons_second{
+  position: relative;
 }
-
-.login {
-    display: flex;
-    flex-direction: row;
-    gap: 7rem;
-}
-
-.loginCont_RememberCont {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-}
-
-.loginCont_Remember input {
-    width: 25px;
-    height: 25px;
-    margin-right: 1.5rem;
-}
-
-.links {
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
-
+.signUpCont_icons_second, .signUp2Cont_icons_second{
+  margin-top: -45px;
+    left: 18%;
 }
 
 .horizontalCont {
@@ -119,38 +138,74 @@ input {
     color: red;
 }
 
-.signUp2Cont_form_image {
-    margin-top: -40px;
-
-    margin-left: 7rem;
+.signUp2Cont_form_image{
+      margin-top: -40px;
+       
+        margin-left: 7rem;
 }
 
 
 
-.signUp2Cont_form_camera {
-    position: absolute;
+
+.signUp2Cont_form_camera{
+  position: absolute;
     top: 31%;
     left: 23%;
 }
-
-.camera_Cont {
-    display: none;
-    z-index: 999;
+.camera_Cont{
+  display: none;
+  z-index: 999;
 }
 
-.horseDetail {
-    margin: 200px;
-    background-color: lightgrey;
+.horseDetail{
+  margin: 200px;
+  background-color: lightgrey;
 }
 
-.horseDetail_cont_information_heading_title {
-    display: flex;
-    flex-direction: row;
+.horseDetail_cont_information_heading_title{
+  display: flex;
+  flex-direction: row;
 }
 
-.horseDetail_cont_information_heading_location {
-    display: flex;
-    flex-direction: row;
+.horseDetail_cont_information_heading_location{
+  display: flex;
+  flex-direction: row;
+}
+
+.horseDetail_cont_information_body{
+  display: flex;
+  flex-direction: row;
+}
+
+.horseDetail_cont_one{
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+}
+
+.horseDetail_cont_information_body_lineOne_height{
+  margin-right: 30px;
+}
+
+.horseDetail_cont_information_body_lineTwo_color{
+  margin-right: 40px;
+}
+
+.horseDetail_cont_three{
+  display: flex;
+  flex-direction: row;
+}
+
+.horseDetail_cont{
+  display: flex;
+  flex-direction: column;
+}
+button{
+  width: 200px;
+  height: 50px;
+  margin-top: 5px;
+  border-radius: 15px;
+  background-color:#33562B;
 }
 
 .horseDetail_cont_information_body {
