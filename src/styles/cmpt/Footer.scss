@@ -2,18 +2,23 @@
     background: blue;
 } */
 
-.footer_cont {
-    margin: 2rem;
-    padding: 0 10rem;
-}
+// .footer_cont {
+//     // margin: 2rem;
+//     // padding: 0 10rem;
+// }
 
 .footer_cont p {
     margin: 0;
 }
 
+.footer_cont_mainContent {
+    padding: 0 3rem;
+}
+
 .footer_cont_img {
-    border-bottom: solid #c0dcb4 5px;
+    border-bottom: solid $threePrim 3px;
     border-radius: 2px;
+    padding-left: 3rem;
 }
 
 .footer_cont_img img {
@@ -53,7 +58,7 @@
 .footer_cont_jupiter:hover,
 .footer_cont_documentation:hover,
 .footer_cont_aboutUs:hover {
-    background: #c0dcb4;
+    background: $threePrim;
 }
 
 /* a,
