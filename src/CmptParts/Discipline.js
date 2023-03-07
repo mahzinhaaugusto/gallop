@@ -10,7 +10,7 @@ export function Discipline() {
         <div className="filter_cont_discipline_exterior">
             <label className="filter_cont_discipline_label">Discipline</label>
             <div className="filter_cont_discipline">
-                <DisciplineDropdown isMulti isSearchable placeholder="Discipline (up to 3)" options={options} />
+                <DisciplineDropdown isMulti isSearchable placeholder="Select (up to 3)" options={options} />
             </div>
         </div>
     )
