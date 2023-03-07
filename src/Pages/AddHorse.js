@@ -29,6 +29,7 @@ export function AddHorse() {
                             <option value="" disabled selected>Select</option>
                             <option value="x">X</option>
                             <option value="y">Y</option>
+                            {/* Revise this */}
                         </select>
                         <h4>Age (years) *</h4>
                         <input required name="age" id="age" type="number"></input>
@@ -39,12 +40,14 @@ export function AddHorse() {
                             <option value="" disabled selected>Select</option>
                             <option value="x">X</option>
                             <option value="y">Y</option>
+                            {/* Revise this */}
                         </select>
                         <h4>Breeding Method *</h4>
                         <select required name="breedingMethod" id="breedingMethod">
                             <option value="" disabled selected>Select</option>
                             <option value="x">X</option>
                             <option value="y">Y</option>
+                            {/* Revise this */}
                         </select>
                         <h4>Price</h4>
                         <input name="price" id="price" type="number"></input>
@@ -71,6 +74,7 @@ export function AddHorse() {
                             <option value="" disabled selected>Select</option>
                             <option value="x">X</option>
                             <option value="y">Y</option>
+                            {/* Revise this */}
                         </select>
                         <h4>Documentation *</h4>
                         <textarea required name="documentation" id="media" cols="50" rows="6">You can upload x photos</textarea><div onClick={clickPlus}><img src={Plus} /></div>
