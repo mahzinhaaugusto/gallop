@@ -1,11 +1,12 @@
 import React from "react";
 import "./style.scss";
 import { Login } from "./Pages/Login";
+import { MainPage } from "./Pages/MainPage";
 
 export function Main() {
   return (
     <>
-      <h1>Welcome</h1>
+      <MainPage />
     </>
   );
 }

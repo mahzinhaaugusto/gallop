@@ -9,7 +9,7 @@ import image4 from "../Assets/Images/pieter-van-noorden-cjSUZMA2iW8-unsplash.jpg
 export function CarouselMain() {
     return (
 
-        <p>Testing</p>
+        <h1>CAROUSEL</h1>
         // <Carousel showThumbs={false} autoplay showIndicators={true} showArrows={true} axis={"horizontal"} dynamicHeight={false} >
         //     <div className="carouselMain">
         //         <div className="carouselMain_cont_image1">

@@ -44,6 +44,7 @@ export function AddHorse() {
               </option>
               <option value="x">X</option>
               <option value="y">Y</option>
+              {/* Revise this */}
             </select>
             <h4>Age (years) *</h4>
             <input required name="age" id="age" type="number"></input>
@@ -56,6 +57,7 @@ export function AddHorse() {
               </option>
               <option value="x">X</option>
               <option value="y">Y</option>
+              {/* Revise this */}
             </select>
             <h4>Breeding Method *</h4>
             <select required name="breedingMethod" id="breedingMethod">
@@ -64,6 +66,7 @@ export function AddHorse() {
               </option>
               <option value="x">X</option>
               <option value="y">Y</option>
+              {/* Revise this */}
             </select>
             <h4>Price</h4>
             <input name="price" id="price" type="number"></input>
@@ -106,6 +109,7 @@ export function AddHorse() {
               </option>
               <option value="x">X</option>
               <option value="y">Y</option>
+              {/* Revise this */}
             </select>
             <h4>Documentation *</h4>
             <textarea
