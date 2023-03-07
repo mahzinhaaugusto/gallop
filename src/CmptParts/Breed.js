@@ -7,9 +7,9 @@ export function Breed() {
 
     return (
         <div className="filter_cont_breed_exterior">
-            <label className="filter_cont_breed_label">Breed</label>
+            <label className="filter_cont_breed_label">Breed <span className="filter_cont_breed_label_error">*</span></label>
             <div className="filter_cont_breed">
-                <BreedDropdown isSearchable placeholder="Breed" options={options} />
+                <BreedDropdown isSearchable placeholder="Select" options={options} />
             </div>
         </div>
     )

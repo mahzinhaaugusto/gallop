@@ -1,8 +1,12 @@
 import Plus from "../icons/Plus.svg";
 import Favourites from "../icons/Favourites.svg";
+import { Breed } from "../CmptParts/Breed";
+import { Color } from "../CmptParts/Color";
+import { Discipline } from "../CmptParts/Discipline";
 // Im using the Favorites icon as a placeholder for future icons
 
 export function AddHorse() {
+
     const clickPlus = () => { console.log("works") }
     const clickSave = () => { console.log("works") }
     const clickCancel = () => { console.log("works") }
@@ -18,40 +22,52 @@ export function AddHorse() {
                     <h4>Horse Name *</h4>
                     <input required name="horseName" id="horseName" type="text"></input>
                     <div className="addHorse_cont_basics_details">
-                        <h4>Gender *</h4>
-                        <select required name="gender" id="gender">
+                        <div className="addHorse_cont_basics_details_gender">
+                            <h4>Gender *</h4>
+                            <select required name="gender" id="gender">
+                                <option value="" disabled selected>Select</option>
+                                <option value="stallion">Stallion</option>
+                                <option value="mare">Mare</option>
+                            </select>
+                        </div>
+                        <div className="addHorse_cont_basics_details_breed">
+                            {/* <h4>Breed *</h4> */}
+                            <Breed />
+                        </div>
+                        {/* <select required name="breed" id="breed">
                             <option value="" disabled selected>Select</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                        <h4>Breed *</h4>
-                        <select required name="breed" id="breed">
+                            <option value={options.value}>{options.label}</option>
+                            <option value="y">Y</option>
+                        </select> */}
+                        <div className="addHorse_cont_basics_details_age">
+                            <h4>Age (years) *</h4>
+                            <input required name="age" id="age" type="number"></input>
+                        </div>
+                        <div className="addHorse_cont_basics_details_height">
+                            <h4>Height (hh) *</h4>
+                            <input required name="height" id="height" type="number"></input>
+                        </div>
+                        <div className="addHorse_cont_basics_details_color">
+                            {/* <h4>Color</h4> */}
+                            <Color />
+                        </div>
+                        {/* <select name="color" id="color">
                             <option value="" disabled selected>Select</option>
                             <option value="x">X</option>
                             <option value="y">Y</option>
-                            {/* Revise this */}
-                        </select>
-                        <h4>Age (years) *</h4>
-                        <input required name="age" id="age" type="number"></input>
-                        <h4>Height (hh) *</h4>
-                        <input required name="height" id="height" type="number"></input>
-                        <h4>Color</h4>
-                        <select name="color" id="color">
-                            <option value="" disabled selected>Select</option>
-                            <option value="x">X</option>
-                            <option value="y">Y</option>
-                            {/* Revise this */}
-                        </select>
-                        <h4>Breeding Method *</h4>
-                        <select required name="breedingMethod" id="breedingMethod">
-                            <option value="" disabled selected>Select</option>
-                            <option value="x">X</option>
-                            <option value="y">Y</option>
-                            {/* Revise this */}
-                        </select>
-                        <h4>Price</h4>
-                        <input name="price" id="price" type="number"></input>
-
+                        </select> */}
+                        <div className="addHorse_cont_basics_details_breedingMethod">
+                            <h4>Breeding Method *</h4>
+                            <select required name="breedingMethod" id="breedingMethod">
+                                <option value="" disabled selected>Select</option>
+                                <option value="natural">Natural</option>
+                                <option value="artificial">Insemination</option>
+                            </select>
+                        </div>
+                        <div className="addHorse_cont_basics_details_price">
+                            <h4>Price</h4>
+                            <input name="price" id="price" type="number"></input>
+                        </div>
                     </div>
                     <div className="addHorse_cont_basics_upload">
                         <div className="addHorse_cont_basics_upload_thumbnail">
@@ -69,13 +85,13 @@ export function AddHorse() {
                     <div className="addHorse_cont_detailed_description">
                         <h4>Description</h4>
                         <textarea name="description" id="description" cols="50" rows="6"></textarea>
-                        <h4>Disciplines</h4>
-                        <select name="disciplines" id="disciplines">
+                        {/* <h4>Disciplines</h4> */}
+                        <Discipline />
+                        {/* <select name="disciplines" id="disciplines">
                             <option value="" disabled selected>Select</option>
                             <option value="x">X</option>
                             <option value="y">Y</option>
-                            {/* Revise this */}
-                        </select>
+                        </select> */}
                         <h4>Documentation *</h4>
                         <textarea required name="documentation" id="media" cols="50" rows="6">You can upload x photos</textarea><div onClick={clickPlus}><img src={Plus} /></div>
                     </div>

@@ -9,7 +9,7 @@ export function Color() {
         <div className="filter_cont_color_exterior">
             <label className="filter_cont_color_label">Colour</label>
             <div className="filter_cont_color">
-                <ColorDropdown isSearchable placeholder="Colour" options={options} />
+                <ColorDropdown isSearchable placeholder="Select" options={options} />
             </div>
         </div>
     )
