@@ -26,7 +26,7 @@ function NavBarCont() {
 function Home() {
     let navigate = useNavigate();
     const goToHome = () => {
-        navigate("/home");
+        navigate("/");
     };
 
     return (
