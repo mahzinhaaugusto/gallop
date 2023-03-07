@@ -1,5 +1,6 @@
 import Plus from "../icons/Plus.svg";
 import Favourites from "../icons/Favourites.svg";
+
 import { Breed } from "../CmptParts/Breed";
 import { Color } from "../CmptParts/Color";
 import { Discipline } from "../CmptParts/Discipline";
@@ -119,8 +120,3 @@ export function AddHorse() {
                 </div>
                 <button onClick={clickSave}>SAVE</button>
                 <button onClick={clickCancel}>CANCEL</button>
-
-            </div>
-        </div>
-    )
-}
