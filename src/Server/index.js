@@ -44,6 +44,44 @@ app.post("/api/insert", (req, res) => {
   );
 });
 
+app.post("/api/insertHorse", (req, res) => {
+  const horseName = req.body.name;
+  const horseGender = req.body.gender;
+  const horseBreed = req.body.breed;
+  const horseAge = req.body.age;
+  const horseHeight = req.body.height;
+  const horseColor = req.body.color;
+  const breedMethod = req.body.breedMethod;
+  const price = req.body.price;
+  const description = req.body.description;
+  const location = req.body.location;
+  const skills = req.body.discipline;
+  const uid = req.body.uid;
+
+  const sqlInsert =
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
+  db.query(
+    sqlInsert,
+    [
+      horseName,
+      horseAge,
+      description,
+      breedMethod,
+      skills,
+      horseColor,
+      horseGender,
+      horseBreed,
+      price,
+      horseHeight,
+      location,
+      uid,
+    ],
+    (err, result) => {
+      console.log(result);
+    }
+  );
+});
+
 app.listen(3002, () => {
   console.log("running on port 3002");
 });
