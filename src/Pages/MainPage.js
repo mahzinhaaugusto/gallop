@@ -32,8 +32,6 @@ export function MainPage() {
     const openPopUp = (event) => {
         event.stopPropagation();
         setShowPopUp(!showPopUp);
-        let popup = document.getElementById("popUp_master");
-        popup.classList.toggle("show");
     }
 
     const yes = () => {
