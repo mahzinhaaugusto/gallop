@@ -4,20 +4,51 @@ import { Breed } from "../CmptParts/Breed";
 import { Color } from "../CmptParts/Color";
 import { Discipline } from "../CmptParts/Discipline";
 import { useState } from "react";
+import Axios from "axios";
 // Im using the Favorites icon as a placeholder for future icons
 
 export function AddHorse() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [breed, setBreed] = useState("");
+  const [age, setAge] = useState();
+  const [height, setHeight] = useState();
+  const [color, setColor] = useState("");
+  const [breedMethod, setBreedMethod] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [discipline, setDiscipline] = useState("");
   const clickPlus = () => {
     console.log("works");
+  };
+  const colorClick = (data) => {
+    console.log(data);
+    setColor(data);
   };
   const breedClick = (data) => {
     setBreed(data);
   };
+  const disciplineClick = (data) => {
+    console.log(data);
+    setDiscipline(data);
+  };
   const clickSave = () => {
-    console.log("works");
+    Axios.post("http://localhost:3002/api/insertHorse", {
+      name: name,
+      gender: gender,
+      breed: breed,
+      age: age,
+      height: height,
+      color: color,
+      breedMethod: breedMethod,
+      price: price,
+      description: description,
+      location: location,
+      discipline: discipline,
+      uid: 1,
+    });
+    alert("Well Done");
   };
   const clickCancel = () => {
     console.log("works");
@@ -74,15 +105,31 @@ export function AddHorse() {
                         </select> */}
             <div className="addHorse_cont_basics_details_age">
               <h4>Age (years) *</h4>
-              <input required name="age" id="age" type="number"></input>
+              <input
+                required
+                name="age"
+                id="age"
+                type="number"
+                onChange={(e) => {
+                  setAge(e.target.value);
+                }}
+              ></input>
             </div>
             <div className="addHorse_cont_basics_details_height">
               <h4>Height (hh) *</h4>
-              <input required name="height" id="height" type="number"></input>
+              <input
+                required
+                name="height"
+                id="height"
+                type="number"
+                onChange={(e) => {
+                  setHeight(e.target.value);
+                }}
+              ></input>
             </div>
             <div className="addHorse_cont_basics_details_color">
               {/* <h4>Color</h4> */}
-              <Color />
+              <Color onChange={colorClick} />
             </div>
             {/* <select name="color" id="color">
                             <option value="" disabled selected>Select</option>
@@ -91,7 +138,14 @@ export function AddHorse() {
                         </select> */}
             <div className="addHorse_cont_basics_details_breedingMethod">
               <h4>Breeding Method *</h4>
-              <select required name="breedingMethod" id="breedingMethod">
+              <select
+                required
+                name="breedingMethod"
+                id="breedingMethod"
+                onChange={(e) => {
+                  setBreedMethod(e.target.value);
+                }}
+              >
                 <option value="" disabled selected>
                   Select
                 </option>
@@ -101,7 +155,14 @@ export function AddHorse() {
             </div>
             <div className="addHorse_cont_basics_details_price">
               <h4>Price</h4>
-              <input name="price" id="price" type="number"></input>
+              <input
+                name="price"
+                id="price"
+                type="number"
+                onChange={(e) => {
+                  setPrice(e.target.value);
+                }}
+              ></input>
             </div>
           </div>
           <div className="addHorse_cont_basics_upload">
@@ -134,9 +195,12 @@ export function AddHorse() {
               id="description"
               cols="50"
               rows="6"
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
             ></textarea>
             {/* <h4>Disciplines</h4> */}
-            <Discipline />
+            <Discipline onChange={disciplineClick} />
             {/* <select name="disciplines" id="disciplines">
                             <option value="" disabled selected>Select</option>
                             <option value="x">X</option>
@@ -175,6 +239,9 @@ export function AddHorse() {
               name="ownerLocation"
               id="ownerLocation"
               type="text"
+              onChange={(e) => {
+                setLocation(e.target.value);
+              }}
             ></input>
           </div>
           <div className="addHorse_cont_aboutOwner_displayHorse">
@@ -186,7 +253,7 @@ export function AddHorse() {
         <button onClick={clickSave}>SAVE</button>
         <button onClick={clickCancel}>CANCEL</button>
       </div>
-      <p>{breed}</p>
+      <p>{height}</p>
     </div>
   );
 }
