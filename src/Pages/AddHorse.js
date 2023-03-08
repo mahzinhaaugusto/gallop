@@ -9,11 +9,12 @@ import { useState } from "react";
 export function AddHorse() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
+  const [breed, setBreed] = useState("");
   const clickPlus = () => {
     console.log("works");
   };
   const breedClick = (data) => {
-    console.log(data);
+    setBreed(data);
   };
   const clickSave = () => {
     console.log("works");
@@ -185,7 +186,7 @@ export function AddHorse() {
         <button onClick={clickSave}>SAVE</button>
         <button onClick={clickCancel}>CANCEL</button>
       </div>
-      <p>{gender}</p>
+      <p>{breed}</p>
     </div>
   );
 }
