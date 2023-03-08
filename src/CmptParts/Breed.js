@@ -86,7 +86,7 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    //console.log(option.value);
+    optionSelected(option.value);
     //props.onClick(option);
   };
 
