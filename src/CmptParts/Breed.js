@@ -2,8 +2,10 @@ import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import breedList from "../breedList.json";
 
-export function Breed(props) {
+export function Breed(onChange) {
     const options = breedList.breedList;
+    let optionSelected = onChange.onChange;
+    //console.log(a);
 
     return (
         <div className="filter_cont_breed_exterior">
@@ -11,13 +13,19 @@ export function Breed(props) {
                 Breed <span className="filter_cont_breed_label_error">*</span>
             </label>
             <div className="filter_cont_breed">
-                <BreedDropdown isSearchable placeholder="Select" options={options} />
+                <BreedDropdown
+                    isSearchable
+                    placeholder="Select"
+                    options={options}
+                    optionSelected={optionSelected}
+                />
             </div>
         </div>
     );
 }
 
-function BreedDropdown({ placeholder, options, isSearchable }) {
+function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
+    //console.log(a);
     const [showOptions, setShowOptions] = useState(false);
 
     const [selectedValue, setSelectedValue] = useState(null);
