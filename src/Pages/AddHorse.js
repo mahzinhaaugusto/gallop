@@ -27,6 +27,7 @@ export function AddHorse() {
     setColor(data);
   };
   const breedClick = (data) => {
+    // console.log(data);
     setBreed(data);
   };
   const disciplineClick = (data) => {
