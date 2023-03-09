@@ -390,3 +390,14 @@ label {
         outline-color: $sevenPrim; // Change with the color desired
     }
 }
+
+.filter_cont_localization {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.filter_cont_localization .filter_cont_localization_info {
+    padding-left: 0.75rem;
+    margin-top: .5rem;
+}
