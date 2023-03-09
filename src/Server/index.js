@@ -18,7 +18,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get", (req, res) => {
-  const sqlSelect = "SELECT email,userPassword,ID from userinfo;";
+  const sqlSelect =
+    "SELECT email,userPassword,ID,firstName,lastName,phoneNumber,website,bio from userinfo;";
   db.query(sqlSelect, (er, re) => {
     console.log(re);
     res.send(re);
@@ -33,12 +34,23 @@ app.post("/api/insert", (req, res) => {
   const Address = req.body.Address;
   const Website = req.body.Website;
   const phoneNumber = req.body.phoneNumber;
+  const bio =
+    "Hey there!!! This is the personal space for you to tell about yourself. To write here please go to edit profile.";
 
   const sqlInsert =
-    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber) VALUES (?,?,?,?,?,?,?); ";
+    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber,bio) VALUES (?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
-    [firstName, lastName, userPassword, Email, Address, Website, phoneNumber],
+    [
+      firstName,
+      lastName,
+      userPassword,
+      Email,
+      Address,
+      Website,
+      phoneNumber,
+      bio,
+    ],
     (err, result) => {
       console.log(result);
     }
