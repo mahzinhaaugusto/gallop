@@ -1,11 +1,15 @@
 .profile_cont_master {
     padding: 10rem 4rem 10rem 10rem;
-    background: $white;
+    background: transparent;
     margin: 0;
 
     p {
         margin: 0;
     }
+}
+
+.profile_cont_master_inner {
+    background-color: $white;
 }
 
 .profile_cont_header_content_edit {
