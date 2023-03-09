@@ -97,7 +97,7 @@ export function AddHorse() {
             </div>
             <div className="addHorse_cont_basics_details_breed">
               {/* <h4>Breed *</h4> */}
-              <Breed onChange={breedClick} />
+              <Breed className="nothing" onChange={breedClick} />
             </div>
             {/* <select required name="breed" id="breed">
                             <option value="" disabled selected>Select</option>
@@ -169,11 +169,14 @@ export function AddHorse() {
           <div className="addHorse_cont_basics_upload">
             <div className="addHorse_cont_basics_upload_thumbnail">
               <h4>Thumbnail</h4>
-              <textarea name="thumbnail" id="thumbnail" cols="50" rows="6">
-                Upload Thumbnail
-              </textarea>
-              <div onClick={clickPlus}>
-                <img src={Plus} />
+
+              <div className="addHorse_cont_basics_upload_thumbnail_content">
+                <p>
+                  Upload Thumbnail
+                </p>
+                <div onClick={clickPlus}>
+                  <img src={Plus} />
+                </div>
               </div>
             </div>
             <div className="addHorse_cont_basics_upload_media">
