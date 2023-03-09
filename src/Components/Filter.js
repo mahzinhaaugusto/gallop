@@ -9,6 +9,7 @@ import { Discipline } from "../CmptParts/Discipline";
 import { Height } from "../CmptParts/Height";
 import { Age } from "../CmptParts/Age";
 import { Price } from "../CmptParts/Price";
+import { Localization } from "../CmptParts/Localization";
 import { Button } from "../Components/Button";
 
 export function CloseButton(props) {
@@ -69,6 +70,7 @@ function FilterCont() {
 
     return (
         <div id="testing" className="filter_cont_all">
+            <Localization />
             <Breed className="filter_cont_breed_exterior" />
             <Gender />
             <Color className="filter_cont_color_exterior" />
