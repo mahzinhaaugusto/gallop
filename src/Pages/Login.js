@@ -20,7 +20,7 @@ export function Login() {
       if (val.email === userEmail && val.userPassword === userPassword) {
         flag = true;
         localStorage.setItem("id", val.ID);
-        console.log(val.ID);
+
         navigate("/home");
       }
       setUserEmail("");
