@@ -3,18 +3,18 @@ import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import disciplinesList from "../disciplinesList.json";
 
-export function Discipline(onChange) {
+export function Discipline({ onChange, className }) {
   const options = disciplinesList.disciplinesList;
-  const disciplineSet = onChange.onChange;
+  const disciplineSet = onChange;
 
   return (
-    <div className="filter_cont_discipline_exterior">
+    <div className={className}>
       <label className="filter_cont_discipline_label">Discipline</label>
       <div className="filter_cont_discipline">
         <DisciplineDropdown
           isMulti
           isSearchable
-          placeholder="Select (up to 3)"
+          placeholder="Discipline (up to 3)"
           options={options}
           disciplineSet={disciplineSet}
         />
@@ -185,9 +185,8 @@ function DisciplineDropdown({
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_discipline_dropdown_options_singleOption ${
-                isSelected(option) && "selected"
-              }`}
+              className={`filter_cont_discipline_dropdown_options_singleOption ${isSelected(option) && "selected"
+                }`}
             >
               {option.label}
             </div>

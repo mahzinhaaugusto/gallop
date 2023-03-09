@@ -2,18 +2,18 @@ import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import colorList from "../colorList.json";
 
-export function Color(onChange) {
-  let selectColor = onChange.onChange;
+export function Color({ onChange, className }) {
+  let selectColor = onChange;
 
   const options = colorList.colorList;
 
   return (
-    <div className="filter_cont_color_exterior">
+    <div className={className}>
       <label className="filter_cont_color_label">Colour</label>
       <div className="filter_cont_color">
         <ColorDropdown
           isSearchable
-          placeholder="Select"
+          placeholder="Colour"
           options={options}
           selectColor={selectColor}
         />
@@ -122,9 +122,8 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_color_dropdown_options_singleOption ${
-                isSelected(option) && "selected"
-              }`}
+              className={`filter_cont_color_dropdown_options_singleOption ${isSelected(option) && "selected"
+                }`}
             >
               {option.label}
             </div>

@@ -2,13 +2,13 @@ import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import breedList from "../breedList.json";
 
-export function Breed(onChange) {
+export function Breed({ onChange, className }) {
     const options = breedList.breedList;
-    let optionSelected = onChange.onChange;
+    let optionSelected = onChange;
     //console.log(a);
 
     return (
-        <div className="filter_cont_breed_exterior">
+        <div className={className}>
             <label className="filter_cont_breed_label">
                 Breed <span className="filter_cont_breed_label_error">*</span>
             </label>
