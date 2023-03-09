@@ -7,11 +7,23 @@ import HideShowPass from "../icons/HideShowPass.svg";
 import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
+import horse from "../icons/Horse.png";
+
+import Axios from "axios";
 
 export function Profile() {
-
   const [showProfile, setShowProfile] = useState(true);
   const [showEditing, setShowEditing] = useState(false);
+  const [profileInfo, setProfileInfo] = useState({
+    background: "",
+    profile: "",
+    bioContent:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem.",
+    fullName: "",
+    phoneNumber: 111111111111,
+    email: "user@domain.com",
+    websiteInfo: "www.myhorses.ca",
+  });
 
   const editProfile = (event) => {
     event.stopPropagation();
@@ -26,6 +38,7 @@ export function Profile() {
   };
 
   const [showCount, setShowCount] = useState(0);
+  //const [credential, setCredential] = useState([]);
 
   const [showPopUpDelete, setShowPopUpDelete] = useState(false);
   const [showPopUpSave, setShowPopUpSave] = useState(false);
@@ -53,22 +66,61 @@ export function Profile() {
   const redirect = () => {
     navigate("/");
   };
-
+  let credential = [];
   useEffect(() => {
-    let id = localStorage.getItem("id");
-    console.log(id);
-  });
+    Axios.get("http://localhost:3002/api/get").then((response) => {
+      credential = response.data;
+      let id = localStorage.getItem("id");
+      for (let i = 0; i < credential.length; i++) {
+        if (credential[i].ID == id) {
+          setProfileInfo({
+            background: "",
+            profile: "",
+            bioContent: credential[i].bio,
+            fullName: credential[i].firstName + " " + credential[i].lastName,
+            phoneNumber: credential[i].phoneNumber,
+            email: credential[i].email,
+            websiteInfo: credential[i].website,
+          });
+          //   profileInfo.fullName =
+          //     credential[i].firstName + " " + credential[i].lastName;
+          console.log(profileInfo.fullName);
+        }
+      }
+    });
+    //console.log(credential);
 
-  const profileInfo = {
-    background: "",
-    profile: "",
-    bioContent:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem.",
-    fullName: "TESTING TESTING TESTING",
-    phoneNumber: 111111111111,
-    email: "user@domain.com",
-    websiteInfo: "www.myhorses.ca",
-  };
+    // credential.map((val) => {
+    //   console.log(val);
+    //   if (val.ID === id) {
+    //     console.log(val.firstName);
+    //   }
+    //   return 1;
+    // });
+  }, []);
+  //   useEffect(() => {
+  //     let id = localStorage.getItem("id");
+  //     console.log(credential);
+  //     credential.map((val) => {
+  //       console.log(val[0].ID);
+  //       if (val.ID == id) {
+  //         setProfileInfo({
+  //           background: "",
+  //           profile: "",
+  //           bioContent:
+  //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem.",
+  //           fullName: val.firstName,
+  //           phoneNumber: 111111111111,
+  //           email: "user@domain.com",
+  //           websiteInfo: "www.myhorses.ca",
+  //         });
+  //         profileInfo.fullName = val.firstName + " " + val.lastName;
+  //         console.log(profileInfo.fullName);
+  //         return 1;
+  //       }
+  //       return 1;
+  //     });
+  //   });
 
   const profileEditing = {
     maxLength: 150,
@@ -91,7 +143,7 @@ export function Profile() {
               />
               <div className="profile_cont_header_content">
                 <img
-                  src={profileInfo.profile}
+                  src={horse}
                   alt="profile pic"
                   className="profile_cont_header_content_pic"
                 />
@@ -313,7 +365,6 @@ export function Profile() {
                         title="Done"
                         onClick={redirect}
                       />
-
                     </div>
                   }
                 />
