@@ -79,3 +79,8 @@ For the app to work you’ll need to run the server and run the project (steps 1
 ```
 npm i node-sass --save-dev
 ```
+
+### 12 - Install Google Geocode
+```
+npm install --save react-geocode
+```
