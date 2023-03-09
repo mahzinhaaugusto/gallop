@@ -9,6 +9,7 @@ import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 
 export function Profile() {
+
   const [showProfile, setShowProfile] = useState(true);
   const [showEditing, setShowEditing] = useState(false);
 
@@ -312,6 +313,7 @@ export function Profile() {
                         title="Done"
                         onClick={redirect}
                       />
+
                     </div>
                   }
                 />

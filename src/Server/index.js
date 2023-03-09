@@ -18,8 +18,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get", (req, res) => {
-  const sqlSelect = "SELECT email,userPassword from userinfo;";
+  const sqlSelect = "SELECT email,userPassword,ID from userinfo;";
   db.query(sqlSelect, (er, re) => {
+    console.log(re);
     res.send(re);
   });
 });
