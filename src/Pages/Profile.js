@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
 import { Button } from "../Components/Button";
@@ -41,6 +41,7 @@ export function Profile() {
   const cancel = () => {
     setShowEditing(!showEditing);
     setShowProfile(!showProfile);
+    setShowPopUpDelete(!showPopUpDelete);
   };
 
   const confirmDelete = () => {
@@ -51,6 +52,11 @@ export function Profile() {
   const redirect = () => {
     navigate("/");
   };
+
+  useEffect(() => {
+    let id = localStorage.getItem("id");
+    console.log(id);
+  });
 
   const profileInfo = {
     background: "",
@@ -201,6 +207,7 @@ export function Profile() {
                   className="profile_cont_mainContent_editing_name_info"
                   type="text"
                   maxLength={profileEditing.inputLength}
+                  placeholder="Hunter Smith"
                 />
               </div>
               <div className="profile_cont_mainContent_editing_phoneNumber">
@@ -211,7 +218,7 @@ export function Profile() {
                   className="profile_cont_mainContent_editing_phoneNumber_info"
                   type="number"
                   max="10"
-                  placeholder=""
+                  placeholder="1234567890"
                 />
               </div>
               <div className="profile_cont_mainContent_editing_email">
@@ -222,18 +229,7 @@ export function Profile() {
                   className="profile_cont_mainContent_editing_email_info"
                   type="email"
                   max="10"
-                  placeholder=""
-                />
-              </div>
-              <div className="profile_cont_mainContent_editing_website">
-                <h4 className="profile_cont_mainContent_editing_website_title">
-                  Website:
-                </h4>
-                <input
-                  className="profile_cont_mainContent_editing_website_info"
-                  type="text"
-                  maxLength={profileEditing.inputLength}
-                  placeholder=""
+                  placeholder="hsmith@mylangara.ca"
                 />
               </div>
               <div className="profile_cont_mainContent_editing_location">
@@ -244,7 +240,18 @@ export function Profile() {
                   className="profile_cont_mainContent_editing_location_info"
                   type="text"
                   maxLength={profileEditing.inputLength}
-                  placeholder=""
+                  placeholder="Vancouver"
+                />
+              </div>
+              <div className="profile_cont_mainContent_editing_website">
+                <h4 className="profile_cont_mainContent_editing_website_title">
+                  Website:
+                </h4>
+                <input
+                  className="profile_cont_mainContent_editing_website_info"
+                  type="text"
+                  maxLength={profileEditing.inputLength}
+                  placeholder="thegallopapp.com"
                 />
               </div>
               <div className="profile_cont_mainContent_editing_password">
@@ -255,7 +262,7 @@ export function Profile() {
                   className="profile_cont_mainContent_editing_name_info"
                   type="password"
                   maxLength={profileEditing.inputLength}
-                  placeholder=""
+                  placeholder="************"
                 />
                 <img src={HideShowPass} alt="hide and show password icon" />
               </div>
