@@ -1,5 +1,3 @@
-//
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -29,20 +27,20 @@ app.get("/api/get", (req, res) => {
 app.post("/api/editprofile", (req, res) => {
   const profileInfo = req.body.profileEdit;
   console.log(profileInfo);
-
+  const id = req.body.id;
   const sqlEdit =
-    "UPDATE userinfo SET column1 = value1, column2 = value2, WHERE ID =  ";
+    "UPDATE userinfo SET bio = ?, firstName = ?, phoneNumber = ?, email = ?, address = ?, website = ?, userPassword = ?  WHERE ID =  ?";
   db.query(
     sqlEdit,
     [
-      firstName,
-      lastName,
-      userPassword,
-      Email,
-      Address,
-      Website,
-      phoneNumber,
-      bio,
+      profileInfo.bioContent,
+      profileInfo.fullName,
+      profileInfo.phoneNumber,
+      profileInfo.email,
+      profileInfo.address,
+      profileInfo.website,
+      profileInfo.password,
+      id
     ],
     (err, result) => {
       console.log(result);
