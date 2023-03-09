@@ -1,0 +1,32 @@
+.profile_cont_master {
+    padding: 10rem 4rem 10rem 10rem;
+    background: transparent;
+    margin: 0;
+
+    p {
+        margin: 0;
+    }
+}
+
+.profile_cont_master_inner {
+    background-color: $white;
+}
+
+.profile_cont_header_content_edit {
+    margin: $largeMargin;
+    background: $white;
+    color: $primary;
+    border-radius: $radius;
+    padding: $largePadding;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border: 1px $primary solid;
+}
+
+.profile_cont_mainContent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
