@@ -69,11 +69,11 @@ function FilterCont() {
 
     return (
         <div id="testing" className="filter_cont_all">
-            <Breed />
+            <Breed className="filter_cont_breed_exterior" />
             <Gender />
-            <Color />
+            <Color className="filter_cont_color_exterior" />
             <BreedingMethod />
-            <Discipline />
+            <Discipline className="filter_cont_discipline_exterior" />
             <Height />
             <Age />
             <Price />

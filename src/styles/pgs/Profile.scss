@@ -7,3 +7,22 @@
         margin: 0;
     }
 }
+
+.profile_cont_header_content_edit {
+    margin: $largeMargin;
+    background: $white;
+    color: $primary;
+    border-radius: $radius;
+    padding: $largePadding;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border: 1px $primary solid;
+}
+
+.profile_cont_mainContent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

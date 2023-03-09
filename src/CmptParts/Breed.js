@@ -2,26 +2,26 @@ import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import breedList from "../breedList.json";
 
-export function Breed(onChange) {
-  const options = breedList.breedList;
-  let optionSelected = onChange.onChange;
-  //console.log(a);
+export function Breed({ onChange, className }) {
+    const options = breedList.breedList;
+    let optionSelected = onChange;
+    //console.log(a);
 
-  return (
-    <div className="filter_cont_breed_exterior">
-      <label className="filter_cont_breed_label">
-        Breed <span className="filter_cont_breed_label_error">*</span>
-      </label>
-      <div className="filter_cont_breed">
-        <BreedDropdown
-          isSearchable
-          placeholder="Select"
-          options={options}
-          optionSelected={optionSelected}
-        />
-      </div>
-    </div>
-  );
+    return (
+        <div className={className}>
+            <label className="filter_cont_breed_label">
+                Breed <span className="filter_cont_breed_label_error">*</span>
+            </label>
+            <div className="filter_cont_breed">
+                <BreedDropdown
+                    isSearchable
+                    placeholder="Select"
+                    options={options}
+                    optionSelected={optionSelected}
+                />
+            </div>
+        </div>
+    );
 }
 
 function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
