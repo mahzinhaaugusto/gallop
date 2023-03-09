@@ -84,3 +84,13 @@ npm i node-sass --save-dev
 ```
 npm install --save react-geocode
 ```
+
+### 13 - Install Firebase
+```
+npm install firebase
+```
+
+### 14 - Install Swiper (carousel)
+```
+npm i swiper
+```
