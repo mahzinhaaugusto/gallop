@@ -21,10 +21,34 @@ app.get("/api/get", (req, res) => {
   const sqlSelect =
     "SELECT email,userPassword,ID,firstName,lastName,phoneNumber,website,bio from userinfo;";
   db.query(sqlSelect, (er, re) => {
-    console.log(re);
+    //console.log(re);
     res.send(re);
   });
 });
+
+app.post("/api/editprofile", (req, res) => {
+  const profileInfo = req.body.profileEdit;
+  console.log(profileInfo);
+
+  const sqlEdit =
+    "UPDATE userinfo SET column1 = value1, column2 = value2, WHERE ID =  ";
+  db.query(
+    sqlEdit,
+    [
+      firstName,
+      lastName,
+      userPassword,
+      Email,
+      Address,
+      Website,
+      phoneNumber,
+      bio,
+    ],
+    (err, result) => {
+      console.log(result);
+    }
+  );
+})
 
 app.post("/api/insert", (req, res) => {
   const firstName = req.body.firstName;
