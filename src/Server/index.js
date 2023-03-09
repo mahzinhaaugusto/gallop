@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get", (req, res) => {
   const sqlSelect =
-    "SELECT email,userPassword,ID,firstName,lastName,phoneNumber,website,bio from userinfo;";
+    "SELECT email,userPassword,ID,firstName,lastName,phoneNumber,website,bio,userPhoto,backgroundPhoto from userinfo;";
   db.query(sqlSelect, (er, re) => {
     //console.log(re);
     res.send(re);
@@ -48,7 +48,7 @@ app.post("/api/editprofile", (req, res) => {
       console.log(result);
     }
   );
-})
+});
 
 app.post("/api/insert", (req, res) => {
   const firstName = req.body.firstName;
@@ -60,9 +60,12 @@ app.post("/api/insert", (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const bio =
     "Hey there!!! This is the personal space for you to tell about yourself. To write here please go to edit profile.";
+  const userPhoto = req.body.userPhoto;
+  const backgroundPhoto =
+    "https://firebasestorage.googleapis.com/v0/b/app1-504b3.appspot.com/o/gallop%2Fhorse.png?alt=media&token=61dbac87-df8f-491a-a358-25bffe79eb6b";
 
   const sqlInsert =
-    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber,bio) VALUES (?,?,?,?,?,?,?,?); ";
+    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber,bio,userPhoto,backgroundPhoto) VALUES (?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -74,6 +77,8 @@ app.post("/api/insert", (req, res) => {
       Website,
       phoneNumber,
       bio,
+      userPhoto,
+      backgroundPhoto,
     ],
     (err, result) => {
       console.log(result);
