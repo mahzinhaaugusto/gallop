@@ -33,7 +33,7 @@ export function Profile() {
 
   const signOut = () => {
     console.log("Sign Out working");
-  }
+  };
 
   const [showCount, setShowCount] = useState(0);
   //const [credential, setCredential] = useState([]);
@@ -48,12 +48,13 @@ export function Profile() {
 
   const saveEditing = () => {
     setShowPopUpSave(!showPopUpSave);
-    const bioContent = document.getElementById("profile_cont_mainContent_editing_bio_content");
+    const bioContent = document.getElementById(
+      "profile_cont_mainContent_editing_bio_content"
+    );
     profileEdit.bioContent = bioContent.value;
     Axios.post("http://localhost:3002/api/editprofile", {
       profileEdit: profileEdit,
-    })
-
+    });
   };
 
   const cancel = () => {
@@ -85,6 +86,8 @@ export function Profile() {
             phoneNumber: credential[i].phoneNumber,
             email: credential[i].email,
             websiteInfo: credential[i].website,
+            userPhoto: credential[i].userPhoto,
+            background: credential[i].backgroundPhoto,
           });
           //   profileInfo.fullName =
           //     credential[i].firstName + " " + credential[i].lastName;
@@ -125,7 +128,7 @@ export function Profile() {
                 />
                 <div className="profile_cont_header_content">
                   <img
-                    src={horse}
+                    src={profileInfo.userPhoto}
                     alt="profile pic"
                     className="profile_cont_header_content_pic"
                   />
@@ -158,7 +161,9 @@ export function Profile() {
                   </p>
                 </div>
                 <div className="profile_cont_mainContent_email">
-                  <h4 className="profile_cont_mainContent_email_title">Email:</h4>
+                  <h4 className="profile_cont_mainContent_email_title">
+                    Email:
+                  </h4>
                   <p className="profile_cont_mainContent_email_content">
                     {profileInfo.email}
                   </p>
@@ -171,8 +176,11 @@ export function Profile() {
                     {profileInfo.websiteInfo}
                   </p>
                 </div>
-                <Button title="Sign Out" className="profile_cont_mainContent_cta_signOut"
-                  onClick={signOut} />
+                <Button
+                  title="Sign Out"
+                  className="profile_cont_mainContent_cta_signOut"
+                  onClick={signOut}
+                />
               </div>
             </div>
             <Footer />
@@ -235,7 +243,6 @@ export function Profile() {
                   placeholder="Please tell us a bit about yourself."
                   onChange={(event) => {
                     setShowCount(event.target.value.length);
-
                   }}
                 ></textarea>
               </div>
