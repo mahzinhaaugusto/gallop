@@ -11,6 +11,7 @@ import { Profile } from "./Pages/Profile";
 import { Favorites } from "./Pages/Favorites";
 import { MyHorses } from "./Pages/MyHorses";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>

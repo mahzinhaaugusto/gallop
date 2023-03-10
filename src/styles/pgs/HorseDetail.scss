@@ -1,0 +1,99 @@
+.horseDetail_master {
+    background-color: #F5F5F5;
+    h3{
+        //margin-top: 20px;
+        position: relative;
+        color: black;
+        font-weight: 900;
+    }
+    h3::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #5A5A5F;
+    }
+
+}
+
+//add horse title
+.horseDetail > h3{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0;
+    margin-left: -10px;
+    padding-left: 300px;
+    padding-right: 200px;
+    padding-top: 100px;
+}
+
+.horseDetail_cont{
+    background-color: white;
+    margin: 30px 200px 50px 250px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    
+}
+
+
+
+
+.horseDetail_cont_information_heading_title {
+    display: flex;
+    flex-direction: row;
+}
+.horseDetail_cont_information_heading_location {
+    display: flex;
+    flex-direction: row;
+}
+.horseDetail_cont_information_body {
+    display: flex;
+    flex-direction: row;
+}
+.horseDetail_cont_one {
+    display: flex;
+    flex-direction: row;
+    margin-right: 30px;
+}
+.horseDetail_cont_information_body_lineOne_height {
+    margin-right: 30px;
+}
+.horseDetail_cont_information_body_lineTwo_color {
+    margin-right: 40px;
+}
+.horseDetail_cont_three {
+    display: flex;
+    flex-direction: row;
+}
+.horseDetail_cont {
+    display: flex;
+    flex-direction: column;
+}
+.horseDetail_cont_information_body {
+    display: flex;
+    flex-direction: row;
+}
+.horseDetail_cont_one {
+    display: flex;
+    flex-direction: row;
+    margin-right: 30px;
+}
+.horseDetail_cont_information_body_lineOne_height {
+    margin-right: 30px;
+}
+.horseDetail_cont_information_body_lineTwo_color {
+    margin-right: 40px;
+}
+.horseDetail_cont_three {
+    display: flex;
+    flex-direction: row;
+}
+.horseDetail_cont {
+    display: flex;
+    flex-direction: column;
+}

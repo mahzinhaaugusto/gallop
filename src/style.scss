@@ -1,6 +1,7 @@
 // Main style, all other will be imported here
 
 // STANDARDS
+@import "./styles/reset";
 @import "./styles/variables";
 @import "./styles/fonts";
 @import "./styles/standard";
@@ -25,3 +26,4 @@
 @import "./styles/pgs/Profile.scss";
 @import "./styles/pgs/MyHorses.scss";
 @import "./styles/pgs/SplashScreen.scss";
+@import "./styles/pgs/HorseDetail.scss";
