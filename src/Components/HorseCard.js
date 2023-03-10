@@ -25,10 +25,12 @@ export function HorseCard({ horseInfo, onClick, addFavOnClick }) {
                         <div className="horseCard_cont_details_description">
                             {horse.description}
                         </div>
-                        <button id="horseCard_cont_details_btn" type="button" onClick={onClick}>
-                            More
-                            <img src={Plus} alt="" />
-                        </button>
+                        <div className="horseCard_cont_details_btn_master">
+                            <button id="horseCard_cont_details_btn" type="button" onClick={onClick}>
+                                MORE
+                                <img src={Plus} alt="" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>)}
