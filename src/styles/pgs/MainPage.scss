@@ -36,3 +36,10 @@
     justify-content: space-between;
     padding: $smallPadding;
 }
+
+.mainPage_cont_horsesCards {
+    display: flex;
+    gap: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

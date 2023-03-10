@@ -6,7 +6,7 @@ import Camera from "../icons/Camera.svg";
 import HideShowPass from "../icons/HideShowPass.svg";
 import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import horse from "../icons/Horse.png";
 
 import Axios from "axios";
@@ -69,10 +69,13 @@ export function Profile() {
     // Add the delete command for the db
   };
 
+  // let navigate = useNavigate();
+
   const redirect = () => {
     setShowEditing(!showEditing);
     setShowProfile(!showProfile);
     setShowPopUpDelete(!showPopUpDelete);
+    // navigate("/home");
   };
   let credential = [];
   useEffect(() => {
@@ -92,21 +95,11 @@ export function Profile() {
             userPhoto: credential[i].userPhoto,
             background: credential[i].backgroundPhoto,
           });
-          //   profileInfo.fullName =
-          //     credential[i].firstName + " " + credential[i].lastName;
           console.log(profileInfo.fullName);
         }
       }
     });
     //console.log(credential);
-
-    // credential.map((val) => {
-    //   console.log(val);
-    //   if (val.ID === id) {
-    //     console.log(val.firstName);
-    //   }
-    //   return 1;
-    // });
   }, []);
 
   const profileEditing = {
