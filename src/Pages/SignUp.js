@@ -26,6 +26,10 @@ export function SignUp() {
     }
   };
 
+  const backSplash = () => {
+    navigate("/");
+  }
+
   return (
     <div className="signUp">
       <div className="signUpImage">
@@ -122,7 +126,7 @@ export function SignUp() {
               }}
             ></input>
             <div className="buttonArray">
-              <button className="secondaryBtn">Back</button>
+              <button className="secondaryBtn" onClick={backSplash}>Back</button>
               <button className="primaryBtn" onClick={nextClicked}>
                 Next
               </button>
