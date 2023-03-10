@@ -22,7 +22,7 @@
     color: $gray;
     padding: $smallPadding 0;
     padding-top: $largePadding;
-
+}
 .require::after {
     content: "*";
     color: red;
