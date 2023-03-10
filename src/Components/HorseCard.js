@@ -17,23 +17,20 @@ export function HorseCard({ horseInfo, onClick, addFavOnClick }) {
                             <img src={FavoriteIcon} alt="" onClick={addFavOnClick} />
                         </div>
                     </div>
-
-                    {/* {horseInfo.map((horse, i) => <div key={i} >{horse.horseName} {horse.horseAge} </div>)} */}
-
-                    {/* {horseInfo.map((horse, i) => <div key={i} >{horse.horseAge} </div>)} */}
-
                     <div className="horseCard_cont_details">
                         <h3 id="horseCard_cont_details_name">{horse.horseName}</h3>
                         <div className="horseCard_cont_details_label">
-                            <h4 id="horseCard_cont_details_labels">{horse.breed} | {horse.gender} | {horse.horseAge} yr(s) old </h4>
+                            <h4 id="horseCard_cont_details_labels">{horse.breed.charAt(0).toUpperCase() + horse.breed.slice(1)} | {horse.gender.charAt(0).toUpperCase() + horse.gender.slice(1)} | {horse.horseAge} yr(s) old </h4>
                         </div>
                         <div className="horseCard_cont_details_description">
                             {horse.description}
                         </div>
-                        <button id="horseCard_cont_details_btn" type="button" onClick={onClick}>
-                            More
-                            <img src={Plus} alt="" />
-                        </button>
+                        <div className="horseCard_cont_details_btn_master">
+                            <button id="horseCard_cont_details_btn" type="button" onClick={onClick}>
+                                MORE
+                                <img src={Plus} alt="" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>)}

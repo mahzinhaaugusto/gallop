@@ -3,7 +3,7 @@
 /src/server/.env
 /src/server/package.json
 /src/server/package-lock.json
-/public
+# /public
 /package.json
 /package-lock.json
 /.DS_Store

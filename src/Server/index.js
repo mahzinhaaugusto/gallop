@@ -25,11 +25,13 @@ app.get("/api/get", (req, res) => {
 });
 
 app.get("/api/allhorses", (req, res) => {
-  const selectAll = "select * from horseinfo;";
+  const selectAll = "SELECT * FROM horseinfo;";
   db.query(selectAll, (er, re) => {
     res.send(re);
+
   });
 });
+
 
 app.post("/api/editprofile", (req, res) => {
   const profileInfo = req.body.profileEdit;
