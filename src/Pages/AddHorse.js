@@ -1,3 +1,8 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+import "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import CancelButton from "../icons/CancelButton.svg";
 import SaveButton from "../icons/SaveButton.svg";
 
@@ -24,8 +29,44 @@ export function AddHorse() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [discipline, setDiscipline] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [horseThumb, setHorseThumb] = useState("");
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyASdmqlaScVgkSxCrvYng7_SzRnE2VQRgU",
+    authDomain: "app1-504b3.firebaseapp.com",
+    databaseURL: "https://app1-504b3-default-rtdb.firebaseio.com",
+    projectId: "app1-504b3",
+    storageBucket: "app1-504b3.appspot.com",
+    messagingSenderId: "150727407420",
+    appId: "1:150727407420:web:de3b1d71b182fd722dd039",
+    measurementId: "G-JC5YWN05W8",
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
   const clickPlus = () => {
     console.log("works");
+  };
+  const clickPlusOfThumb = () => {
+    document.getElementById("thumb").style.display = "block";
+
+    document.getElementById("thumbBox").style.display = "none";
+  };
+  const photoSeleceted = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    setPhoto(file);
+
+    // reader.onload = () => {
+    //   let bl = new Blob([reader.result], { type: file.type });
+    //   setPreviewUrl(reader.result);
+    //   setBlob(bl);
+    // };
   };
   const colorClick = (data) => {
     console.log(data);
@@ -39,23 +80,33 @@ export function AddHorse() {
     setDiscipline(data);
   };
   const clickSave = () => {
-    let uid = localStorage.getItem("id");
-    Axios.post("http://localhost:3002/api/insertHorse", {
-      name: name,
-      gender: gender,
-      breed: breed,
-      age: age,
-      height: height,
-      color: color,
-      breedMethod: breedMethod,
-      price: price,
-      description: description,
-      location: location,
-      discipline: discipline,
-      uid: uid,
+    const storage = getStorage();
+
+    const storageRef = ref(storage, `Horsephoto/${photo.name}`);
+    uploadBytes(storageRef, photo).then(() => {
+      getDownloadURL(storageRef).then((result) => {
+        setHorseThumb(result);
+        let uid = localStorage.getItem("id");
+        Axios.post("http://localhost:3002/api/insertHorse", {
+          name: name,
+          gender: gender,
+          breed: breed,
+          age: age,
+          height: height,
+          color: color,
+          breedMethod: breedMethod,
+          price: price,
+          description: description,
+          location: location,
+          discipline: discipline,
+          uid: uid,
+          horseThumb: result,
+        });
+        alert("Well Done");
+      });
     });
-    alert("Well Done");
   };
+
   const clickCancel = () => {
     console.log("works");
   };
@@ -205,9 +256,22 @@ export function AddHorse() {
             <div className="addHorse_cont_basics_upload">
               <div className="addHorse_cont_basics_upload_thumbnail">
                 <label>Thumbnail</label>
-                <div className="addHorse_cont_basics_upload_thumbnail_content">
+                <input
+                  className="addHorse_cont_basics_upload_thumbnail_input"
+                  type="file"
+                  id="thumb"
+                  name="thumb"
+                  accept="image/*"
+                  onChange={photoSeleceted}
+                />
+                {previewUrl && <img src={previewUrl} alt="Preview" />}
+
+                <div
+                  id="thumbBox"
+                  className="addHorse_cont_basics_upload_thumbnail_content"
+                >
                   <p>Upload Thumbnail</p>
-                  <div onClick={clickPlus}>
+                  <div onClick={clickPlusOfThumb}>
                     <img src={AddMedia} />
                   </div>
                 </div>
