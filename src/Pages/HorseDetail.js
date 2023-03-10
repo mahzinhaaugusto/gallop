@@ -2,6 +2,8 @@ import Phone from "../icons/Phone.svg";
 import ProfilePic from "../icons/ProfilePic.svg";
 import Favourites from "../icons/Favourites.svg";
 import "../styles/pgs/AddHorse.scss";
+import { NavBar } from "../Components/NavBar";
+import { Footer } from "../Components/Footer";
 
 export function HorseDetail() {
   const goBack = () => {
@@ -29,6 +31,8 @@ export function HorseDetail() {
   };
 
   return (
+    <div className="horseDetail_master">
+        <NavBar />
     <div className="horseDetail">
       <h3>Horse Detail</h3>
 
@@ -171,6 +175,8 @@ export function HorseDetail() {
           </div>
         </div>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 }
