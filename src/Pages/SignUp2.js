@@ -96,9 +96,17 @@ export function SignUp2() {
 
   const profilePicture = () => {
     // cameraOn = true;
-    document.getElementById("cameraCont").style.display = "block";
+    document.getElementById("cameraCont").style.display = "flex";
     getVideo();
   };
+
+  const appearCanvas = () => {
+    document.getElementById("canvas").style.display = "block";
+  }
+
+  const backButton = () => {
+    navigate("/signup");
+  }
 
   return (
     <>
@@ -108,7 +116,7 @@ export function SignUp2() {
         </div>
         <div className="signUpForm">
           <div className="signUp2Cont">
-            <h1>Tell Us More About Yourself</h1>
+            <h1>Tell Us More!</h1>
             <div className="icons">
               <div className="signUp2Cont_steps">
                 <p className="signUp2Cont_steps_step1">Step 1</p>
@@ -142,9 +150,9 @@ export function SignUp2() {
 
               <div className="camera_Cont" id="cameraCont">
                 <video ref={videoRef}></video>
-                <button onClick={takePhoto}>Click</button>
+                <button className="camera_Cont_btn" id="cameraBtn" onClick={takePhoto}>Click</button>
                 <div className="result">
-                  <canvas ref={photoRef}></canvas>
+                  <canvas id="canvas" ref={photoRef} onChange={appearCanvas}></canvas>
                 </div>
               </div>
 
@@ -154,7 +162,7 @@ export function SignUp2() {
               <input
                 type="number"
                 name="phoneNumber"
-                placeholder="Please include national number."
+                placeholder="Please include national number"
                 onChange={(e) => {
                   setPhoneNumber(+e.target.value);
                 }}
@@ -179,7 +187,7 @@ export function SignUp2() {
                 }}
               ></input>
               <div className="buttonArray">
-                <button className="secondaryBtn">Back</button>
+                <button className="secondaryBtn" onClick={backButton}>Back</button>
                 <button className="primaryBtn" onClick={submitClicked}>
                   Create Account
                 </button>
