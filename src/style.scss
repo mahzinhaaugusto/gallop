@@ -1,0 +1,27 @@
+// Main style, all other will be imported here
+
+// STANDARDS
+@import "./styles/reset";
+@import "./styles/variables";
+@import "./styles/fonts";
+@import "./styles/standard";
+
+
+
+// COMPONENTS
+@import "./styles/cmpt/Filter.scss";
+@import "./styles/cmpt/Footer.scss";
+@import "./styles/cmpt/NavBar.scss";
+@import "./styles/cmpt/SortBy.scss";
+@import "./styles/cmpt/CarouselMain.scss";
+@import "./styles/cmpt/HorseCard.scss";
+@import "./styles/cmpt/PopUp.scss";
+
+
+// PAGES
+@import "./styles/pgs/Login.scss";
+@import "./styles/pgs/SignUp.scss";
+@import "./styles/pgs/MainPage.scss";
+@import "./styles/pgs/AddHorse.scss";
+@import "./styles/pgs/Profile.scss";
+@import "./styles/pgs/HorseDetail.scss";

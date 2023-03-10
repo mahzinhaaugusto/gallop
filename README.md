@@ -72,3 +72,25 @@ node index.js
 ```
 
 For the app to work you’ll need to run the server and run the project (steps 10 and 2).
+
+## UPDATES
+
+### 11 - Install SASS
+```
+npm i node-sass --save-dev
+```
+
+### 12 - Install Google Geocode
+```
+npm install --save react-geocode
+```
+
+### 13 - Install Firebase
+```
+npm install firebase
+```
+
+### 14 - Install Swiper (carousel)
+```
+npm i swiper
+```
