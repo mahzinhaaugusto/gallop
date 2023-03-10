@@ -2,7 +2,11 @@ import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
+import "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import camera from "../icons/Camera.svg";
 import horse from "../icons/Horse.png";
 
@@ -12,6 +16,21 @@ export function SignUp2() {
   const [Website, setWebsite] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userPhoto, setUserPhoto] = useState("");
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyASdmqlaScVgkSxCrvYng7_SzRnE2VQRgU",
+    authDomain: "app1-504b3.firebaseapp.com",
+    databaseURL: "https://app1-504b3-default-rtdb.firebaseio.com",
+    projectId: "app1-504b3",
+    storageBucket: "app1-504b3.appspot.com",
+    messagingSenderId: "150727407420",
+    appId: "1:150727407420:web:de3b1d71b182fd722dd039",
+    measurementId: "G-JC5YWN05W8",
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
   let navigate = useNavigate();
 
@@ -44,10 +63,20 @@ export function SignUp2() {
     let ctx = photo.getContext("2d");
 
     ctx.drawImage(video, 0, 0, width, height);
-    console.log(photo.toDataURL());
+
     document.getElementById("cameraCont").style.display = "none";
     document.getElementById("profilePhoto").src = photo.toDataURL();
     setUserPhoto(photo.toDataURL());
+
+    photo.toBlob((blob) => {
+      const storage = getStorage();
+      const storageRef = ref(storage, `gallop/${location.state.firstName}`);
+      uploadBytes(storageRef, blob).then(() => {
+        getDownloadURL(storageRef).then((result) => {
+          setUserPhoto(result);
+        });
+      });
+    });
   };
 
   const submitClicked = () => {
@@ -59,9 +88,10 @@ export function SignUp2() {
       Address: Address,
       Website: Website,
       phoneNumber: phoneNumber,
+      userPhoto: userPhoto,
     });
     alert("data written successfully");
-    navigate("/");
+    navigate("/home");
   };
 
   const profilePicture = () => {

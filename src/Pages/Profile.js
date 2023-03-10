@@ -14,16 +14,10 @@ import Axios from "axios";
 export function Profile() {
   const [showProfile, setShowProfile] = useState(true);
   const [showEditing, setShowEditing] = useState(false);
-  const [profileInfo, setProfileInfo] = useState({
-    background: "",
-    profile: "",
-    bioContent:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem.",
-    fullName: "",
-    phoneNumber: 111111111111,
-    email: "user@domain.com",
-    websiteInfo: "www.myhorses.ca",
-  });
+  const [profileInfo, setProfileInfo] = useState({});
+  //   const [profileEdit, setProfileEdit] = useState({ bioContent: "",
+  // fullName:"", });
+  const profileEdit = {};
 
   const editProfile = (event) => {
     event.stopPropagation();
@@ -37,10 +31,15 @@ export function Profile() {
     setShowProfile(!showProfile);
   };
 
+  const signOut = () => {
+    console.log("Sign Out working");
+  };
+
   const [showCount, setShowCount] = useState(0);
   //const [credential, setCredential] = useState([]);
 
   const [showPopUpDelete, setShowPopUpDelete] = useState(false);
+
   const [showPopUpSave, setShowPopUpSave] = useState(false);
 
   const deleteAccount = () => {
@@ -49,7 +48,15 @@ export function Profile() {
 
   const saveEditing = () => {
     setShowPopUpSave(!showPopUpSave);
-    // Add the save command for the db
+    const bioContent = document.getElementById(
+      "profile_cont_mainContent_editing_bio_content"
+    );
+    profileEdit.bioContent = bioContent.value;
+    let id = localStorage.getItem("id");
+    Axios.post("http://localhost:3002/api/editprofile", {
+      profileEdit: profileEdit,
+      id: id,
+    });
   };
 
   const cancel = () => {
@@ -62,9 +69,13 @@ export function Profile() {
     // Add the delete command for the db
   };
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
+
   const redirect = () => {
-    navigate("/");
+    setShowEditing(!showEditing);
+    setShowProfile(!showProfile);
+    setShowPopUpDelete(!showPopUpDelete);
+    // navigate("/home");
   };
   let credential = [];
   useEffect(() => {
@@ -81,46 +92,15 @@ export function Profile() {
             phoneNumber: credential[i].phoneNumber,
             email: credential[i].email,
             websiteInfo: credential[i].website,
+            userPhoto: credential[i].userPhoto,
+            background: credential[i].backgroundPhoto,
           });
-          //   profileInfo.fullName =
-          //     credential[i].firstName + " " + credential[i].lastName;
           console.log(profileInfo.fullName);
         }
       }
     });
     //console.log(credential);
-
-    // credential.map((val) => {
-    //   console.log(val);
-    //   if (val.ID === id) {
-    //     console.log(val.firstName);
-    //   }
-    //   return 1;
-    // });
   }, []);
-  //   useEffect(() => {
-  //     let id = localStorage.getItem("id");
-  //     console.log(credential);
-  //     credential.map((val) => {
-  //       console.log(val[0].ID);
-  //       if (val.ID == id) {
-  //         setProfileInfo({
-  //           background: "",
-  //           profile: "",
-  //           bioContent:
-  //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem.",
-  //           fullName: val.firstName,
-  //           phoneNumber: 111111111111,
-  //           email: "user@domain.com",
-  //           websiteInfo: "www.myhorses.ca",
-  //         });
-  //         profileInfo.fullName = val.firstName + " " + val.lastName;
-  //         console.log(profileInfo.fullName);
-  //         return 1;
-  //       }
-  //       return 1;
-  //     });
-  //   });
 
   const profileEditing = {
     maxLength: 150,
@@ -134,64 +114,73 @@ export function Profile() {
       {showProfile && (
         <div className="profile_cont_master">
           <h2 className="profile_title">Profile</h2>
-          <div className="profile_cont">
-            <div className="profile_cont_header">
-              <img
-                src={profileInfo.background}
-                alt="profile background"
-                className="profile_cont_header_background"
-              />
-              <div className="profile_cont_header_content">
+          <div className="profile_cont_master_inner">
+            <div className="profile_cont">
+              <div className="profile_cont_header">
                 <img
-                  src={horse}
-                  alt="profile pic"
-                  className="profile_cont_header_content_pic"
+                  src={profileInfo.background}
+                  alt="profile background"
+                  className="profile_cont_header_background"
                 />
+                <div className="profile_cont_header_content">
+                  <img
+                    src={profileInfo.userPhoto}
+                    alt="profile pic"
+                    className="profile_cont_header_content_pic"
+                  />
+                  <Button
+                    className="profile_cont_header_content_edit"
+                    title="Edit Profile"
+                    onClick={editProfile}
+                  />
+                </div>
+              </div>
+              <div className="profile_cont_mainContent">
+                <div className="profile_cont_mainContent_bio">
+                  <h4 className="profile_cont_mainContent_bio_title">Bio:</h4>
+                  <p className="profile_cont_mainContent_bio_content">
+                    {profileInfo.bioContent}
+                  </p>
+                </div>
+                <div className="profile_cont_mainContent_name">
+                  <h4 className="profile_cont_mainContent_name_title">Name:</h4>
+                  <p className="profile_cont_mainContent_name_content">
+                    {profileInfo.fullName}
+                  </p>
+                </div>
+                <div className="profile_cont_mainContent_phoneNumber">
+                  <h4 className="profile_cont_mainContent_phoneNumber_title">
+                    Phone Number:
+                  </h4>
+                  <p className="profile_cont_mainContent_phoneNumber_content">
+                    {profileInfo.phoneNumber}
+                  </p>
+                </div>
+                <div className="profile_cont_mainContent_email">
+                  <h4 className="profile_cont_mainContent_email_title">
+                    Email:
+                  </h4>
+                  <p className="profile_cont_mainContent_email_content">
+                    {profileInfo.email}
+                  </p>
+                </div>
+                <div className="profile_cont_mainContent_website">
+                  <h4 className="profile_cont_mainContent_website_title">
+                    Website:
+                  </h4>
+                  <p className="profile_cont_mainContent_website_content">
+                    {profileInfo.websiteInfo}
+                  </p>
+                </div>
                 <Button
-                  className="profile_cont_header_content_edit"
-                  title="Edit Profile"
-                  onClick={editProfile}
+                  title="Sign Out"
+                  className="profile_cont_mainContent_cta_signOut"
+                  onClick={signOut}
                 />
               </div>
             </div>
-            <div className="profile_cont_mainContent">
-              <div className="profile_cont_mainContent_bio">
-                <h4 className="profile_cont_mainContent_bio_title">Bio:</h4>
-                <p className="profile_cont_mainContent_bio_content">
-                  {profileInfo.bioContent}
-                </p>
-              </div>
-              <div className="profile_cont_mainContent_name">
-                <h4 className="profile_cont_mainContent_name_title">Name:</h4>
-                <p className="profile_cont_mainContent_name_content">
-                  {profileInfo.fullName}
-                </p>
-              </div>
-              <div className="profile_cont_mainContent_phoneNumber">
-                <h4 className="profile_cont_mainContent_phoneNumber_title">
-                  Phone Number:
-                </h4>
-                <p className="profile_cont_mainContent_phoneNumber_content">
-                  {profileInfo.phoneNumber}
-                </p>
-              </div>
-              <div className="profile_cont_mainContent_email">
-                <h4 className="profile_cont_mainContent_email_title">Email:</h4>
-                <p className="profile_cont_mainContent_email_content">
-                  {profileInfo.email}
-                </p>
-              </div>
-              <div className="profile_cont_mainContent_website">
-                <h4 className="profile_cont_mainContent_website_title">
-                  Website:
-                </h4>
-                <p className="profile_cont_mainContent_website_content">
-                  {profileInfo.websiteInfo}
-                </p>
-              </div>
-            </div>
+            <Footer />
           </div>
-          <Footer />
         </div>
       )}
 
@@ -243,6 +232,7 @@ export function Profile() {
                   {showCount}/150
                 </p>
                 <textarea
+                  id="profile_cont_mainContent_editing_bio_content"
                   cols="40"
                   rows="4"
                   maxLength={profileEditing.maxLength}
@@ -261,6 +251,9 @@ export function Profile() {
                   type="text"
                   maxLength={profileEditing.inputLength}
                   placeholder="Hunter Smith"
+                  onChange={(event) => {
+                    profileEdit.fullName = event.target.value;
+                  }}
                 />
               </div>
               <div className="profile_cont_mainContent_editing_phoneNumber">
@@ -272,6 +265,9 @@ export function Profile() {
                   type="number"
                   max="10"
                   placeholder="1234567890"
+                  onChange={(event) => {
+                    profileEdit.phoneNumber = event.target.value;
+                  }}
                 />
               </div>
               <div className="profile_cont_mainContent_editing_email">
@@ -283,6 +279,9 @@ export function Profile() {
                   type="email"
                   max="10"
                   placeholder="hsmith@mylangara.ca"
+                  onChange={(event) => {
+                    profileEdit.email = event.target.value;
+                  }}
                 />
               </div>
               <div className="profile_cont_mainContent_editing_location">
@@ -294,6 +293,9 @@ export function Profile() {
                   type="text"
                   maxLength={profileEditing.inputLength}
                   placeholder="Vancouver"
+                  onChange={(event) => {
+                    profileEdit.address = event.target.value;
+                  }}
                 />
               </div>
               <div className="profile_cont_mainContent_editing_website">
@@ -305,6 +307,9 @@ export function Profile() {
                   type="text"
                   maxLength={profileEditing.inputLength}
                   placeholder="thegallopapp.com"
+                  onChange={(event) => {
+                    profileEdit.website = event.target.value;
+                  }}
                 />
               </div>
               <div className="profile_cont_mainContent_editing_password">
@@ -316,6 +321,9 @@ export function Profile() {
                   type="password"
                   maxLength={profileEditing.inputLength}
                   placeholder="************"
+                  onChange={(event) => {
+                    profileEdit.password = event.target.value;
+                  }}
                 />
                 <img src={HideShowPass} alt="hide and show password icon" />
               </div>

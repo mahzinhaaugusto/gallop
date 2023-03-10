@@ -11,6 +11,10 @@
     margin: 0;
 }
 
+.footer_cont div {
+    background-color: white;
+}
+
 .footer_cont_mainContent {
     padding: 0 3rem;
 }
@@ -22,7 +26,7 @@
 }
 
 .footer_cont_img img {
-    background: transparent;
+    // background: transparent;
 }
 
 .footer_cont_logoFooter,
@@ -32,7 +36,7 @@
 .footer_cont_documentation,
 .footer_cont_aboutUs {
     padding: 0.5rem 0;
-    /* background: white; */
+    // background: white;
 }
 
 

@@ -1,5 +1,5 @@
 .popUp {
-    position: relative;
+    position: fixed;
     background-color: rgba($fourSec, 0.5) !important;
     top: 0;
     bottom: 0;
@@ -10,17 +10,13 @@
     z-index: 50;
 }
 
-// .popUp_cont_master {
-//     // position: fixed;
-//     background-color: rgba($fourSec, 0.5) !important;
-//     top: 0;
-//     bottom: 0;
-//     right: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     z-index: 1;
-// }
+.popUp_cont_master {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 
 .popUp_cont {
     position: absolute;
@@ -36,7 +32,7 @@
     flex-direction: column;
     justify-content: center;
     z-index: 99;
-    translate: 125% -150%;
+    /* translate: 125% -150%; */
 }
 
 .popUp_btn {

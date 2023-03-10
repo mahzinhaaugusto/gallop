@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { SignUp } from "./Pages/SignUp";
 import { SignUp2 } from "./Pages/SignUp2";
+import { Login } from "./Pages/Login";
 import { App, Main } from "./App";
 import { HorseDetail } from "./Pages/HorseDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -24,6 +25,7 @@ root.render(
       <Route path="/profile" element={<Profile />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/my-horses" element={<MyHorses />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </BrowserRouter>
 );
