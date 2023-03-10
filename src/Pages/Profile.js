@@ -20,6 +20,7 @@ export function Profile() {
   const profileEdit = {};
 
   const editProfile = (event) => {
+    setShowPopUpSave(false);
     event.stopPropagation();
     setShowEditing(!showEditing);
     setShowProfile(!showProfile);
@@ -69,16 +70,18 @@ export function Profile() {
     // Add the delete command for the db
   };
 
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const redirect = () => {
+    firstLoad();
     setShowEditing(!showEditing);
     setShowProfile(!showProfile);
     setShowPopUpDelete(!showPopUpDelete);
+
     // navigate("/home");
   };
   let credential = [];
-  useEffect(() => {
+  function firstLoad() {
     Axios.get("http://localhost:3002/api/get").then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
@@ -99,6 +102,9 @@ export function Profile() {
         }
       }
     });
+  }
+  useEffect(() => {
+    firstLoad();
     //console.log(credential);
   }, []);
 
@@ -252,7 +258,19 @@ export function Profile() {
                   maxLength={profileEditing.inputLength}
                   placeholder="Hunter Smith"
                   onChange={(event) => {
-                    profileEdit.fullName = event.target.value;
+                    const myString = event.target.value.split(" ");
+                    if (myString.length == 1) {
+                      profileEdit.firstName = myString;
+                      profileEdit.lastName = "";
+                    } else {
+                      profileEdit.firstName = myString[0];
+                      let lastName = "";
+                      for (let i = 1; i < myString.length; i++) {
+                        lastName += myString[i];
+                      }
+                      profileEdit.lastName = lastName;
+                    }
+                    //profileEdit.fullName = event.target.value;
                   }}
                 />
               </div>
