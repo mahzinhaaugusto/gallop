@@ -69,6 +69,7 @@ export function SignUp2() {
     setUserPhoto(photo.toDataURL());
 
     photo.toBlob((blob) => {
+      console.log(blob);
       const storage = getStorage();
       const storageRef = ref(storage, `gallop/${location.state.firstName}`);
       uploadBytes(storageRef, blob).then(() => {
@@ -102,11 +103,11 @@ export function SignUp2() {
 
   const appearCanvas = () => {
     document.getElementById("canvas").style.display = "block";
-  }
+  };
 
   const backButton = () => {
     navigate("/signup");
-  }
+  };
 
   return (
     <>
@@ -150,9 +151,19 @@ export function SignUp2() {
 
               <div className="camera_Cont" id="cameraCont">
                 <video ref={videoRef}></video>
-                <button className="camera_Cont_btn" id="cameraBtn" onClick={takePhoto}>Click</button>
+                <button
+                  className="camera_Cont_btn"
+                  id="cameraBtn"
+                  onClick={takePhoto}
+                >
+                  Click
+                </button>
                 <div className="result">
-                  <canvas id="canvas" ref={photoRef} onChange={appearCanvas}></canvas>
+                  <canvas
+                    id="canvas"
+                    ref={photoRef}
+                    onChange={appearCanvas}
+                  ></canvas>
                 </div>
               </div>
 
@@ -187,7 +198,9 @@ export function SignUp2() {
                 }}
               ></input>
               <div className="buttonArray">
-                <button className="secondaryBtn" onClick={backButton}>Back</button>
+                <button className="secondaryBtn" onClick={backButton}>
+                  Back
+                </button>
                 <button className="primaryBtn" onClick={submitClicked}>
                   Create Account
                 </button>
