@@ -52,8 +52,10 @@ export function Profile() {
       "profile_cont_mainContent_editing_bio_content"
     );
     profileEdit.bioContent = bioContent.value;
+    let id = localStorage.getItem("id");
     Axios.post("http://localhost:3002/api/editprofile", {
       profileEdit: profileEdit,
+      id: id,
     });
   };
 
@@ -67,9 +69,13 @@ export function Profile() {
     // Add the delete command for the db
   };
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
+
   const redirect = () => {
-    navigate("/");
+    setShowEditing(!showEditing);
+    setShowProfile(!showProfile);
+    setShowPopUpDelete(!showPopUpDelete);
+    // navigate("/home");
   };
   let credential = [];
   useEffect(() => {
@@ -89,21 +95,11 @@ export function Profile() {
             userPhoto: credential[i].userPhoto,
             background: credential[i].backgroundPhoto,
           });
-          //   profileInfo.fullName =
-          //     credential[i].firstName + " " + credential[i].lastName;
           console.log(profileInfo.fullName);
         }
       }
     });
     //console.log(credential);
-
-    // credential.map((val) => {
-    //   console.log(val);
-    //   if (val.ID === id) {
-    //     console.log(val.firstName);
-    //   }
-    //   return 1;
-    // });
   }, []);
 
   const profileEditing = {
