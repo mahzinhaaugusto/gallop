@@ -16,8 +16,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get", (req, res) => {
-  const sqlSelect =
-    "SELECT email,userPassword,ID,firstName,lastName,phoneNumber,website,bio,userPhoto,backgroundPhoto from userinfo;";
+  const sqlSelect = "SELECT * from userinfo;";
   db.query(sqlSelect, (er, re) => {
     //console.log(re);
     res.send(re);
@@ -28,10 +27,8 @@ app.get("/api/allhorses", (req, res) => {
   const selectAll = "SELECT * FROM horseinfo;";
   db.query(selectAll, (er, re) => {
     res.send(re);
-
   });
 });
-
 
 app.post("/api/editprofile", (req, res) => {
   const profileInfo = req.body.profileEdit;
