@@ -1,0 +1,52 @@
+html {
+    height: fit-content;
+}
+
+.splashScreen {
+    background-color: $white;
+}
+
+.splashScreen_image {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: auto;
+    align-items: flex-start;
+}
+
+.splashScreen_logo {
+    transform: translateY(-40rem);
+    width: 70%;
+    align-self: center;
+}
+
+.splashScreen_cont_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    float: right;
+    margin: 10rem;
+    padding: 8rem;
+    transform: translateY(-165%);
+}
+
+.splashScreen_cont_content_signIn:visited {
+    color: black;
+}
+
+.splashScreen_cont_btn_google,
+.splashScreen_cont_btn_email,
+.splashScreen_cont_btn_apple {
+    border: 1px solid #000000;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 15px;
+    padding: $largePadding;
+    margin-bottom: $largeMargin;
+    width: 280px;
+    background-color: $white;
+}
+
+.splashScreen_cont_btn_google {
+    margin-top: $largeMargin;
+}

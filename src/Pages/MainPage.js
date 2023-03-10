@@ -47,38 +47,40 @@ export function MainPage() {
         <div className="mainPage">
             <NavBar />
             <div className="mainPage_cont_master">
-                <CarouselMain />
-                <div className="mainPage_cont">
-                    <div className="mainPage_cont_allHorses">
-                        <h2 className="mainPage_cont_allHorses_title">All Horses</h2>
-                        <div className="mainPage_cont_allHorses_dropdowns">
-                            <SortByDropdown />
-                            <FilterDropdown />
+                <h2 className="mainPage_cont_master_title">Featured Horses</h2>
+                <div className="mainPage_cont_master_inner">
+                    <CarouselMain />
+                    <div className="mainPage_cont">
+                        <div className="mainPage_cont_allHorses">
+                            <h2 className="mainPage_cont_allHorses_title">All Horses</h2>
+                            <div className="mainPage_cont_allHorses_dropdowns">
+                                <SortByDropdown />
+                                <FilterDropdown />
+                            </div>
                         </div>
-                    </div>
-                    <div className="mainPage_cont_horsesCards">
-                        <HorseCard
-                            horseInfo={allHorses}
-                            onClick={goToHorseDetail}
-                            addFavOnClick={addToFavorites}
-                        />
+                        <div className="mainPage_cont_horsesCards">
+                            <HorseCard
+                                horseInfo={allHorses}
+                                onClick={goToHorseDetail}
+                                addFavOnClick={addToFavorites}
+                            />
+                        </div>
+
                     </div>
 
+                    {/* PopUp implementation */}
+                    <Button title="Open PopUp" className="testing" onClick={openPopUp} />
+
+                    {showPopUp && (
+                        <PopUp title="Testing" description="Also testing" addContent={
+                            <Button className="popUp_btn" title="Yes" onClick={yes} />
+                        } />
+                    )}
+                    {/* End of PopUp implementation */}
+
+                    <Footer />
                 </div>
-
-                {/* PopUp implementation */}
-                <Button title="Open PopUp" onClick={openPopUp} />
-
-                {showPopUp && (
-                    <PopUp title="Testing" description="Also testing" addContent={
-                        <Button className="popUp_btn" title="Yes" onClick={yes} />
-                    } />
-                )}
-                {/* End of PopUp implementation */}
-
-                <Footer />
             </div>
-
         </div>
     )
 }

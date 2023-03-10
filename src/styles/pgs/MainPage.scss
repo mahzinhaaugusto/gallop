@@ -8,13 +8,26 @@
 }
 
 .mainPage_cont_master {
-    padding: 10rem 4rem 10rem 10rem;
-    background: $white;
+    padding: 4rem 4rem 10rem 15rem;
+    background: transparent;
     margin: 0;
 
     p {
         margin: 0;
     }
+
+    h2 {
+        color: $gray;
+    }
+}
+
+.mainPage_cont_master_title {
+    padding-left: $largePadding;
+}
+
+.mainPage_cont_master_inner {
+    background-color: $white;
+    padding-top: 30px;
 }
 
 .mainPage_cont_allHorses {
@@ -39,7 +52,21 @@
 
 .mainPage_cont_horsesCards {
     display: flex;
-    gap: 50px;
+    gap: $largeMargin;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: $largePadding 40px;
+}
+
+// TO BE DELETED
+.testing {
+    margin: $largeMargin;
+    background: $semanticAlert;
+    color: $accentLightPink;
+    border-radius: $radius;
+    padding: $largePadding;
+    width: 100px;
+    border: none;
+    cursor: pointer;
 }
