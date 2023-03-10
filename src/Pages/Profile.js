@@ -6,7 +6,7 @@ import Camera from "../icons/Camera.svg";
 import HideShowPass from "../icons/HideShowPass.svg";
 import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import horse from "../icons/Horse.png";
 
 import Axios from "axios";
@@ -52,8 +52,10 @@ export function Profile() {
       "profile_cont_mainContent_editing_bio_content"
     );
     profileEdit.bioContent = bioContent.value;
+    let id = localStorage.getItem("id");
     Axios.post("http://localhost:3002/api/editprofile", {
       profileEdit: profileEdit,
+      id: id,
     });
   };
 
@@ -67,9 +69,10 @@ export function Profile() {
     // Add the delete command for the db
   };
 
-  let navigate = useNavigate();
   const redirect = () => {
-    navigate("/");
+    setShowEditing(!showEditing);
+    setShowProfile(!showProfile);
+    setShowPopUpDelete(!showPopUpDelete);
   };
   let credential = [];
   useEffect(() => {
