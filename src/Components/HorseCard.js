@@ -20,7 +20,7 @@ export function HorseCard({ horseInfo, onClick, addFavOnClick }) {
         <div key={i} className="horseCard">
           <div className="horseCard_cont">
             <div className="horseCard_cont_images">
-              <img src={horse.horseImage} alt="" />
+              <img src={horse.thumbnail} alt="" />
               <div className="horseCard_cont_images_favorite">
                 <img src={FavoriteIcon} alt="" onClick={addFavOnClick} />
               </div>
