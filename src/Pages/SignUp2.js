@@ -91,7 +91,7 @@ export function SignUp2() {
       userPhoto: userPhoto,
     });
     alert("data written successfully");
-    navigate("/");
+    navigate("/home");
   };
 
   const profilePicture = () => {
