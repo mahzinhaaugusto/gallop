@@ -3,25 +3,25 @@ import { useState, useEffect, useRef } from "react";
 import breedList from "../breedList.json";
 
 export function Breed({ onChange, className }) {
-    const options = breedList.breedList;
-    let optionSelected = onChange;
-    //console.log(a);
+  const options = breedList.breedList;
+  let optionSelected = onChange;
+  //console.log(a);
 
-    return (
-        <div className={className}>
-            <label className="filter_cont_breed_label">
-                Breed <span className="filter_cont_breed_label_error">*</span>
-            </label>
-            <div className="filter_cont_breed">
-                <BreedDropdown
-                    isSearchable
-                    placeholder="Select"
-                    options={options}
-                    optionSelected={optionSelected}
-                />
-            </div>
-        </div>
-    );
+  return (
+    <div className={className}>
+      <label className="filter_cont_breed_label">
+        Breed <span className="filter_cont_breed_label_error">*</span>
+      </label>
+      <div className="filter_cont_breed">
+        <BreedDropdown
+          isSearchable
+          placeholder="Select"
+          options={options}
+          optionSelected={optionSelected}
+        />
+      </div>
+    </div>
+  );
 }
 
 function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
@@ -86,7 +86,7 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    optionSelected(option.value);
+    optionSelected(option.label);
     //props.onClick(option);
   };
 
@@ -126,9 +126,8 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_breed_dropdown_options_singleOption ${
-                isSelected(option) && "selected"
-              }`}
+              className={`filter_cont_breed_dropdown_options_singleOption ${isSelected(option) && "selected"
+                }`}
             >
               {option.label}
             </div>

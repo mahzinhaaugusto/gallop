@@ -18,7 +18,6 @@ import image4 from "../Assets/Images/pieter-van-noorden-cjSUZMA2iW8-unsplash.jpg
 export function CarouselMain() {
   return (
     <div className="carouselMain">
-      <h1>CAROUSEL</h1>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
