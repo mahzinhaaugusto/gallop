@@ -6,6 +6,7 @@
     margin-top: 3rem;
     padding-left: 0;
 
+
     input {
         width: 512px;
         height: 56px;
@@ -21,6 +22,16 @@
     color: $gray;
     padding: $smallPadding 0;
     padding-top: $largePadding;
+
+.require::after {
+    content: "*";
+    color: red;
+}
+.login {
+    display: flex;
+    flex-direction: row;
+    gap: 7rem;
+
 }
 
 .loginImage {
