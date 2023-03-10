@@ -1,76 +1,175 @@
-.horseDetail {
-    margin: 200px;
-    background-color: lightgrey;
+
+.addHorse_master {
+    background-color: #F5F5F5;
+    h4{
+        color: #5A5A5F;
+        margin-bottom: 5px;
+        
+    }
+    
+    label{
+        color: #5A5A5F;
+        margin-bottom: 5px;
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+        padding-left: 0px;
+        font-weight: 600;
+    }
+    
+    h3{
+        margin-top: 20px;
+        position: relative;
+        color: black;
+        font-weight: 900;
+    }
+    h3::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #5A5A5F;
+    }
+    
 }
 
-.horseDetail_cont_information_heading_title {
+.addHorse_cont{
+    background-color: white;
+    margin: 30px 200px 50px 250px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+.addHorse_cont_backButton{
+    display: flex;
+    position: relative;
+    left: -71%;
+    right: 76.57%;
+    top: 42%;
+    bottom: 90.29%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+//add horse title
+.addHorse > h2{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0;
+    margin-left: -10px;
+    padding-left: 300px;
+    padding-right: 200px;
+    padding-top: 100px;
+}
+
+// * error signal
+[class$='_error'] {
+    color: #C9431A;
+}
+
+#gender{
+    height: 48px;
+    width: 184px;
+    border-radius: 15px;
+    border-color: #B6B6BB;
+    box-sizing: border-box;
+}
+
+#age{
+    height: 48px;
+    width: 184px;
+    border-radius: 15px;
+    border-color: #B6B6BB;
+    box-sizing: border-box;
+}
+
+#height{
+    height: 48px;
+    width: 184px;
+    border-radius: 15px;
+    border-color: #B6B6BB;
+    box-sizing: border-box;
+}
+
+#price{
+    height: 48px;
+    width: 184px;
+    border-radius: 15px;
+    border-color: #B6B6BB;
+    box-sizing: border-box;
+}
+
+#breedingMethod{
+    height: 48px;
+    width: 184px;
+    border-radius: 15px;
+    border-color: #B6B6BB;
+    box-sizing: border-box;
+}
+
+// Color
+.filter_cont_color{
+    width: 184px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.filter_cont_color_label{
+    padding-left: 0px;
+}
+
+// Breed
+.filter_cont_breed{
+    width: 184px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+
+.filter_cont_color{
+    width: 184px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.addHorse_cont_basics{
+    margin-top: 70px;
+}
+
+.addHorse_cont_basics_details_firstRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.addHorse_cont_basics_details_secondRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.addHorse_cont_basics_details_secondRow{
     display: flex;
     flex-direction: row;
 }
 
-.horseDetail_cont_information_heading_location {
-    display: flex;
-    flex-direction: row;
+#horseName{
+    background: #FFFFFF;
+    border: 1px solid #B6B6BB;
+    border-radius: 15px;
+    width: 625px;
+}
+.addHorse_cont_basics_details_name{
+    margin-top: 40px;
 }
 
-.horseDetail_cont_information_body {
-    display: flex;
-    flex-direction: row;
-}
-
-.horseDetail_cont_one {
-    display: flex;
-    flex-direction: row;
-    margin-right: 30px;
-}
-
-.horseDetail_cont_information_body_lineOne_height {
-    margin-right: 30px;
-}
-
-.horseDetail_cont_information_body_lineTwo_color {
-    margin-right: 40px;
-}
-
-.horseDetail_cont_three {
-    display: flex;
-    flex-direction: row;
-}
-
-.horseDetail_cont {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.horseDetail_cont_information_body {
-    display: flex;
-    flex-direction: row;
-}
-
-.horseDetail_cont_one {
-    display: flex;
-    flex-direction: row;
-    margin-right: 30px;
-}
-
-.horseDetail_cont_information_body_lineOne_height {
-    margin-right: 30px;
-}
-
-.horseDetail_cont_information_body_lineTwo_color {
-    margin-right: 40px;
-}
-
-.horseDetail_cont_three {
-    display: flex;
-    flex-direction: row;
-}
-
-.horseDetail_cont {
-    display: flex;
-    flex-direction: column;
-}
 
 // .nothing {
 //     width: 30%;
@@ -78,13 +177,130 @@
 
 // Thumbnail
 .addHorse_cont_basics_upload_thumbnail_content {
-    border: 1px solid red;
+    border: 1px solid #B6B6BB;
     border-radius: 15px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
 
     p {
-        padding: 30px;
+        padding: 20px;
+        margin-bottom: 72px;
     }
+}
+
+// Media
+.addHorse_cont_basics_upload_media_content{
+    border: 1px solid #B6B6BB;
+    border-radius: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    p {
+        padding: 20px;
+        margin-bottom: 72px;
+    }
+}
+
+// Documentation
+.addHorse_cont_detailed_documentation_content{
+    border: 1px solid #B6B6BB;
+    border-radius: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    p {
+        padding: 20px;
+        margin-bottom: 72px;
+    }
+}
+
+// Description
+#description{
+    border: 1px solid #B6B6BB;
+    border-radius: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 625px;
+
+    p {
+        padding: 20px;
+        margin-bottom: 72px;
+    }
+}
+
+
+
+.filter_cont_discipline{
+    background: #FFFFFF;
+    border: 1px solid #B6B6BB;
+    border-radius: 15px;
+    width: 625px;
+    margin: 0px;
+}
+
+// Contact preferences
+#ownerEmail{
+    
+}
+#ownerCall{
+
+}
+#ownerText{
+
+}
+.addHorse_cont_aboutOwner_contactPreferences{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    label{
+        margin: 0px;
+    }
+}
+
+// Location
+#ownerLocation{
+    background: #FFFFFF;
+    border: 1px solid #B6B6BB;
+    border-radius: 15px;
+    width: 625px;
+}
+
+// Display horse
+.addHorse_cont_aboutOwner_displayHorse{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+}
+
+// End Buttons
+.endButtons{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.footer_cont{
+    margin-left: 90px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #5A5A5F;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+    padding-top: 15px;
+    padding-left: 20px;
+    font-family: "Roboto" ;
+    font-size: 1.2em;
 }

@@ -81,31 +81,31 @@ export function HorseDetail() {
             <div className="horseDetail_cont_information_body">
               <div className="horseDetail_cont_information_body_lineOne">
                 <div className="horseDetail_cont_information_body_lineOne_height">
-                  <h3>Height</h3>
+                  <label>Height</label>
                   <p>{HorseObj.height}</p>
                 </div>
                 <div className="horseDetail_cont_information_body_lineOne_age">
-                  <h3>Age</h3>
+                  <label>Age</label>
                   <p>{HorseObj.age}</p>
                 </div>
               </div>
               <div className="horseDetail_cont_information_body_lineTwo">
                 <div className="horseDetail_cont_information_body_lineTwo_color">
-                  <h3>Color</h3>
+                  <label>Color</label>
                   <p>{HorseObj.color}</p>
                 </div>
                 <div className="horseDetail_cont_information_body_lineTwo_gender">
-                  <h3>Gender</h3>
+                  <label>Gender</label>
                   <p>{HorseObj.gender}</p>
                 </div>
               </div>
               <div className="horseDetail_cont_information_body_lineThree">
                 <div className="horseDetail_cont_information_body_lineThree_breedingMethod">
-                  <h3>Breeding Method</h3>
+                  <label>Breeding Method</label>
                   <p>{HorseObj.breedingMethod}</p>
                 </div>
                 <div className="horseDetail_cont_information_body_lineOne_age">
-                  <h3>Disciplines</h3>
+                  <label>Disciplines</label>
                   <p>{HorseObj.disciplines}</p>
                 </div>
               </div>
