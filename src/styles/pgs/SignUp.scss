@@ -21,7 +21,9 @@
 .horizontalCont_rightHorizon {
     width: 100px;
     height: 3px;
-    background-color: black;
+    background-color: $secondary;
+    border: none;
+    border-radius: 5px;
 }
 
 .signUpCont_icons_first,
