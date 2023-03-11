@@ -15,7 +15,7 @@ export function Breed({ onChange, className }) {
       <div className="filter_cont_breed">
         <BreedDropdown
           isSearchable
-          placeholder="Select"
+          placeholder="Breed"
           options={options}
           optionSelected={optionSelected}
         />
