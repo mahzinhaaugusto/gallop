@@ -18,11 +18,15 @@
 
     h2 {
         color: $gray;
+        font-family: 'Asap', sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 150%;
     }
 }
 
 .mainPage_cont_master_title {
-    padding-left: $largePadding;
+    padding-bottom: $largePadding;
 }
 
 .mainPage_cont_master_inner {
@@ -31,7 +35,7 @@
 }
 
 .mainPage_cont_allHorses {
-    padding: $largePadding;
+    padding: $largePadding 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
