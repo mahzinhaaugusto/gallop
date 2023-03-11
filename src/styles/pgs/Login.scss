@@ -16,6 +16,21 @@
         background-color: $white;
         padding-left: $largePadding;
     }
+
+    h1 {
+        font-family: "Asap", sans-serif !important;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 56px;
+        /* identical to box height, or 140% */
+
+        display: flex;
+        align-items: flex-end;
+        letter-spacing: 0.08em;
+
+        color: #303030;
+    }
 }
 
 .loginCont_label {
