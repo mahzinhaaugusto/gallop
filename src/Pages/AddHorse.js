@@ -125,7 +125,7 @@ export function AddHorse() {
             Back
           </p>
           <div className="addHorse_cont_basics">
-            <h3>HORSE BASICS</h3>
+            <h3>ABOUT HORSE</h3>
             <div className="addHorse_cont_basics_details">
               <div className="addHorse_cont_basics_details_name">
                 <label>
@@ -161,7 +161,7 @@ export function AddHorse() {
                     }}
                   >
                     <option value="" disabled selected>
-                      Select
+                      Gender
                     </option>
                     <option value="stallion">Stallion</option>
                     <option value="mare">Mare</option>
@@ -206,7 +206,7 @@ export function AddHorse() {
                     name="height"
                     id="height"
                     type="number"
-                    placeholder="HH"
+                    placeholder="Centimeters"
                     onChange={(e) => {
                       setHeight(e.target.value);
                     }}
@@ -234,7 +234,7 @@ export function AddHorse() {
                     }}
                   >
                     <option value="" disabled selected>
-                      Select
+                      Breeding Method
                     </option>
                     <option value="natural">Natural</option>
                     <option value="artificial">Insemination</option>
@@ -247,6 +247,7 @@ export function AddHorse() {
                   name="price"
                   id="price"
                   type="number"
+                  placeholder="Dollars"
                   onChange={(e) => {
                     setPrice(e.target.value);
                   }}
@@ -306,7 +307,7 @@ export function AddHorse() {
                 }}
               ></textarea>
               <div className="addHorse_cont_detailed_discipline">
-                <Discipline onChange={disciplineClick} />
+                <Discipline className="addHorse_cont_detailed_discipline_content" onChange={disciplineClick} />
               </div>
               <div className="addHorse_cont_detailed_documentation">
                 <label>
@@ -328,12 +329,19 @@ export function AddHorse() {
             <h3>ABOUT OWNER</h3>
             <div className="addHorse_cont_aboutOwner_contactPreferences">
               <label>Contact Preferences</label>
-              <input type="checkbox" id="ownerEmail"></input>
-              <p>Email</p>
-              <input type="checkbox" id="ownerCall"></input>
-              <p>Call</p>
-              <input type="checkbox" id="ownerText"></input>
-              <p>Text</p>
+              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
+                <input type="checkbox" id="ownerEmail"></input>
+                Email
+              </label>
+              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
+                <input type="checkbox" id="ownerCall"></input>
+                Call
+              </label>
+              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
+                <input type="checkbox" id="ownerText"></input>
+                Text
+              </label>
+
             </div>
             <div className="addHorse_cont_aboutOwner_location">
               <label>
@@ -371,10 +379,14 @@ export function AddHorse() {
               onClick={clickCancel}
             ></img>
           </div>
+
+
         </div>
         <p>{height}</p>
+
+        <Footer />
       </div>
-      {/* <Footer /> */}
+
     </div>
   );
 }
