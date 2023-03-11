@@ -105,9 +105,10 @@ app.post("/api/insertHorse", (req, res) => {
   const location = req.body.location;
   const skills = req.body.discipline;
   const uid = req.body.uid;
+  const horseThumb = req.body.horseThumb;
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -123,6 +124,7 @@ app.post("/api/insertHorse", (req, res) => {
       horseHeight,
       location,
       uid,
+      horseThumb,
     ],
     (err, result) => {
       console.log(result);

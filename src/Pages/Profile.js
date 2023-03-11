@@ -85,8 +85,10 @@ export function Profile() {
     Axios.get("http://localhost:3002/api/get").then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
+      console.log(id);
       for (let i = 0; i < credential.length; i++) {
         if (credential[i].ID == id) {
+          console.log(credential[i]);
           setProfileInfo({
             background: "",
             profile: "",
@@ -98,7 +100,7 @@ export function Profile() {
             userPhoto: credential[i].userPhoto,
             background: credential[i].backgroundPhoto,
           });
-          console.log(profileInfo.fullName);
+          // console.log(profileInfo.userPhoto);
         }
       }
     });
