@@ -77,7 +77,7 @@ export function SignUp() {
                 </div>
               </div>
               <div className="signUpCont_form_name_last">
-                <div className="signUpCont_form_name_lastNameLabel">
+                <div className="signUpCont_form_name_lastNameLabel require">
                   <label>Last Name</label>
                 </div>
                 <div>
