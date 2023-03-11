@@ -3,14 +3,36 @@
     flex-direction: row;
     gap: 7rem;
     background-color: $white;
+
+    h1 {
+        font-family: "Asap", sans-serif !important;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 56px;
+        /* identical to box height, or 140% */
+
+        display: flex;
+        align-items: flex-end;
+        letter-spacing: 0.08em;
+        margin-bottom: 2rem;
+        color: $secondary;
+    }
+
+    label {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 150%;
+        color: $secondary;
+    }
 }
 
 .horizontalCont {
     display: flex;
     flex-direction: row;
     gap: 0px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 2rem;
+    align-items: center;
 }
 
 .horizontalCont_Para {
@@ -19,7 +41,7 @@
 
 .horizontalCont_leftHorizon,
 .horizontalCont_rightHorizon {
-    width: 100px;
+    width: 30%;
     height: 3px;
     background-color: $secondary;
     border: none;
@@ -43,9 +65,14 @@
 .signUp2Cont_icons_first_value1 {
     color: #5A5A5F;
     position: absolute;
-    top: 10%;
-    left: 6%;
+    top: 45%;
+    left: 5%;
     transform: translate(-50%, -50%);
+    font-family: 'Asap', sans-serif !important;
+    // font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
 }
 
 .drawCircle1 {
@@ -86,9 +113,14 @@
 .signUp2Cont_icons_second_value2 {
     color: #5A5A5F;
     position: absolute;
-    top: -5px;
+    top: 12px;
     left: 67%;
     transform: translate(-50%, -50%);
+    font-family: 'Asap', sans-serif !important;
+    // font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
 }
 
 .signUpCont_icons_rectangle {
@@ -120,6 +152,9 @@
     display: flex;
     flex-direction: row;
     gap: 326px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
 }
 
 .signUp2Cont_form_image {
@@ -208,4 +243,14 @@
 
 #canvas {
     display: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
