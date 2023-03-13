@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import bcrypt from "bcryptjs";
 import horse from "../icons/Horse.png";
 export function SignUp() {
   const [Email, setEmail] = useState("");
@@ -15,11 +15,13 @@ export function SignUp() {
     if (userPassword !== cPassword) {
       alert("Password mismatch");
     } else {
+      const hashedPassword = bcrypt.hashSync(userPassword, 10);
+      //console.log(hashedPassword);
       navigate("/signup2", {
         state: {
           firstName: firstName,
           lastName: lastName,
-          userPassword: userPassword,
+          userPassword: hashedPassword,
           Email: Email,
         },
       });
@@ -28,7 +30,7 @@ export function SignUp() {
 
   const backSplash = () => {
     navigate("/");
-  }
+  };
 
   return (
     <div className="signUp">
@@ -126,7 +128,9 @@ export function SignUp() {
               }}
             ></input>
             <div className="buttonArray">
-              <button className="secondaryBtn" onClick={backSplash}>Back</button>
+              <button className="secondaryBtn" onClick={backSplash}>
+                Back
+              </button>
               <button className="primaryBtn" onClick={nextClicked}>
                 Next
               </button>

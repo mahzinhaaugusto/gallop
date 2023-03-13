@@ -9,6 +9,7 @@ import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 import Edit from "../icons/Edit.svg";
 import horse from "../icons/Horse.png";
+import bcrypt from "bcryptjs";
 
 import Axios from "axios";
 
@@ -135,10 +136,16 @@ export function Profile() {
                 <div className="profile_cont_header_content">
                   <img
                     src={profileInfo.userPhoto}
-                    alt="profile pic" height="150px" width="150px"
+                    alt="profile pic"
+                    height="150px"
+                    width="150px"
                     className="profile_cont_header_content_pic"
                   />
-                  <button id="horseCard_myHorses_cont_details_editBtn" type="button" onClick={editProfile}>
+                  <button
+                    id="horseCard_myHorses_cont_details_editBtn"
+                    type="button"
+                    onClick={editProfile}
+                  >
                     EDIT
                     <img src={Edit} alt="" />
                   </button>
@@ -200,7 +207,10 @@ export function Profile() {
           <h1 className="profile_title">Edit Profile</h1>
           <div className="profile_cont_master_inner">
             <div className="profile_cont">
-              <div className="profile_cont_backToProfile" onClick={backToProfile}>
+              <div
+                className="profile_cont_backToProfile"
+                onClick={backToProfile}
+              >
                 <img
                   src={BackButton}
                   alt="back to profile"
@@ -346,7 +356,10 @@ export function Profile() {
                     maxLength={profileEditing.inputLength}
                     placeholder="************"
                     onChange={(event) => {
-                      profileEdit.password = event.target.value;
+                      profileEdit.password = bcrypt.hashSync(
+                        event.target.value,
+                        10
+                      );
                     }}
                   />
                   <img src={HideShowPass} alt="hide and show password icon" />
