@@ -61,6 +61,7 @@ export function AddHorse() {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     setPhoto(file);
+    //setPreviewUrl(file);
 
     // reader.onload = () => {
     //   let bl = new Blob([reader.result], { type: file.type });
@@ -265,7 +266,7 @@ export function AddHorse() {
                   accept="image/*"
                   onChange={photoSeleceted}
                 />
-                {previewUrl && <img src={previewUrl} alt="Preview" />}
+                {photo && <img src={photo} alt="Preview" />}
 
                 <div
                   id="thumbBox"
@@ -307,7 +308,10 @@ export function AddHorse() {
                 }}
               ></textarea>
               <div className="addHorse_cont_detailed_discipline">
-                <Discipline className="addHorse_cont_detailed_discipline_content" onChange={disciplineClick} />
+                <Discipline
+                  className="addHorse_cont_detailed_discipline_content"
+                  onChange={disciplineClick}
+                />
               </div>
               <div className="addHorse_cont_detailed_documentation">
                 <label>
@@ -341,7 +345,6 @@ export function AddHorse() {
                 <input type="checkbox" id="ownerText"></input>
                 Text
               </label>
-
             </div>
             <div className="addHorse_cont_aboutOwner_location">
               <label>
@@ -379,14 +382,11 @@ export function AddHorse() {
               onClick={clickCancel}
             ></img>
           </div>
-
-
         </div>
         <p>{height}</p>
 
         <Footer />
       </div>
-
     </div>
   );
 }
