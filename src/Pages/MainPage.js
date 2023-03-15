@@ -4,8 +4,8 @@ import { CarouselMain } from "../Components/CarouselMain";
 import { SortByDropdown } from "../Components/SortBy";
 import { FilterDropdown } from "../Components/Filter";
 import { HorseCard } from "../Components/HorseCard";
-import { PopUp } from "../Components/PopUp";
-import { Button } from "../Components/Button";
+// import { PopUp } from "../Components/PopUp";
+// import { Button } from "../Components/Button";
 import { Footer } from "../Components/Footer";
 import Axios from "axios";
 
@@ -31,16 +31,16 @@ export function MainPage() {
     }
 
     // PopUp implementation
-    const [showPopUp, setShowPopUp] = useState(false);
+    // const [showPopUp, setShowPopUp] = useState(false);
 
-    const openPopUp = (event) => {
-        event.stopPropagation();
-        setShowPopUp(!showPopUp);
-    }
+    // const openPopUp = (event) => {
+    //     event.stopPropagation();
+    //     setShowPopUp(!showPopUp);
+    // }
 
-    const yes = () => {
-        alert("Working");
-    }
+    // const yes = () => {
+    //     alert("Working");
+    // }
     // End of PopUp Implementation
 
     return (
@@ -69,13 +69,13 @@ export function MainPage() {
                     </div>
 
                     {/* PopUp implementation */}
-                    <Button title="Open PopUp" className="testing" onClick={openPopUp} />
+                    {/* <Button title="Open PopUp" className="testing" onClick={openPopUp} />
 
                     {showPopUp && (
                         <PopUp title="Testing" description="Also testing" addContent={
                             <Button className="popUp_btn" title="Yes" onClick={yes} />
                         } />
-                    )}
+                    )} */}
                     {/* End of PopUp implementation */}
 
                     <Footer />
