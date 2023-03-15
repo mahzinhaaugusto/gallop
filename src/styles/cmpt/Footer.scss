@@ -13,20 +13,23 @@
 
 .footer_cont div {
     background-color: white;
+
+    img {}
 }
 
 .footer_cont_mainContent {
-    padding: 0 3rem;
+    padding: 0;
+    // padding: 0 3rem;
 }
 
 .footer_cont_img {
     border-bottom: solid $threePrim 3px;
     border-radius: 2px;
-    padding-left: 3rem;
+    // padding-left: 3rem;
 }
 
 .footer_cont_img img {
-    // background: transparent;
+    padding-left: 3rem;
 }
 
 .footer_cont_logoFooter,
@@ -56,14 +59,14 @@
     text-align: end;
 }
 
-.footer_cont_logoFooter:hover,
-.footer_cont_rights:hover,
-.footer_cont_email:hover,
-.footer_cont_jupiter:hover,
-.footer_cont_documentation:hover,
-.footer_cont_aboutUs:hover {
-    background: $threePrim;
-}
+// .footer_cont_logoFooter:hover,
+// .footer_cont_rights:hover,
+// .footer_cont_email:hover,
+// .footer_cont_jupiter:hover,
+// .footer_cont_documentation:hover,
+// .footer_cont_aboutUs:hover {
+//     background: $threePrim;
+// }
 
 /* a,
 img,
@@ -79,4 +82,13 @@ p {
 .footer_cont_documentation p,
 .footer_cont_aboutUs p {
     cursor: pointer;
+}
+
+.footer_cont_logoFooter img,
+.footer_cont_rights p,
+.footer_cont_email a,
+.footer_cont_jupiter p,
+.footer_cont_documentation p,
+.footer_cont_aboutUs p {
+    padding: 0 3rem;
 }
