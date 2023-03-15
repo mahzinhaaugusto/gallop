@@ -116,7 +116,7 @@ npm install firebase
 npm i swiper
 ```
 
-### - Install bcryptjs
+### 15 - Install bcryptjs
 
 ```
 npm i bcryptjs
