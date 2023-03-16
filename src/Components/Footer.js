@@ -14,13 +14,15 @@ function FooterCont() {
     return (
         <div className="footer_cont">
             <Image />
-            <div className="footer_cont_mainContent">
-                <LogoFooter />
-                <Documentation />
-                <AboutUs />
-                <Jupiter />
-                <GallopEmail />
-                <Rights />
+            <div className="footer_cont_mainContent_master">
+                <div className="footer_cont_mainContent">
+                    <LogoFooter />
+                    <Documentation />
+                    <AboutUs />
+                    <Jupiter />
+                    <GallopEmail />
+                    <Rights />
+                </div>
             </div>
         </div>
     );

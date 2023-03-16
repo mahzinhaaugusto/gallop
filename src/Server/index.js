@@ -23,6 +23,16 @@ app.get("/api/get", (req, res) => {
   });
 });
 
+app.delete("/api/delete", (req, res) => {
+  const id = req.body.id;
+  const sqlDelete = "DELETE FROM horseinfo WHERE ID IN (SELECT ID FROM userinfo WHERE ID = ?);";
+  db.query(sqlDelete[
+    id
+  ], (er, re) => {
+    res.send(re);
+  })
+})
+
 app.get("/api/allhorses", (req, res) => {
   const selectAll = "SELECT * FROM horseinfo;";
   db.query(selectAll, (er, re) => {
@@ -131,6 +141,15 @@ app.post("/api/insertHorse", (req, res) => {
     }
   );
 });
+
+app.delete("/api/deleteHorse", (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
+  db.query(sqlDelete[id], (er, re) => {
+    res.send(re);
+  })
+})
 
 app.listen(3002, () => {
   console.log("running on port 3002");

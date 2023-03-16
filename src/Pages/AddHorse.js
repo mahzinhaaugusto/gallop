@@ -14,7 +14,10 @@ import { Discipline } from "../CmptParts/Discipline";
 import { useState } from "react";
 import Axios from "axios";
 import { NavBar } from "../Components/NavBar";
-import { Footer } from "../Components/Footer";
+// import { Footer } from "../Components/Footer";
+import { PopUp } from "../Components/PopUp";
+import { Button } from "../Components/Button";
+import { useNavigate } from "react-router-dom";
 // Im using the Favorites icon as a placeholder for future icons
 
 export function AddHorse() {
@@ -32,6 +35,10 @@ export function AddHorse() {
   const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
   const [horseThumb, setHorseThumb] = useState("");
+  const [showSavePopUp, setShowSavePopUp] = useState(false);
+  const [showCancelPopUp, setShowCancelPopUp] = useState(false);
+
+  let navigate = useNavigate();
 
   const firebaseConfig = {
     apiKey: "AIzaSyASdmqlaScVgkSxCrvYng7_SzRnE2VQRgU",
@@ -103,17 +110,26 @@ export function AddHorse() {
           uid: uid,
           horseThumb: result,
         });
-        alert("Well Done");
       });
     });
+    setShowSavePopUp(!showSavePopUp);
   };
 
   const clickCancel = () => {
-    console.log("works");
+    // console.log("works");
+    setShowCancelPopUp(!showCancelPopUp);
   };
   const goBack = () => {
     console.log("works");
   };
+
+  const redirect = () => {
+    navigate("/my-horses");
+  }
+
+  const cancel = () => {
+    setShowCancelPopUp(!showCancelPopUp);
+  }
 
   return (
     <div className="addHorse_master">
@@ -383,9 +399,23 @@ export function AddHorse() {
             ></img>
           </div>
         </div>
-        <p>{height}</p>
 
-        <Footer />
+        {showSavePopUp && (
+          <PopUp title="Saved!" description="Your horse was successfully saved!" addContent={
+            <Button className="popUp_btn_horseSaved" title="Go to My Horses" onClick={redirect} />
+          } />
+        )}
+
+        {showCancelPopUp && (
+          <PopUp title="Are you sure?" description="Are you sure you want to leave? Your changes will be lost." addContent={
+            <>
+              <Button className="popUp_btn_cancel" title="Cancel" onClick={cancel} />
+              <Button className="popUp_btn_leave" title="Leave" onClick={redirect} />
+            </>
+          } classNameContent="btn_cont" />
+        )}
+
+        {/* <Footer /> */}
       </div>
     </div>
   );

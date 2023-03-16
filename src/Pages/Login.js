@@ -117,7 +117,7 @@ export function Login() {
             </div>
           </div>
           <div className="links">
-            <Link to="" className="link">
+            <Link to="/reset-password" className="link">
               Forgot Password?
             </Link>
 

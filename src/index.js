@@ -10,6 +10,7 @@ import { AddHorse } from "./Pages/AddHorse";
 import { Profile } from "./Pages/Profile";
 import { Favorites } from "./Pages/Favorites";
 import { MyHorses } from "./Pages/MyHorses";
+import { ForgotPassword } from "./Pages/ForgotPassword";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -26,6 +27,7 @@ root.render(
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/my-horses" element={<MyHorses />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/reset-password" element={<ForgotPassword />} />
     </Routes>
   </BrowserRouter>
 );
