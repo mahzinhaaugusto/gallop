@@ -1,32 +1,94 @@
-input {
-    width: 512px;
-    height: 56px;
-}
-
 .loginCont,
 .signUpCont_form,
 .signUp2Cont_form {
     display: flex;
     flex-direction: column;
     margin-top: 3rem;
+    padding-left: 0;
+
+
+    .loginCont_Remember>label {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 150%;
+    }
+
+    input {
+        width: 512px;
+        height: 56px;
+        border: 1px solid $fourSec;
+        border-radius: $radius;
+        accent-color: $primary;
+        background-color: $white;
+        padding-left: $largePadding;
+    }
+
+    h1 {
+        font-family: "Asap", sans-serif !important;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 56px;
+        /* identical to box height, or 140% */
+
+        display: flex;
+        align-items: flex-end;
+        letter-spacing: 0.08em;
+
+        color: #303030;
+        margin-bottom: 2rem;
+    }
 }
 
+.loginCont_label {
+    color: $gray;
+    padding: $smallPadding 0;
+    padding-top: $largePadding;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+}
+
+.require::after {
+    content: " *";
+    color: $semanticAlert;
+}
 
 .login {
     display: flex;
     flex-direction: row;
     gap: 7rem;
+
 }
 
 .loginImage {
+    display: flex;
+    flex-direction: column;
+    // width: 30%;
     height: auto;
+    align-items: flex-start;
+}
+
+.loginImage_logo {
+    transform: translateY(-40rem);
+    width: 70%;
+    align-self: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: row;
+    gap: 14rem;
+    background-color: $white;
 }
 
 .loginCont_RememberCont {
     display: flex;
     gap: 6rem;
     margin-bottom: 2rem;
-    margin-top: 1rem;
+    margin-top: 4rem;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .loginCont_Remember input {
@@ -35,15 +97,23 @@ input {
     margin-right: 1.5rem;
 }
 
+.loginCont_Remember>label {
+    align-self: center;
+    vertical-align: middle;
+}
+
 .links {
     display: flex;
     flex-direction: row;
-    gap: 250px;
-
+    justify-content: space-between;
 }
 
 .link {
-    color: #5A5A5F;
+    color: $secondary;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
 }
 
 .remember {
@@ -54,6 +124,8 @@ input {
     display: flex;
     flex-direction: row;
     gap: 2.5rem;
+    justify-content: space-between;
+    margin-top: 30px;
 }
 
 .primaryBtn {
@@ -62,16 +134,37 @@ input {
     margin-top: 5px;
     border-radius: 15px;
     background-color: #33562B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
+    border: 0;
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 36px;
 }
 
 .secondaryBtn {
     width: 240px;
     height: 56px;
     margin-top: 5px;
-    border-radius: 15px;
+    background-color: $white;
+    border: 1px solid #000000;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: $radius;
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 36px;
 }
-input {
-    border-radius: 15px;
 
+.loginCont {
+    transform: translateY(8%);
+}
+
+.horizontalCont_Para {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
 }

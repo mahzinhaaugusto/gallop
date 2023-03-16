@@ -2,16 +2,37 @@
     display: flex;
     flex-direction: row;
     gap: 7rem;
+    background-color: $white;
+
+    h1 {
+        font-family: "Asap", sans-serif !important;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 56px;
+        /* identical to box height, or 140% */
+
+        display: flex;
+        align-items: flex-end;
+        letter-spacing: 0.08em;
+        margin-bottom: 2rem;
+        color: $secondary;
+    }
+
+    label {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 150%;
+        color: $secondary;
+    }
 }
 
 .horizontalCont {
     display: flex;
     flex-direction: row;
     gap: 0px;
-    margin-top: 50px;
-    margin-bottom: 30px;
-
-
+    margin-top: 2rem;
+    align-items: center;
 }
 
 .horizontalCont_Para {
@@ -20,10 +41,11 @@
 
 .horizontalCont_leftHorizon,
 .horizontalCont_rightHorizon {
-
-    width: 100px;
+    width: 30%;
     height: 3px;
-    background-color: black;
+    background-color: $secondary;
+    border: none;
+    border-radius: 5px;
 }
 
 .signUpCont_icons_first,
@@ -43,9 +65,14 @@
 .signUp2Cont_icons_first_value1 {
     color: #5A5A5F;
     position: absolute;
-    top: 10%;
-    left: 6%;
+    top: 45%;
+    left: 5%;
     transform: translate(-50%, -50%);
+    font-family: 'Asap', sans-serif !important;
+    // font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
 }
 
 .drawCircle1 {
@@ -86,33 +113,38 @@
 .signUp2Cont_icons_second_value2 {
     color: #5A5A5F;
     position: absolute;
-    top: -5px;
+    top: 12px;
     left: 67%;
     transform: translate(-50%, -50%);
+    font-family: 'Asap', sans-serif !important;
+    // font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
 }
 
 .signUpCont_icons_rectangle {
-
-    width: 310px;
+    width: 330px;
     position: absolute;
     height: 5px;
     top: 31%;
     left: 10%;
     background-image: linear-gradient(to right, #4A6F38, #E8F2E6);
     border-radius: 10px;
-    z-index: -1;
+    border: none;
+    z-index: 1;
 }
 
 .signUp2Cont_icons_rectangle {
-
-    width: 310px;
+    width: 327px;
     position: absolute;
     height: 5px;
     top: 31%;
-    left: 10.5%;
+    left: 10%;
     background-color: #4A6F38;
     border-radius: 10px;
-    z-index: -1;
+    z-index: 1;
+    border: none;
 }
 
 .signUpCont_steps,
@@ -120,22 +152,23 @@
     display: flex;
     flex-direction: row;
     gap: 326px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
 }
 
 .signUp2Cont_form_image {
-
-
-    margin-left: 12rem;
+    align-self: center;
 }
 
 .signUpForm {
-    margin-top: 12rem;
+    margin: 6rem;
 }
 
 .signUpCont_form_name {
     display: flex;
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 0.75rem;
 
 }
 
@@ -158,9 +191,66 @@
 .camera_Cont {
     display: none;
     z-index: 999;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    video {
+        width: 50%;
+    }
+}
+
+
+.signUpCont_form_name_firstNameLabel,
+.signUpCont_form_name_lastNameLabel,
+.signUpCont_form_emailLabel,
+.signUpCont_form_passwordLabel,
+.signUpCont_form_cPasswordLabel,
+.signUp2Cont_form_phoneNumberLabel,
+.signUp2Cont_form_addressLabel,
+.signUp2Cont_form_websiteLabel {
+    padding: $smallPadding 0;
+    padding-top: $largePadding;
+}
+
+.signUpCont_form_name_firstNameLabel,
+.signUpCont_form_name_lastNameLabel {
+    label {
+        padding: $smallPadding 0;
+        padding-top: $largePadding;
+    }
 }
 
 .icons {
     position: relative;
     left: 10%;
+}
+
+.camera_Cont_btn {
+    width: 240px;
+    height: 56px;
+    margin-top: 5px;
+    border-radius: $radius;
+    background-color: $white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: black;
+    border: 1px solid black;
+}
+
+#profilePhoto {
+    border-radius: $radius;
+}
+
+#canvas {
+    display: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

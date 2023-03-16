@@ -1,5 +1,3 @@
-//
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -18,34 +16,59 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get", (req, res) => {
-  const sqlSelect =
-    "SELECT email,userPassword,ID,firstName,lastName,phoneNumber,website,bio,userPhoto,backgroundPhoto from userinfo;";
+  const sqlSelect = "SELECT * from userinfo;";
   db.query(sqlSelect, (er, re) => {
     //console.log(re);
     res.send(re);
   });
 });
 
+app.post("/api/delete", (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  const sqlDeleteHorse = "DELETE FROM horseinfo WHERE ID = ?;";
+  const sqlDeleteUser = "DELETE FROM userinfo WHERE ID = ?;"
+  db.query(sqlDeleteHorse, [
+    id
+  ], (er, re) => {
+    console.log(re);
+  });
+  db.query(sqlDeleteUser, [
+    id
+  ], (er, re) => {
+    console.log(re);
+  });
+})
+
+app.get("/api/allhorses", (req, res) => {
+  const selectAll = "SELECT * FROM horseinfo;";
+  db.query(selectAll, (er, re) => {
+    res.send(re);
+  });
+});
+
 app.post("/api/editprofile", (req, res) => {
   const profileInfo = req.body.profileEdit;
-  console.log(profileInfo);
 
+  console.log(profileInfo);
+  const id = req.body.id;
   const sqlEdit =
-    "UPDATE userinfo SET column1 = value1, column2 = value2, WHERE ID =  ";
+    "UPDATE userinfo SET bio = ?, firstName = ?, lastName = ?, phoneNumber = ?, email = ?, address = ?, website = ?, userPassword = ?  WHERE ID =  ?";
   db.query(
     sqlEdit,
     [
-      firstName,
-      lastName,
-      userPassword,
-      Email,
-      Address,
-      Website,
-      phoneNumber,
-      bio,
+      profileInfo.bioContent,
+      profileInfo.firstName,
+      profileInfo.lastName,
+      profileInfo.phoneNumber,
+      profileInfo.email,
+      profileInfo.address,
+      profileInfo.website,
+      profileInfo.password,
+      id,
     ],
     (err, result) => {
-      console.log(result);
+      console.log(err);
     }
   );
 });
@@ -99,9 +122,10 @@ app.post("/api/insertHorse", (req, res) => {
   const location = req.body.location;
   const skills = req.body.discipline;
   const uid = req.body.uid;
+  const horseThumb = req.body.horseThumb;
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -117,12 +141,22 @@ app.post("/api/insertHorse", (req, res) => {
       horseHeight,
       location,
       uid,
+      horseThumb,
     ],
     (err, result) => {
       console.log(result);
     }
   );
 });
+
+app.post("/api/deleteHorse", (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
+  db.query(sqlDelete, [id], (er, re) => {
+    console.log(re);
+  })
+})
 
 app.listen(3002, () => {
   console.log("running on port 3002");

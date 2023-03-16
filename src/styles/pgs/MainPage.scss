@@ -8,17 +8,34 @@
 }
 
 .mainPage_cont_master {
-    padding: 10rem 4rem 10rem 10rem;
-    background: $white;
+    padding: 4rem 4rem 10rem 15rem;
+    background: transparent;
     margin: 0;
 
     p {
         margin: 0;
     }
+
+    h2 {
+        color: $gray;
+        font-family: 'Asap', sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 150%;
+    }
+}
+
+.mainPage_cont_master_title {
+    padding-bottom: $largePadding;
+}
+
+.mainPage_cont_master_inner {
+    background-color: $white;
+    padding-top: 30px;
 }
 
 .mainPage_cont_allHorses {
-    padding: $largePadding;
+    padding: $largePadding 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,4 +52,25 @@
     flex-direction: row;
     justify-content: space-between;
     padding: $smallPadding;
+}
+
+.mainPage_cont_horsesCards {
+    display: flex;
+    gap: $largeMargin;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: $largePadding 40px;
+}
+
+// TO BE DELETED
+.testing {
+    margin: $largeMargin;
+    background: $semanticAlert;
+    color: $accentLightPink;
+    border-radius: $radius;
+    padding: $largePadding;
+    width: 100px;
+    border: none;
+    cursor: pointer;
 }
