@@ -9,3 +9,6 @@
 /.DS_Store
 /src/.DS_Store
 /src/server/.DS_Store
+
+!App.js
+App.js:*.apiKey
