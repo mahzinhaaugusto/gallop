@@ -37,6 +37,7 @@
         background-color: #5A5A5F;
     }
 
+
     input::placeholder {
         font-weight: 400;
         font-size: 20px;
@@ -155,6 +156,34 @@
 }
 
 // Color
+.filter_cont_color {
+    width: 184px;
+    margin: 0px;
+    box-sizing: border-box;
+    height: 48px;
+    border-radius: 7px;
+}
+
+.filter_cont_color_label {
+    padding-left: 0px;
+}
+
+// Breed
+.filter_cont_breed {
+    width: 184px;
+    margin: 0px;
+    box-sizing: border-box;
+    height: 48px;
+    border-radius: 7px;
+}
+
+
+
+.filter_cont_color {
+    width: 184px;
+    margin: 0px;
+    box-sizing: border-box;
+
 .addHorse_cont_basics_details_color_cont {
     width: 184px;
     margin: 0px;
@@ -282,6 +311,7 @@
 
 // Description
 #description {
+    overflow-x: hidden;
     border: 2px solid #B6B6BB;
     border-radius: 15px;
     display: flex;
@@ -289,14 +319,11 @@
     justify-content: space-between;
     width: 100%;
 
-
     p {
         padding: 20px;
         margin-bottom: 72px;
     }
 }
-
-
 
 .addHorse_cont_detailed_documentation {
     background: #FFFFFF;
@@ -381,6 +408,80 @@ textarea::placeholder {
     font-family: "Roboto";
     font-size: 1.2em;
 }
+
+
+#ownerLocation {
+    background: #FFFFFF;
+    border: 1px solid #B6B6BB;
+    border-radius: 7px;
+    width: 625px;
+    height: 48px
+}
+
+
+//toggle button
+$toggle-background-color-on: dodgerblue;
+$toggle-background-color-off: darkgray;
+$toggle-control-color: white;
+$toggle-width: 100px;
+$toggle-height: 50px;
+$toggle-gutter: 5px;
+$toggle-radius: 50%;
+$toggle-control-speed: .15s;
+$toggle-control-ease: ease-in;
+
+// These are our computed variables
+// change at your own risk.
+$toggle-radius: $toggle-height / 2;
+$toggle-control-size: $toggle-height - ($toggle-gutter * 2);
+
+.toggle-control {
+    display: flex;
+    position: relative;
+    padding-left: $toggle-width;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+
+    input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    input:checked ~ .control {
+        background-color: $toggle-background-color-on;
+
+        &:after {
+            left: $toggle-width - $toggle-control-size - $toggle-gutter;
+        }
+    }
+
+    .control {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: $toggle-height;
+        width: $toggle-width;
+        border-radius: $toggle-radius;
+        background-color: $toggle-background-color-off;
+        transition: background-color $toggle-control-speed $toggle-control-ease;
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: $toggle-gutter;
+            top: $toggle-gutter;
+            width: $toggle-control-size;
+            height: $toggle-control-size;
+            border-radius: $toggle-radius;
+            background: $toggle-control-color;
+            transition: left $toggle-control-speed $toggle-control-ease;
+        }
+    }
 
 .addHorse_cont_detailed_discipline_content {
     width: 100%;
