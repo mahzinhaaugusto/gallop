@@ -1,7 +1,7 @@
 import FavoriteIcon from "../icons/FavoriteIcon.svg";
 import { NavBar } from "../Components/NavBar";
 import { Button } from "../Components/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import BackButton from "../icons/BackButton.svg";
 import { FilterDropdown } from "../Components/Filter";
 import { SortByDropdown } from "../Components/SortBy";
@@ -30,6 +30,7 @@ export function MyHorses() {
         Axios.get("http://localhost:3002/api/allhorses")
             .then((response) => {
                 console.log(id);
+                // console.log(response.data[0].horseID);
                 setMyHorses(response.data);
             });
     }, []);
@@ -103,17 +104,22 @@ function MyHorsesCard({ myHorse }) {
     }
 
     const deleteHorse = () => {
-        // db
+        Axios.delete("http://localhost:3002/api/deleteHorse")
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        // alert("check db");
     }
-
-
 
     return (
         <>
             {myHorse.map((horse, i) => <div key={i} className="horseCard_myHorses">
                 <div className="horseCard_myHorses_cont">
                     <div className="horseCard_myHorses_cont_images">
-                        <img src={horse.horseImage} alt="" />
+                        <img src={horse.thumbnail} alt="" />
                         <div className="horseCard_myHorses_cont_images_favorite">
                             <img src={FavoriteIcon} alt="" />
                             <p>(CALCULATE)</p>

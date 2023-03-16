@@ -4,6 +4,7 @@ import { Footer } from "../Components/Footer";
 import { Button } from "../Components/Button";
 import Camera from "../icons/Camera.svg";
 import HideShowPass from "../icons/HideShowPass.svg";
+import HideVisibility from "../icons/HideVisibility.svg";
 import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
@@ -78,8 +79,7 @@ export function Profile() {
     firstLoad();
     setShowEditing(!showEditing);
     setShowProfile(!showProfile);
-    setShowPopUpDelete(!showPopUpDelete);
-
+    // setShowPopUpDelete(!showPopUpDelete);
     // navigate("/home");
   };
   let credential = [];
@@ -116,6 +116,25 @@ export function Profile() {
     maxLength: 150,
     inputLength: 40,
   };
+
+  const [passwordType, setPasswordType] = useState("password");
+  // const [passInput, setPassInput] = useState("");
+
+  // const setOnChange = (event) => {
+  //   profileEdit.password = bcrypt.hashSync(
+  //     event.target.value,
+  //     10
+  //   );
+  //   setPassInput(event.target.value);
+  // }
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  }
 
   return (
     <div className="profile">
@@ -184,9 +203,9 @@ export function Profile() {
                   <h4 className="profile_cont_mainContent_website_title">
                     Website:
                   </h4>
-                  <p className="profile_cont_mainContent_website_content">
+                  <a className="profile_cont_mainContent_website_content" href={profileInfo.websiteInfo}>
                     {profileInfo.websiteInfo}
-                  </p>
+                  </a>
                 </div>
                 <div className="profile_cont_mainContent_cta">
                   <Button
@@ -247,12 +266,6 @@ export function Profile() {
                   <h4 className="profile_cont_mainContent_editing_bio_title">
                     Bio:
                   </h4>
-                  <p
-                    className="profile_cont_mainContent_editing_bio_title"
-                    id="profile_cont_mainContent_editing_bio_title_"
-                  >
-                    {showCount}/150
-                  </p>
                   <textarea
                     id="profile_cont_mainContent_editing_bio_content"
                     cols="40"
@@ -263,6 +276,12 @@ export function Profile() {
                       setShowCount(event.target.value.length);
                     }}
                   ></textarea>
+                  <p
+                    className="profile_cont_mainContent_editing_bio_title"
+                    id="profile_cont_mainContent_editing_bio_title_"
+                  >
+                    {showCount}/150
+                  </p>
                 </div>
                 <div className="profile_cont_mainContent_editing_name">
                   <h4 className="profile_cont_mainContent_editing_name_title">
@@ -351,8 +370,9 @@ export function Profile() {
                     Password:
                   </h4>
                   <input
-                    className="profile_cont_mainContent_editing_name_info"
-                    type="password"
+                    className="profile_cont_mainContent_editing_password_info"
+                    type={passwordType}
+                    // value={passInput}
                     maxLength={profileEditing.inputLength}
                     placeholder="************"
                     onChange={(event) => {
@@ -360,9 +380,12 @@ export function Profile() {
                         event.target.value,
                         10
                       );
+                      // setPassInput(event.target.value)
                     }}
                   />
-                  <img src={HideShowPass} alt="hide and show password icon" />
+                  <div className="profile_cont_mainContent_editing_password_toggle" onClick={togglePassword}>
+                    {passwordType === "password" ? <img src={HideShowPass} alt="Show password" /> : <img src={HideVisibility} alt="Hide password" />}
+                  </div>
                 </div>
                 <div className="profile_cont_mainContent_editing_cta">
                   <p
@@ -372,7 +395,7 @@ export function Profile() {
                     Delete Account
                   </p>
                   <Button
-                    title="Save +"
+                    title="Save"
                     className="profile_cont_mainContent_editing_cta_saveBtn"
                     onClick={saveEditing}
                   />
@@ -407,7 +430,7 @@ export function Profile() {
                       <div className="popUp_btn_cont">
                         <Button
                           className="popUp_btn_doneBtn"
-                          title="Done"
+                          title="Go to Profile Page"
                           onClick={redirect}
                         />
                       </div>

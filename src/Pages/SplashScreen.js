@@ -53,10 +53,6 @@ export function SplashScreen() {
                     </div>
                 </div>
             </div>
-
-            {/* {showLogin && (
-                <Login />
-            )} */}
         </div>
     )
 }

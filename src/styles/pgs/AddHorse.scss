@@ -360,11 +360,15 @@
     flex-direction: row;
     justify-content: flex-end;
     margin-bottom: 20px;
+
+    img {
+        cursor: pointer;
+    }
 }
 
-.footer_cont {
-    margin-left: 90px;
-}
+// .footer_cont {
+//     margin-left: 90px;
+// }
 
 input::placeholder,
 textarea::placeholder {
@@ -392,4 +396,39 @@ textarea::placeholder {
     font-size: 16px;
     line-height: 20px;
     color: #5A5A5F;
+}
+
+.btn_cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.popUp_btn_horseSaved,
+.popUp_btn_cancel {
+    margin: 15px;
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+    padding: 5px 15px;
+    width: fit-content;
+    border: 1px solid black;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.popUp_btn_leave {
+    margin: 15px;
+    background: #C9431A;
+    color: #F9D7CD;
+    border-radius: 15px;
+    padding: 5px 15px;
+    width: fit-content;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
 }

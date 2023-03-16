@@ -1,4 +1,4 @@
-export function PopUp({ title, description, addContent }) {
+export function PopUp({ title, description, addContent, classNameContent }) {
     return (
         <div className="popUp" id="popUp_master">
             <div className="popUp_cont_master">
@@ -9,7 +9,7 @@ export function PopUp({ title, description, addContent }) {
                     <div className="popUp_cont_description">
                         <p className="popUp_cont_description_text">{description}</p>
                     </div>
-                    <div className="popUp_cont_additionalContent">{addContent}</div>
+                    <div className={classNameContent}>{addContent}</div>
                 </div>
             </div>
         </div>
