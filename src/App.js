@@ -3,7 +3,7 @@ import "./style.scss";
 import { SplashScreen } from "./Pages/SplashScreen";
 import { MainPage } from "./Pages/MainPage";
 import Geocode from "react-geocode";
-apikey = "AIzaSyASozGLOD6wCuZssYOYk63BYfUJGdct_1M";
+let apikey1 = "AIzaSyASozGLOD6wCuZssYOYk63BYfUJGdct_1M";
 console.log(process.env.REACT_APP_APIKEY);
 Geocode.setApiKey("AIzaSyASozGLOD6wCuZssYOYk63BYfUJGdct_1M");
 Geocode.setLocationType("ROOFTOP");
