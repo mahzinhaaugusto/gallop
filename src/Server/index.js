@@ -23,14 +23,21 @@ app.get("/api/get", (req, res) => {
   });
 });
 
-app.delete("/api/delete", (req, res) => {
+app.post("/api/delete", (req, res) => {
   const id = req.body.id;
-  const sqlDelete = "DELETE FROM horseinfo WHERE ID IN (SELECT ID FROM userinfo WHERE ID = ?);";
-  db.query(sqlDelete[
+  console.log(id);
+  const sqlDeleteHorse = "DELETE FROM horseinfo WHERE ID = ?;";
+  const sqlDeleteUser = "DELETE FROM userinfo WHERE ID = ?;"
+  db.query(sqlDeleteHorse, [
     id
   ], (er, re) => {
-    res.send(re);
-  })
+    console.log(re);
+  });
+  db.query(sqlDeleteUser, [
+    id
+  ], (er, re) => {
+    console.log(re);
+  });
 })
 
 app.get("/api/allhorses", (req, res) => {
@@ -142,12 +149,12 @@ app.post("/api/insertHorse", (req, res) => {
   );
 });
 
-app.delete("/api/deleteHorse", (req, res) => {
+app.post("/api/deleteHorse", (req, res) => {
   const id = req.body.id;
   console.log(id);
   const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
-  db.query(sqlDelete[id], (er, re) => {
-    res.send(re);
+  db.query(sqlDelete, [id], (er, re) => {
+    console.log(re);
   })
 })
 
