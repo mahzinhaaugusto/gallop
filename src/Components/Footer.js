@@ -14,13 +14,15 @@ function FooterCont() {
     return (
         <div className="footer_cont">
             <Image />
-            <div className="footer_cont_mainContent">
-                <LogoFooter />
-                <Documentation />
-                <AboutUs />
-                <Jupiter />
-                <GallopEmail />
-                <Rights />
+            <div className="footer_cont_mainContent_master">
+                <div className="footer_cont_mainContent">
+                    <LogoFooter />
+                    <Data />
+                    <AboutUs />
+                    <Jupiter />
+                    <GallopEmail />
+                    <Rights />
+                </div>
             </div>
         </div>
     );
@@ -68,14 +70,14 @@ function Jupiter() {
 
 // ********************************
 
-function Documentation() {
+function Data() {
     let navigate = useNavigate();
-    const goToDocumentation = () => {
-        navigate("/documentation");
+    const goToData = () => {
+        navigate("/data-analytics");
     };
     return (
         <div className="footer_cont_documentation">
-            <p onClick={goToDocumentation}>Gallop Documentation</p>
+            <p onClick={goToData}>Data Analytics</p>
         </div>
     )
 }

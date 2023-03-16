@@ -1,3 +1,8 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+import "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import CancelButton from "../icons/CancelButton.svg";
 import SaveButton from "../icons/SaveButton.svg";
 
@@ -9,7 +14,10 @@ import { Discipline } from "../CmptParts/Discipline";
 import { useState } from "react";
 import Axios from "axios";
 import { NavBar } from "../Components/NavBar";
-import { Footer } from "../Components/Footer";
+// import { Footer } from "../Components/Footer";
+import { PopUp } from "../Components/PopUp";
+import { Button } from "../Components/Button";
+import { useNavigate } from "react-router-dom";
 // Im using the Favorites icon as a placeholder for future icons
 
 export function AddHorse() {
@@ -24,8 +32,49 @@ export function AddHorse() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [discipline, setDiscipline] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [horseThumb, setHorseThumb] = useState("");
+  const [showSavePopUp, setShowSavePopUp] = useState(false);
+  const [showCancelPopUp, setShowCancelPopUp] = useState(false);
+
+  let navigate = useNavigate();
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyASdmqlaScVgkSxCrvYng7_SzRnE2VQRgU",
+    authDomain: "app1-504b3.firebaseapp.com",
+    databaseURL: "https://app1-504b3-default-rtdb.firebaseio.com",
+    projectId: "app1-504b3",
+    storageBucket: "app1-504b3.appspot.com",
+    messagingSenderId: "150727407420",
+    appId: "1:150727407420:web:de3b1d71b182fd722dd039",
+    measurementId: "G-JC5YWN05W8",
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
   const clickPlus = () => {
     console.log("works");
+  };
+  const clickPlusOfThumb = () => {
+    document.getElementById("thumb").style.display = "block";
+
+    document.getElementById("thumbBox").style.display = "none";
+  };
+  const photoSeleceted = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    setPhoto(file);
+    //setPreviewUrl(file);
+
+    // reader.onload = () => {
+    //   let bl = new Blob([reader.result], { type: file.type });
+    //   setPreviewUrl(reader.result);
+    //   setBlob(bl);
+    // };
   };
   const colorClick = (data) => {
     console.log(data);
@@ -39,29 +88,48 @@ export function AddHorse() {
     setDiscipline(data);
   };
   const clickSave = () => {
-    let uid = localStorage.getItem("id");
-    Axios.post("http://localhost:3002/api/insertHorse", {
-      name: name,
-      gender: gender,
-      breed: breed,
-      age: age,
-      height: height,
-      color: color,
-      breedMethod: breedMethod,
-      price: price,
-      description: description,
-      location: location,
-      discipline: discipline,
-      uid: uid,
+    const storage = getStorage();
+
+    const storageRef = ref(storage, `Horsephoto/${photo.name}`);
+    uploadBytes(storageRef, photo).then(() => {
+      getDownloadURL(storageRef).then((result) => {
+        setHorseThumb(result);
+        let uid = localStorage.getItem("id");
+        Axios.post("http://localhost:3002/api/insertHorse", {
+          name: name,
+          gender: gender,
+          breed: breed,
+          age: age,
+          height: height,
+          color: color,
+          breedMethod: breedMethod,
+          price: price,
+          description: description,
+          location: location,
+          discipline: discipline,
+          uid: uid,
+          horseThumb: result,
+        });
+      });
     });
-    alert("Well Done");
+    setShowSavePopUp(!showSavePopUp);
   };
+
   const clickCancel = () => {
-    console.log("works");
+    // console.log("works");
+    setShowCancelPopUp(!showCancelPopUp);
   };
   const goBack = () => {
     console.log("works");
   };
+
+  const redirect = () => {
+    navigate("/my-horses");
+  }
+
+  const cancel = () => {
+    setShowCancelPopUp(!showCancelPopUp);
+  }
 
   return (
     <div className="addHorse_master">
@@ -74,7 +142,7 @@ export function AddHorse() {
             Back
           </p>
           <div className="addHorse_cont_basics">
-            <h3>HORSE BASICS</h3>
+            <h3>ABOUT HORSE</h3>
             <div className="addHorse_cont_basics_details">
               <div className="addHorse_cont_basics_details_name">
                 <label>
@@ -110,7 +178,7 @@ export function AddHorse() {
                     }}
                   >
                     <option value="" disabled selected>
-                      Select
+                      Gender
                     </option>
                     <option value="stallion">Stallion</option>
                     <option value="mare">Mare</option>
@@ -155,7 +223,7 @@ export function AddHorse() {
                     name="height"
                     id="height"
                     type="number"
-                    placeholder="HH"
+                    placeholder="Centimeters"
                     onChange={(e) => {
                       setHeight(e.target.value);
                     }}
@@ -183,7 +251,7 @@ export function AddHorse() {
                     }}
                   >
                     <option value="" disabled selected>
-                      Select
+                      Breeding Method
                     </option>
                     <option value="natural">Natural</option>
                     <option value="artificial">Insemination</option>
@@ -196,6 +264,7 @@ export function AddHorse() {
                   name="price"
                   id="price"
                   type="number"
+                  placeholder="Dollars"
                   onChange={(e) => {
                     setPrice(e.target.value);
                   }}
@@ -205,9 +274,22 @@ export function AddHorse() {
             <div className="addHorse_cont_basics_upload">
               <div className="addHorse_cont_basics_upload_thumbnail">
                 <label>Thumbnail</label>
-                <div className="addHorse_cont_basics_upload_thumbnail_content">
+                <input
+                  className="addHorse_cont_basics_upload_thumbnail_input"
+                  type="file"
+                  id="thumb"
+                  name="thumb"
+                  accept="image/*"
+                  onChange={photoSeleceted}
+                />
+                {photo && <img src={photo} alt="Preview" />}
+
+                <div
+                  id="thumbBox"
+                  className="addHorse_cont_basics_upload_thumbnail_content"
+                >
                   <p>Upload Thumbnail</p>
-                  <div onClick={clickPlus}>
+                  <div onClick={clickPlusOfThumb}>
                     <img src={AddMedia} />
                   </div>
                 </div>
@@ -242,7 +324,10 @@ export function AddHorse() {
                 }}
               ></textarea>
               <div className="addHorse_cont_detailed_discipline">
-                <Discipline onChange={disciplineClick} />
+                <Discipline
+                  className="addHorse_cont_detailed_discipline_content"
+                  onChange={disciplineClick}
+                />
               </div>
               <div className="addHorse_cont_detailed_documentation">
                 <label>
@@ -264,12 +349,18 @@ export function AddHorse() {
             <h3>ABOUT OWNER</h3>
             <div className="addHorse_cont_aboutOwner_contactPreferences">
               <label>Contact Preferences</label>
-              <input type="checkbox" id="ownerEmail"></input>
-              <p>Email</p>
-              <input type="checkbox" id="ownerCall"></input>
-              <p>Call</p>
-              <input type="checkbox" id="ownerText"></input>
-              <p>Text</p>
+              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
+                <input type="checkbox" id="ownerEmail"></input>
+                Email
+              </label>
+              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
+                <input type="checkbox" id="ownerCall"></input>
+                Call
+              </label>
+              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
+                <input type="checkbox" id="ownerText"></input>
+                Text
+              </label>
             </div>
             <div className="addHorse_cont_aboutOwner_location">
               <label>
@@ -312,9 +403,24 @@ export function AddHorse() {
             ></img>
           </div>
         </div>
-        <p>{height}</p>
+
+        {showSavePopUp && (
+          <PopUp title="Saved!" description="Your horse was successfully saved!" addContent={
+            <Button className="popUp_btn_horseSaved" title="Go to My Horses" onClick={redirect} />
+          } />
+        )}
+
+        {showCancelPopUp && (
+          <PopUp title="Are you sure?" description="Are you sure you want to leave? Your changes will be lost." addContent={
+            <>
+              <Button className="popUp_btn_cancel" title="Cancel" onClick={cancel} />
+              <Button className="popUp_btn_leave" title="Leave" onClick={redirect} />
+            </>
+          } classNameContent="btn_cont" />
+        )}
+
+        {/* <Footer /> */}
       </div>
-      {/* <Footer /> */}
     </div>
   );
 }

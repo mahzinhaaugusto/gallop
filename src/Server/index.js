@@ -23,6 +23,23 @@ app.get("/api/get", (req, res) => {
   });
 });
 
+app.post("/api/delete", (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  const sqlDeleteHorse = "DELETE FROM horseinfo WHERE ID = ?;";
+  const sqlDeleteUser = "DELETE FROM userinfo WHERE ID = ?;"
+  db.query(sqlDeleteHorse, [
+    id
+  ], (er, re) => {
+    console.log(re);
+  });
+  db.query(sqlDeleteUser, [
+    id
+  ], (er, re) => {
+    console.log(re);
+  });
+})
+
 app.get("/api/allhorses", (req, res) => {
   const selectAll = "SELECT * FROM horseinfo;";
   db.query(selectAll, (er, re) => {
@@ -105,9 +122,10 @@ app.post("/api/insertHorse", (req, res) => {
   const location = req.body.location;
   const skills = req.body.discipline;
   const uid = req.body.uid;
+  const horseThumb = req.body.horseThumb;
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -123,12 +141,22 @@ app.post("/api/insertHorse", (req, res) => {
       horseHeight,
       location,
       uid,
+      horseThumb,
     ],
     (err, result) => {
       console.log(result);
     }
   );
 });
+
+app.post("/api/deleteHorse", (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
+  db.query(sqlDelete, [id], (er, re) => {
+    console.log(re);
+  })
+})
 
 app.listen(3002, () => {
   console.log("running on port 3002");

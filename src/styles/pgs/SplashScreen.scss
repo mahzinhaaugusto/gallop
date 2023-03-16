@@ -16,7 +16,7 @@ html {
 
 .splashScreen_logo {
     transform: translateY(-40rem);
-    width: 70%;
+    width: 80%;
     align-self: center;
 }
 
@@ -26,27 +26,60 @@ html {
     justify-content: center;
     text-align: center;
     float: right;
-    margin: 10rem;
-    padding: 8rem;
-    transform: translateY(-165%);
+    margin: 12rem;
+    // padding: 8rem;
+    transform: translateY(-275%);
+
+    h1 {
+        font-family: 'Asap', sans-serif !important;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 56px;
+        /* identical to box height, or 140% */
+
+        display: flex;
+        align-items: flex-end;
+        letter-spacing: 0.08em;
+        color: $secondary;
+    }
+
+    h3,
+    a {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        /* identical to box height, or 150% */
+
+        display: flex;
+        align-items: flex-end;
+        letter-spacing: 0.04em;
+        color: $gray;
+    }
 }
 
 .splashScreen_cont_content_signIn:visited {
-    color: black;
+    color: $gray;
 }
 
 .splashScreen_cont_btn_google,
 .splashScreen_cont_btn_email,
 .splashScreen_cont_btn_apple {
+    cursor: pointer;
     border: 1px solid #000000;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 15px;
-    padding: $largePadding;
+    padding: $smallPadding;
     margin-bottom: $largeMargin;
     width: 280px;
     background-color: $white;
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 36px;
 }
 
 .splashScreen_cont_btn_google {
-    margin-top: $largeMargin;
+    margin-top: 30px;
 }

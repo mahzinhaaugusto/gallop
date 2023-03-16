@@ -6,6 +6,44 @@
     p {
         margin: 0;
     }
+
+    h1 {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 150%;
+        color: $gray;
+        padding-bottom: $largePadding;
+    }
+}
+
+.profile_cont_mainContent {
+    padding: 5rem;
+
+    h4 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        color: $secondary;
+    }
+
+    p,
+    a {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 27px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    a:visited {
+        color: black;
+    }
+
 }
 
 .profile_cont_master_inner {
@@ -29,4 +67,217 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.profile_cont_header {
+    // position: relative;
+    // width: 50%;
+    // max-width: 300px;
+    // display: flex;
+
+    .profile_cont_header_background {
+        // display: block;
+        width: 100%;
+        // height: auto;
+        background-size: contain;
+        background-position: top left;
+    }
+
+    // .overlay {
+    //     position: absolute;
+    //     bottom: 0;
+    //     background: rgb(0, 0, 0);
+    //     background: rgba(0, 0, 0, 0.5);
+    //     /* Black see-through */
+    //     color: #f1f1f1;
+    //     width: 100%;
+    //     transition: .5s ease;
+    //     opacity: 0;
+    //     color: white;
+    //     font-size: 20px;
+    //     padding: 20px;
+    //     text-align: center;
+    // }
+
+    .profile_cont_header_content_pic {
+        clip-path: circle(50% at 50% 50%);
+        // width: 18vw;
+    }
+}
+
+.profile_cont_mainContent_cta_signOut {
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 36px;
+    border-radius: $radius;
+    padding: $smallPadding;
+    width: 10rem;
+    right: 0;
+    border: 1px solid #000000;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    cursor: pointer;
+}
+
+// EDIT PROFILE
+
+.profile_cont_backToProfile {
+    display: flex;
+    align-items: center;
+    padding: $largeMargin;
+
+    p {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 150%;
+        color: #5A5A5F;
+        padding-left: $largePadding;
+    }
+}
+
+.profile_cont_header_background_editing,
+.profile_cont_header_content_pic_editing {
+    width: 40px;
+    cursor: pointer;
+}
+
+.profile_cont_mainContent_editing {
+    padding: 5rem;
+
+    h4 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        color: $secondary;
+    }
+
+    p {
+        color: $fourSec;
+    }
+}
+
+.profile_cont_mainContent_editing_bio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 0;
+
+    textarea {
+        width: 70%;
+        border-radius: $radius;
+        padding: $largePadding;
+    }
+
+    textarea::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 27px;
+    }
+}
+
+.profile_cont_mainContent_editing_name,
+.profile_cont_mainContent_editing_phoneNumber,
+.profile_cont_mainContent_editing_email,
+.profile_cont_mainContent_editing_location,
+.profile_cont_mainContent_editing_website,
+.profile_cont_mainContent_editing_password,
+.profile_cont_mainContent_editing_cta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 0;
+
+    input {
+        border-radius: $radius;
+        padding: $largePadding;
+        border: 1px solid $fourSec;
+        width: 25%;
+    }
+}
+
+.profile_cont_mainContent_editing_cta {
+    align-items: center;
+
+    p {
+        font-weight: 800;
+        font-size: 13px;
+        line-height: 15px;
+        color: $fourSec;
+        cursor: pointer;
+    }
+
+    .profile_cont_mainContent_editing_cta_saveBtn {
+        border: none;
+        border-radius: $radius;
+        color: $white;
+        background-color: $primary;
+        padding: $smallPadding $largePadding;
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 36px;
+        width: 200px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+    }
+}
+
+.popUp_cont_description_text {
+    color: $gray !important;
+}
+
+.popUp_btn_cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: $largeMargin;
+
+    .popUp_btn_cancelBtn {
+        border: 1px solid black;
+        background-color: $white;
+        color: black;
+        border-radius: $radius;
+        padding: $largePadding;
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+    }
+
+    .popUp_btn_deleteBtn {
+        border: none;
+        background-color: $semanticAlert;
+        color: $accentLightPink;
+        border-radius: $radius;
+        padding: $largePadding;
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+    }
+}
+
+.popUp_btn_doneBtn {
+    border: 1px solid black;
+    background-color: $white;
+    color: black;
+    border-radius: $radius;
+    padding: $largePadding;
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
 }

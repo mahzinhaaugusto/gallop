@@ -3,6 +3,7 @@ import WhiteLogo from "../icons/WhiteLogo.svg";
 // import { useState } from "react";
 import { Button } from "../Components/Button";
 import { useNavigate } from "react-router-dom";
+import BackgroundImage from "../Assets/Images/BackgroundImage.png";
 // import { Login } from "./Login";
 
 export function SplashScreen() {
@@ -37,7 +38,7 @@ export function SplashScreen() {
 
                 <div className="splashScreen_cont_content">
                     <h1>Join Gallop for Best Horses</h1>
-                    <h3>Already have an account? <a href="" className="splashScreen_cont_content_signIn" onClick={goToLogin}>Sign In</a></h3>
+                    <h3>Already have an account? &nbsp;<a href="" className="splashScreen_cont_content_signIn" onClick={goToLogin}>Sign In</a></h3>
 
                     <div className="horizontalCont">
                         <hr className="horizontalCont_leftHorizon"></hr>
@@ -52,10 +53,6 @@ export function SplashScreen() {
                     </div>
                 </div>
             </div>
-
-            {/* {showLogin && (
-                <Login />
-            )} */}
         </div>
     )
 }
