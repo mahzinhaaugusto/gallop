@@ -11,5 +11,5 @@
 /src/server/.DS_Store
 
 !/App.js
-App.js
-App.js:*.apikey1
+/App.js
+/App.js:*.apikey1
