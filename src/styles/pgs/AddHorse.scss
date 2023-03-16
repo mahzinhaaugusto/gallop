@@ -1,13 +1,13 @@
-
 .addHorse_master {
     background-color: #F5F5F5;
-    h4{
+
+    h4 {
         color: #5A5A5F;
         margin-bottom: 5px;
-        
+
     }
-    
-    label{
+
+    label {
         color: #5A5A5F;
         margin-bottom: 5px;
         display: block;
@@ -16,13 +16,14 @@
         padding-left: 0px;
         font-weight: 600;
     }
-    
-    h3{
+
+    h3 {
         margin-top: 20px;
         position: relative;
         color: black;
         font-weight: 900;
     }
+
     h3::after {
         content: "";
         display: block;
@@ -33,10 +34,10 @@
         height: 2px;
         background-color: #5A5A5F;
     }
-    
+
 }
 
-.addHorse_cont{
+.addHorse_cont {
     background-color: white;
     margin: 30px 200px 50px 250px;
     padding-left: 200px;
@@ -45,7 +46,7 @@
     padding-bottom: 10px;
 }
 
-.addHorse_cont_backButton{
+.addHorse_cont_backButton {
     display: flex;
     position: relative;
     left: -71%;
@@ -59,7 +60,7 @@
 }
 
 //add horse title
-.addHorse > h2{
+.addHorse>h2 {
     font-size: 1.5em;
     font-weight: 600;
     margin: 0;
@@ -74,99 +75,108 @@
     color: #C9431A;
 }
 
-#gender{
+#gender {
     height: 48px;
     width: 184px;
-    border-radius: 15px;
+    border-radius: 7px;
     border-color: #B6B6BB;
     box-sizing: border-box;
 }
 
-#age{
+#age {
     height: 48px;
     width: 184px;
-    border-radius: 15px;
+    border-radius: 7px;
     border-color: #B6B6BB;
     box-sizing: border-box;
 }
 
-#height{
+#height {
     height: 48px;
     width: 184px;
-    border-radius: 15px;
+    border-radius: 7px;
+
     border-color: #B6B6BB;
     box-sizing: border-box;
 }
 
-#price{
+#price {
     height: 48px;
     width: 184px;
-    border-radius: 15px;
+    border-radius: 7px;
+
     border-color: #B6B6BB;
     box-sizing: border-box;
 }
 
-#breedingMethod{
+#breedingMethod {
     height: 48px;
     width: 184px;
-    border-radius: 15px;
+    border-radius: 7px;
     border-color: #B6B6BB;
     box-sizing: border-box;
 }
 
 // Color
-.filter_cont_color{
+.filter_cont_color {
     width: 184px;
     margin: 0px;
     box-sizing: border-box;
+    height: 48px;
+    border-radius: 7px;
 }
-.filter_cont_color_label{
+
+.filter_cont_color_label {
     padding-left: 0px;
 }
 
 // Breed
-.filter_cont_breed{
+.filter_cont_breed {
+    width: 184px;
+    margin: 0px;
+    box-sizing: border-box;
+    height: 48px;
+    border-radius: 7px;
+}
+
+
+
+.filter_cont_color {
     width: 184px;
     margin: 0px;
     box-sizing: border-box;
 }
 
-
-
-.filter_cont_color{
-    width: 184px;
-    margin: 0px;
-    box-sizing: border-box;
-}
-
-.addHorse_cont_basics{
+.addHorse_cont_basics {
     margin-top: 70px;
 }
 
-.addHorse_cont_basics_details_firstRow{
+.addHorse_cont_basics_details_firstRow {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.addHorse_cont_basics_details_secondRow{
+.addHorse_cont_basics_details_secondRow {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.addHorse_cont_basics_details_secondRow{
+.addHorse_cont_basics_details_secondRow {
     display: flex;
     flex-direction: row;
 }
 
-#horseName{
+#horseName {
     background: #FFFFFF;
     border: 1px solid #B6B6BB;
-    border-radius: 15px;
+    border-radius: 7px;
     width: 625px;
+    height: 48px
 }
-.addHorse_cont_basics_details_name{
+
+.addHorse_cont_basics_details_name {
     margin-top: 40px;
 }
 
@@ -178,7 +188,7 @@
 // Thumbnail
 .addHorse_cont_basics_upload_thumbnail_content {
     border: 1px solid #B6B6BB;
-    border-radius: 15px;
+    border-radius: 7px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -190,9 +200,9 @@
 }
 
 // Media
-.addHorse_cont_basics_upload_media_content{
+.addHorse_cont_basics_upload_media_content {
     border: 1px solid #B6B6BB;
-    border-radius: 15px;
+    border-radius: 7px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -204,9 +214,9 @@
 }
 
 // Documentation
-.addHorse_cont_detailed_documentation_content{
+.addHorse_cont_detailed_documentation_content {
     border: 1px solid #B6B6BB;
-    border-radius: 15px;
+    border-radius: 7px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -218,13 +228,14 @@
 }
 
 // Description
-#description{
+#description {
     border: 1px solid #B6B6BB;
-    border-radius: 15px;
+    border-radius: 7px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     width: 625px;
+    overflow-x: hidden;
 
     p {
         padding: 20px;
@@ -234,45 +245,43 @@
 
 
 
-.filter_cont_discipline{
+.filter_cont_discipline {
     background: #FFFFFF;
     border: 1px solid #B6B6BB;
-    border-radius: 15px;
+    border-radius: 7px;
     width: 625px;
     margin: 0px;
 }
 
 // Contact preferences
-#ownerEmail{
-    
-}
-#ownerCall{
+#ownerEmail {}
 
-}
-#ownerText{
+#ownerCall {}
 
-}
-.addHorse_cont_aboutOwner_contactPreferences{
+#ownerText {}
+
+.addHorse_cont_aboutOwner_contactPreferences {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
-    label{
+    margin-top: 25px;
+
+    label {
         margin: 0px;
     }
 }
 
 // Location
-#ownerLocation{
+#ownerLocation {
     background: #FFFFFF;
     border: 1px solid #B6B6BB;
-    border-radius: 15px;
+    border-radius: 7px;
     width: 625px;
 }
 
 // Display horse
-.addHorse_cont_aboutOwner_displayHorse{
+.addHorse_cont_aboutOwner_displayHorse {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -281,7 +290,7 @@
 }
 
 // End Buttons
-.endButtons{
+.endButtons {
     margin-top: 20px;
     display: flex;
     flex-direction: row;
@@ -289,7 +298,7 @@
     margin-bottom: 20px;
 }
 
-.footer_cont{
+.footer_cont {
     margin-left: 90px;
 }
 
@@ -301,6 +310,80 @@ textarea::placeholder {
     width: 100%;
     padding-top: 15px;
     padding-left: 20px;
-    font-family: "Roboto" ;
+    font-family: "Roboto";
     font-size: 1.2em;
+}
+
+#ownerLocation {
+    background: #FFFFFF;
+    border: 1px solid #B6B6BB;
+    border-radius: 7px;
+    width: 625px;
+    height: 48px
+}
+
+
+//toggle button
+$toggle-background-color-on: dodgerblue;
+$toggle-background-color-off: darkgray;
+$toggle-control-color: white;
+$toggle-width: 100px;
+$toggle-height: 50px;
+$toggle-gutter: 5px;
+$toggle-radius: 50%;
+$toggle-control-speed: .15s;
+$toggle-control-ease: ease-in;
+
+// These are our computed variables
+// change at your own risk.
+$toggle-radius: $toggle-height / 2;
+$toggle-control-size: $toggle-height - ($toggle-gutter * 2);
+
+.toggle-control {
+    display: flex;
+    position: relative;
+    padding-left: $toggle-width;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+
+    input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    input:checked ~ .control {
+        background-color: $toggle-background-color-on;
+
+        &:after {
+            left: $toggle-width - $toggle-control-size - $toggle-gutter;
+        }
+    }
+
+    .control {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: $toggle-height;
+        width: $toggle-width;
+        border-radius: $toggle-radius;
+        background-color: $toggle-background-color-off;
+        transition: background-color $toggle-control-speed $toggle-control-ease;
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: $toggle-gutter;
+            top: $toggle-gutter;
+            width: $toggle-control-size;
+            height: $toggle-control-size;
+            border-radius: $toggle-radius;
+            background: $toggle-control-color;
+            transition: left $toggle-control-speed $toggle-control-ease;
+        }
+    }
 }
