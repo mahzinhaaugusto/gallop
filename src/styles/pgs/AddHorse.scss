@@ -156,34 +156,6 @@
 }
 
 // Color
-.filter_cont_color {
-    width: 184px;
-    margin: 0px;
-    box-sizing: border-box;
-    height: 48px;
-    border-radius: 7px;
-}
-
-.filter_cont_color_label {
-    padding-left: 0px;
-}
-
-// Breed
-.filter_cont_breed {
-    width: 184px;
-    margin: 0px;
-    box-sizing: border-box;
-    height: 48px;
-    border-radius: 7px;
-}
-
-
-
-.filter_cont_color {
-    width: 184px;
-    margin: 0px;
-    box-sizing: border-box;
-
 .addHorse_cont_basics_details_color_cont {
     width: 184px;
     margin: 0px;
@@ -482,6 +454,7 @@ $toggle-control-size: $toggle-height - ($toggle-gutter * 2);
             transition: left $toggle-control-speed $toggle-control-ease;
         }
     }
+}
 
 .addHorse_cont_detailed_discipline_content {
     width: 100%;
