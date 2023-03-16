@@ -165,6 +165,10 @@
 
 .horizontalCont_Para {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 150%;
+
+    @media only screen and (min-width: $media-desktop) {
+        font-size: 20px;
+    }
 }
