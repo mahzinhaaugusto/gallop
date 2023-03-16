@@ -11,6 +11,7 @@ import { Profile } from "./Pages/Profile";
 import { Favorites } from "./Pages/Favorites";
 import { MyHorses } from "./Pages/MyHorses";
 import { ForgotPassword } from "./Pages/ForgotPassword";
+import { DataAnalytics } from "./Pages/DataAnalytics";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -28,6 +29,7 @@ root.render(
       <Route path="/my-horses" element={<MyHorses />} />
       <Route path="/login" element={<Login />} />
       <Route path="/reset-password" element={<ForgotPassword />} />
+      <Route path="/data-analytics" element={<DataAnalytics />} />
     </Routes>
   </BrowserRouter>
 );
