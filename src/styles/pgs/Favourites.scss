@@ -1,0 +1,32 @@
+.favorites_cont_filterAndSort{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; //segue o main axis q foi escolhido pelo direction
+    
+}
+
+.favorites{
+    padding: 4rem 4rem 10rem 15rem;
+    background: transparent;
+}
+
+.favorites_cont{
+    background-color: white;
+    border-radius: 15px;
+    //margin: 5rem 5rem 5rem 5rem;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+.favorites > h2{
+    color: #5A5A5F;
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 150%;
+    color: #5A5A5F;
+    padding-bottom: 15px;
+}
