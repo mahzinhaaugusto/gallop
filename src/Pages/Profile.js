@@ -56,6 +56,7 @@ export function Profile() {
       "profile_cont_mainContent_editing_bio_content"
     );
     profileEdit.bioContent = bioContent.value;
+
     let id = localStorage.getItem("id");
     Axios.post("http://localhost:3002/api/editprofile", {
       profileEdit: profileEdit,
@@ -134,7 +135,7 @@ export function Profile() {
       return;
     }
     setPasswordType("password");
-  }
+  };
 
   return (
     <div className="profile">
@@ -203,7 +204,10 @@ export function Profile() {
                   <h4 className="profile_cont_mainContent_website_title">
                     Website:
                   </h4>
-                  <a className="profile_cont_mainContent_website_content" href={profileInfo.websiteInfo}>
+                  <a
+                    className="profile_cont_mainContent_website_content"
+                    href={profileInfo.websiteInfo}
+                  >
                     {profileInfo.websiteInfo}
                   </a>
                 </div>
@@ -383,8 +387,15 @@ export function Profile() {
                       // setPassInput(event.target.value)
                     }}
                   />
-                  <div className="profile_cont_mainContent_editing_password_toggle" onClick={togglePassword}>
-                    {passwordType === "password" ? <img src={HideShowPass} alt="Show password" /> : <img src={HideVisibility} alt="Hide password" />}
+                  <div
+                    className="profile_cont_mainContent_editing_password_toggle"
+                    onClick={togglePassword}
+                  >
+                    {passwordType === "password" ? (
+                      <img src={HideShowPass} alt="Show password" />
+                    ) : (
+                      <img src={HideVisibility} alt="Hide password" />
+                    )}
                   </div>
                 </div>
                 <div className="profile_cont_mainContent_editing_cta">
