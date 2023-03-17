@@ -1,7 +1,3 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-
-import "firebase/storage";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import CancelButton from "../icons/CancelButton.svg";
 import SaveButton from "../icons/SaveButton.svg";
@@ -39,21 +35,6 @@ export function AddHorse() {
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
   let navigate = useNavigate();
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyASdmqlaScVgkSxCrvYng7_SzRnE2VQRgU",
-    authDomain: "app1-504b3.firebaseapp.com",
-    databaseURL: "https://app1-504b3-default-rtdb.firebaseio.com",
-    projectId: "app1-504b3",
-    storageBucket: "app1-504b3.appspot.com",
-    messagingSenderId: "150727407420",
-    appId: "1:150727407420:web:de3b1d71b182fd722dd039",
-    measurementId: "G-JC5YWN05W8",
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
 
   const clickPlus = () => {
     console.log("works");
@@ -125,11 +106,11 @@ export function AddHorse() {
 
   const redirect = () => {
     navigate("/my-horses");
-  }
+  };
 
   const cancel = () => {
     setShowCancelPopUp(!showCancelPopUp);
-  }
+  };
 
   return (
     <div className="addHorse_master">
@@ -381,12 +362,11 @@ export function AddHorse() {
               ></input>
             </div>
             <div className="addHorse_cont_aboutOwner_displayHorse">
-              <label className="toggle-control">{/* Display horse on profile */}
-                <input  type="checkbox"
-              checked="checked"></input>
+              <label className="toggle-control">
+                {/* Display horse on profile */}
+                <input type="checkbox" checked="checked"></input>
                 <span className="control"></span>
               </label>
-              
             </div>
             <p>* required fields</p>
           </div>
@@ -405,18 +385,39 @@ export function AddHorse() {
         </div>
 
         {showSavePopUp && (
-          <PopUp title="Saved!" description="Your horse was successfully saved!" addContent={
-            <Button className="popUp_btn_horseSaved" title="Go to My Horses" onClick={redirect} />
-          } />
+          <PopUp
+            title="Saved!"
+            description="Your horse was successfully saved!"
+            addContent={
+              <Button
+                className="popUp_btn_horseSaved"
+                title="Go to My Horses"
+                onClick={redirect}
+              />
+            }
+          />
         )}
 
         {showCancelPopUp && (
-          <PopUp title="Are you sure?" description="Are you sure you want to leave? Your changes will be lost." addContent={
-            <>
-              <Button className="popUp_btn_cancel" title="Cancel" onClick={cancel} />
-              <Button className="popUp_btn_leave" title="Leave" onClick={redirect} />
-            </>
-          } classNameContent="btn_cont" />
+          <PopUp
+            title="Are you sure?"
+            description="Are you sure you want to leave? Your changes will be lost."
+            addContent={
+              <>
+                <Button
+                  className="popUp_btn_cancel"
+                  title="Cancel"
+                  onClick={cancel}
+                />
+                <Button
+                  className="popUp_btn_leave"
+                  title="Leave"
+                  onClick={redirect}
+                />
+              </>
+            }
+            classNameContent="btn_cont"
+          />
         )}
 
         {/* <Footer /> */}
