@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
 require("dotenv").config();
+let apikey = process.env.APIKEY;
 
 const db = mysql.createPool({
   host: process.env.HOST,
@@ -27,18 +28,14 @@ app.post("/api/delete", (req, res) => {
   const id = req.body.id;
   console.log(id);
   const sqlDeleteHorse = "DELETE FROM horseinfo WHERE ID = ?;";
-  const sqlDeleteUser = "DELETE FROM userinfo WHERE ID = ?;"
-  db.query(sqlDeleteHorse, [
-    id
-  ], (er, re) => {
+  const sqlDeleteUser = "DELETE FROM userinfo WHERE ID = ?;";
+  db.query(sqlDeleteHorse, [id], (er, re) => {
     console.log(re);
   });
-  db.query(sqlDeleteUser, [
-    id
-  ], (er, re) => {
+  db.query(sqlDeleteUser, [id], (er, re) => {
     console.log(re);
   });
-})
+});
 
 app.get("/api/allhorses", (req, res) => {
   const selectAll = "SELECT * FROM horseinfo;";
@@ -153,10 +150,10 @@ app.post("/api/deleteHorse", (req, res) => {
   const id = req.body.id;
   console.log(id);
   const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
-  db.query(sqlDelete, [id], (er, re) => {
-    console.log(re);
-  })
-})
+  db.query(sqlDelete[id], (er, re) => {
+    res.send(re);
+  });
+});
 
 app.listen(3002, () => {
   console.log("running on port 3002");

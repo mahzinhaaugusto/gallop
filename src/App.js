@@ -3,9 +3,12 @@ import "./style.scss";
 import { SplashScreen } from "./Pages/SplashScreen";
 import { MainPage } from "./Pages/MainPage";
 import Geocode from "react-geocode";
-let apikey1 = "AIzaSyASozGLOD6wCuZssYOYk63BYfUJGdct_1M";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import "firebase/storage";
+
 console.log(process.env.REACT_APP_APIKEY);
-Geocode.setApiKey("AIzaSyASozGLOD6wCuZssYOYk63BYfUJGdct_1M");
+Geocode.setApiKey(process.env.REACT_APP_APIKEY);
 Geocode.setLocationType("ROOFTOP");
 let city;
 
@@ -43,7 +46,11 @@ navigator.geolocation.getCurrentPosition(function (position) {
     }
   );
 });
+const firebaseConfig = JSON.parse(process.env.REACT_APP_FIREBASE);
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+getFirestore(app);
 export function Main() {
   return (
     <>
