@@ -19,8 +19,8 @@ export function Profile() {
   const [profileInfo, setProfileInfo] = useState({});
   //   const [profileEdit, setProfileEdit] = useState({ bioContent: "",
   // fullName:"", });
-  const profileEdit = {};
-
+  const profileEdit = profileInfo;
+  //console.log(profileEdit);
   const editProfile = (event) => {
     setShowPopUpSave(false);
     event.stopPropagation();
@@ -74,8 +74,8 @@ export function Profile() {
     let id = localStorage.getItem("id");
     console.log(id);
     axios.post("http://localhost:3002/api/delete", {
-      id: id
-    })
+      id: id,
+    });
     console.log("working");
   };
 
@@ -96,7 +96,7 @@ export function Profile() {
       console.log(id);
       for (let i = 0; i < credential.length; i++) {
         if (credential[i].ID == id) {
-          console.log(credential[i]);
+          // console.log(credential[i]);
           setProfileInfo({
             background: "",
             profile: "",
@@ -107,6 +107,10 @@ export function Profile() {
             websiteInfo: credential[i].website,
             userPhoto: credential[i].userPhoto,
             background: credential[i].backgroundPhoto,
+            password: credential[i].userPassword,
+            website: credential[i].website,
+            firstName: credential[i].firstName,
+            lastName: credential[i].lastName,
           });
           // console.log(profileInfo.userPhoto);
         }
@@ -280,6 +284,7 @@ export function Profile() {
                     cols="40"
                     rows="4"
                     maxLength={profileEditing.maxLength}
+                    defaultValue={profileInfo.bioContent}
                     placeholder="Please tell us a bit about yourself."
                     onChange={(event) => {
                       setShowCount(event.target.value.length);
@@ -301,6 +306,7 @@ export function Profile() {
                     type="text"
                     maxLength={profileEditing.inputLength}
                     placeholder="Hunter Smith"
+                    defaultValue={profileInfo.fullName}
                     onChange={(event) => {
                       const myString = event.target.value.split(" ");
                       if (myString.length == 1) {
@@ -327,6 +333,7 @@ export function Profile() {
                     type="number"
                     max="10"
                     placeholder="1234567890"
+                    defaultValue={profileInfo.phoneNumber}
                     onChange={(event) => {
                       profileEdit.phoneNumber = event.target.value;
                     }}
@@ -341,6 +348,7 @@ export function Profile() {
                     type="email"
                     max="10"
                     placeholder="hsmith@mylangara.ca"
+                    defaultValue={profileInfo.email}
                     onChange={(event) => {
                       profileEdit.email = event.target.value;
                     }}
@@ -355,6 +363,7 @@ export function Profile() {
                     type="text"
                     maxLength={profileEditing.inputLength}
                     placeholder="Vancouver"
+                    defaultValue={sessionStorage.getItem("city")}
                     onChange={(event) => {
                       profileEdit.address = event.target.value;
                     }}
@@ -369,6 +378,7 @@ export function Profile() {
                     type="text"
                     maxLength={profileEditing.inputLength}
                     placeholder="thegallopapp.com"
+                    defaultValue={profileInfo.websiteInfo}
                     onChange={(event) => {
                       profileEdit.website = event.target.value;
                     }}
@@ -384,6 +394,7 @@ export function Profile() {
                     // value={passInput}
                     maxLength={profileEditing.inputLength}
                     placeholder="************"
+                    defaultValue={profileInfo.password}
                     onChange={(event) => {
                       profileEdit.password = bcrypt.hashSync(
                         event.target.value,
