@@ -1,0 +1,73 @@
+.moreOwner_cont_filterAndSort{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; //segue o main axis q foi escolhido pelo direction
+    
+}
+
+.moreOwner_cont_header_backButton {
+    display: flex;
+    position: relative;
+    left: -47%;
+    right: 76.57%;
+    top: 42%;
+    bottom: 90.29%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #5A5A5F;
+}
+
+.moreOwner{
+    padding: 4rem 4rem 10rem 15rem;
+    background: transparent;
+}
+
+.moreOwner_cont{
+    background-color: white;
+    border-radius: 15px;
+    //margin: 5rem 5rem 5rem 5rem;
+    /* padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 50px;
+    padding-bottom: 10px; */
+}
+
+.moreOwner > h2{
+    padding-bottom: 15px;
+    font-size: 28px;
+    color: #5A5A5F;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+}
+
+.moreOwner_cont_header_content_img {
+    border: 1px solid black;
+    margin-top: 10px;
+    border-radius: 50%;
+    width: 228px;
+    height: 228px;
+}
+
+.moreOwner_cont_header_content_location {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.moreOwner_cont_header_content_webpage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+// add background image here 
+
+.moreOwner_cont_header{
+    background-color: aquamarine;
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
