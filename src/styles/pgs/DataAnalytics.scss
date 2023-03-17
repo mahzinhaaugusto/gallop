@@ -1,0 +1,27 @@
+.dataAnalytics {
+    background: $accentSand;
+    margin: 0;
+}
+
+.dataAnalytics_cont_master {
+    padding: 4rem 4rem 10rem 15rem;
+    background: transparent;
+    margin: 0;
+
+    p {
+        margin: 0;
+    }
+
+    h2 {
+        color: $gray;
+        font-family: 'Asap', sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 150%;
+    }
+}
+
+.dataAnalytics_cont_master_inner {
+    background-color: $white;
+    padding-top: 30px;
+}

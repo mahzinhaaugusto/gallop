@@ -1,21 +1,40 @@
-html {
-    height: fit-content;
+.splashScreen_master {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (min-width: $media-desktop) {
+        display: block;
+    }
 }
 
 .splashScreen {
-    background-color: $white;
+    /* background-color: $splashBackground; */
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+    @media only screen and (min-width: $media-desktop) {
+        background-color: $white;
+    }
 }
 
 .splashScreen_image {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    height: auto;
-    align-items: flex-start;
+    display: none;
+
+    @media only screen and (min-width: $media-desktop) {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 33rem;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .splashScreen_logo {
-    transform: translateY(-40rem);
+    position: absolute;
     width: 80%;
     align-self: center;
 }
@@ -26,15 +45,17 @@ html {
     justify-content: center;
     text-align: center;
     float: right;
-    margin: 12rem;
-    // padding: 8rem;
-    transform: translateY(-275%);
+    margin: 8rem 1.75rem;
+
+    @media only screen and (min-width: $media-desktop) {
+        margin: 12rem;
+    }
 
     h1 {
         font-family: 'Asap', sans-serif !important;
         font-style: normal;
         font-weight: 700;
-        font-size: 40px;
+        font-size: 24px;
         line-height: 56px;
         /* identical to box height, or 140% */
 
@@ -42,19 +63,25 @@ html {
         align-items: flex-end;
         letter-spacing: 0.08em;
         color: $secondary;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-size: 40px;
+        }
     }
 
     h3,
     a {
         font-weight: 700;
-        font-size: 24px;
+        font-size: 20px;
         line-height: 36px;
         /* identical to box height, or 150% */
-
-        display: flex;
         align-items: flex-end;
         letter-spacing: 0.04em;
         color: $gray;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-size: 24px;
+        }
     }
 }
 

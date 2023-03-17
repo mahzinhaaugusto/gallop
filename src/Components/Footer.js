@@ -17,7 +17,7 @@ function FooterCont() {
             <div className="footer_cont_mainContent_master">
                 <div className="footer_cont_mainContent">
                     <LogoFooter />
-                    <Documentation />
+                    <Data />
                     <AboutUs />
                     <Jupiter />
                     <GallopEmail />
@@ -70,14 +70,14 @@ function Jupiter() {
 
 // ********************************
 
-function Documentation() {
+function Data() {
     let navigate = useNavigate();
-    const goToDocumentation = () => {
-        navigate("/documentation");
+    const goToData = () => {
+        navigate("/data-analytics");
     };
     return (
         <div className="footer_cont_documentation">
-            <p onClick={goToDocumentation}>Gallop Documentation</p>
+            <p onClick={goToData}>Data Analytics</p>
         </div>
     )
 }
