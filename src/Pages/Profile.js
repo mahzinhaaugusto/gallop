@@ -11,8 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Edit from "../icons/Edit.svg";
 import horse from "../icons/Horse.png";
 import bcrypt from "bcryptjs";
-
-import Axios from "axios";
+import axios from "axios";
 
 export function Profile() {
   const [showProfile, setShowProfile] = useState(true);
@@ -58,7 +57,7 @@ export function Profile() {
     profileEdit.bioContent = bioContent.value;
 
     let id = localStorage.getItem("id");
-    Axios.post("http://localhost:3002/api/editprofile", {
+    axios.post("http://localhost:3002/api/editprofile", {
       profileEdit: profileEdit,
       id: id,
     });
@@ -72,6 +71,12 @@ export function Profile() {
 
   const confirmDelete = () => {
     // Add the delete command for the db
+    let id = localStorage.getItem("id");
+    console.log(id);
+    axios.post("http://localhost:3002/api/delete", {
+      id: id
+    })
+    console.log("working");
   };
 
   let navigate = useNavigate();
@@ -85,7 +90,7 @@ export function Profile() {
   };
   let credential = [];
   function firstLoad() {
-    Axios.get("http://localhost:3002/api/get").then((response) => {
+    axios.get("http://localhost:3002/api/get").then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
       console.log(id);
