@@ -277,7 +277,7 @@ export function AddHorse() {
               </div>
               <div className="addHorse_cont_basics_upload_media">
                 <label>
-                  Media{" "}
+                  Photos{" "}
                   <span className="addHorse_cont_basics_upload_media_error">
                     *
                   </span>
