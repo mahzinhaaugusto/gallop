@@ -10,9 +10,34 @@ export function Login() {
   const [credential, setCredential] = useState([]);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  // const [rmCheck, setRmCheck] = useState(false);
   //const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
 
+  // let email, pass;
+
+  // if (localStorage.checkbox && localStorage.checkbox !== "") {
+  //   setRmCheck(true);
+  //   email = localStorage.username;
+  //   pass = localStorage.password;
+  // } else {
+  //   //rmCheck.removeAttribute("checked");
+  //   //emailInput.value = "";
+  //   //pass.value = "";
+  // }
+
+  // const isRemembered = () => {
+  //   console.log(rmCheck);
+  //   if (rmCheck && userEmail !== "" && userPassword !== "") {
+  //     localStorage.username = userEmail;
+  //     localStorage.checkbox = rmCheck;
+  //     localStorage.password = userPassword;
+  //   } else {
+  //     localStorage.username = "";
+  //     localStorage.checkbox = "";
+  //     localStorage.password = "";
+  //   }
+  // };
   const loginClicked = () => {
     let promises = [];
 
@@ -67,7 +92,7 @@ export function Login() {
   return (
     <>
       <div className="login">
-        <div className='loginCont_master'>
+        <div className="loginCont_master">
           <div className="loginImage">
             <img className="loginImage" src={horse} alt="not found" />
             <img
@@ -77,13 +102,14 @@ export function Login() {
             />
           </div>
           <div className="loginCont">
-            <div className='loginCont_infoInputSec'>
+            <div className="loginCont_infoInputSec">
               <h1>Sign In</h1>
               <label className="loginCont_label">Email</label>
               <input
                 type="text"
-                value={userEmail}
                 name="userEmail"
+                id="userEmail"
+                defaultValue={userEmail}
                 placeholder="example@email.com"
                 onChange={(e) => {
                   setUserEmail(e.target.value);
@@ -93,7 +119,8 @@ export function Login() {
               <input
                 type="password"
                 name="userPassword"
-                value={userPassword}
+                id="userPassword"
+                defaultValue={userPassword}
                 placeholder="**********"
                 onChange={(e) => {
                   setUserPassword(e.target.value);
@@ -107,6 +134,10 @@ export function Login() {
                       id="remember"
                       name="remember"
                       className="remember"
+                      // onChange={(e) => {
+                      //   setRmCheck(e.target.checked);
+                      // }}
+                      // onClick={isRemembered}
                     />
                     Remember Me
                   </label>
@@ -124,7 +155,7 @@ export function Login() {
                 <Link to="/signup" className="link">
                   Create an Account
                 </Link>
-              </div>  
+              </div>
             </div>
             <div className="horizontalCont">
               <hr className="horizontalCont_leftHorizon"></hr>

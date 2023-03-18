@@ -36,9 +36,23 @@ app.post("/api/delete", (req, res) => {
     console.log(re);
   });
 });
+app.post("/api/deletefav", (req, res) => {
+  const id = req.body.id;
+  const deleteOne = "delete from favoritehorses where favoriteid = ?;";
+  db.query(deleteOne, [id], (er, re) => {
+    console.log(re);
+  });
+});
 
 app.get("/api/allhorses", (req, res) => {
   const selectAll = "SELECT * FROM horseinfo;";
+  db.query(selectAll, (er, re) => {
+    res.send(re);
+  });
+});
+
+app.get("/api/favHorses", (req, res) => {
+  const selectAll = "SELECT * FROM favoritehorses;";
   db.query(selectAll, (er, re) => {
     res.send(re);
   });
@@ -104,6 +118,17 @@ app.post("/api/insert", (req, res) => {
       console.log(result);
     }
   );
+});
+
+app.post("/api/addfavorite", (req, res) => {
+  const horseid = req.body.horseid;
+  const uid = req.body.uid;
+  const sqlInsert =
+    "insert into favoritehorses(id,horseID,isFavorite) values (?,?,?);";
+  db.query(sqlInsert, [uid, horseid, 1]),
+    (err, result) => {
+      console.log(result);
+    };
 });
 
 app.post("/api/insertHorse", (req, res) => {
