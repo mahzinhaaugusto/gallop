@@ -12,6 +12,7 @@ import { Favorites } from "./Pages/Favorites";
 import { MyHorses } from "./Pages/MyHorses";
 import { ForgotPassword } from "./Pages/ForgotPassword";
 import { DataAnalytics } from "./Pages/DataAnalytics";
+import { MoreOwner } from "./Pages/MoreOwner";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -25,11 +26,12 @@ root.render(
       <Route path="/horse-detail" element={<HorseDetail />} />
       <Route path="/add-horse" element={<AddHorse />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/favorites" element={<Favorites />} />
       <Route path="/my-horses" element={<MyHorses />} />
       <Route path="/login" element={<Login />} />
       <Route path="/reset-password" element={<ForgotPassword />} />
       <Route path="/data-analytics" element={<DataAnalytics />} />
+      <Route path="/favorites" element={<Favorites />} />
+      <Route path="/morefromowner" element={<MoreOwner />} />
     </Routes>
   </BrowserRouter>
 );

@@ -121,3 +121,9 @@ npm i swiper
 ```
 npm i bcryptjs
 ```
+
+### 16 - Install dotenv
+
+```
+npm install dotenv --save
+```
