@@ -7,7 +7,7 @@ import BackButton from "../icons/BackButton.svg";
 import { Breed } from "../CmptParts/Breed";
 import { Color } from "../CmptParts/Color";
 import { Discipline } from "../CmptParts/Discipline";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 import { NavBar } from "../Components/NavBar";
 // import { Footer } from "../Components/Footer";
@@ -36,6 +36,12 @@ export function AddHorse() {
 
   let navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      console.log("sorry");
+      navigate("/login");
+    }
+  });
   const clickPlus = () => {
     console.log("works");
   };
