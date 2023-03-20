@@ -1,5 +1,5 @@
 import Phone from "../icons/Phone.svg";
-import ProfilePic from "../icons/ProfilePic.svg";
+// import ProfilePic from "../icons/ProfilePic.svg";
 import Favorite from "../icons/FavoriteHorse.svg";
 import BackButton from "../icons/BackButton.svg";
 import Location from "../icons/Location.svg";
@@ -61,7 +61,7 @@ export function HorseDetail() {
                   src={HorseObj.img}
                   height="400px"
                   width="400px"
-                  alt="Horse Image"
+                  alt="Selected horse"
                 />
               </div>
               <div className="horseDetail_cont_information">
@@ -151,7 +151,7 @@ export function HorseDetail() {
                   src={userData.userPhoto}
                   height="150px"
                   width="150px"
-                  alt="Owner's Profile Picture"
+                  alt="Owner's profile"
                 ></img>
 
                 <div className="horseDetail_cont_contactInfo_owner">
