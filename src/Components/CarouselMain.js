@@ -34,10 +34,10 @@ export function CarouselMain() {
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide><img src={image1} /></SwiperSlide>
-        <SwiperSlide><img src={image2} /></SwiperSlide>
-        <SwiperSlide><img src={image3} /></SwiperSlide>
-        <SwiperSlide><img src={image4} /></SwiperSlide>
+        <SwiperSlide><img alt="Horse 1" src={image1} /></SwiperSlide>
+        <SwiperSlide><img alt="Horse 2" src={image2} /></SwiperSlide>
+        <SwiperSlide><img alt="Horse 3" src={image3} /></SwiperSlide>
+        <SwiperSlide><img alt="Horse 4" src={image4} /></SwiperSlide>
       </Swiper>
     </div>
 
