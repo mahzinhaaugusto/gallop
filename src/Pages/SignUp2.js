@@ -13,6 +13,8 @@ export function SignUp2() {
   const [Website, setWebsite] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userPhoto, setUserPhoto] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [addressError, setAddressError] = useState("");
 
   let navigate = useNavigate();
 
@@ -63,18 +65,25 @@ export function SignUp2() {
   };
 
   const submitClicked = () => {
-    Axios.post("http://localhost:3002/api/insert", {
-      firstName: location.state.firstName,
-      lastName: location.state.lastName,
-      userPassword: location.state.userPassword,
-      Email: location.state.Email,
-      Address: Address,
-      Website: Website,
-      phoneNumber: phoneNumber,
-      userPhoto: userPhoto,
-    });
-    alert("data written successfully");
-    navigate("/home");
+    if (phoneNumber === "") {
+      setPhoneError("Please Enter Valid Phone Number");
+    }
+    if (addressError === "") {
+      setAddressError("Please Enter Valid Address");
+    } else if (phoneNumber !== "" && addressError !== "") {
+      Axios.post("http://localhost:3002/api/insert", {
+        firstName: location.state.firstName,
+        lastName: location.state.lastName,
+        userPassword: location.state.userPassword,
+        Email: location.state.Email,
+        Address: Address,
+        Website: Website,
+        phoneNumber: phoneNumber,
+        userPhoto: userPhoto,
+      });
+      alert("data written successfully");
+      navigate("/home");
+    }
   };
 
   const profilePicture = () => {
@@ -160,6 +169,7 @@ export function SignUp2() {
                   setPhoneNumber(+e.target.value);
                 }}
               ></input>
+              <p className="warning">{phoneError}</p>
               <label className="signUp2Cont_form_addressLabel require">
                 Address
               </label>

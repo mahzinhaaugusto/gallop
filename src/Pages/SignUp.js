@@ -8,13 +8,34 @@ export function SignUp() {
   const [lastName, setLastName] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [cPassword, setCPassword] = useState("");
+  const [firstEror, setFirstError] = useState("");
+  const [lastEror, setLastError] = useState("");
+  const [emailEror, setEmailError] = useState("");
+  const [pEror, setPError] = useState("");
 
   let navigate = useNavigate();
 
   const nextClicked = () => {
+    if (firstName === "") {
+      setFirstError("Please Enter First Name");
+    }
+    if (lastName === "") {
+      setLastError("Please Enter Last Name");
+    }
+    if (userPassword === "") {
+      setPError("Please Enter valid Password");
+    }
+    if (Email === "") {
+      setEmailError("Please Enter Email Address");
+    }
     if (userPassword !== cPassword) {
       alert("Password mismatch");
-    } else {
+    } else if (
+      firstName !== "" &&
+      lastName !== "" &&
+      userPassword !== "" &&
+      Email !== ""
+    ) {
       const hashedPassword = bcrypt.hashSync(userPassword, 10);
       //console.log(hashedPassword);
       navigate("/signup2", {
@@ -76,12 +97,14 @@ export function SignUp() {
                       setFirstName(e.target.value);
                     }}
                   ></input>
+                  <p className="warning">{firstEror}</p>
                 </div>
               </div>
               <div className="signUpCont_form_name_last">
                 <div className="signUpCont_form_name_lastNameLabel require">
                   <label>Last Name</label>
                 </div>
+
                 <div>
                   <input
                     className="signUpCont_form_name_last_input"
@@ -92,6 +115,7 @@ export function SignUp() {
                       setLastName(e.target.value);
                     }}
                   ></input>
+                  <p className="warning">{lastEror}</p>
                 </div>
               </div>
             </div>
@@ -104,6 +128,7 @@ export function SignUp() {
                 setEmail(e.target.value);
               }}
             ></input>
+            <p className="warning">{emailEror}</p>
 
             <label className="signUpCont_form_passwordLabel require">
               Password
@@ -116,6 +141,7 @@ export function SignUp() {
                 setUserPassword(e.target.value);
               }}
             ></input>
+            <p className="warning">{pEror}</p>
             <label className="signUpCont_form_cPasswordLabel require">
               Confirm Password
             </label>
