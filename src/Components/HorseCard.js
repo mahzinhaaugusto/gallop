@@ -2,13 +2,11 @@ import FavoriteIcon from "../icons/FavoriteIcon.svg";
 import FavoriteClicked from "../icons/favoriteClicked.svg";
 import Plus from "../icons/Plus.svg";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { useState } from "react";
 import axios from "axios";
-// import Axios from "axios";
-// import { useState, useEffect } from "react";
 
-export function HorseCard({ horseInfo, onClick, addFavOnClick }) {
-  const [favHorses, setFavoritehorses] = useState([]);
+export function HorseCard({ horseInfo, addFavOnClick }) {
+  // const [favHorses, setFavoritehorses] = useState([]);
   // console.log(horseInfo);
   let navigate = useNavigate();
   function moreClicked(horse) {

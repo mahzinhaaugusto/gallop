@@ -1,7 +1,7 @@
 import FavoriteIcon from "../icons/FavoriteIcon.svg";
 import { NavBar } from "../Components/NavBar";
 import { Button } from "../Components/Button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BackButton from "../icons/BackButton.svg";
 import { FilterDropdown } from "../Components/Filter";
 import { SortByDropdown } from "../Components/SortBy";
