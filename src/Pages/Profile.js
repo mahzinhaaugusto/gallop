@@ -21,6 +21,7 @@ export function Profile() {
   // fullName:"", });
   const profileEdit = profileInfo;
   //console.log(profileEdit);
+
   const editProfile = (event) => {
     setShowPopUpSave(false);
     event.stopPropagation();
@@ -118,6 +119,10 @@ export function Profile() {
     });
   }
   useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      console.log("sorry");
+      navigate("/login");
+    }
     firstLoad();
     //console.log(credential);
   }, []);

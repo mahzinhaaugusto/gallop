@@ -84,6 +84,7 @@ export function Login() {
   };
 
   useEffect(() => {
+    localStorage.clear();
     Axios.get("http://localhost:3002/api/get").then((response) => {
       setCredential(response.data);
     });

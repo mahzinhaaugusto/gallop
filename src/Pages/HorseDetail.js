@@ -31,6 +31,10 @@ export function HorseDetail() {
   let [userData, setUserData] = useState([]);
 
   useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      console.log("sorry");
+      navigate("/login");
+    }
     Axios.get("http://localhost:3002/api/get").then((response) => {
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].ID == location.state.horse.ID)
@@ -48,7 +52,8 @@ export function HorseDetail() {
         <div className="horseDetail_master_inner">
           <div className="horseDetail_cont">
             <p className="horseDetail_cont_backButton" onClick={goBack}>
-              <img src={BackButton} height="30px" width="30px" alt="Go Back" />Back
+              <img src={BackButton} height="30px" width="30px" alt="Go Back" />
+              Back
             </p>
             <div className="horseDetail_cont_one">
               <div className="horseDetail_cont_image">
@@ -90,8 +95,12 @@ export function HorseDetail() {
                       width="10px"
                       alt="Location"
                     />
-                    <p className="horseDetail_cont_information_heading_locationAndPrice_location">{HorseObj.location}</p>
-                    <p className="horseDetail_cont_information_heading_locationAndPrice_price">${HorseObj.price}</p>
+                    <p className="horseDetail_cont_information_heading_locationAndPrice_location">
+                      {HorseObj.location}
+                    </p>
+                    <p className="horseDetail_cont_information_heading_locationAndPrice_price">
+                      ${HorseObj.price}
+                    </p>
                   </div>
                 </div>
                 <div className="horseDetail_cont_information_body">
@@ -123,10 +132,8 @@ export function HorseDetail() {
                   </div>
                 </div>
               </div>
-
             </div>
-            <div class="line">
-            </div>
+            <div class="line"></div>
             <div className="horseDetail_cont_two">
               <div className="horseDetail_cont_description">
                 <h4>Horse Description</h4>
@@ -139,7 +146,6 @@ export function HorseDetail() {
                 <h4>Contact</h4>
               </div>
               <div className="horseDetail_cont_contactInfo_heading_content">
-
                 <img
                   className="horseDetail_cont_contactInfo_img"
                   src={userData.userPhoto}
@@ -190,7 +196,12 @@ export function HorseDetail() {
                   </a>
                 </div>
                 <div className="horseDetail_cont_contactInfo_moreFromOwner">
-                  <button className="horseDetail_cont_contactInfo_moreFromOwner_btn" onClick={moreClick}>Show More From Owner</button>
+                  <button
+                    className="horseDetail_cont_contactInfo_moreFromOwner_btn"
+                    onClick={moreClick}
+                  >
+                    Show More From Owner
+                  </button>
                 </div>
               </div>
             </div>
@@ -198,6 +209,6 @@ export function HorseDetail() {
           <Footer />
         </div>
       </div>
-    </div >
+    </div>
   );
 }
