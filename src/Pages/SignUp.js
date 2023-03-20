@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import horse from "../icons/Horse.png";
+
 export function SignUp() {
   const [Email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");

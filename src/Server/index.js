@@ -171,7 +171,7 @@ app.post("/api/insertHorse", (req, res) => {
   );
 });
 
-app.post("/api/deleteHorse", (req, res) => {
+app.post("/api/deletehorse", (req, res) => {
   const id = req.body.id;
   console.log(id);
   const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";

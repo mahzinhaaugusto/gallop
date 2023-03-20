@@ -1,3 +1,4 @@
+import { API_ENDPOINT } from "../server";
 import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
@@ -37,7 +38,8 @@ export function Profile() {
   };
 
   const signOut = () => {
-    console.log("Sign Out working");
+    sessionStorage.clear();
+    navigate("/");
   };
 
   const [showCount, setShowCount] = useState(0);
@@ -59,7 +61,7 @@ export function Profile() {
     profileEdit.bioContent = bioContent.value;
 
     let id = localStorage.getItem("id");
-    axios.post("http://localhost:3002/api/editprofile", {
+    axios.post(`${API_ENDPOINT}editprofile`, {
       profileEdit: profileEdit,
       id: id,
     });
@@ -75,7 +77,7 @@ export function Profile() {
     // Add the delete command for the db
     let id = localStorage.getItem("id");
     console.log(id);
-    axios.post("http://localhost:3002/api/delete", {
+    axios.post(`${API_ENDPOINT}delete`, {
       id: id
     })
     navigate("/");
@@ -90,7 +92,7 @@ export function Profile() {
   };
   let credential = [];
   function firstLoad() {
-    axios.get("http://localhost:3002/api/get").then((response) => {
+    axios.get(`${API_ENDPOINT}get`).then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
       console.log(id);

@@ -5,8 +5,9 @@ import Axios from "axios";
 import bcrypt from "bcryptjs";
 import horse from "../icons/Horse.png";
 import WhiteLogo from "../icons/WhiteLogo.svg";
-
 import { useNavigate, Link } from "react-router-dom";
+import { API_ENDPOINT } from "../server.js";
+
 export function Login() {
   const [credential, setCredential] = useState([]);
   const [userEmail, setUserEmail] = useState("");
@@ -87,7 +88,7 @@ export function Login() {
 
   useEffect(() => {
     localStorage.clear();
-    Axios.get("http://localhost:3002/api/get").then((response) => {
+    Axios.get(`${API_ENDPOINT}get`).then((response) => {
       setCredential(response.data);
     });
   }, []);

@@ -3,9 +3,9 @@ import { useState, useRef } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
 import camera from "../icons/Camera.svg";
 import horse from "../icons/Horse.png";
+import { API_ENDPOINT } from "../server";
 
 export function SignUp2() {
   const location = useLocation();
@@ -71,7 +71,7 @@ export function SignUp2() {
     if (addressError === "") {
       setAddressError("Please Enter Valid Address");
     } else if (phoneNumber !== "" && addressError !== "") {
-      Axios.post("http://localhost:3002/api/insert", {
+      Axios.post(`${API_ENDPOINT}insert`, {
         firstName: location.state.firstName,
         lastName: location.state.lastName,
         userPassword: location.state.userPassword,
@@ -81,7 +81,7 @@ export function SignUp2() {
         phoneNumber: phoneNumber,
         userPhoto: userPhoto,
       });
-      alert("data written successfully");
+      // alert("data written successfully");
       navigate("/home");
     }
   };
