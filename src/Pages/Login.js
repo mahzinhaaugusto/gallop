@@ -1,4 +1,5 @@
-//
+import { PopUp } from "../Components/PopUp.js";
+import { Button } from "../Components/Button.js";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import bcrypt from "bcryptjs";
@@ -10,6 +11,7 @@ export function Login() {
   const [credential, setCredential] = useState([]);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [showPopUp, setShowPopUp] = useState(false);
   // const [rmCheck, setRmCheck] = useState(false);
   //const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
@@ -75,7 +77,7 @@ export function Login() {
           }
         }
         if (!flag) {
-          alert("Sorry not found");
+          setShowPopUp(!showPopUp);
         }
       })
       .catch((error) => {
@@ -89,6 +91,10 @@ export function Login() {
       setCredential(response.data);
     });
   }, []);
+
+  const closePopUp = () => {
+    setShowPopUp(!showPopUp);
+  }
 
   return (
     <>
@@ -135,10 +141,10 @@ export function Login() {
                       id="remember"
                       name="remember"
                       className="remember"
-                      // onChange={(e) => {
-                      //   setRmCheck(e.target.checked);
-                      // }}
-                      // onClick={isRemembered}
+                    // onChange={(e) => {
+                    //   setRmCheck(e.target.checked);
+                    // }}
+                    // onClick={isRemembered}
                     />
                     Remember Me
                   </label>
@@ -171,6 +177,12 @@ export function Login() {
           </div>
         </div>
       </div>
+
+      {showPopUp && (
+        <PopUp title="Something went wrong" description="Email or password are not a match" addContent={
+          <Button className="popUp_btn" title="Close" onClick={closePopUp} />
+        } />
+      )}
     </>
   );
 }
