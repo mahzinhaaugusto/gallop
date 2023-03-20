@@ -172,7 +172,7 @@ function DisciplineDropdown({
       {showOptions && (
         <div className="filter_cont_discipline_dropdown_options">
           {isSearchable && (
-            <div className="filter_cont_discipline_dropdown_search">
+            <div onClick={(e) => e.stopPropagation()} className="filter_cont_discipline_dropdown_search">
               <input
                 type="text"
                 onChange={onSearch}
