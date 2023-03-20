@@ -9,6 +9,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 
 export function Favorites() {
+  let navigate = useNavigate();
   const [favHorses, setFavoritehorses] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:3002/api/favhorses").then((response) => {
@@ -33,6 +34,10 @@ export function Favorites() {
     });
   }, []);
   useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      console.log("sorry");
+      navigate("/login");
+    }
     console.log(favHorses);
   }, [favHorses]);
   return (
