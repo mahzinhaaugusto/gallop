@@ -12,6 +12,7 @@ import HideVisibility from "../icons/HideVisibility.svg";
 import Edit from "../icons/Edit.svg";
 import Trash from "../icons/Trash.svg";
 import { Footer } from "../Components/Footer";
+import { API_ENDPOINT } from "../server";
 
 export function MyHorses() {
   let navigate = useNavigate();
@@ -30,7 +31,7 @@ export function MyHorses() {
       console.log("sorry");
       navigate("/login");
     }
-    Axios.get("http://localhost:3002/api/allhorses").then((response) => {
+    Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
       console.log(id);
       // console.log(response.data[0].horseID);
       setMyHorses(response.data);
@@ -108,7 +109,7 @@ function MyHorsesCard({ myHorse }) {
   };
 
   const deleteHorse = () => {
-    Axios.delete("http://localhost:3002/api/deleteHorse")
+    Axios.delete(`${API_ENDPOINT}deletehorse`)
       .then((response) => {
         console.log(response.data);
       })
