@@ -41,6 +41,7 @@ export function AddHorse() {
       console.log("sorry");
       navigate("/login");
     }
+    console.log(localStorage.getItem("id"));
   });
   const clickPlus = () => {
     console.log("works");
@@ -54,14 +55,17 @@ export function AddHorse() {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    setPhoto(file);
+    let photoThummb = document.getElementById("photoPreview");
+
+    //console.log(photo);
     //setPreviewUrl(file);
 
-    // reader.onload = () => {
-    //   let bl = new Blob([reader.result], { type: file.type });
-    //   setPreviewUrl(reader.result);
-    //   setBlob(bl);
-    // };
+    reader.onload = () => {
+      //   let bl = new Blob([reader.result], { type: file.type });
+      //   setPreviewUrl(reader.result);
+      setPhoto(reader.result);
+      //   setBlob(bl);
+    };
   };
   const colorClick = (data) => {
     console.log(data);
@@ -269,7 +273,15 @@ export function AddHorse() {
                   accept="image/*"
                   onChange={photoSeleceted}
                 />
-                {photo && <img src={photo} alt="Preview" />}
+                {photo && (
+                  <img
+                    id="photoPreview"
+                    src={photo}
+                    alt="Preview"
+                    width="150px"
+                    height="150px"
+                  />
+                )}
 
                 <div
                   id="thumbBox"
