@@ -1,17 +1,17 @@
 import Phone from "../icons/Phone.svg";
-import ProfilePic from "../icons/ProfilePic.svg";
+// import ProfilePic from "../icons/ProfilePic.svg";
 import Favorite from "../icons/FavoriteHorse.svg";
 import BackButton from "../icons/BackButton.svg";
 import Location from "../icons/Location.svg";
 import Link from "../icons/Link.svg";
 import Email from "../icons/Email.svg";
-
 import "../styles/pgs/AddHorse.scss";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
+import { API_ENDPOINT } from "../server";
 
 export function HorseDetail() {
   let navigate = useNavigate();
@@ -35,7 +35,7 @@ export function HorseDetail() {
       console.log("sorry");
       navigate("/login");
     }
-    Axios.get("http://localhost:3002/api/get").then((response) => {
+    Axios.get(`${API_ENDPOINT}get`).then((response) => {
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].ID == location.state.horse.ID)
           setUserData(response.data[i]);
@@ -61,7 +61,7 @@ export function HorseDetail() {
                   src={HorseObj.img}
                   height="400px"
                   width="400px"
-                  alt="Horse Image"
+                  alt="Selected horse"
                 />
               </div>
               <div className="horseDetail_cont_information">
@@ -151,7 +151,7 @@ export function HorseDetail() {
                   src={userData.userPhoto}
                   height="150px"
                   width="150px"
-                  alt="Owner's Profile Picture"
+                  alt="Owner's profile"
                 ></img>
 
                 <div className="horseDetail_cont_contactInfo_owner">

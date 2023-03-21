@@ -2,13 +2,12 @@ import FavoriteIcon from "../icons/FavoriteIcon.svg";
 import FavoriteClicked from "../icons/favoriteClicked.svg";
 import Plus from "../icons/Plus.svg";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { useState } from "react";
 import axios from "axios";
-// import Axios from "axios";
-// import { useState, useEffect } from "react";
+import { API_ENDPOINT } from "../server";
 
-export function HorseCard({ horseInfo, onClick, addFavOnClick }) {
-  const [favHorses, setFavoritehorses] = useState([]);
+export function HorseCard({ horseInfo, addFavOnClick }) {
+  // const [favHorses, setFavoritehorses] = useState([]);
   // console.log(horseInfo);
   let navigate = useNavigate();
   function moreClicked(horse) {
@@ -21,7 +20,7 @@ export function HorseCard({ horseInfo, onClick, addFavOnClick }) {
   async function addFavOnClick(horse) {
     try {
       await axios
-        .get("http://localhost:3002/api/favhorses")
+        .get(`${API_ENDPOINT}favhorses`)
         .then(async (response) => {
           const favHorses = response.data;
           let flag = true;
@@ -29,14 +28,14 @@ export function HorseCard({ horseInfo, onClick, addFavOnClick }) {
             if (horse.horseID === favHorses[i].horseID) {
               flag = false;
               console.log("deleted");
-              await axios.post("http://localhost:3002/api/deletefav", {
+              await axios.post(`${API_ENDPOINT}deletefav`, {
                 id: favHorses[i].favoriteid,
               });
             }
           }
           if (flag) {
             console.log("added");
-            await axios.post("http://localhost:3002/api/addfavorite", {
+            await axios.post(`${API_ENDPOINT}addfavorite`, {
               horseid: horse.horseID,
               uid: localStorage.getItem("id"),
             });

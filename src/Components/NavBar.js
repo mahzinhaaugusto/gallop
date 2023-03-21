@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Router, useNavigate } from "react-router-dom";
 import HomeIcon from "../icons/HomeIcon.svg";
 import User from "../icons/User.svg";
 import MyHorsesIcon from "../icons/MyHorses.svg";
@@ -26,6 +26,7 @@ function NavBarCont() {
 function Home() {
     let navigate = useNavigate();
     const goToHome = () => {
+        <Router />
         navigate("/home");
     };
 

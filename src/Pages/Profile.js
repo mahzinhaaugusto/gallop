@@ -1,3 +1,4 @@
+import { API_ENDPOINT } from "../server";
 import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
@@ -9,7 +10,7 @@ import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 import Edit from "../icons/Edit.svg";
-import horse from "../icons/Horse.png";
+// import horse from "../icons/Horse.png";
 import bcrypt from "bcryptjs";
 import axios from "axios";
 
@@ -21,6 +22,7 @@ export function Profile() {
   // fullName:"", });
   const profileEdit = profileInfo;
   //console.log(profileEdit);
+  let navigate = useNavigate();
 
   const editProfile = (event) => {
     setShowPopUpSave(false);
@@ -36,7 +38,8 @@ export function Profile() {
   };
 
   const signOut = () => {
-    console.log("Sign Out working");
+    sessionStorage.clear();
+    navigate("/");
   };
 
   const [showCount, setShowCount] = useState(0);
@@ -58,7 +61,7 @@ export function Profile() {
     profileEdit.bioContent = bioContent.value;
 
     let id = localStorage.getItem("id");
-    axios.post("http://localhost:3002/api/editprofile", {
+    axios.post(`${API_ENDPOINT}editprofile`, {
       profileEdit: profileEdit,
       id: id,
     });
@@ -74,13 +77,11 @@ export function Profile() {
     // Add the delete command for the db
     let id = localStorage.getItem("id");
     console.log(id);
-    axios.post("http://localhost:3002/api/delete", {
-      id: id,
-    });
-    console.log("working");
+    axios.post(`${API_ENDPOINT}delete`, {
+      id: id
+    })
+    navigate("/");
   };
-
-  let navigate = useNavigate();
 
   const redirect = () => {
     firstLoad();
@@ -91,7 +92,7 @@ export function Profile() {
   };
   let credential = [];
   function firstLoad() {
-    axios.get("http://localhost:3002/api/get").then((response) => {
+    axios.get(`${API_ENDPOINT}get`).then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
       console.log(id);
@@ -150,6 +151,11 @@ export function Profile() {
     }
     setPasswordType("password");
   };
+
+  // TO BE CHANGED!
+  const changeBackground = () => {
+    console.log("working");
+  }
 
   return (
     <div className="profile">
@@ -256,16 +262,20 @@ export function Profile() {
                 <p className="profile_cont_backToProfile_text">Back</p>
               </div>
               <div className="profile_cont_header">
+
                 <img
                   src={profileInfo.background}
                   alt="profile background"
                   className="profile_cont_header_background"
                 />
-                <img
-                  src={Camera}
-                  alt="change background"
-                  className="profile_cont_header_background_editing"
-                />
+                <label for="backgroundChange">
+                  <img
+                    src={Camera}
+                    alt="change background"
+                    className="profile_cont_header_background_editing"
+                  />
+                </label>
+                <input type="file" accept="image/png, image/jpeg" className="profile_cont_header_background_editing_selection" name="newBackground" id="backgroundChange" onChange={changeBackground} />
                 <div className="profile_cont_header_content">
                   <img
                     src={profileInfo.userPhoto}
@@ -274,7 +284,7 @@ export function Profile() {
                   />
                   <img
                     src={Camera}
-                    alt="change profile picture"
+                    alt="change profile"
                     className="profile_cont_header_content_pic_editing"
                   />
                 </div>
@@ -336,12 +346,12 @@ export function Profile() {
                   <input
                     className="profile_cont_mainContent_editing_phoneNumber_info"
                     type="number"
-                    max="10"
                     placeholder="1234567890"
                     defaultValue={profileInfo.phoneNumber}
                     onChange={(event) => {
                       profileEdit.phoneNumber = event.target.value;
                     }}
+                    onWheel={(e) => e.target.blur()}
                   />
                 </div>
                 <div className="profile_cont_mainContent_editing_email">

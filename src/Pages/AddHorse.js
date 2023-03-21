@@ -28,7 +28,7 @@ export function AddHorse() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [discipline, setDiscipline] = useState("");
-  const [previewUrl, setPreviewUrl] = useState("");
+  // const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
   const [horseThumb, setHorseThumb] = useState("");
   const [showSavePopUp, setShowSavePopUp] = useState(false);
@@ -45,11 +45,7 @@ export function AddHorse() {
   const clickPlus = () => {
     console.log("works");
   };
-  const clickPlusOfThumb = () => {
-    document.getElementById("thumb").style.display = "block";
 
-    document.getElementById("thumbBox").style.display = "none";
-  };
   const photoSeleceted = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -194,6 +190,7 @@ export function AddHorse() {
                     onChange={(e) => {
                       setAge(e.target.value);
                     }}
+                    onWheel={(e) => e.target.blur()}
                   ></input>
                 </div>
               </div>
@@ -214,6 +211,7 @@ export function AddHorse() {
                     onChange={(e) => {
                       setHeight(e.target.value);
                     }}
+                    onWheel={(e) => e.target.blur()}
                   ></input>
                 </div>
                 <div className="addHorse_cont_basics_details_color">
@@ -255,29 +253,31 @@ export function AddHorse() {
                   onChange={(e) => {
                     setPrice(e.target.value);
                   }}
+                  onWheel={(e) => e.target.blur()}
                 ></input>
               </div>
             </div>
             <div className="addHorse_cont_basics_upload">
               <div className="addHorse_cont_basics_upload_thumbnail">
                 <label>Thumbnail</label>
-                <input
-                  className="addHorse_cont_basics_upload_thumbnail_input"
-                  type="file"
-                  id="thumb"
-                  name="thumb"
-                  accept="image/*"
-                  onChange={photoSeleceted}
-                />
-                {photo && <img src={photo} alt="Preview" />}
-
                 <div
                   id="thumbBox"
                   className="addHorse_cont_basics_upload_thumbnail_content"
                 >
                   <p>Upload Thumbnail</p>
-                  <div onClick={clickPlusOfThumb}>
-                    <img src={AddMedia} />
+                  <div className="addHorse_cont_basics_upload_thumbnail_addImg">
+                    <label for="thumb">
+                      <img className="addHorse_cont_basics_upload_thumbnail_addImg_icon" alt="Add horse thumbnail" src={AddMedia} />
+                    </label>
+                    <input
+                      className="addHorse_cont_basics_upload_thumbnail_input"
+                      type="file"
+                      id="thumb"
+                      name="thumb"
+                      accept="image/png, image/jpeg"
+                      onChange={photoSeleceted}
+                    />
+                    {photo && <img src={photo} alt="Thumb preview" />}
                   </div>
                 </div>
               </div>
@@ -291,7 +291,7 @@ export function AddHorse() {
                 <div className="addHorse_cont_basics_upload_media_content">
                   <p>Up to 3 photos </p>
                   <div onClick={clickPlus}>
-                    <img src={AddMedia} />
+                    <img alt="Add horse media" src={AddMedia} />
                   </div>
                 </div>
               </div>
@@ -326,7 +326,7 @@ export function AddHorse() {
                 <div className="addHorse_cont_detailed_documentation_content">
                   <p>Up to 30MB</p>
                   <div onClick={clickPlus}>
-                    <img src={AddMedia} />
+                    <img alt="Add horse documentation" src={AddMedia} />
                   </div>
                 </div>
               </div>
@@ -378,11 +378,13 @@ export function AddHorse() {
           </div>
           <div className="endButtons">
             <img
+              alt="Save horse"
               className="endButtons_saveButton"
               src={SaveButton}
               onClick={clickSave}
             ></img>
             <img
+              alt="Cancel adding horse"
               className="endButtons_cancelButton"
               src={CancelButton}
               onClick={clickCancel}

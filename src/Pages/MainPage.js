@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 // import { Button } from "../Components/Button";
 import { Footer } from "../Components/Footer";
 import Axios from "axios";
+import { API_ENDPOINT } from "../server";
 
 export function MainPage() {
   let [allHorses, setHorseInfo] = useState([]);
@@ -18,7 +19,7 @@ export function MainPage() {
       console.log("sorry");
       navigate("/login");
     }
-    Axios.get("http://localhost:3002/api/allhorses").then((response) => {
+    Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
       setHorseInfo(response.data);
       //console.log(allHorses);
     });

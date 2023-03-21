@@ -113,7 +113,7 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
       {showOptions && (
         <div className="filter_cont_breed_dropdown_options">
           {isSearchable && (
-            <div className="filter_cont_breed_dropdown_search">
+            <div onClick={(e) => e.stopPropagation()} className="filter_cont_breed_dropdown_search">
               <input
                 type="text"
                 onChange={onSearch}
