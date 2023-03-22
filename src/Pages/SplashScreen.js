@@ -12,13 +12,6 @@ export function SplashScreen() {
   });
   // const [showLogin, setShowLogin] = useState(false);
 
-  const goToLogin = () => {
-    navigate("/login");
-    // setShowLogin(!showLogin);
-  };
-
-  // const [showLogin, setShowLogin] = useState(false);
-
   const signUpGoogle = () => {
     // Add auth Google
   };
