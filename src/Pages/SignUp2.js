@@ -80,9 +80,13 @@ export function SignUp2() {
         Website: Website,
         phoneNumber: phoneNumber,
         userPhoto: userPhoto,
+      }).then((res) => {
+        let d = res.data;
+        localStorage.setItem("id", d.insertId);
+        alert("data written successfully");
+        navigate("/home");
       });
-      // alert("data written successfully");
-      navigate("/home");
+
     }
   };
 
