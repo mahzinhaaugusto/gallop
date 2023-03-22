@@ -20,7 +20,7 @@ export function BreedingMethod() {
           <input
             name="breedingMethod"
             id="natural"
-            type="checkbox"
+            type="radio"
             checked={checkedNatural}
             onChange={handlerNatural}
           />
@@ -32,7 +32,7 @@ export function BreedingMethod() {
           <input
             name="breedingMethod"
             id="artificial"
-            type="checkbox"
+            type="radio"
             checked={checkedArtificial}
             onChange={handlerArtificial}
           />

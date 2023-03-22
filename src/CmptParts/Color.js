@@ -109,7 +109,7 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
       {showOptions && (
         <div className="filter_cont_color_dropdown_options">
           {isSearchable && (
-            <div className="filter_cont_color_dropdown_search">
+            <div onClick={(e) => e.stopPropagation()} className="filter_cont_color_dropdown_search">
               <input
                 type="text"
                 onChange={onSearch}

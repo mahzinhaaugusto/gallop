@@ -17,6 +17,7 @@ export function Discipline({ onChange, className }) {
           placeholder="Discipline (up to 3)"
           options={options}
           disciplineSet={disciplineSet}
+        // isOptionDisabled={() => selectedOptions.length >= 3}
         />
       </div>
     </div>
@@ -87,7 +88,7 @@ function DisciplineDropdown({
     }
 
     // Code for multiple selection
-    if (isMulti) {
+    if (isMulti && selectedValue.length <= 3) {
       return (
         <div className="filter_cont_discipline_multiSelection">
           {selectedValue.map((option) => (
@@ -106,6 +107,9 @@ function DisciplineDropdown({
           ))}
         </div>
       );
+    } else {
+      return placeholder;
+      // selectedValue = [];
     }
   };
 
@@ -172,7 +176,7 @@ function DisciplineDropdown({
       {showOptions && (
         <div className="filter_cont_discipline_dropdown_options">
           {isSearchable && (
-            <div className="filter_cont_discipline_dropdown_search">
+            <div onClick={(e) => e.stopPropagation()} className="filter_cont_discipline_dropdown_search">
               <input
                 type="text"
                 onChange={onSearch}

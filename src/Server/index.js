@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
 require("dotenv").config();
+let apikey = process.env.APIKEY;
 
 const db = mysql.createPool({
   host: process.env.HOST,
@@ -27,21 +28,31 @@ app.post("/api/delete", (req, res) => {
   const id = req.body.id;
   console.log(id);
   const sqlDeleteHorse = "DELETE FROM horseinfo WHERE ID = ?;";
-  const sqlDeleteUser = "DELETE FROM userinfo WHERE ID = ?;"
-  db.query(sqlDeleteHorse, [
-    id
-  ], (er, re) => {
+  const sqlDeleteUser = "DELETE FROM userinfo WHERE ID = ?;";
+  db.query(sqlDeleteHorse, [id], (er, re) => {
     console.log(re);
   });
-  db.query(sqlDeleteUser, [
-    id
-  ], (er, re) => {
+  db.query(sqlDeleteUser, [id], (er, re) => {
     console.log(re);
   });
-})
+});
+app.post("/api/deletefav", (req, res) => {
+  const id = req.body.id;
+  const deleteOne = "delete from favoritehorses where favoriteid = ?;";
+  db.query(deleteOne, [id], (er, re) => {
+    console.log(re);
+  });
+});
 
 app.get("/api/allhorses", (req, res) => {
   const selectAll = "SELECT * FROM horseinfo;";
+  db.query(selectAll, (er, re) => {
+    res.send(re);
+  });
+});
+
+app.get("/api/favHorses", (req, res) => {
+  const selectAll = "SELECT * FROM favoritehorses;";
   db.query(selectAll, (er, re) => {
     res.send(re);
   });
@@ -105,8 +116,20 @@ app.post("/api/insert", (req, res) => {
     ],
     (err, result) => {
       console.log(result);
+      res.send(result);
     }
   );
+});
+
+app.post("/api/addfavorite", (req, res) => {
+  const horseid = req.body.horseid;
+  const uid = req.body.uid;
+  const sqlInsert =
+    "insert into favoritehorses(id,horseID,isFavorite) values (?,?,?);";
+  db.query(sqlInsert, [uid, horseid, 1]),
+    (err, result) => {
+      console.log(result);
+    };
 });
 
 app.post("/api/insertHorse", (req, res) => {
@@ -149,14 +172,14 @@ app.post("/api/insertHorse", (req, res) => {
   );
 });
 
-app.post("/api/deleteHorse", (req, res) => {
+app.post("/api/deletehorse", (req, res) => {
   const id = req.body.id;
   console.log(id);
   const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
-  db.query(sqlDelete, [id], (er, re) => {
-    console.log(re);
-  })
-})
+  db.query(sqlDelete[id], (er, re) => {
+    res.send(re);
+  });
+});
 
 app.listen(3002, () => {
   console.log("running on port 3002");

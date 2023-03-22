@@ -121,3 +121,15 @@ npm i swiper
 ```
 npm i bcryptjs
 ```
+
+### 16 - Install dotenv
+
+```
+npm install dotenv --save
+```
+
+### 17 - Install Google Auth
+
+```
+npm install @react-oauth/google@latest
+```
