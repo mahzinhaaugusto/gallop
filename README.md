@@ -127,3 +127,9 @@ npm i bcryptjs
 ```
 npm install dotenv --save
 ```
+
+### 17 - Install Google Auth
+
+```
+npm install @react-oauth/google@latest
+```
