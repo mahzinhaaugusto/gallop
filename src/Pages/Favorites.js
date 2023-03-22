@@ -7,16 +7,17 @@ import { HorseCard } from "../Components/HorseCard";
 import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
+import { API_ENDPOINT } from "../server";
 
 export function Favorites() {
   let navigate = useNavigate();
   const [favHorses, setFavoritehorses] = useState([]);
   useEffect(() => {
-    Axios.get("http://localhost:3002/api/favhorses").then((response) => {
+    Axios.get(`${API_ENDPOINT}favhorses`).then((response) => {
       //setFavoritehorses(response.data);
       //console.log(response.data);
       let favorites = [];
-      Axios.get("http://localhost:3002/api/allhorses").then((res) => {
+      Axios.get(`${API_ENDPOINT}allhorses`).then((res) => {
         //setHorseInfo(response.data);
         //console.log(allHorses);
 

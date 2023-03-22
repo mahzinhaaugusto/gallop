@@ -1,7 +1,7 @@
 import horse from "../icons/Horse.png";
 import { Button } from "../Components/Button";
 import { useState } from "react";
-import { PopUp } from "../Components/PopUp";
+// import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 
 export function ForgotPassword() {

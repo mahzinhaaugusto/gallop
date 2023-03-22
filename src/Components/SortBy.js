@@ -45,19 +45,19 @@ function SortBy() {
                     <div className="sortBy_cont">
                         <div className="sortBy_cont_high">
                             <label>
-                                <input name="sortBy" id="high" type="checkbox" checked={checkedHigh} onChange={handlerHigh}>
+                                <input name="sortBy" id="high" type="radio" checked={checkedHigh} onChange={handlerHigh}>
                                 </input>
                                 High Price</label>
                         </div>
                         <div className="sortBy_cont_low">
                             <label>
-                                <input name="sortBy" id="low" type="checkbox" checked={checkedLow} onChange={handlerLow}>
+                                <input name="sortBy" id="low" type="radio" checked={checkedLow} onChange={handlerLow}>
                                 </input>
                                 Low Price</label>
                         </div>
                         <div className="sortBy_cont_likes">
                             <label>
-                                <input name="sortBy" id="likes" type="checkbox" checked={checkedLikes} onChange={handlerLikes}>
+                                <input name="sortBy" id="likes" type="radio" checked={checkedLikes} onChange={handlerLikes}>
                                 </input>
                                 Most Liked</label>
                         </div>
