@@ -28,9 +28,8 @@ export function AddHorse() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [discipline, setDiscipline] = useState("");
-  // const [previewUrl, setPreviewUrl] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
-  const [horseThumb, setHorseThumb] = useState("");
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
@@ -46,20 +45,23 @@ export function AddHorse() {
   const clickPlus = () => {
     console.log("works");
   };
+  const clickPlusOfThumb = () => {
+    document.getElementById("thumb").style.display = "block";
 
+    document.getElementById("thumbBox").style.display = "none";
+  };
   const photoSeleceted = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    let photoThummb = document.getElementById("photoPreview");
-
+    setPhoto(file);
     //console.log(photo);
     //setPreviewUrl(file);
 
     reader.onload = () => {
       //   let bl = new Blob([reader.result], { type: file.type });
-      //   setPreviewUrl(reader.result);
-      setPhoto(reader.result);
+      setPreviewUrl(reader.result);
+      // setPhoto(reader.result);
       //   setBlob(bl);
     };
   };
@@ -80,7 +82,7 @@ export function AddHorse() {
     const storageRef = ref(storage, `Horsephoto/${photo.name}`);
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
-        setHorseThumb(result);
+        //setHorseThumb(result);
         let uid = localStorage.getItem("id");
         Axios.post("http://localhost:3002/api/insertHorse", {
           name: name,
@@ -272,13 +274,12 @@ export function AddHorse() {
                   accept="image/*"
                   onChange={photoSeleceted}
                 />
-                {photo && (
+                {previewUrl && (
                   <img
-                    id="photoPreview"
-                    src={photo}
+                    src={previewUrl}
                     alt="Preview"
-                    width="150px"
                     height="150px"
+                    width="150px"
                   />
                 )}
 
@@ -287,23 +288,8 @@ export function AddHorse() {
                   className="addHorse_cont_basics_upload_thumbnail_content"
                 >
                   <p>Upload Thumbnail</p>
-                  <div className="addHorse_cont_basics_upload_thumbnail_addImg">
-                    <label for="thumb">
-                      <img
-                        className="addHorse_cont_basics_upload_thumbnail_addImg_icon"
-                        alt="Add horse thumbnail"
-                        src={AddMedia}
-                      />
-                    </label>
-                    <input
-                      className="addHorse_cont_basics_upload_thumbnail_input"
-                      type="file"
-                      id="thumb"
-                      name="thumb"
-                      accept="image/png, image/jpeg"
-                      onChange={photoSeleceted}
-                    />
-                    {photo && <img src={photo} alt="Thumb preview" />}
+                  <div onClick={clickPlusOfThumb}>
+                    <img src={AddMedia} alt="not " />
                   </div>
                 </div>
               </div>
