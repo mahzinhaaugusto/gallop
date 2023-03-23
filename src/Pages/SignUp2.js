@@ -2,13 +2,10 @@ import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-
-import "firebase/storage";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import camera from "../icons/Camera.svg";
 import horse from "../icons/Horse.png";
+import { API_ENDPOINT } from "../server";
 
 export function SignUp2() {
   const location = useLocation();
@@ -16,21 +13,8 @@ export function SignUp2() {
   const [Website, setWebsite] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userPhoto, setUserPhoto] = useState("");
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyASdmqlaScVgkSxCrvYng7_SzRnE2VQRgU",
-    authDomain: "app1-504b3.firebaseapp.com",
-    databaseURL: "https://app1-504b3-default-rtdb.firebaseio.com",
-    projectId: "app1-504b3",
-    storageBucket: "app1-504b3.appspot.com",
-    messagingSenderId: "150727407420",
-    appId: "1:150727407420:web:de3b1d71b182fd722dd039",
-    measurementId: "G-JC5YWN05W8",
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  const [phoneError, setPhoneError] = useState("");
+  const [addressError, setAddressError] = useState("");
 
   let navigate = useNavigate();
 
@@ -81,18 +65,29 @@ export function SignUp2() {
   };
 
   const submitClicked = () => {
-    Axios.post("http://localhost:3002/api/insert", {
-      firstName: location.state.firstName,
-      lastName: location.state.lastName,
-      userPassword: location.state.userPassword,
-      Email: location.state.Email,
-      Address: Address,
-      Website: Website,
-      phoneNumber: phoneNumber,
-      userPhoto: userPhoto,
-    });
-    alert("data written successfully");
-    navigate("/home");
+    if (phoneNumber === "") {
+      setPhoneError("Please Enter Valid Phone Number");
+    }
+    if (addressError === "") {
+      setAddressError("Please Enter Valid Address");
+    } else if (phoneNumber !== "" && addressError !== "") {
+      Axios.post(`${API_ENDPOINT}insert`, {
+        firstName: location.state.firstName,
+        lastName: location.state.lastName,
+        userPassword: location.state.userPassword,
+        Email: location.state.Email,
+        Address: Address,
+        Website: Website,
+        phoneNumber: phoneNumber,
+        userPhoto: userPhoto,
+      }).then((res) => {
+        let d = res.data;
+        localStorage.setItem("id", d.insertId);
+        alert("data written successfully");
+        navigate("/home");
+      });
+
+    }
   };
 
   const profilePicture = () => {
@@ -178,6 +173,7 @@ export function SignUp2() {
                   setPhoneNumber(+e.target.value);
                 }}
               ></input>
+              <p className="warning">{phoneError}</p>
               <label className="signUp2Cont_form_addressLabel require">
                 Address
               </label>

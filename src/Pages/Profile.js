@@ -1,3 +1,4 @@
+import { API_ENDPOINT } from "../server";
 import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
@@ -9,7 +10,7 @@ import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 import Edit from "../icons/Edit.svg";
-import horse from "../icons/Horse.png";
+// import horse from "../icons/Horse.png";
 import bcrypt from "bcryptjs";
 import axios from "axios";
 
@@ -19,7 +20,9 @@ export function Profile() {
   const [profileInfo, setProfileInfo] = useState({});
   //   const [profileEdit, setProfileEdit] = useState({ bioContent: "",
   // fullName:"", });
-  const profileEdit = {};
+  const profileEdit = profileInfo;
+  //console.log(profileEdit);
+  let navigate = useNavigate();
 
   const editProfile = (event) => {
     setShowPopUpSave(false);
@@ -35,7 +38,8 @@ export function Profile() {
   };
 
   const signOut = () => {
-    console.log("Sign Out working");
+    sessionStorage.clear();
+    navigate("/");
   };
 
   const [showCount, setShowCount] = useState(0);
@@ -55,8 +59,9 @@ export function Profile() {
       "profile_cont_mainContent_editing_bio_content"
     );
     profileEdit.bioContent = bioContent.value;
+
     let id = localStorage.getItem("id");
-    axios.post("http://localhost:3002/api/editprofile", {
+    axios.post(`${API_ENDPOINT}editprofile`, {
       profileEdit: profileEdit,
       id: id,
     });
@@ -72,13 +77,11 @@ export function Profile() {
     // Add the delete command for the db
     let id = localStorage.getItem("id");
     console.log(id);
-    axios.post("http://localhost:3002/api/delete", {
+    axios.post(`${API_ENDPOINT}delete`, {
       id: id
     })
-    console.log("working");
+    navigate("/");
   };
-
-  let navigate = useNavigate();
 
   const redirect = () => {
     firstLoad();
@@ -89,13 +92,13 @@ export function Profile() {
   };
   let credential = [];
   function firstLoad() {
-    axios.get("http://localhost:3002/api/get").then((response) => {
+    axios.get(`${API_ENDPOINT}get`).then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
       console.log(id);
       for (let i = 0; i < credential.length; i++) {
         if (credential[i].ID == id) {
-          console.log(credential[i]);
+          // console.log(credential[i]);
           setProfileInfo({
             background: "",
             profile: "",
@@ -106,6 +109,10 @@ export function Profile() {
             websiteInfo: credential[i].website,
             userPhoto: credential[i].userPhoto,
             background: credential[i].backgroundPhoto,
+            password: credential[i].userPassword,
+            website: credential[i].website,
+            firstName: credential[i].firstName,
+            lastName: credential[i].lastName,
           });
           // console.log(profileInfo.userPhoto);
         }
@@ -113,6 +120,10 @@ export function Profile() {
     });
   }
   useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      console.log("sorry");
+      navigate("/login");
+    }
     firstLoad();
     //console.log(credential);
   }, []);
@@ -139,6 +150,11 @@ export function Profile() {
       return;
     }
     setPasswordType("password");
+  };
+
+  // TO BE CHANGED!
+  const changeBackground = () => {
+    console.log("working");
   }
 
   return (
@@ -208,7 +224,10 @@ export function Profile() {
                   <h4 className="profile_cont_mainContent_website_title">
                     Website:
                   </h4>
-                  <a className="profile_cont_mainContent_website_content" href={profileInfo.websiteInfo}>
+                  <a
+                    className="profile_cont_mainContent_website_content"
+                    href={profileInfo.websiteInfo}
+                  >
                     {profileInfo.websiteInfo}
                   </a>
                 </div>
@@ -243,16 +262,20 @@ export function Profile() {
                 <p className="profile_cont_backToProfile_text">Back</p>
               </div>
               <div className="profile_cont_header">
+
                 <img
                   src={profileInfo.background}
                   alt="profile background"
                   className="profile_cont_header_background"
                 />
-                <img
-                  src={Camera}
-                  alt="change background"
-                  className="profile_cont_header_background_editing"
-                />
+                <label for="backgroundChange">
+                  <img
+                    src={Camera}
+                    alt="change background"
+                    className="profile_cont_header_background_editing"
+                  />
+                </label>
+                <input type="file" accept="image/png, image/jpeg" className="profile_cont_header_background_editing_selection" name="newBackground" id="backgroundChange" onChange={changeBackground} />
                 <div className="profile_cont_header_content">
                   <img
                     src={profileInfo.userPhoto}
@@ -261,7 +284,7 @@ export function Profile() {
                   />
                   <img
                     src={Camera}
-                    alt="change profile picture"
+                    alt="change profile"
                     className="profile_cont_header_content_pic_editing"
                   />
                 </div>
@@ -276,6 +299,7 @@ export function Profile() {
                     cols="40"
                     rows="4"
                     maxLength={profileEditing.maxLength}
+                    defaultValue={profileInfo.bioContent}
                     placeholder="Please tell us a bit about yourself."
                     onChange={(event) => {
                       setShowCount(event.target.value.length);
@@ -297,6 +321,7 @@ export function Profile() {
                     type="text"
                     maxLength={profileEditing.inputLength}
                     placeholder="Hunter Smith"
+                    defaultValue={profileInfo.fullName}
                     onChange={(event) => {
                       const myString = event.target.value.split(" ");
                       if (myString.length == 1) {
@@ -321,11 +346,12 @@ export function Profile() {
                   <input
                     className="profile_cont_mainContent_editing_phoneNumber_info"
                     type="number"
-                    max="10"
                     placeholder="1234567890"
+                    defaultValue={profileInfo.phoneNumber}
                     onChange={(event) => {
                       profileEdit.phoneNumber = event.target.value;
                     }}
+                    onWheel={(e) => e.target.blur()}
                   />
                 </div>
                 <div className="profile_cont_mainContent_editing_email">
@@ -337,6 +363,7 @@ export function Profile() {
                     type="email"
                     max="10"
                     placeholder="hsmith@mylangara.ca"
+                    defaultValue={profileInfo.email}
                     onChange={(event) => {
                       profileEdit.email = event.target.value;
                     }}
@@ -351,6 +378,7 @@ export function Profile() {
                     type="text"
                     maxLength={profileEditing.inputLength}
                     placeholder="Vancouver"
+                    defaultValue={sessionStorage.getItem("city")}
                     onChange={(event) => {
                       profileEdit.address = event.target.value;
                     }}
@@ -365,6 +393,7 @@ export function Profile() {
                     type="text"
                     maxLength={profileEditing.inputLength}
                     placeholder="thegallopapp.com"
+                    defaultValue={profileInfo.websiteInfo}
                     onChange={(event) => {
                       profileEdit.website = event.target.value;
                     }}
@@ -380,6 +409,7 @@ export function Profile() {
                     // value={passInput}
                     maxLength={profileEditing.inputLength}
                     placeholder="************"
+                    defaultValue={profileInfo.password}
                     onChange={(event) => {
                       profileEdit.password = bcrypt.hashSync(
                         event.target.value,
@@ -388,8 +418,15 @@ export function Profile() {
                       // setPassInput(event.target.value)
                     }}
                   />
-                  <div className="profile_cont_mainContent_editing_password_toggle" onClick={togglePassword}>
-                    {passwordType === "password" ? <img src={HideShowPass} alt="Show password" /> : <img src={HideVisibility} alt="Hide password" />}
+                  <div
+                    className="profile_cont_mainContent_editing_password_toggle"
+                    onClick={togglePassword}
+                  >
+                    {passwordType === "password" ? (
+                      <img src={HideShowPass} alt="Show password" />
+                    ) : (
+                      <img src={HideVisibility} alt="Hide password" />
+                    )}
                   </div>
                 </div>
                 <div className="profile_cont_mainContent_editing_cta">

@@ -1,7 +1,3 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-
-import "firebase/storage";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import CancelButton from "../icons/CancelButton.svg";
 import SaveButton from "../icons/SaveButton.svg";
@@ -11,7 +7,7 @@ import BackButton from "../icons/BackButton.svg";
 import { Breed } from "../CmptParts/Breed";
 import { Color } from "../CmptParts/Color";
 import { Discipline } from "../CmptParts/Discipline";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 import { NavBar } from "../Components/NavBar";
 // import { Footer } from "../Components/Footer";
@@ -34,27 +30,18 @@ export function AddHorse() {
   const [discipline, setDiscipline] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
-  const [horseThumb, setHorseThumb] = useState("");
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
   let navigate = useNavigate();
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyASdmqlaScVgkSxCrvYng7_SzRnE2VQRgU",
-    authDomain: "app1-504b3.firebaseapp.com",
-    databaseURL: "https://app1-504b3-default-rtdb.firebaseio.com",
-    projectId: "app1-504b3",
-    storageBucket: "app1-504b3.appspot.com",
-    messagingSenderId: "150727407420",
-    appId: "1:150727407420:web:de3b1d71b182fd722dd039",
-    measurementId: "G-JC5YWN05W8",
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
+  useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      console.log("sorry");
+      navigate("/login");
+    }
+    console.log(localStorage.getItem("id"));
+  });
   const clickPlus = () => {
     console.log("works");
   };
@@ -68,13 +55,15 @@ export function AddHorse() {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     setPhoto(file);
+    //console.log(photo);
     //setPreviewUrl(file);
 
-    // reader.onload = () => {
-    //   let bl = new Blob([reader.result], { type: file.type });
-    //   setPreviewUrl(reader.result);
-    //   setBlob(bl);
-    // };
+    reader.onload = () => {
+      //   let bl = new Blob([reader.result], { type: file.type });
+      setPreviewUrl(reader.result);
+      // setPhoto(reader.result);
+      //   setBlob(bl);
+    };
   };
   const colorClick = (data) => {
     console.log(data);
@@ -93,7 +82,7 @@ export function AddHorse() {
     const storageRef = ref(storage, `Horsephoto/${photo.name}`);
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
-        setHorseThumb(result);
+        //setHorseThumb(result);
         let uid = localStorage.getItem("id");
         Axios.post("http://localhost:3002/api/insertHorse", {
           name: name,
@@ -125,11 +114,11 @@ export function AddHorse() {
 
   const redirect = () => {
     navigate("/my-horses");
-  }
+  };
 
   const cancel = () => {
     setShowCancelPopUp(!showCancelPopUp);
-  }
+  };
 
   return (
     <div className="addHorse_master">
@@ -207,6 +196,7 @@ export function AddHorse() {
                     onChange={(e) => {
                       setAge(e.target.value);
                     }}
+                    onWheel={(e) => e.target.blur()}
                   ></input>
                 </div>
               </div>
@@ -227,6 +217,7 @@ export function AddHorse() {
                     onChange={(e) => {
                       setHeight(e.target.value);
                     }}
+                    onWheel={(e) => e.target.blur()}
                   ></input>
                 </div>
                 <div className="addHorse_cont_basics_details_color">
@@ -268,6 +259,7 @@ export function AddHorse() {
                   onChange={(e) => {
                     setPrice(e.target.value);
                   }}
+                  onWheel={(e) => e.target.blur()}
                 ></input>
               </div>
             </div>
@@ -282,7 +274,14 @@ export function AddHorse() {
                   accept="image/*"
                   onChange={photoSeleceted}
                 />
-                {photo && <img src={photo} alt="Preview" />}
+                {previewUrl && (
+                  <img
+                    src={previewUrl}
+                    alt="Preview"
+                    height="150px"
+                    width="150px"
+                  />
+                )}
 
                 <div
                   id="thumbBox"
@@ -290,7 +289,7 @@ export function AddHorse() {
                 >
                   <p>Upload Thumbnail</p>
                   <div onClick={clickPlusOfThumb}>
-                    <img src={AddMedia} />
+                    <img src={AddMedia} alt="not " />
                   </div>
                 </div>
               </div>
@@ -304,7 +303,7 @@ export function AddHorse() {
                 <div className="addHorse_cont_basics_upload_media_content">
                   <p>Up to 3 photos </p>
                   <div onClick={clickPlus}>
-                    <img src={AddMedia} />
+                    <img alt="Add horse media" src={AddMedia} />
                   </div>
                 </div>
               </div>
@@ -339,7 +338,7 @@ export function AddHorse() {
                 <div className="addHorse_cont_detailed_documentation_content">
                   <p>Up to 30MB</p>
                   <div onClick={clickPlus}>
-                    <img src={AddMedia} />
+                    <img alt="Add horse documentation" src={AddMedia} />
                   </div>
                 </div>
               </div>
@@ -381,22 +380,23 @@ export function AddHorse() {
               ></input>
             </div>
             <div className="addHorse_cont_aboutOwner_displayHorse">
-              <label className="toggle-control">{/* Display horse on profile */}
-                <input  type="checkbox"
-              checked="checked"></input>
+              <label className="toggle-control">
+                {/* Display horse on profile */}
+                <input type="checkbox" checked="checked"></input>
                 <span className="control"></span>
               </label>
-              
             </div>
             <p>* required fields</p>
           </div>
           <div className="endButtons">
             <img
+              alt="Save horse"
               className="endButtons_saveButton"
               src={SaveButton}
               onClick={clickSave}
             ></img>
             <img
+              alt="Cancel adding horse"
               className="endButtons_cancelButton"
               src={CancelButton}
               onClick={clickCancel}
@@ -405,18 +405,39 @@ export function AddHorse() {
         </div>
 
         {showSavePopUp && (
-          <PopUp title="Saved!" description="Your horse was successfully saved!" addContent={
-            <Button className="popUp_btn_horseSaved" title="Go to My Horses" onClick={redirect} />
-          } />
+          <PopUp
+            title="Saved!"
+            description="Your horse was successfully saved!"
+            addContent={
+              <Button
+                className="popUp_btn_horseSaved"
+                title="Go to My Horses"
+                onClick={redirect}
+              />
+            }
+          />
         )}
 
         {showCancelPopUp && (
-          <PopUp title="Are you sure?" description="Are you sure you want to leave? Your changes will be lost." addContent={
-            <>
-              <Button className="popUp_btn_cancel" title="Cancel" onClick={cancel} />
-              <Button className="popUp_btn_leave" title="Leave" onClick={redirect} />
-            </>
-          } classNameContent="btn_cont" />
+          <PopUp
+            title="Are you sure?"
+            description="Are you sure you want to leave? Your changes will be lost."
+            addContent={
+              <>
+                <Button
+                  className="popUp_btn_cancel"
+                  title="Cancel"
+                  onClick={cancel}
+                />
+                <Button
+                  className="popUp_btn_leave"
+                  title="Leave"
+                  onClick={redirect}
+                />
+              </>
+            }
+            classNameContent="btn_cont"
+          />
         )}
 
         {/* <Footer /> */}

@@ -107,10 +107,6 @@
     color: #C9431A;
 }
 
-.addHorse_cont_basics_upload_thumbnail_input {
-    display: none;
-}
-
 #gender {
     height: 48px;
     width: 184px;
@@ -242,6 +238,15 @@
         line-height: 150%;
         color: #5A5A5F;
     }
+
+    .addHorse_cont_basics_upload_thumbnail_addImg_icon {
+        cursor: pointer;
+    }
+}
+
+.addHorse_cont_basics_upload_thumbnail_input {
+    display: none;
+    visibility: none;
 }
 
 // Media
@@ -424,7 +429,7 @@ $toggle-control-size: $toggle-height - ($toggle-gutter * 2);
         width: 0;
     }
 
-    input:checked ~ .control {
+    input:checked~.control {
         background-color: $toggle-background-color-on;
 
         &:after {
