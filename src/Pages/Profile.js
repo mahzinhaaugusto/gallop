@@ -61,7 +61,7 @@ export function Profile() {
     profileEdit.bioContent = bioContent.value;
 
     let id = localStorage.getItem("id");
-    axios.post(`${API_ENDPOINT}editprofile`, {
+    axios.post(`${process.env.REACT_APP_API_URL}editprofile`, {
       profileEdit: profileEdit,
       id: id,
     });

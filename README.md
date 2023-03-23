@@ -133,3 +133,9 @@ npm install dotenv --save
 ```
 npm install @react-oauth/google@latest
 ```
+
+### 18 - Install Recharts
+
+```
+npm install recharts
+```
