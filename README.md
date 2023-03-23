@@ -133,3 +133,9 @@ npm install dotenv --save
 ```
 npm install @react-oauth/google@latest
 ```
+
+1- npm uninstall node-sass
+
+2- npm i -D sass
+
+3- npm i
