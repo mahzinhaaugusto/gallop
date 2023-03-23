@@ -40,65 +40,87 @@ export function SplashScreen() {
   };
 
   return (
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-      <div className="splashScreen_master">
-        <div className="splashScreen">
-          <div className="splashScreen_image">
-            <img
-              className="splashScreen_background"
-              src={horse}
-              alt="Splash Screen"
-            />
-            <img
-              className="splashScreen_logo"
-              src={WhiteLogo}
-              alt="Gallop App Logo"
-            />
+    // <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+    <div className="splashScreen_master">
+      <div className="splashScreen">
+        <div className="splashScreen_image">
+          <img
+            className="splashScreen_background"
+            src={horse}
+            alt="Splash Screen"
+          />
+          <img
+            className="splashScreen_logo"
+            src={WhiteLogo}
+            alt="Gallop App Logo"
+          />
+        </div>
+
+        <div className="splashScreen_cont_content">
+          <h1>Join Gallop for Best Horses</h1>
+          <h3>
+            Already have an account? &nbsp;
+            <Link to="/login" className="splashScreen_cont_content_signIn">
+              Sign In
+            </Link>
+          </h3>
+
+          <div className="horizontalCont">
+            <hr className="horizontalCont_leftHorizon"></hr>
+            <p className="horizontalCont_Para">OR CONTINUE WITH</p>
+            <hr className="horizontalCont_rightHorizon"></hr>
           </div>
 
-          <div className="splashScreen_cont_content">
-            <h1>Join Gallop for Best Horses</h1>
-            <h3>
-              Already have an account? &nbsp;
-              <Link to="/login" className="splashScreen_cont_content_signIn">
-                Sign In
-              </Link>
-            </h3>
-
-            <div className="horizontalCont">
-              <hr className="horizontalCont_leftHorizon"></hr>
-              <p className="horizontalCont_Para">OR CONTINUE WITH</p>
-              <hr className="horizontalCont_rightHorizon"></hr>
-            </div>
-
-            <div className="splashScreen_cont_btn">
-              {/* <Button title="Continue with Google" className="splashScreen_cont_btn_google" onClick={
+          <div className="splashScreen_cont_btn">
+            {/* <Button title="Continue with Google" className="splashScreen_cont_btn_google" onClick={
                                 useGoogleLogin({
                                     onSuccess: codeResponse => console.log(codeResponse)
                                 })
                             } /> */}
-              <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  console.log(credentialResponse);
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-              />
-              <Button
-                title="Continue with Email"
-                className="splashScreen_cont_btn_email"
-                onClick={signUpPage}
-              />
-              <Button
-                title="Continue with Apple"
-                className="splashScreen_cont_btn_apple"
-                onClick={signUpApple}
-              />
-            </div>
+            {/* <GoogleLogin
+                                onSuccess={credentialResponse => {
+                                    console.log(credentialResponse);
+                                    console.log(credentialResponse.credential.name);
+                                }}
+                                onError={() => {
+                                    console.log('Login Failed');
+                                }}
+                            /> */}
+            {/* <button className="splashScreen_cont_btn_google" onClick={() => signUpGoogle()}>Continue with Google</button> */}
+            <GoogleOAuthProvider
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            >
+              <GoogleButton />
+            </GoogleOAuthProvider>
+            <Button
+              title="Continue with Email"
+              className="splashScreen_cont_btn_email"
+              onClick={signUpPage}
+            />
+            <Button
+              title="Continue with Apple"
+              className="splashScreen_cont_btn_apple"
+              onClick={signUpApple}
+            />
           </div>
         </div>
       </div>
-    </GoogleOAuthProvider>
+    </div>
+    // {/* </GoogleOAuthProvider> */ }
+  );
+}
+
+function GoogleButton() {
+  const signUpGoogle = useGoogleLogin({
+    onSuccess: (codeResponse) => console.log(codeResponse),
+  });
+
+  return (
+    <button
+      className="splashScreen_cont_btn_google"
+      onClick={() => signUpGoogle()}
+    >
+      Continue with Google
+    </button>
   );
 }
