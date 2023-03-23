@@ -83,7 +83,7 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    selectColor(option.value);
+    selectColor(option.label);
   };
 
   const isSelected = (option) => {
@@ -109,7 +109,10 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
       {showOptions && (
         <div className="filter_cont_color_dropdown_options">
           {isSearchable && (
-            <div onClick={(e) => e.stopPropagation()} className="filter_cont_color_dropdown_search">
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="filter_cont_color_dropdown_search"
+            >
               <input
                 type="text"
                 onChange={onSearch}
@@ -122,8 +125,9 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_color_dropdown_options_singleOption ${isSelected(option) && "selected"
-                }`}
+              className={`filter_cont_color_dropdown_options_singleOption ${
+                isSelected(option) && "selected"
+              }`}
             >
               {option.label}
             </div>

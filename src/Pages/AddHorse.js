@@ -169,8 +169,8 @@ export function AddHorse() {
                     <option value="" disabled selected>
                       Gender
                     </option>
-                    <option value="stallion">Stallion</option>
-                    <option value="mare">Mare</option>
+                    <option value="Stallion">Stallion</option>
+                    <option value="Mare">Mare</option>
                   </select>
                 </div>
                 <div className="addHorse_cont_basics_details_breed">
@@ -244,8 +244,8 @@ export function AddHorse() {
                     <option value="" disabled selected>
                       Breeding Method
                     </option>
-                    <option value="natural">Natural</option>
-                    <option value="artificial">Insemination</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Artificial">Insemination</option>
                   </select>
                 </div>
               </div>
