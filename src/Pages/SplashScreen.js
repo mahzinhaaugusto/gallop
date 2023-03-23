@@ -3,10 +3,9 @@ import WhiteLogo from "../icons/WhiteLogo.svg";
 import { useEffect } from "react";
 import { Button } from "../Components/Button";
 import { useNavigate, Link } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+// import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from "@react-oauth/google";
-
-// import { useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from "@react-oauth/google";
 // import { Login } from "./Login";
 
 export function SplashScreen() {

@@ -134,8 +134,8 @@ npm install dotenv --save
 npm install @react-oauth/google@latest
 ```
 
-1- npm uninstall node-sass
+### 18 - Install Recharts
 
-2- npm i -D sass
-
-3- npm i
+```
+npm install recharts
+```
