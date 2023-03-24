@@ -1,5 +1,5 @@
-import { PopUp } from "../Components/PopUp.js";
-import { Button } from "../Components/Button.js";
+// import { PopUp } from "../Components/PopUp.js";
+// import { Button } from "../Components/Button.js";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import bcrypt from "bcryptjs";
@@ -12,7 +12,9 @@ export function Login() {
   const [credential, setCredential] = useState([]);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [showPopUp, setShowPopUp] = useState(false);
+  // const [showPopUp, setShowPopUp] = useState(false);
+  // const [emailError, setEmailError] = useState("");
+  const [pError, setPError] = useState("");
   // const [rmCheck, setRmCheck] = useState(false);
   //const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
@@ -78,7 +80,9 @@ export function Login() {
           }
         }
         if (!flag) {
-          setShowPopUp(!showPopUp);
+          // setEmailError("Please provide a valid email");
+          setPError("Please check your credentials and try again");
+          // setShowPopUp(!showPopUp);
         }
       })
       .catch((error) => {
@@ -93,9 +97,9 @@ export function Login() {
     });
   }, []);
 
-  const closePopUp = () => {
-    setShowPopUp(!showPopUp);
-  }
+  // const closePopUp = () => {
+  //   setShowPopUp(!showPopUp);
+  // }
 
   return (
     <>
@@ -120,9 +124,11 @@ export function Login() {
                 defaultValue={userEmail}
                 placeholder="example@email.com"
                 onChange={(e) => {
+                  // setEmailError("");
                   setUserEmail(e.target.value);
                 }}
               ></input>
+              {/* <p className="warning">{emailError}</p> */}
               <label className="loginCont_label">Password</label>
               <input
                 type="password"
@@ -131,9 +137,11 @@ export function Login() {
                 defaultValue={userPassword}
                 placeholder="**********"
                 onChange={(e) => {
+                  setPError("");
                   setUserPassword(e.target.value);
                 }}
               ></input>
+              <p className="warning">{pError}</p>
               <div className="loginCont_RememberCont">
                 <div className="loginCont_Remember">
                   <label>
@@ -156,7 +164,7 @@ export function Login() {
                 </button>
               </div>
               <div className="links">
-                <Link to="/reset-password" className="link">
+                <Link to="/forgot-password" className="link">
                   Forgot Password?
                 </Link>
 
@@ -178,12 +186,11 @@ export function Login() {
           </div>
         </div>
       </div>
-
-      {showPopUp && (
+      {/* {showPopUp && (
         <PopUp title="Something went wrong" description="Email or password are not a match" addContent={
           <Button className="popUp_btn" title="Close" onClick={closePopUp} />
         } />
-      )}
+      )} */}
     </>
   );
 }
