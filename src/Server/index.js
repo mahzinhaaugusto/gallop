@@ -176,8 +176,8 @@ app.post("/api/deletehorse", (req, res) => {
   const id = req.body.id;
   console.log(id);
   const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
-  db.query(sqlDelete[id], (er, re) => {
-    res.send(re);
+  db.query(sqlDelete, [id], (er, re) => {
+    console.log(re);
   });
 });
 
