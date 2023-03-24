@@ -103,7 +103,7 @@ export function MyHorses() {
   );
 }
 
-function MyHorsesCard({ myHorse }) {
+export function MyHorsesCard({ myHorse }) {
   const editHorse = () => {
     console.log("working");
   };
