@@ -103,9 +103,7 @@ export function MyHorses() {
   );
 }
 
-function MyHorsesCard({ myHorse }) {
-  // let navigate = useNavigate();
-
+export function MyHorsesCard({ myHorse }) {
   const editHorse = () => {
     console.log("working");
   };
