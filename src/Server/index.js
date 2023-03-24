@@ -13,11 +13,11 @@ const oauth2Client = new OAuth2(
   process.env.OAUTH_CLIENTID,
   process.env.OAUTH_CLIENT_SECRET,
   "https://developers.google.com/oauthplayground"
-)
+);
 
 oauth2Client.setCredentials({
-  refresh_token: process.env.OAUTH_REFRESH_TOKEN
-})
+  refresh_token: process.env.OAUTH_REFRESH_TOKEN,
+});
 const accessToken = oauth2Client.getAccessToken();
 
 const db = mysql.createPool({
@@ -40,7 +40,8 @@ app.get("/api/get", (req, res) => {
 
 app.get("/api/checkemail", (req, res) => {
   const { email } = req.query;
-  const sqlCheckEmail = "SELECT COUNT (*) AS count FROM userinfo WHERE email = ?;";
+  const sqlCheckEmail =
+    "SELECT COUNT (*) AS count FROM userinfo WHERE email = ?;";
   db.query(sqlCheckEmail, [email], (er, re) => {
     const count = re[0].count;
     const emailExists = count > 0;
@@ -171,14 +172,14 @@ app.post("/api/insertHorse", (req, res) => {
   const skills = req.body.discipline;
   const uid = req.body.uid;
   const horseThumb = req.body.horseThumb;
-const horsePhotos1 =req.body.horsePhotos1;
-const horsePhotos2 =req.body.horsePhotos2;
-const horsePhotos3 =req.body.horsePhotos3;
+  const horsePhotos1 = req.body.horsePhotos1;
+  const horsePhotos2 = req.body.horsePhotos2;
+  const horsePhotos3 = req.body.horsePhotos3;
 
-console.log(horsePhotos1);
+  console.log(horsePhotos1);
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -195,7 +196,9 @@ console.log(horsePhotos1);
       location,
       uid,
       horseThumb,
-      
+      horsePhotos1,
+      horsePhotos2,
+      horsePhotos3,
     ],
     (err, result) => {
       console.log(result);
@@ -232,8 +235,8 @@ app.post("/api/forgotpassword", (req, res) => {
         accessToken: accessToken,
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     });
 
     const mailOptions = {
@@ -244,8 +247,7 @@ app.post("/api/forgotpassword", (req, res) => {
         "You are receiving this email because there was a request for resetting the password for your account.\n\n" +
         "Please click on the following link, or paste this into your browser to complete the process.\n\n" +
         "http://localhost:3000/forgot-password\n\n" +
-        "If you did not request this, please ignore this email and your password remain unchanged."
-      ,
+        "If you did not request this, please ignore this email and your password remain unchanged.",
     };
 
     transporter.sendMail(mailOptions, (er, re) => {
@@ -255,9 +257,9 @@ app.post("/api/forgotpassword", (req, res) => {
         console.log("Response: ", re);
         res.status(200).json("Recovery email sent");
       }
-    })
-  })
-})
+    });
+  });
+});
 
 app.listen(3002, () => {
   console.log("running on port 3002");

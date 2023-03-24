@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { API_ENDPOINT } from "../server";
-import {CarouselHorseDetail} from "../Components/CarouselHorseDetail";
+import { CarouselHorseDetail } from "../Components/CarouselHorseDetail";
 
 export function HorseDetail() {
   let navigate = useNavigate();
@@ -23,8 +23,6 @@ export function HorseDetail() {
     navigate("/home");
   };
 
-
-
   const HorseObj = location.state.horse;
   console.log("OLHA AQ", HorseObj);
   let [userData, setUserData] = useState([]);
@@ -33,7 +31,7 @@ export function HorseDetail() {
       state: {
         ownerInfo: userData,
         horses: HorseObj,
-      }
+      },
     });
   };
   useEffect(() => {
@@ -63,7 +61,7 @@ export function HorseDetail() {
             </p>
             <div className="horseDetail_cont_one">
               <div className="horseDetail_cont_image">
-              {/*   <CarouselHorseDetail /> */}
+                <CarouselHorseDetail HorseObj={HorseObj} />
                 {/* <img
                   src={HorseObj.img}
                   height="400px"
