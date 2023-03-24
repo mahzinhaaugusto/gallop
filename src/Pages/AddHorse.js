@@ -29,6 +29,7 @@ export function AddHorse() {
   const [discipline, setDiscipline] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
+  const [p,setP]=useState("");
   //const [horsePhotos, setHorsePhotos] = useState([]);
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
@@ -91,6 +92,32 @@ console.log(location);
     console.log(data);
     setDiscipline(data);
   };
+  async function uploadPhotos(){
+    const storage = getStorage();
+    //console.log(horsePhotos);
+    let photoArray = [];
+    
+    if(horsePhotos[0]!=""){
+      for(let i=0;i<3;i++){
+        //console.log(horsePhotos[i].name);
+        let hName = name+i;
+        if(horsePhotos[i]){
+        //console.log(horsePhotos[i]);
+         const storageR = ref(storage, `Horsephoto/${hName}`);
+        await uploadBytes(storageR, horsePhotos[i]).then(() => {
+           getDownloadURL(storageR).then((res) => {
+        photoArray[i] =res;
+       setP(res);
+//console.log(p);
+
+          });
+        }); 
+      }
+    }
+    }
+   console.log(p);
+    return photoArray;
+  }
   const clickSave = () => {
     const storage = getStorage();
 //console.log(horsePhotos);
@@ -99,24 +126,14 @@ let photoArray = [];
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
         //setHorseThumb(result);
-          if(horsePhotos[0]!=""){
-            for(let i=0;i<3;i++){
-              //console.log(horsePhotos[i].name);
-              let hName = name+i;
-              if(horsePhotos[i]){
-              //console.log(horsePhotos[i]);
-               const storageR = ref(storage, `Horsephoto/${hName}`);
-              uploadBytes(storageR, horsePhotos[i]).then(() => {
-                getDownloadURL(storageR).then((res) => {
-              photoArray[i] =res;
-
-                });
-              }); 
-            }
-          }
-          }
+          photoArray = uploadPhotos();
+        photoArray.then((rs)=>{
+          /* console.log(rs)
+          console.log(rs.length);
+          console.log(rs); */
+        })
+       
         let uid = localStorage.getItem("id");
-        console.log(photoArray);
         Axios.post("http://localhost:3002/api/insertHorse", {
           name: name,
           gender: gender,
@@ -131,7 +148,10 @@ let photoArray = [];
           discipline: discipline,
           uid: uid,
           horseThumb: result,
-          horsePhotos: photoArray,
+          horsePhotos1: photoArray[0],
+          horsePhotos2: photoArray[1],
+          // horsePhotos3
+          horsePhotos3: photoArray[2],
         });
       });
     });
