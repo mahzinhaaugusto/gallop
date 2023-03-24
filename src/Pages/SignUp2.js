@@ -15,6 +15,7 @@ export function SignUp2() {
   const [userPhoto, setUserPhoto] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
+  // const [emailVerifying, setEmailVerifying] = useState([]);
 
   let navigate = useNavigate();
 
@@ -64,29 +65,46 @@ export function SignUp2() {
     });
   };
 
-  const submitClicked = () => {
-    if (phoneNumber === "") {
-      setPhoneError("Please Enter Valid Phone Number");
-    }
-    if (addressError === "") {
-      setAddressError("Please Enter Valid Address");
-    } else if (phoneNumber !== "" && addressError !== "") {
-      Axios.post(`${API_ENDPOINT}insert`, {
-        firstName: location.state.firstName,
-        lastName: location.state.lastName,
-        userPassword: location.state.userPassword,
-        Email: location.state.Email,
-        Address: Address,
-        Website: Website,
-        phoneNumber: phoneNumber,
-        userPhoto: userPhoto,
-      }).then((res) => {
-        let d = res.data;
-        localStorage.setItem("id", d.insertId);
-        alert("data written successfully");
-        navigate("/home");
-      });
+  async function checkEmail(email) {
+    const response = await Axios.get(`${API_ENDPOINT}checkemail`, {
+      params: { email }
+    });
+    return response.data.emailExists;
+  }
 
+  async function submitClicked() {
+    if (phoneNumber === "" || phoneNumber.length !== 10) {
+      setPhoneError("Please enter a 10 digit phone number");
+    }
+    if (Address === "") {
+      setAddressError("Please enter valid address");
+    } else if (phoneNumber !== "" && Address !== "" && phoneNumber.length === 10) {
+
+      const email = location.state.Email;
+      const emailExists = await checkEmail(email);
+
+      if (emailExists) {
+        alert("Email already exists");
+        navigate("/signup");
+      } else {
+
+        Axios.post(`${API_ENDPOINT}insert`, {
+          firstName: location.state.firstName,
+          lastName: location.state.lastName,
+          userPassword: location.state.userPassword,
+          Email: location.state.Email,
+          Address: Address,
+          Website: Website,
+          phoneNumber: phoneNumber,
+          userPhoto: userPhoto,
+        })
+          .then((res) => {
+            let d = res.data;
+            localStorage.setItem("id", d.insertId);
+            alert("data written successfully");
+            navigate("/home");
+          });
+      }
     }
   };
 
@@ -170,7 +188,8 @@ export function SignUp2() {
                 name="phoneNumber"
                 placeholder="Please include national number"
                 onChange={(e) => {
-                  setPhoneNumber(+e.target.value);
+                  setPhoneError("");
+                  setPhoneNumber(e.target.value);
                 }}
               ></input>
               <p className="warning">{phoneError}</p>
@@ -182,9 +201,11 @@ export function SignUp2() {
                 name="Address"
                 placeholder="Street, City, Province"
                 onChange={(e) => {
+                  setAddressError("");
                   setAddress(e.target.value);
                 }}
               ></input>
+              <p className="warning">{addressError}</p>
               <label className="signUp2Cont_form_websiteLabel">Website</label>
               <input
                 type="text"
