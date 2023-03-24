@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { API_ENDPOINT } from "../server";
+import {CarouselHorseDetail} from "../Components/CarouselHorseDetail";
 
 export function HorseDetail() {
   let navigate = useNavigate();
@@ -19,17 +20,22 @@ export function HorseDetail() {
   let location = useLocation();
 
   const goBack = () => {
-    console.log("works");
+    navigate("/home");
   };
 
-  const moreClick = () => {
-    console.log("works");
-  };
+
 
   const HorseObj = location.state.horse;
-  // console.log(HorseObj);
+  console.log("OLHA AQ", HorseObj);
   let [userData, setUserData] = useState([]);
-
+  const moreClick = () => {
+    navigate("/more-owner", {
+      state: {
+        ownerInfo: userData,
+        horses: HorseObj,
+      }
+    });
+  };
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
       console.log("sorry");
@@ -57,12 +63,13 @@ export function HorseDetail() {
             </p>
             <div className="horseDetail_cont_one">
               <div className="horseDetail_cont_image">
-                <img
+              {/*   <CarouselHorseDetail /> */}
+                {/* <img
                   src={HorseObj.img}
                   height="400px"
                   width="400px"
                   alt="Selected horse"
-                />
+                /> */}
               </div>
               <div className="horseDetail_cont_information">
                 <div className="horseDetail_cont_information_heading">

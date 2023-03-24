@@ -26,15 +26,17 @@ export function AddHorse() {
   const [breedMethod, setBreedMethod] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
   const [discipline, setDiscipline] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
+  //const [horsePhotos, setHorsePhotos] = useState([]);
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
   let navigate = useNavigate();
-
+  let horsePhotos = [];
+let location = sessionStorage.getItem("city");
+console.log(location);
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
       console.log("sorry");
@@ -42,16 +44,29 @@ export function AddHorse() {
     }
     console.log(localStorage.getItem("id"));
   });
-  const clickPlus = () => {
-    console.log("works");
+  const clickPlus = (event) => {
+
+    const file = event.target.files[0];
+    if (horsePhotos.length >= 3) {
+      alert("you cannot select more than three photos");
+    }
+    else {
+
+      horsePhotos.push(file);
+      console.log(horsePhotos);
+    }
+
+
+
   };
   const clickPlusOfThumb = () => {
-    document.getElementById("thumb").style.display = "block";
+    //document.getElementById("thumb").style.display = "block";
 
-    document.getElementById("thumbBox").style.display = "none";
+
   };
   const photoSeleceted = (event) => {
     const file = event.target.files[0];
+    console.log(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
     setPhoto(file);
@@ -78,12 +93,30 @@ export function AddHorse() {
   };
   const clickSave = () => {
     const storage = getStorage();
-
+//console.log(horsePhotos);
+let photoArray = [];
     const storageRef = ref(storage, `Horsephoto/${photo.name}`);
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
         //setHorseThumb(result);
+          if(horsePhotos[0]!=""){
+            for(let i=0;i<3;i++){
+              //console.log(horsePhotos[i].name);
+              let hName = name+i;
+              if(horsePhotos[i]){
+              //console.log(horsePhotos[i]);
+               const storageR = ref(storage, `Horsephoto/${hName}`);
+              uploadBytes(storageR, horsePhotos[i]).then(() => {
+                getDownloadURL(storageR).then((res) => {
+              photoArray[i] =res;
+
+                });
+              }); 
+            }
+          }
+          }
         let uid = localStorage.getItem("id");
+        console.log(photoArray);
         Axios.post("http://localhost:3002/api/insertHorse", {
           name: name,
           gender: gender,
@@ -98,6 +131,7 @@ export function AddHorse() {
           discipline: discipline,
           uid: uid,
           horseThumb: result,
+          horsePhotos: photoArray,
         });
       });
     });
@@ -266,14 +300,17 @@ export function AddHorse() {
             <div className="addHorse_cont_basics_upload">
               <div className="addHorse_cont_basics_upload_thumbnail">
                 <label>Thumbnail</label>
-                <input
+                {/*  <input
                   className="addHorse_cont_basics_upload_thumbnail_input"
                   type="file"
                   id="thumb"
                   name="thumb"
                   accept="image/*"
                   onChange={photoSeleceted}
-                />
+                /> */}
+
+
+
                 {previewUrl && (
                   <img
                     src={previewUrl}
@@ -289,7 +326,11 @@ export function AddHorse() {
                 >
                   <p>Upload Thumbnail</p>
                   <div onClick={clickPlusOfThumb}>
-                    <img src={AddMedia} alt="not " />
+                    <label for="thumb">
+
+                      <img src={AddMedia} alt="not " />
+                    </label>
+                    <input type="file" accept="image/png, image/jpeg" className="addHorse_cont_basics_upload_thumbnail_input" name="newBackground" id="thumb" onChange={photoSeleceted} />
                   </div>
                 </div>
               </div>
@@ -302,8 +343,12 @@ export function AddHorse() {
                 </label>
                 <div className="addHorse_cont_basics_upload_media_content">
                   <p>Up to 3 photos </p>
-                  <div onClick={clickPlus}>
-                    <img alt="Add horse media" src={AddMedia} />
+                  <div>
+                    <label for="thumbforphotos">
+
+                      <img alt="Add horse media" src={AddMedia} />
+                    </label>
+                    <input type="file" accept="image/png, image/jpeg" className="addHorse_cont_basics_upload_media_content_image" name="horsePhotos" id="thumbforphotos" onChange={clickPlus} />
                   </div>
                 </div>
               </div>
@@ -337,9 +382,13 @@ export function AddHorse() {
                 </label>
                 <div className="addHorse_cont_detailed_documentation_content">
                   <p>Up to 30MB</p>
-                  <div onClick={clickPlus}>
-                    <img alt="Add horse documentation" src={AddMedia} />
+                  <div>
+                    <label for="thumbfordocuments">
+                      <img alt="Add horse media" src={AddMedia} />
+                    </label>
+                    <input type="file" accept="image/png, image/jpeg, .pdf, .doc, .docx, .xls, .xlsx, text" className="addHorse_cont_basics_upload_media_content_image" name="horseDocuments" id="thumbfordocuments" onChange={clickPlus} />
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -363,20 +412,23 @@ export function AddHorse() {
             </div>
             <div className="addHorse_cont_aboutOwner_location">
               <label>
-                Location{" "}
+                Location {""}
                 <span className="addHorse_cont_aboutOwner_location_error">
-                  *
+                  (You cannot change your location)
                 </span>
               </label>
               <input
                 required
                 name="ownerLocation"
+                value={location}
                 id="ownerLocation"
                 type="text"
                 placeholder="Location"
-                onChange={(e) => {
-                  setLocation(e.target.value);
-                }}
+                /* onChange={(e) => {
+                  setLocation(e.sessionStorage.setItem("city", city));
+                }} */
+                
+                
               ></input>
             </div>
             <div className="addHorse_cont_aboutOwner_displayHorse">
