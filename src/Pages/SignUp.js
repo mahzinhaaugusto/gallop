@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import horse from "../icons/Horse.png";
+import HideShowPass from "../icons/HideShowPass.svg";
+import HideVisibility from "../icons/HideVisibility.svg";
+// import { API_ENDPOINT } from "../server";
+// import Axios from "axios";
 
 export function SignUp() {
   const [Email, setEmail] = useState("");
@@ -9,36 +13,70 @@ export function SignUp() {
   const [lastName, setLastName] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [cPassword, setCPassword] = useState("");
-  const [firstEror, setFirstError] = useState("");
-  const [lastEror, setLastError] = useState("");
-  const [emailEror, setEmailError] = useState("");
-  const [pEror, setPError] = useState("");
+  const [firstError, setFirstError] = useState("");
+  const [lastError, setLastError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  // const [regexEmailError, setRegexEmailError] = useState("");
+  const [pError, setPError] = useState("");
+  const [cError, setCError] = useState("");
+  const [passwordType1, setPasswordType1] = useState("password");
+  const [passwordType2, setPasswordType2] = useState("password");
+
 
   let navigate = useNavigate();
 
+  // async function checkEmail(email) {
+  //   const response = await Axios.get(`${API_ENDPOINT}checkemail`, {
+  //     params: { email }
+  //   });
+  //   return response.data.emailExists;
+  // }
+
   const nextClicked = () => {
+
+    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    let a = Email.match(validRegex);
+    // console.log(!a);
+
     if (firstName === "") {
-      setFirstError("Please Enter First Name");
+      setFirstError("Please enter first name");
     }
     if (lastName === "") {
-      setLastError("Please Enter Last Name");
+      setLastError("Please enter last name");
     }
     if (userPassword === "") {
-      setPError("Please Enter valid Password");
+      setPError("Please enter valid password");
     }
-    if (Email === "") {
-      setEmailError("Please Enter Email Address");
+
+    if (Email === "" || !a) {
+      setEmailError("Please enter a valid email address");
     }
+
+    // if (!a) {
+    //   // console.log(Email.match(validRegex));
+    //   setRegexEmailError("Please Enter a Valid Email Address");
+    // }
+
+    // alert("Please Enter a Valid Email Address");
+
     if (userPassword !== cPassword) {
-      alert("Password mismatch");
+      setCError("Password and Confirm Password do not Match");
     } else if (
       firstName !== "" &&
       lastName !== "" &&
       userPassword !== "" &&
-      Email !== ""
+      Email !== "" &&
+      Email.match(validRegex)
     ) {
       const hashedPassword = bcrypt.hashSync(userPassword, 10);
-      //console.log(hashedPassword);
+
+      // const email = Email;
+      // const emailExists = checkEmail(email);
+
+      // if (emailExists) {
+      //   alert("Email already exists");
+      // } else {
       navigate("/signup2", {
         state: {
           firstName: firstName,
@@ -47,11 +85,30 @@ export function SignUp() {
           Email: Email,
         },
       });
+      // }
+      //console.log(hashedPassword);
+
     }
   };
 
   const backSplash = () => {
     navigate("/");
+  };
+
+  const togglePassword1 = () => {
+    if (passwordType1 === "password") {
+      setPasswordType1("text");
+      return;
+    }
+    setPasswordType1("password");
+  };
+
+  const togglePassword2 = () => {
+    if (passwordType2 === "password") {
+      setPasswordType2("text");
+      return;
+    }
+    setPasswordType2("password");
   };
 
   return (
@@ -95,17 +152,17 @@ export function SignUp() {
                     name="firstName"
                     placeholder="First"
                     onChange={(e) => {
+                      setFirstError("");
                       setFirstName(e.target.value);
                     }}
                   ></input>
-                  <p className="warning">{firstEror}</p>
+                  <p className="warning">{firstError}</p>
                 </div>
               </div>
               <div className="signUpCont_form_name_last">
                 <div className="signUpCont_form_name_lastNameLabel require">
                   <label>Last Name</label>
                 </div>
-
                 <div>
                   <input
                     className="signUpCont_form_name_last_input"
@@ -113,10 +170,11 @@ export function SignUp() {
                     name="lastName"
                     placeholder="Last"
                     onChange={(e) => {
+                      setLastError("");
                       setLastName(e.target.value);
                     }}
                   ></input>
-                  <p className="warning">{lastEror}</p>
+                  <p className="warning">{lastError}</p>
                 </div>
               </div>
             </div>
@@ -126,34 +184,58 @@ export function SignUp() {
               name="Email"
               placeholder="example@email.com"
               onChange={(e) => {
+                setEmailError("");
                 setEmail(e.target.value);
               }}
             ></input>
-            <p className="warning">{emailEror}</p>
-
+            <p className="warning">{emailError}</p>
+            {/* <p className="warning">{regexEmailError}</p> */}
             <label className="signUpCont_form_passwordLabel require">
               Password
             </label>
             <input
-              type="password"
+              type={passwordType1}
               name="userPassword"
               placeholder="**********"
               onChange={(e) => {
+                setPError("");
                 setUserPassword(e.target.value);
               }}
             ></input>
-            <p className="warning">{pEror}</p>
+            <div
+              className="profile_cont_mainContent_editing_password_toggle"
+              onClick={togglePassword1}
+            >
+              {passwordType1 === "password" ? (
+                <img src={HideShowPass} alt="Show password" />
+              ) : (
+                <img src={HideVisibility} alt="Hide password" />
+              )}
+            </div>
+            <p className="warning">{pError}</p>
             <label className="signUpCont_form_cPasswordLabel require">
               Confirm Password
             </label>
             <input
-              type="password"
+              type={passwordType2}
               name="cPassword"
               placeholder="**********"
               onChange={(e) => {
+                setCError("");
                 setCPassword(e.target.value);
               }}
             ></input>
+            <div
+              className="profile_cont_mainContent_editing_password_toggle"
+              onClick={togglePassword2}
+            >
+              {passwordType2 === "password" ? (
+                <img src={HideShowPass} alt="Show password" />
+              ) : (
+                <img src={HideVisibility} alt="Hide password" />
+              )}
+            </div>
+            <p className="warning">{cError}</p>
             <div className="buttonArray">
               <button className="secondaryBtn" onClick={backSplash}>
                 Back

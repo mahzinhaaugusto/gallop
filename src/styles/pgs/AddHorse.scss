@@ -52,6 +52,10 @@
 
 }
 
+#thumb, #thumbforphotos, #thumbfordocuments{
+    display: none;
+}
+
 .addHorse {
     padding: 4rem 4rem 10rem 15rem;
     background: transparent;

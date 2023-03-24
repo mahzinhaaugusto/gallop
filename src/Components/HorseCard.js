@@ -46,34 +46,6 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
     }
   }
 
-  // let icon = document.getElementById("favIcon").src;
-  // icon = icon.slice(35, 47);
-  // if (icon == "FavoriteIcon") {
-  //   document.getElementById("favIcon").src = FavoriteClicked;
-  // }
-
-  // axios.post("http://localhost:3002/api/addfavorite", {
-  //   horseid: horse.horseID,
-  //   uid: localStorage.getItem("id"),
-  // });
-  // let icon = document.getElementById("favIcon");
-  // icon.style.display = "none";
-  // let icon1 = document.getElementById("unFavIcon");
-  // icon1.style.display = "block";
-
-  // function addUnFavOnClick(horse) {
-  //   let icon = document.getElementById("favIcon");
-  //   icon.style.display = "block";
-  //   let icon1 = document.getElementById("unFavIcon");
-  //   icon1.style.display = "none";
-  // }
-
-  // useEffect(() => {
-  //   axios.get("http://localhost:3002/api/favhorses").then((response) => {
-  //     setFavoritehorses(response.data);
-  //     //console.log(allHorses);
-  //   });
-  // }, []);
   return (
     <>
       {horseInfo.map((horse, i) => (

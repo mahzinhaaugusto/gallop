@@ -103,20 +103,18 @@ export function MyHorses() {
   );
 }
 
-function MyHorsesCard({ myHorse }) {
+export function MyHorsesCard({ myHorse }) {
   const editHorse = () => {
     console.log("working");
   };
 
-  const deleteHorse = () => {
-    Axios.delete(`${API_ENDPOINT}deletehorse`)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    // alert("check db");
+  const deleteHorse = (id) => {
+    // console.log(id);
+    Axios.post(`${API_ENDPOINT}deletehorse`, {
+      id: id
+    })
+    window.location.reload();
+    // console.Console.log("yesssss");
   };
 
   return (
@@ -156,7 +154,7 @@ function MyHorsesCard({ myHorse }) {
                 <button
                   id="horseCard_myHorses_cont_details_deleteBtn"
                   type="button"
-                  onClick={deleteHorse}
+                  onClick={() => { deleteHorse(horse.horseID) }}
                 >
                   DELETE
                   <img src={Trash} alt="" />

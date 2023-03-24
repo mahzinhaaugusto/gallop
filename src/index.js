@@ -28,10 +28,10 @@ root.render(
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-horses" element={<MyHorses />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/reset-password" element={<ForgotPassword />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/data-analytics" element={<DataAnalytics />} />
       <Route path="/favorites" element={<Favorites />} />
-      <Route path="/morefromowner" element={<MoreOwner />} />
+      <Route path="/more-owner" element={<MoreOwner />} />
     </Routes>
   </BrowserRouter>
 );
