@@ -126,13 +126,25 @@ let photoArray = [];
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
         //setHorseThumb(result);
-          photoArray = uploadPhotos();
-        photoArray.then((rs)=>{
-          /* console.log(rs)
-          console.log(rs.length);
-          console.log(rs); */
-        })
-       
+        if(horsePhotos[0]!=""){
+          for(let i=0;i<3;i++){
+            //console.log(horsePhotos[i].name);
+            let hName = name+i;
+            if(horsePhotos[i]){
+            //console.log(horsePhotos[i]);
+             const storageR = ref(storage, `Horsephoto/${hName}`);
+             uploadBytes(storageR, horsePhotos[i]).then(() => {
+               getDownloadURL(storageR).then((res) => {
+            photoArray[i] =res;
+          // setP(res);
+    //console.log(p);
+    
+              });
+            }); 
+          }
+        }
+      }
+       console.log(photoArray);
         let uid = localStorage.getItem("id");
         Axios.post("http://localhost:3002/api/insertHorse", {
           name: name,
