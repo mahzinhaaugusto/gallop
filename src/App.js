@@ -7,7 +7,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import "firebase/storage";
 
-console.log(process.env.REACT_APP_APIKEY);
+// console.log(process.env.REACT_APP_APIKEY);
 Geocode.setApiKey(process.env.REACT_APP_APIKEY);
 Geocode.setLocationType("ROOFTOP");
 let city;
