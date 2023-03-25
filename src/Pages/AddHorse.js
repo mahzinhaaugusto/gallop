@@ -1,7 +1,7 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import CancelButton from "../icons/CancelButton.svg";
 import SaveButton from "../icons/SaveButton.svg";
-
+import { API_ENDPOINT } from "../server.js";
 import AddMedia from "../icons/AddMedia.svg";
 import BackButton from "../icons/BackButton.svg";
 import { Breed } from "../CmptParts/Breed";
@@ -84,7 +84,7 @@ export function AddHorse() {
       getDownloadURL(storageRef).then((result) => {
         //setHorseThumb(result);
         let uid = localStorage.getItem("id");
-        Axios.post("http://localhost:3002/api/insertHorse", {
+        Axios.post(${API_ENDPOINT}"insertHorse", {
           name: name,
           gender: gender,
           breed: breed,
