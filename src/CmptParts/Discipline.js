@@ -88,7 +88,7 @@ function DisciplineDropdown({
     }
 
     // Code for multiple selection
-    if (isMulti && selectedValue.length <= 3) {
+    if (isMulti) {
       return (
         <div className="filter_cont_discipline_multiSelection">
           {selectedValue.map((option) => (
@@ -107,10 +107,8 @@ function DisciplineDropdown({
           ))}
         </div>
       );
-    } else {
-      return placeholder;
-      // selectedValue = [];
     }
+    return selectedValue.label;
   };
 
   const removeOption = (option) => {
@@ -128,7 +126,12 @@ function DisciplineDropdown({
       if (selectedValue.findIndex((opt) => opt.value === option.value) >= 0) {
         newOption = removeOption(option);
       } else {
-        newOption = [...selectedValue, option];
+        if (selectedValue.length < 3) {
+          newOption = [...selectedValue, option];
+        } else {
+          newOption = [...selectedValue];
+          // alert("You're not allowed to select more than 3")
+        }
       }
     } else {
       newOption = option;
