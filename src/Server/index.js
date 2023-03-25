@@ -8,6 +8,8 @@ const { google } = require("googleapis");
 require("dotenv").config();
 let apikey = process.env.APIKEY;
 const OAuth2 = google.auth.OAuth2;
+const UIDGenerator = require('uid-generator');
+const uidgen = new UIDGenerator();
 
 const oauth2Client = new OAuth2(
   process.env.OAUTH_CLIENTID,
@@ -147,6 +149,39 @@ app.post("/api/insert", (req, res) => {
   );
 });
 
+app.post("/api/edithorse", (req, res) => {
+  const horseName = req.body.horseName;
+  const horseAge = req.body.horseAge;
+  const breedingMethod = req.body.breedingMethod;
+  const skills = req.body.skills;
+  const color = req.body.color;
+  const gender = req.body.gender;
+  const breed = req.body.breed;
+  const price = req.body.price;
+  const height = req.body.height;
+  const horseID = req.body.horseID;
+
+  const sqlUpdateHorse = "UPDATE horseinfo SET horseName = ?, horseAge = ?, breedingMethod = ?, skills = ?, color = ?, gender = ?, breed = ?, price = ?, height = ? WHERE horseID = ?;";
+
+  db.query(
+    sqlUpdateHorse,
+    [
+      horseName,
+      horseAge,
+      breedingMethod,
+      skills,
+      color,
+      gender,
+      breed,
+      price,
+      height,
+      horseID
+    ], (err, res) => {
+      console.log(res);
+      res.send(res);
+    });
+});
+
 app.post("/api/addfavorite", (req, res) => {
   const horseid = req.body.horseid;
   const uid = req.body.uid;
@@ -208,7 +243,7 @@ app.post("/api/insertHorse", (req, res) => {
 
 app.post("/api/deletehorse", (req, res) => {
   const id = req.body.id;
-  console.log(id);
+  // console.log(id);
   const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
   db.query(sqlDelete, [id], (er, re) => {
     console.log(re);
@@ -217,12 +252,20 @@ app.post("/api/deletehorse", (req, res) => {
 
 app.post("/api/forgotpassword", (req, res) => {
   const email = req.body.email;
-  // const email = req.body.email;
-  // console.log(email);
-  const sqlFindEmail = "SELECT * FROM userinfo WHERE email = ?;";
-  db.query(sqlFindEmail, [email], (er, re) => {
-    console.log(email);
+  const uid = uidgen.generateSync();
+  // console.log(uid);
 
+  const sqlFindEmail = "SELECT * FROM userinfo WHERE email = ?;";
+
+  const sqlIncludeToken = "UPDATE userinfo SET token = ? WHERE email = ?;"
+
+  db.query(sqlIncludeToken, [uid, email], (er, re) => {
+    // console.log(uid);
+    // console.log(email);
+  })
+
+  db.query(sqlFindEmail, [email], (er, re) => {
+    // console.log(email);
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -242,12 +285,14 @@ app.post("/api/forgotpassword", (req, res) => {
     const mailOptions = {
       from: "thegallopapp@gmail.com",
       to: `${email}`,
-      subject: "Forgot Password Requested",
+      subject: "Forgot Password Requested - Gallop",
       text:
         "You are receiving this email because there was a request for resetting the password for your account.\n\n" +
         "Please click on the following link, or paste this into your browser to complete the process.\n\n" +
-        "http://localhost:3000/forgot-password\n\n" +
-        "If you did not request this, please ignore this email and your password remain unchanged.",
+        `http://localhost:3000/reset-password\n\n` +
+        `Please provide the following token to allow you to make changes to your password: ${uid}\n\n` +
+        "If you did not request this, please ignore this email and your password remain unchanged.\n\n" +
+        "Cheers from Gallop\n\n"
     };
 
     transporter.sendMail(mailOptions, (er, re) => {
@@ -259,6 +304,25 @@ app.post("/api/forgotpassword", (req, res) => {
       }
     });
   });
+});
+
+app.post("/api/reset", (req, res) => {
+  const token = req.body.token;
+  // console.log(token);
+  const password = req.body.userPassword;
+  // console.log(password);
+  const sqlReset =
+    "UPDATE userinfo SET userPassword = ?  WHERE token = ?";
+  db.query(
+    sqlReset,
+    [
+      password,
+      token
+    ],
+    (err, result) => {
+      console.log(err);
+    }
+  );
 });
 
 app.listen(3002, () => {

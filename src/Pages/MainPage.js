@@ -5,6 +5,7 @@ import { SortByDropdown } from "../Components/SortBy";
 import { FilterDropdown } from "../Components/Filter";
 import { HorseCard } from "../Components/HorseCard";
 import { useNavigate } from "react-router-dom";
+import ReactPaginate from 'react-paginate';
 // import { PopUp } from "../Components/PopUp";
 // import { Button } from "../Components/Button";
 import { Footer } from "../Components/Footer";
@@ -51,6 +52,73 @@ export function MainPage() {
     });
   }, []);
 
+  const items = allHorses;
+
+  function Items({currentItems}) {
+    console.log(currentItems);
+    
+    return (
+      <div className='mainPage_cont_horsesCards_innerCont'>
+        {currentItems && currentItems.map((item) => (
+          <HorseCard
+            horseInfo={[item]}
+            onClick={goToHorseDetail}
+            addFavOnClick={addToFavorites}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  function PaginatedItems({ itemsPerPage }) {
+    // We start with an empty list of items.
+    const [currentItems, setCurrentItems] = useState(null);
+    const [pageCount, setPageCount] = useState(0);
+    // Here we use item offsets; we could also use page offsets
+    // following the API or data you're working with.
+    const [itemOffset, setItemOffset] = useState(0);
+  
+    useEffect(() => {
+      // Fetch items from another resources.
+      const endOffset = itemOffset + itemsPerPage;
+      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+      setCurrentItems(items.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(items.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage]);
+  
+    // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+      const newOffset = event.selected * itemsPerPage % items.length;
+      console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+      setItemOffset(newOffset);
+    };
+  
+    return (
+      <>
+        <Items currentItems={currentItems} />
+        <ReactPaginate
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageCount={pageCount}
+          previousLabel="< "
+          nextLabel=" >"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          renderOnZeroPageCount={null}
+        />
+      </>
+    );
+  }
+
   //console.log(allHorses);
 
   const goToHorseDetail = () => {
@@ -90,11 +158,7 @@ export function MainPage() {
               </div>
             </div>
             <div className="mainPage_cont_horsesCards">
-              <HorseCard
-                horseInfo={allHorses}
-                onClick={goToHorseDetail}
-                addFavOnClick={addToFavorites}
-              />
+              <PaginatedItems itemsPerPage={6} />
             </div>
           </div>
 

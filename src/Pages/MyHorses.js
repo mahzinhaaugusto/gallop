@@ -104,8 +104,14 @@ export function MyHorses() {
 }
 
 export function MyHorsesCard({ myHorse }) {
+  let navigate = useNavigate();
+
   const editHorse = () => {
-    console.log("working");
+    navigate("/edit-horse", {
+      // state: {
+      //   horse: horse,
+      // },
+    });
   };
 
   const deleteHorse = (id) => {

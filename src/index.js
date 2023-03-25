@@ -13,7 +13,8 @@ import { MyHorses } from "./Pages/MyHorses";
 import { ForgotPassword } from "./Pages/ForgotPassword";
 import { DataAnalytics } from "./Pages/DataAnalytics";
 import { MoreOwner } from "./Pages/MoreOwner";
-
+import { ResetPassword } from "./Pages/ResetPassword";
+import { EditHorse } from "./Pages/EditHorse";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -32,6 +33,8 @@ root.render(
       <Route path="/data-analytics" element={<DataAnalytics />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/more-owner" element={<MoreOwner />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/edit-horse" element={<EditHorse />} />
     </Routes>
   </BrowserRouter>
 );
