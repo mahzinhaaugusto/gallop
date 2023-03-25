@@ -157,3 +157,9 @@ npm i --save lodash
 ```
 npm install uid-generator --save
 ```
+
+### 22 - Install React Paginate
+
+```
+npm install react-paginate --save
+```
