@@ -149,6 +149,39 @@ app.post("/api/insert", (req, res) => {
   );
 });
 
+app.post("/api/edithorse", (req, res) => {
+  const horseName = req.body.horseName;
+  const horseAge = req.body.horseAge;
+  const breedingMethod = req.body.breedingMethod;
+  const skills = req.body.skills;
+  const color = req.body.color;
+  const gender = req.body.gender;
+  const breed = req.body.breed;
+  const price = req.body.price;
+  const height = req.body.height;
+  const horseID = req.body.horseID;
+
+  const sqlUpdateHorse = "UPDATE horseinfo SET horseName = ?, horseAge = ?, breedingMethod = ?, skills = ?, color = ?, gender = ?, breed = ?, price = ?, height = ? WHERE horseID = ?;";
+
+  db.query(
+    sqlUpdateHorse,
+    [
+      horseName,
+      horseAge,
+      breedingMethod,
+      skills,
+      color,
+      gender,
+      breed,
+      price,
+      height,
+      horseID
+    ], (err, res) => {
+      console.log(res);
+      res.send(res);
+    });
+});
+
 app.post("/api/addfavorite", (req, res) => {
   const horseid = req.body.horseid;
   const uid = req.body.uid;
