@@ -11,10 +11,35 @@ import ReactPaginate from 'react-paginate';
 import { Footer } from "../Components/Footer";
 import Axios from "axios";
 import { API_ENDPOINT } from "../server";
-
+import { useLocation } from "react-router-dom";
 export function MainPage() {
+  let location = useLocation();
   let [allHorses, setHorseInfo] = useState([]);
   let navigate = useNavigate();
+  const [filterData, setFilter] = useState();
+
+  const filterReturn = (data) => {
+    setFilter(data);
+    //console.log(data);
+    //console.log(allHorses);
+    let horseDatas = [...allHorses];
+    for (const key in data) {
+      let newList = [];
+
+      for (let i = 0; i < horseDatas.length; i++) {
+        //console.log(`${key}: ${user[key]}`);
+
+        if (data[key] == horseDatas[i][key]) {
+          newList.push(horseDatas[i]);
+        }
+      }
+      horseDatas = [...newList];
+      // setHorseInfo(newList);
+      console.log(horseDatas);
+    }
+    setHorseInfo(horseDatas);
+    //setHorseInfo(newList);
+  };
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
       console.log("sorry");
@@ -22,6 +47,7 @@ export function MainPage() {
     }
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
       setHorseInfo(response.data);
+
       //console.log(allHorses);
     });
   }, []);
@@ -128,7 +154,7 @@ export function MainPage() {
               <h2 className="mainPage_cont_allHorses_title">All Horses</h2>
               <div className="mainPage_cont_allHorses_dropdowns">
                 <SortByDropdown />
-                <FilterDropdown />
+                <FilterDropdown filterReturn={filterReturn} />
               </div>
             </div>
             <div className="mainPage_cont_horsesCards">

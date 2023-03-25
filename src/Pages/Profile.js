@@ -4,15 +4,16 @@ import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
 import { Button } from "../Components/Button";
 import Camera from "../icons/Camera.svg";
-import HideShowPass from "../icons/HideShowPass.svg";
-import HideVisibility from "../icons/HideVisibility.svg";
+// import HideShowPass from "../icons/HideShowPass.svg";
+// import HideVisibility from "../icons/HideVisibility.svg";
 import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 import Edit from "../icons/Edit.svg";
 // import horse from "../icons/Horse.png";
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
 import axios from "axios";
+import { googleLogout } from '@react-oauth/google';
 
 export function Profile() {
   const [showProfile, setShowProfile] = useState(true);
@@ -38,7 +39,8 @@ export function Profile() {
   };
 
   const signOut = () => {
-    sessionStorage.clear();
+    localStorage.clear();
+    googleLogout();
     navigate("/");
   };
 
@@ -61,7 +63,7 @@ export function Profile() {
     profileEdit.bioContent = bioContent.value;
 
     let id = localStorage.getItem("id");
-    axios.post(`${API_ENDPOINT}editprofile`, {
+    axios.post(`${process.env.REACT_APP_API_URL}editprofile`, {
       profileEdit: profileEdit,
       id: id,
     });
@@ -133,7 +135,7 @@ export function Profile() {
     inputLength: 40,
   };
 
-  const [passwordType, setPasswordType] = useState("password");
+  // const [passwordType, setPasswordType] = useState("password");
   // const [passInput, setPassInput] = useState("");
 
   // const setOnChange = (event) => {
@@ -144,13 +146,13 @@ export function Profile() {
   //   setPassInput(event.target.value);
   // }
 
-  const togglePassword = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      return;
-    }
-    setPasswordType("password");
-  };
+  // const togglePassword = () => {
+  //   if (passwordType === "password") {
+  //     setPasswordType("text");
+  //     return;
+  //   }
+  //   setPasswordType("password");
+  // };
 
   // TO BE CHANGED!
   const changeBackground = () => {
@@ -399,7 +401,7 @@ export function Profile() {
                     }}
                   />
                 </div>
-                <div className="profile_cont_mainContent_editing_password">
+                {/* <div className="profile_cont_mainContent_editing_password">
                   <h4 className="profile_cont_mainContent_editing_password_title">
                     Password:
                   </h4>
@@ -428,7 +430,7 @@ export function Profile() {
                       <img src={HideVisibility} alt="Hide password" />
                     )}
                   </div>
-                </div>
+                </div> */}
                 <div className="profile_cont_mainContent_editing_cta">
                   <p
                     className="profile_cont_mainContent_editing_cta_deleteBtn"

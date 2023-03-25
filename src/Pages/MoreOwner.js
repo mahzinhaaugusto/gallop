@@ -12,15 +12,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { API_ENDPOINT } from "../server";
+import { MyHorsesCard } from "./MyHorses";
+import { MoreOwnerCards } from "../Components/MoreOwnerCards";
+
 
 export function MoreOwner() {
   let navigate = useNavigate();
 
   let location = useLocation();
-
-  const goBack = () => {
-    console.log("works");
-  };
+  let [horses, setMyHorses] = useState([]);
+ 
 
   const moreClick = () => {
     console.log("works");
@@ -28,21 +29,37 @@ export function MoreOwner() {
 
   /* const HorseObj = location.state.horse; */
   // console.log(HorseObj);
-  let [userData, setUserData] = useState([]);
-
+  //let [userData, setUserData] = useState([]);
+  let userData = location.state.ownerInfo;
+  let horse = location.state.horses;
+  console.log(userData);
+  const goBack = () => {
+    navigate("/horse-detail",{
+      state:{
+        horse:horse,
+      }
+    });
+  };
+  let myHorsesArr = [];
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
       console.log("sorry");
       navigate("/login");
     }
-    Axios.get(`${API_ENDPOINT}get`).then((response) => {
-      for (let i = 0; i < response.data.length; i++) {
-        if (response.data[i].ID == location.state.horse.ID)
-          setUserData(response.data[i]);
-      }
+    Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
+      //console.log(id);
+      // console.log(response.data[0].horseID);
+      setMyHorses(response.data);
     });
-  }, []);
-  console.log(userData);
+  }, []
+  );
+  for (let i = 0; i < horses.length; i++) {
+    //console.log(myHorses);
+    if (userData.ID == horses[i].ID) {
+      myHorsesArr.push(horses[i]);
+    }
+  }
+  //console.log(myHorsesArr);
   return (
     <div className="moreOwner_master">
       <NavBar />
@@ -50,7 +67,7 @@ export function MoreOwner() {
         <h2>More from {userData.firstName}</h2>
         <div className="moreOwner_cont">
           <div className="moreOwner_cont_header">
-            <p className="moreOwner_cont_header_backButton">
+            <p className="moreOwner_cont_header_backButton" onClick={goBack}>
               <img src={BackButton}></img> Back
             </p>
             <div className="moreOwner_cont_header_content">
@@ -80,7 +97,7 @@ export function MoreOwner() {
             <FilterDropdown />
             <SortByDropdown />
           </div>
-          <div className="moreOwner_cont_cards">{/* <HorseCard/> */}</div>
+          <div className="moreOwner_cont_cards"><MoreOwnerCards myHorse={myHorsesArr} /></div>
         </div>
         <div className="moreOwner_master_inner">
           <Footer />

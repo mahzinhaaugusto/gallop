@@ -1,73 +1,90 @@
 import horse from "../icons/Horse.png";
 import { Button } from "../Components/Button";
 import { useState } from "react";
-// import { PopUp } from "../Components/PopUp";
-import { useNavigate } from "react-router-dom";
+import { PopUp } from "../Components/PopUp";
+// import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_ENDPOINT } from "../server";
+
 
 export function ForgotPassword() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [forgotPass, setForgotPass] = useState(true);
+    const [showPopUp, setShowPopUP] = useState(false);
+    // const [forgotPass, setForgotPass] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [exists, setExists] = useState("");
+    const [email, setEmail] = useState("");
 
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
-    const resetPassword = () => {
-        setShowPassword(!showPassword);
-        setForgotPass(!forgotPass);
-        console.log("working");
+    const checkEmail = async (email) => {
+        const response = await axios.get(`${API_ENDPOINT}checkemail`, {
+            params: { email }
+        });
+        return response.data.emailExists;
     }
 
-    const redirect = () => {
-        navigate("/login");
+    // const intervalRedirect = () => {
+    //     navigate("/login");
+    // }
+
+    const resetPass = async () => {
+        let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        let a = email.match(validRegex);
+
+        if (email === "" || !a) {
+            setErrorMessage("Please provide a valid email");
+        } else {
+
+            const emailExists = await checkEmail(email);
+
+            if (!emailExists) {
+                setExists("This is not a valid email, please provide a valid email");
+            } else {
+                axios.post(`${API_ENDPOINT}forgotpassword`, {
+                    email: email
+                })
+                setShowPopUP(!showPopUp);
+                // setInterval(intervalRedirect, 3000);
+            }
+        }
     }
 
     return (
         <>
-            {forgotPass && (
-                <div className="forgotPassword_master">
-                    <div className="forgotPassword">
-                        <div className="forgotPassword_image">
-                            <img className="splashScreen_background" src={horse} alt="Splash Screen" />
-                        </div>
+            <div className="forgotPassword_master">
+                <div className="forgotPassword">
+                    <div className="forgotPassword_image">
+                        <img className="splashScreen_background" src={horse} alt="Splash Screen" />
+                    </div>
 
-                        <div className="forgotPassword_cont_content">
-                            <h1>Forgot Password?</h1>
+                    <div className="forgotPassword_cont_content">
+                        <h1>Forgot Password?</h1>
 
-                            <label className="forgotPassword_cont_content_label require">Email Address</label>
-                            <input
-                                type="email"
-                                name="Email"
-                                placeholder="example@email.com"
-                            // onChange={(e) => {
-                            //     setEmail(e.target.value);
-                            // }}
-                            ></input>
-
-                            <div className="forgotPassword_cont_btn">
-                                <Button title="Reset Password" className="forgotPassword_cont_btn_reset" onClick={resetPassword} />
-                                <a href="/login">Back to Sign In Page</a>
-                            </div>
+                        <label className="forgotPassword_cont_content_label require">Email Address</label>
+                        <input
+                            type="email"
+                            name="Email"
+                            placeholder="example@email.com"
+                            onChange={(e) => {
+                                setErrorMessage("");
+                                setExists("");
+                                setEmail(e.target.value);
+                            }}
+                        ></input>
+                        <p className="warning">{errorMessage}</p>
+                        <p className="warning">{exists}</p>
+                        <div className="forgotPassword_cont_btn">
+                            <Button title="Request New Password" className="forgotPassword_cont_btn_reset" onClick={resetPass} />
+                            <Link to="/login">Back to Sign In Page</Link>
                         </div>
                     </div>
                 </div>
-            )}
-
-            {showPassword && (
-                <div className="forgotPassword_master">
-                    <div className="forgotPassword">
-                        <div className="forgotPassword_image">
-                            <img className="splashScreen_background" src={horse} alt="Splash Screen" />
-                        </div>
-
-                        <div className="forgotPassword_cont_content">
-                            <h1>Forgot Password?</h1>
-                            <p>The instructions to retrieve your password were sent to your email.</p>
-                            <p>Please check the email and proceed with the instructions.</p>
-                            <div className="forgotPassword_cont_btn">
-                                <Button title="Back to Sign In page" className="forgotPassword_cont_btn_reset" onClick={redirect} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            {showPopUp && (
+                <PopUp title="Reset Password Requested" description="Please check your inbox for a reset password link">
+                </PopUp>
             )}
         </>
     )

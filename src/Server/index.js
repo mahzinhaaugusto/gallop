@@ -3,8 +3,24 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 require("dotenv").config();
 let apikey = process.env.APIKEY;
+const OAuth2 = google.auth.OAuth2;
+const UIDGenerator = require('uid-generator');
+const uidgen = new UIDGenerator();
+
+const oauth2Client = new OAuth2(
+  process.env.OAUTH_CLIENTID,
+  process.env.OAUTH_CLIENT_SECRET,
+  "https://developers.google.com/oauthplayground"
+);
+
+oauth2Client.setCredentials({
+  refresh_token: process.env.OAUTH_REFRESH_TOKEN,
+});
+const accessToken = oauth2Client.getAccessToken();
 
 const db = mysql.createPool({
   host: process.env.HOST,
@@ -24,6 +40,17 @@ app.get("/api/get", (req, res) => {
   });
 });
 
+app.get("/api/checkemail", (req, res) => {
+  const { email } = req.query;
+  const sqlCheckEmail =
+    "SELECT COUNT (*) AS count FROM userinfo WHERE email = ?;";
+  db.query(sqlCheckEmail, [email], (er, re) => {
+    const count = re[0].count;
+    const emailExists = count > 0;
+    return res.json({ emailExists });
+  });
+});
+
 app.post("/api/delete", (req, res) => {
   const id = req.body.id;
   console.log(id);
@@ -36,6 +63,7 @@ app.post("/api/delete", (req, res) => {
     console.log(re);
   });
 });
+
 app.post("/api/deletefav", (req, res) => {
   const id = req.body.id;
   const deleteOne = "delete from favoritehorses where favoriteid = ?;";
@@ -51,7 +79,7 @@ app.get("/api/allhorses", (req, res) => {
   });
 });
 
-app.get("/api/favHorses", (req, res) => {
+app.get("/api/favhorses", (req, res) => {
   const selectAll = "SELECT * FROM favoritehorses;";
   db.query(selectAll, (er, re) => {
     res.send(re);
@@ -146,9 +174,14 @@ app.post("/api/insertHorse", (req, res) => {
   const skills = req.body.discipline;
   const uid = req.body.uid;
   const horseThumb = req.body.horseThumb;
+  const horsePhotos1 = req.body.horsePhotos1;
+  const horsePhotos2 = req.body.horsePhotos2;
+  const horsePhotos3 = req.body.horsePhotos3;
+
+  console.log(horsePhotos1);
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -165,6 +198,9 @@ app.post("/api/insertHorse", (req, res) => {
       location,
       uid,
       horseThumb,
+      horsePhotos1,
+      horsePhotos2,
+      horsePhotos3,
     ],
     (err, result) => {
       console.log(result);
@@ -174,11 +210,86 @@ app.post("/api/insertHorse", (req, res) => {
 
 app.post("/api/deletehorse", (req, res) => {
   const id = req.body.id;
-  console.log(id);
+  // console.log(id);
   const sqlDelete = "DELETE FROM horseinfo WHERE horseID = ?;";
-  db.query(sqlDelete[id], (er, re) => {
-    res.send(re);
+  db.query(sqlDelete, [id], (er, re) => {
+    console.log(re);
   });
+});
+
+app.post("/api/forgotpassword", (req, res) => {
+  const email = req.body.email;
+  const uid = uidgen.generateSync();
+  // console.log(uid);
+
+  const sqlFindEmail = "SELECT * FROM userinfo WHERE email = ?;";
+
+  const sqlIncludeToken = "UPDATE userinfo SET token = ? WHERE email = ?;"
+
+  db.query(sqlIncludeToken, [uid, email], (er, re) => {
+    // console.log(uid);
+    // console.log(email);
+  })
+
+  db.query(sqlFindEmail, [email], (er, re) => {
+    // console.log(email);
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.GOOGLE_EMAIL_ACCOUNT,
+        pass: process.env.GOOGLE_EMAIL_PASSWORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+        accessToken: accessToken,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    const mailOptions = {
+      from: "thegallopapp@gmail.com",
+      to: `${email}`,
+      subject: "Forgot Password Requested - Gallop",
+      text:
+        "You are receiving this email because there was a request for resetting the password for your account.\n\n" +
+        "Please click on the following link, or paste this into your browser to complete the process.\n\n" +
+        `http://localhost:3000/reset-password\n\n` +
+        `Please provide the following token to allow you to make changes to your password: ${uid}\n\n` +
+        "If you did not request this, please ignore this email and your password remain unchanged.\n\n" +
+        "Cheers from Gallop\n\n"
+    };
+
+    transporter.sendMail(mailOptions, (er, re) => {
+      if (er) {
+        console.error("Error: ", er);
+      } else {
+        console.log("Response: ", re);
+        res.status(200).json("Recovery email sent");
+      }
+    });
+  });
+});
+
+app.post("/api/reset", (req, res) => {
+  const token = req.body.token;
+  // console.log(token);
+  const password = req.body.userPassword;
+  // console.log(password);
+  const sqlReset =
+    "UPDATE userinfo SET userPassword = ?  WHERE token = ?";
+  db.query(
+    sqlReset,
+    [
+      password,
+      token
+    ],
+    (err, result) => {
+      console.log(err);
+    }
+  );
 });
 
 app.listen(3002, () => {
