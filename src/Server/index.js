@@ -15,11 +15,11 @@ const oauth2Client = new OAuth2(
   process.env.OAUTH_CLIENTID,
   process.env.OAUTH_CLIENT_SECRET,
   "https://developers.google.com/oauthplayground"
-)
+);
 
 oauth2Client.setCredentials({
-  refresh_token: process.env.OAUTH_REFRESH_TOKEN
-})
+  refresh_token: process.env.OAUTH_REFRESH_TOKEN,
+});
 const accessToken = oauth2Client.getAccessToken();
 
 const db = mysql.createPool({
@@ -42,7 +42,8 @@ app.get("/api/get", (req, res) => {
 
 app.get("/api/checkemail", (req, res) => {
   const { email } = req.query;
-  const sqlCheckEmail = "SELECT COUNT (*) AS count FROM userinfo WHERE email = ?;";
+  const sqlCheckEmail =
+    "SELECT COUNT (*) AS count FROM userinfo WHERE email = ?;";
   db.query(sqlCheckEmail, [email], (er, re) => {
     const count = re[0].count;
     const emailExists = count > 0;
@@ -180,7 +181,7 @@ app.post("/api/insertHorse", (req, res) => {
   console.log(horsePhotos1);
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -197,7 +198,9 @@ app.post("/api/insertHorse", (req, res) => {
       location,
       uid,
       horseThumb,
-
+      horsePhotos1,
+      horsePhotos2,
+      horsePhotos3,
     ],
     (err, result) => {
       console.log(result);
@@ -242,8 +245,8 @@ app.post("/api/forgotpassword", (req, res) => {
         accessToken: accessToken,
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     });
 
     const mailOptions = {
@@ -266,9 +269,9 @@ app.post("/api/forgotpassword", (req, res) => {
         console.log("Response: ", re);
         res.status(200).json("Recovery email sent");
       }
-    })
-  })
-})
+    });
+  });
+});
 
 app.post("/api/reset", (req, res) => {
   const token = req.body.token;

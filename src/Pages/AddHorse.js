@@ -29,15 +29,15 @@ export function AddHorse() {
   const [discipline, setDiscipline] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
-  const [p,setP]=useState("");
+  const [p, setP] = useState("");
   //const [horsePhotos, setHorsePhotos] = useState([]);
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
   let navigate = useNavigate();
   let horsePhotos = [];
-let location = sessionStorage.getItem("city");
-console.log(location);
+  let location = sessionStorage.getItem("city");
+  console.log(location);
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
       console.log("sorry");
@@ -46,24 +46,16 @@ console.log(location);
     console.log(localStorage.getItem("id"));
   });
   const clickPlus = (event) => {
-
     const file = event.target.files[0];
     if (horsePhotos.length >= 3) {
       alert("you cannot select more than three photos");
-    }
-    else {
-
+    } else {
       horsePhotos.push(file);
       console.log(horsePhotos);
     }
-
-
-
   };
   const clickPlusOfThumb = () => {
     //document.getElementById("thumb").style.display = "block";
-
-
   };
   const photoSeleceted = (event) => {
     const file = event.target.files[0];
@@ -92,79 +84,91 @@ console.log(location);
     console.log(data);
     setDiscipline(data);
   };
-  async function uploadPhotos(){
+  async function uploadPhotos() {
     const storage = getStorage();
     //console.log(horsePhotos);
     let photoArray = [];
-    
-    if(horsePhotos[0]!=""){
-      for(let i=0;i<3;i++){
-        //console.log(horsePhotos[i].name);
-        let hName = name+i;
-        if(horsePhotos[i]){
-        //console.log(horsePhotos[i]);
-         const storageR = ref(storage, `Horsephoto/${hName}`);
-        await uploadBytes(storageR, horsePhotos[i]).then(() => {
-           getDownloadURL(storageR).then((res) => {
-        photoArray[i] =res;
-       setP(res);
-//console.log(p);
 
+    if (horsePhotos[0] != "") {
+      for (let i = 0; i < 3; i++) {
+        //console.log(horsePhotos[i].name);
+        let hName = name + i;
+        if (horsePhotos[i]) {
+          //console.log(horsePhotos[i]);
+          const storageR = ref(storage, `Horsephoto/${hName}`);
+          await uploadBytes(storageR, horsePhotos[i]).then(() => {
+            getDownloadURL(storageR).then((res) => {
+              photoArray[i] = res;
+              setP(res);
+              //console.log(p);
+            });
           });
-        }); 
+        }
       }
     }
-    }
-   console.log(p);
+    console.log(p);
     return photoArray;
   }
   const clickSave = () => {
     const storage = getStorage();
-//console.log(horsePhotos);
-let photoArray = [];
+    let photoArray = [];
     const storageRef = ref(storage, `Horsephoto/${photo.name}`);
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
-        //setHorseThumb(result);
-        if(horsePhotos[0]!=""){
-          for(let i=0;i<3;i++){
-            //console.log(horsePhotos[i].name);
-            let hName = name+i;
-            if(horsePhotos[i]){
-            //console.log(horsePhotos[i]);
-             const storageR = ref(storage, `Horsephoto/${hName}`);
-             uploadBytes(storageR, horsePhotos[i]).then(() => {
-               getDownloadURL(storageR).then((res) => {
-            photoArray[i] =res;
-          // setP(res);
-    //console.log(p);
-    
+        if (horsePhotos[0] != "") {
+          let uploadPromises = [];
+          for (let i = 0; i < 3; i++) {
+            let hName = name + i;
+            if (horsePhotos[i]) {
+              const storageR = ref(storage, `Horsephoto/${hName}`);
+              let promise = uploadBytes(storageR, horsePhotos[i]).then(() => {
+                return getDownloadURL(storageR);
               });
-            }); 
+              uploadPromises.push(promise);
+            }
           }
+          Promise.all(uploadPromises).then((results) => {
+            results.forEach((res, index) => {
+              photoArray[index] = res;
+            });
+            let uid = localStorage.getItem("id");
+            Axios.post("http://localhost:3002/api/insertHorse", {
+              name: name,
+              gender: gender,
+              breed: breed,
+              age: age,
+              height: height,
+              color: color,
+              breedMethod: breedMethod,
+              price: price,
+              description: description,
+              location: location,
+              discipline: discipline,
+              uid: uid,
+              horseThumb: result,
+              horsePhotos1: photoArray[0],
+              horsePhotos2: photoArray[1],
+              horsePhotos3: photoArray[2],
+            });
+          });
+        } else {
+          let uid = localStorage.getItem("id");
+          Axios.post("http://localhost:3002/api/insertHorse", {
+            name: name,
+            gender: gender,
+            breed: breed,
+            age: age,
+            height: height,
+            color: color,
+            breedMethod: breedMethod,
+            price: price,
+            description: description,
+            location: location,
+            discipline: discipline,
+            uid: uid,
+            horseThumb: result,
+          });
         }
-      }
-       console.log(photoArray);
-        let uid = localStorage.getItem("id");
-        Axios.post("http://localhost:3002/api/insertHorse", {
-          name: name,
-          gender: gender,
-          breed: breed,
-          age: age,
-          height: height,
-          color: color,
-          breedMethod: breedMethod,
-          price: price,
-          description: description,
-          location: location,
-          discipline: discipline,
-          uid: uid,
-          horseThumb: result,
-          horsePhotos1: photoArray[0],
-          horsePhotos2: photoArray[1],
-          // horsePhotos3
-          horsePhotos3: photoArray[2],
-        });
       });
     });
     setShowSavePopUp(!showSavePopUp);
@@ -235,8 +239,8 @@ let photoArray = [];
                     <option value="" disabled selected>
                       Gender
                     </option>
-                    <option value="stallion">Stallion</option>
-                    <option value="mare">Mare</option>
+                    <option value="Stallion">Stallion</option>
+                    <option value="Mare">Mare</option>
                   </select>
                 </div>
                 <div className="addHorse_cont_basics_details_breed">
@@ -310,8 +314,8 @@ let photoArray = [];
                     <option value="" disabled selected>
                       Breeding Method
                     </option>
-                    <option value="natural">Natural</option>
-                    <option value="artificial">Insemination</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Artificial">Insemination</option>
                   </select>
                 </div>
               </div>
@@ -341,8 +345,6 @@ let photoArray = [];
                   onChange={photoSeleceted}
                 /> */}
 
-
-
                 {previewUrl && (
                   <img
                     src={previewUrl}
@@ -359,10 +361,16 @@ let photoArray = [];
                   <p>Upload Thumbnail</p>
                   <div onClick={clickPlusOfThumb}>
                     <label for="thumb">
-
                       <img src={AddMedia} alt="not " />
                     </label>
-                    <input type="file" accept="image/png, image/jpeg" className="addHorse_cont_basics_upload_thumbnail_input" name="newBackground" id="thumb" onChange={photoSeleceted} />
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg"
+                      className="addHorse_cont_basics_upload_thumbnail_input"
+                      name="newBackground"
+                      id="thumb"
+                      onChange={photoSeleceted}
+                    />
                   </div>
                 </div>
               </div>
@@ -377,10 +385,16 @@ let photoArray = [];
                   <p>Up to 3 photos </p>
                   <div>
                     <label for="thumbforphotos">
-
                       <img alt="Add horse media" src={AddMedia} />
                     </label>
-                    <input type="file" accept="image/png, image/jpeg" className="addHorse_cont_basics_upload_media_content_image" name="horsePhotos" id="thumbforphotos" onChange={clickPlus} />
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg"
+                      className="addHorse_cont_basics_upload_media_content_image"
+                      name="horsePhotos"
+                      id="thumbforphotos"
+                      onChange={clickPlus}
+                    />
                   </div>
                 </div>
               </div>
@@ -418,9 +432,15 @@ let photoArray = [];
                     <label for="thumbfordocuments">
                       <img alt="Add horse media" src={AddMedia} />
                     </label>
-                    <input type="file" accept="image/png, image/jpeg, .pdf, .doc, .docx, .xls, .xlsx, text" className="addHorse_cont_basics_upload_media_content_image" name="horseDocuments" id="thumbfordocuments" onChange={clickPlus} />
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg, .pdf, .doc, .docx, .xls, .xlsx, text"
+                      className="addHorse_cont_basics_upload_media_content_image"
+                      name="horseDocuments"
+                      id="thumbfordocuments"
+                      onChange={clickPlus}
+                    />
                   </div>
-                  
                 </div>
               </div>
             </div>
@@ -459,8 +479,6 @@ let photoArray = [];
                 /* onChange={(e) => {
                   setLocation(e.sessionStorage.setItem("city", city));
                 }} */
-                
-                
               ></input>
             </div>
             <div className="addHorse_cont_aboutOwner_displayHorse">

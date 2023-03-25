@@ -1,16 +1,18 @@
 import { useState } from "react";
 
-export function BreedingMethod() {
+export function BreedingMethod(props) {
   const [checkedNatural, setCheckedNatural] = useState(false);
   const [checkedArtificial, setCheckedArtificial] = useState(false);
 
   const handlerNatural = () => {
     setCheckedNatural(!checkedNatural);
-    console.log("natural");
+    // console.log("natural");
+    props.handleMessage("natural");
   };
   const handlerArtificial = () => {
     setCheckedArtificial(!checkedArtificial);
-    console.log("artificial");
+    props.handleMessage("artificial");
+    //console.log("artificial");
   };
 
   return (
