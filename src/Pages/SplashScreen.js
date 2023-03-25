@@ -1,11 +1,11 @@
 import horse from "../icons/Horse.png";
 import WhiteLogo from "../icons/WhiteLogo.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../Components/Button";
 import { useNavigate, Link } from "react-router-dom";
 // import { GoogleLogin } from '@react-oauth/google';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
+// import { useGoogleLogin } from '@react-oauth/google';
 // import { Login } from "./Login";
 
 export function SplashScreen() {
@@ -89,9 +89,15 @@ export function SplashScreen() {
 }
 
 function GoogleButton() {
+    const [accessToken, setAccessToken] = useState(null);
+
     const signUpGoogle = useGoogleLogin({
-        onSuccess: codeResponse => console.log(codeResponse)
+        onSuccess: codeResponse => {
+            const access_token = codeResponse.access_token;
+            setAccessToken(access_token);
+        }
     })
+    console.log(accessToken);
 
     return (
         <button className="splashScreen_cont_btn_google" onClick={() => signUpGoogle()}>Continue with Google</button>
