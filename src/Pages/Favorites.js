@@ -17,6 +17,7 @@ export function Favorites() {
       //setFavoritehorses(response.data);
       //console.log(response.data);
       let favorites = [];
+      
       Axios.get(`${API_ENDPOINT}allhorses`).then((res) => {
         //setHorseInfo(response.data);
         //console.log(allHorses);

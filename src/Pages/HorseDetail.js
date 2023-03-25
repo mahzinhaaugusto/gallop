@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { API_ENDPOINT } from "../server";
-import {CarouselHorseDetail} from "../Components/CarouselHorseDetail";
+import { CarouselHorseDetail } from "../Components/CarouselHorseDetail";
 
 export function HorseDetail() {
   let navigate = useNavigate();
@@ -48,7 +48,8 @@ export function HorseDetail() {
       }
     });
   }, []);
-  console.log(userData);
+  //console.log(userData);
+  //console.log("!!", HorseObj)
 
   return (
     <div className="horseDetail_master">
@@ -63,7 +64,7 @@ export function HorseDetail() {
             </p>
             <div className="horseDetail_cont_one">
               <div className="horseDetail_cont_image">
-              {/*   <CarouselHorseDetail /> */}
+                {/*   <CarouselHorseDetail /> */}
                 {/* <img
                   src={HorseObj.img}
                   height="400px"
@@ -111,6 +112,10 @@ export function HorseDetail() {
                   </div>
                 </div>
                 <div className="horseDetail_cont_information_body">
+                  <div className="horseDetail_cont_information_body_breed">
+                    <label>Breed</label>
+                    <p>{HorseObj.breed}</p>
+                  </div>
                   <div className="horseDetail_cont_information_body_height">
                     <label>Height</label>
                     <p>{HorseObj.height + " Feet"}</p>
