@@ -133,3 +133,9 @@ npm install dotenv --save
 ```
 npm install @react-oauth/google@latest
 ```
+
+### 18 - Install React Paginate
+
+```
+npm install react-paginate --save
+```
