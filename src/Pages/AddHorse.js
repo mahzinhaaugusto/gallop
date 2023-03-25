@@ -84,7 +84,7 @@ export function AddHorse() {
       getDownloadURL(storageRef).then((result) => {
         //setHorseThumb(result);
         let uid = localStorage.getItem("id");
-        Axios.post(${API_ENDPOINT}"insertHorse", {
+        Axios.post(`${API_ENDPOINT}insertHorse`, {
           name: name,
           gender: gender,
           breed: breed,
