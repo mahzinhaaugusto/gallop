@@ -22,25 +22,33 @@ export function Favorites() {
         //console.log(allHorses);
 
         for (let i = 0; i < response.data.length; i++) {
-          for (let j = 0; j < res.data.length; j++) {
-            if (res.data[j].horseID == response.data[i].horseID) {
-              favorites.push(res.data[j]);
+          console.log(localStorage.getItem("id"));
+          console.log(response.data[i].ID);
+
+          if (localStorage.getItem("id") == response.data[i].ID) {
+            console.log("hello");
+            for (let j = 0; j < res.data.length; j++) {
+              if (response.data[i].horseID == res.data[j].horseID)
+                favorites.push(res.data[j]);
             }
           }
         }
         //console.log(favorites);
 
         setFavoritehorses(favorites);
+        console.log(favorites);
       });
+      //console.log(response.data);
+      // setFavoritehorses(response.data);
     });
   }, []);
-  useEffect(() => {
-    if (localStorage.getItem("id") === null) {
-      console.log("sorry");
-      navigate("/login");
-    }
-    console.log(favHorses);
-  }, [favHorses]);
+  // useEffect(() => {
+  //   if (localStorage.getItem("id") === null) {
+  //     console.log("sorry");
+  //     navigate("/login");
+  //   }
+  //   console.log(favHorses);
+  // }, [favHorses]);
   return (
     <div className="favorites_master">
       <NavBar />

@@ -2,27 +2,25 @@ import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import colorList from "../colorList.json";
 
-export function Color({ onChange, className }) {
-  let selectColor = onChange;
-
+export function ColorForFilter({ handleMessage }) {
   const options = colorList.colorList;
 
   return (
-    <div className={className}>
+    <div>
       <label className="filter_cont_color_label">Colour</label>
       <div className="filter_cont_color">
         <ColorDropdown
           isSearchable
           placeholder="Colour"
           options={options}
-          selectColor={selectColor}
+          handleMessage={handleMessage}
         />
       </div>
     </div>
   );
 }
 
-function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
+function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
   const [showOptions, setShowOptions] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(null);
@@ -83,7 +81,7 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    selectColor(option.label);
+    handleMessage(option.label);
   };
 
   const isSelected = (option) => {
