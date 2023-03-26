@@ -5,7 +5,7 @@ import { SortByDropdown } from "../Components/SortBy";
 import { FilterDropdown } from "../Components/Filter";
 import { HorseCard } from "../Components/HorseCard";
 import { useNavigate } from "react-router-dom";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 // import { PopUp } from "../Components/PopUp";
 // import { Button } from "../Components/Button";
 import { Footer } from "../Components/Footer";
@@ -18,27 +18,115 @@ export function MainPage() {
   let navigate = useNavigate();
   const [filterData, setFilter] = useState();
 
+  const sortType = (data) => {
+    let sql = "select * from horseinfo order by price ";
+    if (data == "high") {
+      sql = sql + "desc;";
+      // console.log(sql);
+    }
+    Axios.get(`${API_ENDPOINT}priceorder`, {
+      params: { sql },
+    }).then((response) => {
+      setHorseInfo(response.data);
+    });
+  };
+
   const filterReturn = (data) => {
     setFilter(data);
-    //console.log(data);
+    console.log(data);
     //console.log(allHorses);
     let horseDatas = [...allHorses];
+    console.log(horseDatas);
     for (const key in data) {
       let newList = [];
-
-      for (let i = 0; i < horseDatas.length; i++) {
-        //console.log(`${key}: ${user[key]}`);
-
-        if (data[key] == horseDatas[i][key]) {
-          newList.push(horseDatas[i]);
+      if (key == "gender") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (data[key] == horseDatas[i][key]) {
+            newList.push(horseDatas[i]);
+          }
         }
+        horseDatas = [...newList];
       }
-      horseDatas = [...newList];
-      // setHorseInfo(newList);
-      console.log(horseDatas);
+      if (key == "breedingMethod") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (data[key] == horseDatas[i][key]) {
+            newList.push(horseDatas[i]);
+          }
+        }
+        horseDatas = [...newList];
+      }
+      if (key == "discipline") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (horseDatas[i].skills.includes(data[key])) {
+            newList.push(horseDatas[i]);
+          }
+        }
+        horseDatas = [...newList];
+      }
+      if (key == "breed") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (data[key] == horseDatas[i][key]) {
+            newList.push(horseDatas[i]);
+          }
+        }
+        horseDatas = [...newList];
+      }
+      if (key == "color") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (data[key] == horseDatas[i][key]) {
+            newList.push(horseDatas[i]);
+          }
+        }
+        horseDatas = [...newList];
+      }
+      if (key == "minHeight") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (
+            data[key] <= horseDatas[i].height &&
+            data.maxHeight >= horseDatas[i].height
+          ) {
+            newList.push(horseDatas[i]);
+          }
+        }
+        horseDatas = [...newList];
+      }
+      if (key == "minAge") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (
+            data[key] <= horseDatas[i].horseAge &&
+            data.maxAge >= horseDatas[i].horseAge
+          ) {
+            newList.push(horseDatas[i]);
+          }
+        }
+        horseDatas = [...newList];
+      }
+      if (key == "minPrice") {
+        for (let i = 0; i < horseDatas.length; i++) {
+          if (
+            data[key] <= horseDatas[i].price &&
+            data.maxPrice >= horseDatas[i].price
+          ) {
+            newList.push(horseDatas[i]);
+          }
+        }
+        horseDatas = [...newList];
+      }
     }
     setHorseInfo(horseDatas);
-    //setHorseInfo(newList);
+
+    //   let newList = [];
+
+    //   for (let i = 0; i < horseDatas.length; i++) {
+
+    //     if (data[key] == horseDatas[i][key]) {
+    //       newList.push(horseDatas[i]);
+    //     }
+    //   }
+    //   horseDatas = [...newList];
+
+    // }
+    // setHorseInfo(horseDatas);
   };
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
@@ -54,18 +142,19 @@ export function MainPage() {
 
   const items = allHorses;
 
-  function Items({currentItems}) {
+  function Items({ currentItems }) {
     console.log(currentItems);
-    
+
     return (
-      <div className='mainPage_cont_horsesCards_innerCont'>
-        {currentItems && currentItems.map((item) => (
-          <HorseCard
-            horseInfo={[item]}
-            onClick={goToHorseDetail}
-            addFavOnClick={addToFavorites}
-          />
-        ))}
+      <div className="mainPage_cont_horsesCards_innerCont">
+        {currentItems &&
+          currentItems.map((item) => (
+            <HorseCard
+              horseInfo={[item]}
+              onClick={goToHorseDetail}
+              addFavOnClick={addToFavorites}
+            />
+          ))}
       </div>
     );
   }
@@ -77,7 +166,7 @@ export function MainPage() {
     // Here we use item offsets; we could also use page offsets
     // following the API or data you're working with.
     const [itemOffset, setItemOffset] = useState(0);
-  
+
     useEffect(() => {
       // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
@@ -85,14 +174,16 @@ export function MainPage() {
       setCurrentItems(items.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(items.length / itemsPerPage));
     }, [itemOffset, itemsPerPage]);
-  
+
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
-      const newOffset = event.selected * itemsPerPage % items.length;
-      console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+      const newOffset = (event.selected * itemsPerPage) % items.length;
+      console.log(
+        `User requested page number ${event.selected}, which is offset ${newOffset}`
+      );
       setItemOffset(newOffset);
     };
-  
+
     return (
       <>
         <Items currentItems={currentItems} />
@@ -153,7 +244,7 @@ export function MainPage() {
             <div className="mainPage_cont_allHorses">
               <h2 className="mainPage_cont_allHorses_title">All Horses</h2>
               <div className="mainPage_cont_allHorses_dropdowns">
-                <SortByDropdown />
+                <SortByDropdown sortType={sortType} />
                 <FilterDropdown filterReturn={filterReturn} />
               </div>
             </div>
