@@ -128,6 +128,7 @@ app.post("/api/insert", (req, res) => {
   const Address = req.body.Address;
   const Website = req.body.Website;
   const phoneNumber = req.body.phoneNumber;
+  const location = req.body.location1;
   const bio =
     "Hey there!!! This is the personal space for you to tell about yourself. To write here please go to edit profile.";
   const userPhoto = req.body.userPhoto;
@@ -135,7 +136,7 @@ app.post("/api/insert", (req, res) => {
     "https://firebasestorage.googleapis.com/v0/b/app1-504b3.appspot.com/o/gallop%2Fhorse.png?alt=media&token=61dbac87-df8f-491a-a358-25bffe79eb6b";
 
   const sqlInsert =
-    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber,bio,userPhoto,backgroundPhoto) VALUES (?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber,bio,userPhoto,backgroundPhoto,location) VALUES (?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -149,6 +150,7 @@ app.post("/api/insert", (req, res) => {
       bio,
       userPhoto,
       backgroundPhoto,
+      location,
     ],
     (err, result) => {
       console.log(result);

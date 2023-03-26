@@ -13,7 +13,7 @@ import Edit from "../icons/Edit.svg";
 // import horse from "../icons/Horse.png";
 // import bcrypt from "bcryptjs";
 import axios from "axios";
-import { googleLogout } from '@react-oauth/google';
+import { googleLogout } from "@react-oauth/google";
 
 export function Profile() {
   const [showProfile, setShowProfile] = useState(true);
@@ -24,7 +24,6 @@ export function Profile() {
   const profileEdit = profileInfo;
   //console.log(profileEdit);
   let navigate = useNavigate();
-
   const editProfile = (event) => {
     setShowPopUpSave(false);
     event.stopPropagation();
@@ -80,8 +79,8 @@ export function Profile() {
     let id = localStorage.getItem("id");
     console.log(id);
     axios.post(`${API_ENDPOINT}delete`, {
-      id: id
-    })
+      id: id,
+    });
     navigate("/");
   };
 
@@ -157,7 +156,7 @@ export function Profile() {
   // TO BE CHANGED!
   const changeBackground = () => {
     console.log("working");
-  }
+  };
 
   return (
     <div className="profile">
@@ -264,7 +263,6 @@ export function Profile() {
                 <p className="profile_cont_backToProfile_text">Back</p>
               </div>
               <div className="profile_cont_header">
-
                 <img
                   src={profileInfo.background}
                   alt="profile background"
@@ -277,7 +275,14 @@ export function Profile() {
                     className="profile_cont_header_background_editing"
                   />
                 </label>
-                <input type="file" accept="image/png, image/jpeg" className="profile_cont_header_background_editing_selection" name="newBackground" id="backgroundChange" onChange={changeBackground} />
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  className="profile_cont_header_background_editing_selection"
+                  name="newBackground"
+                  id="backgroundChange"
+                  onChange={changeBackground}
+                />
                 <div className="profile_cont_header_content">
                   <img
                     src={profileInfo.userPhoto}
