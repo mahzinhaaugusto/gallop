@@ -19,28 +19,29 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
   }
   async function addFavOnClick(horse) {
     try {
-      await axios
-        .get(`${API_ENDPOINT}favhorses`)
-        .then(async (response) => {
-          const favHorses = response.data;
-          let flag = true;
-          for (let i = 0; i < favHorses.length; i++) {
-            if (horse.horseID === favHorses[i].horseID) {
-              flag = false;
-              console.log("deleted");
-              await axios.post(`${API_ENDPOINT}deletefav`, {
-                id: favHorses[i].favoriteid,
-              });
-            }
-          }
-          if (flag) {
-            console.log("added");
-            await axios.post(`${API_ENDPOINT}addfavorite`, {
-              horseid: horse.horseID,
-              uid: localStorage.getItem("id"),
+      await axios.get(`${API_ENDPOINT}favhorses`).then(async (response) => {
+        const favHorses = response.data;
+        let flag = true;
+        for (let i = 0; i < favHorses.length; i++) {
+          if (
+            horse.horseID === favHorses[i].horseID &&
+            favHorses[i].ID == horse.ID
+          ) {
+            flag = false;
+            console.log("deleted");
+            await axios.post(`${API_ENDPOINT}deletefav`, {
+              id: favHorses[i].favoriteid,
             });
           }
-        });
+        }
+        if (flag) {
+          console.log("added");
+          await axios.post(`${API_ENDPOINT}addfavorite`, {
+            horseid: horse.horseID,
+            uid: localStorage.getItem("id"),
+          });
+        }
+      });
     } catch (error) {
       console.error(error);
     }
