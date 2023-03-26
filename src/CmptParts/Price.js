@@ -30,8 +30,8 @@ export function Price(props) {
                 Number(document.getElementById("minPrice").value) + 1;
             }
             props.handleMessage(
-              document.getElementById("minPrice").value,
-              document.getElementById("maxPrice").value
+              Number(document.getElementById("minPrice").value),
+              Number(document.getElementById("maxPrice").value)
             );
           }}
         />
