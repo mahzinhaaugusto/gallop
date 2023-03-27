@@ -10,6 +10,7 @@ let apikey = process.env.APIKEY;
 const OAuth2 = google.auth.OAuth2;
 const UIDGenerator = require("uid-generator");
 const uidgen = new UIDGenerator();
+const axios = require("axios");
 
 const oauth2Client = new OAuth2(
   process.env.OAUTH_CLIENTID,
@@ -35,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/api/get", (req, res) => {
   const sqlSelect = "SELECT * from userinfo;";
   db.query(sqlSelect, (er, re) => {
-    //console.log(re);
+    // console.log(re);
     res.send(re);
   });
 });
@@ -55,6 +56,7 @@ app.get("/api/priceorder", (req, res) => {
   const { sql } = req.query;
   // console.log(sql);
   db.query(sql, (er, re) => {
+    // console.log(re);
     res.send(re);
   });
 });
@@ -83,6 +85,7 @@ app.post("/api/deletefav", (req, res) => {
 app.get("/api/allhorses", (req, res) => {
   const selectAll = "SELECT * FROM horseinfo;";
   db.query(selectAll, (er, re) => {
+    // console.log(re);
     res.send(re);
   });
 });
@@ -90,6 +93,7 @@ app.get("/api/allhorses", (req, res) => {
 app.get("/api/favhorses", (req, res) => {
   const selectAll = "SELECT * FROM favoritehorses;";
   db.query(selectAll, (er, re) => {
+    // console.log(re);
     res.send(re);
   });
 });
@@ -153,26 +157,27 @@ app.post("/api/insert", (req, res) => {
       location,
     ],
     (err, result) => {
-      console.log(result);
+      // console.log(result);
       res.send(result);
     }
   );
 });
 
 app.post("/api/edithorse", (req, res) => {
-  const horseName = req.body.horseName;
-  const horseAge = req.body.horseAge;
-  const breedingMethod = req.body.breedingMethod;
-  const skills = req.body.skills;
+  const horseName = req.body.name;
+  const horseAge = req.body.age;
+  const breedingMethod = req.body.breedMethod;
+  const skills = req.body.discipline;
   const color = req.body.color;
   const gender = req.body.gender;
   const breed = req.body.breed;
   const price = req.body.price;
   const height = req.body.height;
+  const description = req.body.description;
   const horseID = req.body.horseID;
 
   const sqlUpdateHorse =
-    "UPDATE horseinfo SET horseName = ?, horseAge = ?, breedingMethod = ?, skills = ?, color = ?, gender = ?, breed = ?, price = ?, height = ? WHERE horseID = ?;";
+    "UPDATE horseinfo SET horseName = ?, horseAge = ?, breedingMethod = ?, skills = ?, color = ?, gender = ?, breed = ?, price = ?, height = ?, description = ? WHERE horseID = ?;";
 
   db.query(
     sqlUpdateHorse,
@@ -186,11 +191,12 @@ app.post("/api/edithorse", (req, res) => {
       breed,
       price,
       height,
+      description,
       horseID,
     ],
     (err, res) => {
       console.log(res);
-      res.send(res);
+      // res.send(res);
     }
   );
 });
@@ -328,6 +334,40 @@ app.post("/api/reset", (req, res) => {
   db.query(sqlReset, [password, token], (err, result) => {
     console.log(err);
   });
+});
+
+app.get("/api/auth", async (req, res) => {
+  const accessToken = req.headers.authorization.split(' ')[1];
+  const googleUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
+
+  try {
+    const response = await axios.get(googleUrl, {
+      headers: {
+        "Authorization": `Bearer ${accessToken}`
+      }
+    });
+    const userInfo = response.data;
+    console.log(userInfo);
+  }
+  catch (error) {
+    console.log(error.message);
+  }
+});
+
+app.get("/api/totalfav", (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+
+  const sqlTotalFav = "SELECT COUNT(isFavorite) FROM favoritehorses WHERE horseID = ?;"
+  db.query(sqlTotalFav, [id], (err, result) => {
+    // const response = {
+    //   count: result[0].count
+    // }
+
+    // res.json(response);
+    console.log(result);
+    res.send(result);
+  })
 });
 
 app.listen(3002, () => {
