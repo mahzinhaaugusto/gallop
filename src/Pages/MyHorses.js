@@ -28,11 +28,11 @@ export function MyHorses() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
-      console.log(id);
+      // console.log(id);
       // console.log(response.data[0].horseID);
       setMyHorses(response.data);
     });
@@ -80,7 +80,7 @@ export function MyHorses() {
                   className="myHorses_cont_header_icon"
                 />
                 <p className="myHorses_cont_header_text" onClick={backToMain}>
-                  (CALCULATE) Horses
+                  Back
                 </p>
               </div>
               <div className="myHorses_cont_header_assets">
@@ -92,8 +92,8 @@ export function MyHorses() {
               <MyHorsesCard myHorse={myHorsesArr} />
 
               {/* {showEmpty && (
-                                <h1>LOSER</h1>
-                            )} */}
+                <h1>LOSER</h1>
+              )} */}
             </div>
           </div>
         </div>
@@ -106,11 +106,13 @@ export function MyHorses() {
 export function MyHorsesCard({ myHorse }) {
   let navigate = useNavigate();
 
-  const editHorse = () => {
+  const [totalFav, setTotalFav] = useState(0);
+
+  const editHorse = (horse) => {
     navigate("/edit-horse", {
-      // state: {
-      //   horse: horse,
-      // },
+      state: {
+        horse: horse,
+      },
     });
   };
 
@@ -123,6 +125,21 @@ export function MyHorsesCard({ myHorse }) {
     // console.Console.log("yesssss");
   };
 
+  const calculateFav = (id) => {
+    // console.log(id);
+    Axios.get(`${API_ENDPOINT}totalfav`, {
+      id: id
+    })
+      .then((response) => {
+        const counting = response.data;
+        console.log(counting);
+        // console.log(response.data.count);
+        // setTotalFav(counting);
+      })
+
+    // console.log(totalFav);
+  }
+
   return (
     <>
       {myHorse.map((horse, i) => (
@@ -132,7 +149,7 @@ export function MyHorsesCard({ myHorse }) {
               <img src={horse.thumbnail} alt="" />
               <div className="horseCard_myHorses_cont_images_favorite">
                 <img src={FavoriteIcon} alt="" />
-                <p>(CALCULATE)</p>
+                <p onLoad={() => { calculateFav(horse.horseID) }}>{totalFav}</p>
                 <img src={HideShowPass} alt="Show Horse" />
                 <img src={HideVisibility} alt="Hide Horse" />
               </div>
@@ -152,7 +169,9 @@ export function MyHorsesCard({ myHorse }) {
                 <button
                   id="horseCard_myHorses_cont_details_editBtn"
                   type="button"
-                  onClick={editHorse}
+                  onClick={() => {
+                    editHorse(horse)
+                  }}
                 >
                   EDIT
                   <img src={Edit} alt="" />
