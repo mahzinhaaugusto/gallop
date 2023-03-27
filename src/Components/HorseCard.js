@@ -23,15 +23,17 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
         const favHorses = response.data;
         let flag = true;
         for (let i = 0; i < favHorses.length; i++) {
-          if (
-            horse.horseID === favHorses[i].horseID &&
-            favHorses[i].ID == horse.ID
-          ) {
-            flag = false;
-            console.log("deleted");
-            await axios.post(`${API_ENDPOINT}deletefav`, {
-              id: favHorses[i].favoriteid,
-            });
+          ////console.log(horse.ID);
+          // console.log(favHorses[i].ID);
+          if (horse.horseID == favHorses[i].horseID) {
+            console.log(horse.ID);
+            if (favHorses[i].ID == localStorage.getItem("id")) {
+              flag = false;
+              console.log("deleted");
+              await axios.post(`${API_ENDPOINT}deletefav`, {
+                id: favHorses[i].favoriteid,
+              });
+            }
           }
         }
         if (flag) {
