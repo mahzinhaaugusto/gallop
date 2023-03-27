@@ -22,8 +22,8 @@ export function Favorites() {
         //console.log(allHorses);
 
         for (let i = 0; i < response.data.length; i++) {
-          console.log(localStorage.getItem("id"));
-          console.log(response.data[i].ID);
+          //  console.log(localStorage.getItem("id"));
+          //console.log(response.data[i].ID);
 
           if (localStorage.getItem("id") == response.data[i].ID) {
             console.log("hello");
