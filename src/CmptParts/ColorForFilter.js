@@ -81,7 +81,7 @@ function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    handleMessage(option.label);
+    handleMessage(option.value);
   };
 
   const isSelected = (option) => {

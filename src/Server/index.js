@@ -8,7 +8,7 @@ const { google } = require("googleapis");
 require("dotenv").config();
 let apikey = process.env.APIKEY;
 const OAuth2 = google.auth.OAuth2;
-const UIDGenerator = require('uid-generator');
+const UIDGenerator = require("uid-generator");
 const uidgen = new UIDGenerator();
 
 const oauth2Client = new OAuth2(
@@ -48,6 +48,14 @@ app.get("/api/checkemail", (req, res) => {
     const count = re[0].count;
     const emailExists = count > 0;
     return res.json({ emailExists });
+  });
+});
+
+app.get("/api/priceorder", (req, res) => {
+  const { sql } = req.query;
+  // console.log(sql);
+  db.query(sql, (er, re) => {
+    res.send(re);
   });
 });
 
@@ -120,6 +128,7 @@ app.post("/api/insert", (req, res) => {
   const Address = req.body.Address;
   const Website = req.body.Website;
   const phoneNumber = req.body.phoneNumber;
+  const location = req.body.location1;
   const bio =
     "Hey there!!! This is the personal space for you to tell about yourself. To write here please go to edit profile.";
   const userPhoto = req.body.userPhoto;
@@ -127,7 +136,7 @@ app.post("/api/insert", (req, res) => {
     "https://firebasestorage.googleapis.com/v0/b/app1-504b3.appspot.com/o/gallop%2Fhorse.png?alt=media&token=61dbac87-df8f-491a-a358-25bffe79eb6b";
 
   const sqlInsert =
-    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber,bio,userPhoto,backgroundPhoto) VALUES (?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO userinfo(firstName,lastName,userPassword,email,address,website,phoneNumber,bio,userPhoto,backgroundPhoto,location) VALUES (?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -141,6 +150,7 @@ app.post("/api/insert", (req, res) => {
       bio,
       userPhoto,
       backgroundPhoto,
+      location,
     ],
     (err, result) => {
       console.log(result);
@@ -161,7 +171,8 @@ app.post("/api/edithorse", (req, res) => {
   const height = req.body.height;
   const horseID = req.body.horseID;
 
-  const sqlUpdateHorse = "UPDATE horseinfo SET horseName = ?, horseAge = ?, breedingMethod = ?, skills = ?, color = ?, gender = ?, breed = ?, price = ?, height = ? WHERE horseID = ?;";
+  const sqlUpdateHorse =
+    "UPDATE horseinfo SET horseName = ?, horseAge = ?, breedingMethod = ?, skills = ?, color = ?, gender = ?, breed = ?, price = ?, height = ? WHERE horseID = ?;";
 
   db.query(
     sqlUpdateHorse,
@@ -175,11 +186,13 @@ app.post("/api/edithorse", (req, res) => {
       breed,
       price,
       height,
-      horseID
-    ], (err, res) => {
+      horseID,
+    ],
+    (err, res) => {
       console.log(res);
       res.send(res);
-    });
+    }
+  );
 });
 
 app.post("/api/addfavorite", (req, res) => {
@@ -257,12 +270,12 @@ app.post("/api/forgotpassword", (req, res) => {
 
   const sqlFindEmail = "SELECT * FROM userinfo WHERE email = ?;";
 
-  const sqlIncludeToken = "UPDATE userinfo SET token = ? WHERE email = ?;"
+  const sqlIncludeToken = "UPDATE userinfo SET token = ? WHERE email = ?;";
 
   db.query(sqlIncludeToken, [uid, email], (er, re) => {
     // console.log(uid);
     // console.log(email);
-  })
+  });
 
   db.query(sqlFindEmail, [email], (er, re) => {
     // console.log(email);
@@ -292,7 +305,7 @@ app.post("/api/forgotpassword", (req, res) => {
         `http://localhost:3000/reset-password\n\n` +
         `Please provide the following token to allow you to make changes to your password: ${uid}\n\n` +
         "If you did not request this, please ignore this email and your password remain unchanged.\n\n" +
-        "Cheers from Gallop\n\n"
+        "Cheers from Gallop\n\n",
     };
 
     transporter.sendMail(mailOptions, (er, re) => {
@@ -311,18 +324,10 @@ app.post("/api/reset", (req, res) => {
   // console.log(token);
   const password = req.body.userPassword;
   // console.log(password);
-  const sqlReset =
-    "UPDATE userinfo SET userPassword = ?  WHERE token = ?";
-  db.query(
-    sqlReset,
-    [
-      password,
-      token
-    ],
-    (err, result) => {
-      console.log(err);
-    }
-  );
+  const sqlReset = "UPDATE userinfo SET userPassword = ?  WHERE token = ?";
+  db.query(sqlReset, [password, token], (err, result) => {
+    console.log(err);
+  });
 });
 
 app.listen(3002, () => {
