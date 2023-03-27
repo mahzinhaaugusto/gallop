@@ -110,11 +110,12 @@ function FilterCont({ filterReturn }) {
   let navigate = useNavigate();
 
   const applyFilter = () => {
-    console.log("apply button working");
     let filterData = {};
     if (gender != "") filterData.gender = gender;
     if (bMetod != "") filterData.breedingMethod = bMetod;
     if (discipline != "") filterData.discipline = discipline;
+    if (color != "") filterData.color = color;
+    if (bred != "") filterData.breed = bred;
     if (minHeight != "") {
       filterData.minHeight = minHeight;
       filterData.maxHeight = maxheight;

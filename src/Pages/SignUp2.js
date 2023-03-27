@@ -16,7 +16,7 @@ export function SignUp2() {
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
   // const [emailVerifying, setEmailVerifying] = useState([]);
-
+  console.log(sessionStorage.getItem("city"));
   let navigate = useNavigate();
 
   const videoRef = useRef(null);
@@ -67,7 +67,7 @@ export function SignUp2() {
 
   async function checkEmail(email) {
     const response = await Axios.get(`${API_ENDPOINT}checkemail`, {
-      params: { email }
+      params: { email },
     });
     return response.data.emailExists;
   }
@@ -78,8 +78,11 @@ export function SignUp2() {
     }
     if (Address === "") {
       setAddressError("Please enter valid address");
-    } else if (phoneNumber !== "" && Address !== "" && phoneNumber.length === 10) {
-
+    } else if (
+      phoneNumber !== "" &&
+      Address !== "" &&
+      phoneNumber.length === 10
+    ) {
       const email = location.state.Email;
       const emailExists = await checkEmail(email);
 
@@ -87,7 +90,6 @@ export function SignUp2() {
         alert("Email already exists");
         navigate("/signup");
       } else {
-
         Axios.post(`${API_ENDPOINT}insert`, {
           firstName: location.state.firstName,
           lastName: location.state.lastName,
@@ -97,16 +99,16 @@ export function SignUp2() {
           Website: Website,
           phoneNumber: phoneNumber,
           userPhoto: userPhoto,
-        })
-          .then((res) => {
-            let d = res.data;
-            localStorage.setItem("id", d.insertId);
-            alert("data written successfully");
-            navigate("/home");
-          });
+          location1: sessionStorage.getItem("city"),
+        }).then((res) => {
+          let d = res.data;
+          localStorage.setItem("id", d.insertId);
+          alert("data written successfully");
+          navigate("/home");
+        });
       }
     }
-  };
+  }
 
   const profilePicture = () => {
     // cameraOn = true;
