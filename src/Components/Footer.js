@@ -18,7 +18,6 @@ function FooterCont() {
                 <div className="footer_cont_mainContent">
                     <LogoFooter />
                     <Data />
-                    <AboutUs />
                     <Jupiter />
                     <GallopEmail />
                     <Rights />
@@ -68,8 +67,6 @@ function Jupiter() {
     )
 }
 
-// ********************************
-
 function Data() {
     let navigate = useNavigate();
     const goToData = () => {
@@ -77,23 +74,7 @@ function Data() {
     };
     return (
         <div className="footer_cont_documentation">
-            <p onClick={goToData}>Data Analytics</p>
+            <p onClick={goToData}>Statistics</p>
         </div>
     )
 }
-
-function AboutUs() {
-    let navigate = useNavigate();
-    const goToAboutUs = () => {
-        navigate("/about-us");
-    };
-    return (
-        <div className="footer_cont_aboutUs">
-            <p onClick={goToAboutUs}>About Us</p>
-        </div>
-    )
-}
-
-// ********************************
-
-
