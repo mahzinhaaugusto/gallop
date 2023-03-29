@@ -180,8 +180,6 @@ export function Login() {
             </div>
             <div className="buttonArray">
               <button className="secondaryBtn">Continue With Google</button>
-
-              <button className="secondaryBtn">Continue With Apple</button>
             </div>
           </div>
         </div>
