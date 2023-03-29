@@ -1,7 +1,7 @@
 export function Price(props) {
   return (
     <div className="filter_cont_price_exterior">
-      <label className="filter_cont_price_label">Price (Dollars)</label>
+      <label className="filter_cont_price_label">Price (dollars)</label>
       <div className="filter_cont_price">
         <input
           id="minPrice"

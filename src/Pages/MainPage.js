@@ -6,25 +6,28 @@ import { FilterDropdown } from "../Components/Filter";
 import { HorseCard } from "../Components/HorseCard";
 import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
-// import { PopUp } from "../Components/PopUp";
-// import { Button } from "../Components/Button";
 import { Footer } from "../Components/Footer";
 import Axios from "axios";
 import { API_ENDPOINT } from "../server";
 import { useLocation } from "react-router-dom";
+
 export function MainPage() {
   let location = useLocation();
+
   let [allHorses, setHorseInfo] = useState([]);
+
   let navigate = useNavigate();
+
   const [filterData, setFilter] = useState();
 
   const sortType = (data) => {
     let sql = "select * from horseinfo order by price ";
+    // eslint-disable-next-line
     if (data == "high") {
       sql = sql + "desc;";
       // console.log(sql);
     }
-    Axios.get(`${API_ENDPOINT}priceorder`, {
+    Axios.get(`${process.env.REACT_APP_API_URL}priceorder`, {
       params: { sql },
     }).then((response) => {
       setHorseInfo(response.data);
@@ -39,22 +42,27 @@ export function MainPage() {
     console.log(horseDatas);
     for (const key in data) {
       let newList = [];
+      // eslint-disable-next-line
       if (key == "gender") {
         for (let i = 0; i < horseDatas.length; i++) {
+          // eslint-disable-next-line
           if (data[key] == horseDatas[i][key]) {
             newList.push(horseDatas[i]);
           }
         }
         horseDatas = [...newList];
       }
+      // eslint-disable-next-line
       if (key == "breedingMethod") {
         for (let i = 0; i < horseDatas.length; i++) {
+          // eslint-disable-next-line
           if (data[key] == horseDatas[i][key]) {
             newList.push(horseDatas[i]);
           }
         }
         horseDatas = [...newList];
       }
+      // eslint-disable-next-line
       if (key == "discipline") {
         for (let i = 0; i < horseDatas.length; i++) {
           if (horseDatas[i].skills.includes(data[key])) {
@@ -63,22 +71,27 @@ export function MainPage() {
         }
         horseDatas = [...newList];
       }
+      // eslint-disable-next-line
       if (key == "breed") {
         for (let i = 0; i < horseDatas.length; i++) {
+          // eslint-disable-next-line
           if (data[key] == horseDatas[i][key]) {
             newList.push(horseDatas[i]);
           }
         }
         horseDatas = [...newList];
       }
+      // eslint-disable-next-line
       if (key == "color") {
         for (let i = 0; i < horseDatas.length; i++) {
+          // eslint-disable-next-line
           if (data[key] == horseDatas[i][key]) {
             newList.push(horseDatas[i]);
           }
         }
         horseDatas = [...newList];
       }
+      // eslint-disable-next-line
       if (key == "minHeight") {
         for (let i = 0; i < horseDatas.length; i++) {
           if (
@@ -90,6 +103,7 @@ export function MainPage() {
         }
         horseDatas = [...newList];
       }
+      // eslint-disable-next-line
       if (key == "minAge") {
         for (let i = 0; i < horseDatas.length; i++) {
           if (
@@ -101,6 +115,7 @@ export function MainPage() {
         }
         horseDatas = [...newList];
       }
+      // eslint-disable-next-line
       if (key == "minPrice") {
         for (let i = 0; i < horseDatas.length; i++) {
           if (
@@ -114,23 +129,11 @@ export function MainPage() {
       }
     }
     setHorseInfo(horseDatas);
-
-    //   let newList = [];
-
-    //   for (let i = 0; i < horseDatas.length; i++) {
-
-    //     if (data[key] == horseDatas[i][key]) {
-    //       newList.push(horseDatas[i]);
-    //     }
-    //   }
-    //   horseDatas = [...newList];
-
-    // }
-    // setHorseInfo(horseDatas);
   };
+
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
@@ -138,12 +141,12 @@ export function MainPage() {
 
       //console.log(allHorses);
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const items = allHorses;
 
   function Items({ currentItems }) {
-    console.log(currentItems);
+    // console.log(currentItems);
 
     return (
       <div className="mainPage_cont_horsesCards_innerCont">
@@ -160,17 +163,12 @@ export function MainPage() {
   }
 
   function PaginatedItems({ itemsPerPage }) {
-    // We start with an empty list of items.
     const [currentItems, setCurrentItems] = useState(null);
     const [pageCount, setPageCount] = useState(0);
-    // Here we use item offsets; we could also use page offsets
-    // following the API or data you're working with.
     const [itemOffset, setItemOffset] = useState(0);
 
     useEffect(() => {
-      // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
-      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
       setCurrentItems(items.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(items.length / itemsPerPage));
     }, [itemOffset, itemsPerPage]);
@@ -178,9 +176,9 @@ export function MainPage() {
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
       const newOffset = (event.selected * itemsPerPage) % items.length;
-      console.log(
-        `User requested page number ${event.selected}, which is offset ${newOffset}`
-      );
+      // console.log(
+      //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+      // );
       setItemOffset(newOffset);
     };
 
@@ -208,9 +206,7 @@ export function MainPage() {
         />
       </>
     );
-  }
-
-  //console.log(allHorses);
+  };
 
   const goToHorseDetail = () => {
     console.log("working");
@@ -219,19 +215,6 @@ export function MainPage() {
   const addToFavorites = () => {
     console.log("add fav working");
   };
-
-  // PopUp implementation
-  // const [showPopUp, setShowPopUp] = useState(false);
-
-  // const openPopUp = (event) => {
-  //     event.stopPropagation();
-  //     setShowPopUp(!showPopUp);
-  // }
-
-  // const yes = () => {
-  //     alert("Working");
-  // }
-  // End of PopUp Implementation
 
   return (
     <div className="mainPage">
@@ -249,20 +232,9 @@ export function MainPage() {
               </div>
             </div>
             <div className="mainPage_cont_horsesCards">
-              <PaginatedItems itemsPerPage={6} />
+              <PaginatedItems itemsPerPage={9} />
             </div>
           </div>
-
-          {/* PopUp implementation */}
-          {/* <Button title="Open PopUp" className="testing" onClick={openPopUp} />
-
-                    {showPopUp && (
-                        <PopUp title="Testing" description="Also testing" addContent={
-                            <Button className="popUp_btn" title="Yes" onClick={yes} />
-                        } />
-                    )} */}
-          {/* End of PopUp implementation */}
-
           <Footer />
         </div>
       </div>

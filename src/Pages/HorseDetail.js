@@ -19,12 +19,48 @@ export function HorseDetail() {
 
   let location = useLocation();
 
-  const goBack = () => {
-    navigate("/home");
+  const goBack = (event) => {
+    event.stopPropagation();
+    navigate(-1);
   };
 
+  async function addFavOnClick(horse) {
+    try {
+      await Axios.get(`${API_ENDPOINT}favhorses`).then(async (response) => {
+        const favHorses = response.data;
+        console.log(favHorses);
+        let flag = true;
+        for (let i = 0; i < favHorses.length; i++) {
+          ////console.log(horse.ID);
+          // console.log(favHorses[i].ID);
+          // eslint-disable-next-line
+          if (horse.horseID == favHorses[i].horseID) {
+            console.log(horse.ID);
+            // eslint-disable-next-line
+            if (favHorses[i].ID == localStorage.getItem("id")) {
+              flag = false;
+              console.log("deleted");
+              await Axios.post(`${API_ENDPOINT}deletefav`, {
+                id: favHorses[i].favoriteid,
+              });
+            }
+          }
+        }
+        if (flag) {
+          console.log("added");
+          await Axios.post(`${API_ENDPOINT}addfavorite`, {
+            horseid: horse.horseID,
+            uid: localStorage.getItem("id"),
+          });
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const HorseObj = location.state.horse;
-  console.log("OLHA AQ", HorseObj);
+  // console.log("OLHA AQ", HorseObj);
   let [userData, setUserData] = useState([]);
   const moreClick = () => {
     navigate("/more-owner", {
@@ -36,17 +72,17 @@ export function HorseDetail() {
   };
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${API_ENDPOINT}get`).then((response) => {
       for (let i = 0; i < response.data.length; i++) {
+        // eslint-disable-next-line
         if (response.data[i].ID == location.state.horse.ID)
           setUserData(response.data[i]);
       }
     });
-  }, []);
-  console.log(userData);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="horseDetail_master">
@@ -90,6 +126,9 @@ export function HorseDetail() {
                         height="50px"
                         width="50px"
                         alt="button favorite"
+                        onClick={() => {
+                          addFavOnClick(HorseObj);
+                        }}
                       ></img>
                     </div>
                   </div>
@@ -111,11 +150,11 @@ export function HorseDetail() {
                 <div className="horseDetail_cont_information_body">
                   <div className="horseDetail_cont_information_body_height">
                     <label>Height</label>
-                    <p>{HorseObj.height + " Feet"}</p>
+                    <p>{HorseObj.height + " cm"}</p>
                   </div>
                   <div className="horseDetail_cont_information_body_age">
                     <label>Age</label>
-                    <p>{HorseObj.horseAge + " Years"}</p>
+                    <p>{HorseObj.horseAge + " years"}</p>
                   </div>
 
                   <div className="horseDetail_cont_information_body_color">
@@ -138,13 +177,13 @@ export function HorseDetail() {
                 </div>
               </div>
             </div>
-            <div class="line"></div>
+            <div className="line"></div>
             <div className="horseDetail_cont_two">
               <div className="horseDetail_cont_description">
                 <h4>Horse Description</h4>
                 <p>{HorseObj.description}</p>
               </div>
-              <div class="line"></div>
+              <div className="line"></div>
             </div>
             <div className="horseDetail_cont_three">
               <div className="horseDetail_cont_contactInfo_heading">

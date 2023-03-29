@@ -29,6 +29,7 @@ function SortBy({ sortType }) {
 
   const handlerLikes = () => {
     setCheckedLikes(!checkedLikes);
+    sortType("likes");
   };
 
   const toggle = () => {

@@ -1,29 +1,30 @@
-import { API_ENDPOINT } from "../server";
+// import { API_ENDPOINT } from "../server";
 import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
 import { Button } from "../Components/Button";
 import Camera from "../icons/Camera.svg";
-// import HideShowPass from "../icons/HideShowPass.svg";
-// import HideVisibility from "../icons/HideVisibility.svg";
 import BackButton from "../icons/BackButton.svg";
 import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 import Edit from "../icons/Edit.svg";
-// import horse from "../icons/Horse.png";
-// import bcrypt from "bcryptjs";
 import axios from "axios";
 import { googleLogout } from "@react-oauth/google";
+// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export function Profile() {
   const [showProfile, setShowProfile] = useState(true);
   const [showEditing, setShowEditing] = useState(false);
   const [profileInfo, setProfileInfo] = useState({});
-  //   const [profileEdit, setProfileEdit] = useState({ bioContent: "",
-  // fullName:"", });
+  // const [background, setBackground] = useState("");
+  // const [previewUrl, setPreviewUrl] = useState("");
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const profileEdit = profileInfo;
-  //console.log(profileEdit);
+
   let navigate = useNavigate();
+
   const editProfile = (event) => {
     setShowPopUpSave(false);
     event.stopPropagation();
@@ -44,7 +45,6 @@ export function Profile() {
   };
 
   const [showCount, setShowCount] = useState(0);
-  //const [credential, setCredential] = useState([]);
 
   const [showPopUpDelete, setShowPopUpDelete] = useState(false);
 
@@ -62,10 +62,29 @@ export function Profile() {
     profileEdit.bioContent = bioContent.value;
 
     let id = localStorage.getItem("id");
+
+    // const storage = getStorage();
+    // const storageRef = ref(storage, `Horsephoto/${background.name}`);
+    // uploadBytes(storageRef, background)
+    //   .then(() => {
+    //     getDownloadURL(storageRef)
+    //       .then((result) => {
+
+    //       })
+    //   })
+
+
     axios.post(`${process.env.REACT_APP_API_URL}editprofile`, {
       profileEdit: profileEdit,
       id: id,
     });
+
+
+
+
+
+
+
   };
 
   const cancel = () => {
@@ -78,7 +97,7 @@ export function Profile() {
     // Add the delete command for the db
     let id = localStorage.getItem("id");
     console.log(id);
-    axios.post(`${API_ENDPOINT}delete`, {
+    axios.post(`${process.env.REACT_APP_API_URL}delete`, {
       id: id,
     });
     navigate("/");
@@ -88,16 +107,17 @@ export function Profile() {
     firstLoad();
     setShowEditing(!showEditing);
     setShowProfile(!showProfile);
-    // setShowPopUpDelete(!showPopUpDelete);
-    // navigate("/home");
   };
+
   let credential = [];
+
   function firstLoad() {
-    axios.get(`${API_ENDPOINT}get`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}get`).then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
-      console.log(id);
+      // console.log(id);
       for (let i = 0; i < credential.length; i++) {
+        // eslint-disable-next-line
         if (credential[i].ID == id) {
           // console.log(credential[i]);
           setProfileInfo({
@@ -119,43 +139,27 @@ export function Profile() {
         }
       }
     });
-  }
+  };
+
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
     firstLoad();
-    //console.log(credential);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const profileEditing = {
     maxLength: 150,
     inputLength: 40,
   };
 
-  // const [passwordType, setPasswordType] = useState("password");
-  // const [passInput, setPassInput] = useState("");
-
-  // const setOnChange = (event) => {
-  //   profileEdit.password = bcrypt.hashSync(
-  //     event.target.value,
-  //     10
-  //   );
-  //   setPassInput(event.target.value);
-  // }
-
-  // const togglePassword = () => {
-  //   if (passwordType === "password") {
-  //     setPasswordType("text");
-  //     return;
-  //   }
-  //   setPasswordType("password");
-  // };
-
-  // TO BE CHANGED!
-  const changeBackground = () => {
-    console.log("working");
+  const changeBackground = (event) => {
+    // const file = event.target.files[0];
+    // // console.log(file);
+    // const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    // setBackground(file);
   };
 
   return (
@@ -331,6 +335,7 @@ export function Profile() {
                     defaultValue={profileInfo.fullName}
                     onChange={(event) => {
                       const myString = event.target.value.split(" ");
+                      // eslint-disable-next-line
                       if (myString.length == 1) {
                         profileEdit.firstName = myString;
                         profileEdit.lastName = "";
@@ -406,36 +411,6 @@ export function Profile() {
                     }}
                   />
                 </div>
-                {/* <div className="profile_cont_mainContent_editing_password">
-                  <h4 className="profile_cont_mainContent_editing_password_title">
-                    Password:
-                  </h4>
-                  <input
-                    className="profile_cont_mainContent_editing_password_info"
-                    type={passwordType}
-                    // value={passInput}
-                    maxLength={profileEditing.inputLength}
-                    placeholder="************"
-                    defaultValue={profileInfo.password}
-                    onChange={(event) => {
-                      profileEdit.password = bcrypt.hashSync(
-                        event.target.value,
-                        10
-                      );
-                      // setPassInput(event.target.value)
-                    }}
-                  />
-                  <div
-                    className="profile_cont_mainContent_editing_password_toggle"
-                    onClick={togglePassword}
-                  >
-                    {passwordType === "password" ? (
-                      <img src={HideShowPass} alt="Show password" />
-                    ) : (
-                      <img src={HideVisibility} alt="Hide password" />
-                    )}
-                  </div>
-                </div> */}
                 <div className="profile_cont_mainContent_editing_cta">
                   <p
                     className="profile_cont_mainContent_editing_cta_deleteBtn"
