@@ -27,6 +27,7 @@ export function AddHorse() {
   const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
   const [p, setP] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   //const [horsePhotos, setHorsePhotos] = useState([]);
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
@@ -39,7 +40,7 @@ export function AddHorse() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
   });
@@ -117,11 +118,15 @@ export function AddHorse() {
   };
 
   const clickSave = () => {
+    // if (name == "" || gender == "" || breed == "" || age == "" || height == "" || color == "" || breedMethod == "") {
+    //   setErrorMessage("Please revise all required fields");
+    // }
     const storage = getStorage();
     let photoArray = [];
     const storageRef = ref(storage, `Horsephoto/${photo.name}`);
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
+
         // eslint-disable-next-line
         if (horsePhotos[0] != "") {
           let uploadPromises = [];
@@ -185,8 +190,9 @@ export function AddHorse() {
   const clickCancel = () => {
     setShowCancelPopUp(!showCancelPopUp);
   };
+
   const goBack = () => {
-    console.log("works");
+    navigate(-1);
   };
 
   const redirect = () => {
@@ -223,6 +229,7 @@ export function AddHorse() {
                   id="horseName"
                   type="text"
                   onChange={(e) => {
+                    setErrorMessage("");
                     setName(e.target.value);
                   }}
                 ></input>
@@ -342,7 +349,9 @@ export function AddHorse() {
             </div>
             <div className="addHorse_cont_basics_upload">
               <div className="addHorse_cont_basics_upload_thumbnail">
-                <label>Thumbnail</label>
+                <label>Thumbnail <span className="addHorse_cont_basics_details_name_gender_error">
+                  *
+                </span></label>
                 {/*  <input
                   className="addHorse_cont_basics_upload_thumbnail_input"
                   type="file"
@@ -409,7 +418,9 @@ export function AddHorse() {
           </div>
           <div className="addHorse_cont_detailed">
             <div className="addHorse_cont_detailed_description">
-              <label>Description</label>
+              <label>Description <span className="addHorse_cont_basics_details_name_gender_error">
+                *
+              </span></label>
               <textarea
                 name="description"
                 id="description"
@@ -428,10 +439,7 @@ export function AddHorse() {
               </div>
               <div className="addHorse_cont_detailed_documentation">
                 <label>
-                  Documentation{" "}
-                  <span className="addHorse_cont_detailed_documentation_error">
-                    *
-                  </span>
+                  Documentation
                 </label>
                 <div className="addHorse_cont_detailed_documentation_content">
                   <p>Up to 30MB</p>
@@ -450,6 +458,7 @@ export function AddHorse() {
                   </div>
                 </div>
               </div>
+              <p className="warning">{errorMessage}</p>
             </div>
           </div>
           <div className="addHorse_cont_aboutOwner">
@@ -473,7 +482,7 @@ export function AddHorse() {
               <label>
                 Location {""}
                 <span className="addHorse_cont_aboutOwner_location_error">
-                  (You cannot change your location)
+                  (you cannot change your location)
                 </span>
               </label>
               <input
@@ -488,14 +497,14 @@ export function AddHorse() {
               }} */
               ></input>
             </div>
-            <div className="addHorse_cont_aboutOwner_displayHorse">
+            {/* <div className="addHorse_cont_aboutOwner_displayHorse">
               <label className="toggle-control">
-                {/* Display horse on profile */}
+                Display horse on profile
                 <input type="checkbox" checked="checked"></input>
                 <span className="control"></span>
               </label>
-            </div>
-            <p>* required fields</p>
+            </div> */}
+            <p className="requiredFields_error">* required fields</p>
           </div>
           <div className="endButtons">
             <img

@@ -14,7 +14,8 @@ export function Login() {
   const [userPassword, setUserPassword] = useState("");
   // const [showPopUp, setShowPopUp] = useState(false);
   // const [emailError, setEmailError] = useState("");
-  const [pError, setPError] = useState("");
+  const [cError, setCError] = useState("");
+  // const [pError, setPError] = useState("");
   // const [rmCheck, setRmCheck] = useState(false);
   //const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
@@ -81,7 +82,7 @@ export function Login() {
         }
         if (!flag) {
           // setEmailError("Please provide a valid email");
-          setPError("Please check your credentials and try again");
+          setCError("Please check your credentials and try again");
           // setShowPopUp(!showPopUp);
         }
       })
@@ -92,6 +93,12 @@ export function Login() {
 
   useEffect(() => {
     localStorage.clear();
+    // if (userEmail == "") {
+    //   setEmailError("Please provide a valid email");
+    // }
+    // if (userPassword == "") {
+    //   setPError("Please provide a password");
+    // }
     Axios.get(`${API_ENDPOINT}get`).then((response) => {
       setCredential(response.data);
     });
@@ -137,11 +144,13 @@ export function Login() {
                 defaultValue={userPassword}
                 placeholder="**********"
                 onChange={(e) => {
-                  setPError("");
+                  // setPError("");
+                  setCError("");
                   setUserPassword(e.target.value);
                 }}
               ></input>
-              <p className="warning">{pError}</p>
+              {/* <p className="warning">{pError}</p> */}
+              <p className="warning">{cError}</p>
               <div className="loginCont_RememberCont">
                 <div className="loginCont_Remember">
                   <label>

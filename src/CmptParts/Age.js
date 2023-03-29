@@ -1,7 +1,7 @@
 export function Age(props) {
   return (
     <div className="filter_cont_age_exterior">
-      <label className="filter_cont_age_label">Age (Years)</label>
+      <label className="filter_cont_age_label">Age (years)</label>
       <div className="filter_cont_age">
         <input
           id="minAge"

@@ -9,7 +9,9 @@ export function Color({ onChange, className }) {
 
   return (
     <div className={className}>
-      <label className="filter_cont_color_label">Colour</label>
+      <label className="filter_cont_color_label">Colour <span className="addHorse_cont_basics_details_name_gender_error">
+        *
+      </span></label>
       <div className="filter_cont_color">
         <ColorDropdown
           isSearchable

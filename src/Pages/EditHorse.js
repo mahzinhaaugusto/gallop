@@ -108,7 +108,7 @@ export function EditHorse() {
                                     name="horseName"
                                     id="horseName"
                                     type="text"
-                                    defaultValue={horseObj.horseName}
+                                    // defaultValue={horseObj.horseName}
                                     onChange={(e) => {
                                         setName(e.target.value);
                                     }}

@@ -11,6 +11,13 @@ import { API_ENDPOINT } from "../server";
 import BackButton from "../icons/BackButton.svg";
 
 export function Favorites() {
+  useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      // console.log("sorry");
+      navigate("/login");
+    }
+  });
+
   let navigate = useNavigate();
   const [favHorses, setFavoritehorses] = useState([]);
   const [showEmpty, setShowEmpty] = useState(false);

@@ -11,7 +11,7 @@ export function MoreOwnerCards({ myHorse }) {
                             <img src={horse.thumbnail} alt="" />
                             <div className="horseCard_myHorses_cont_images_favorite">
                                 <img src={FavoriteIcon} alt="" />
-                                <p>{horse.likeNumbers}</p>
+                                {/* <p>{horse.likeNumbers}</p> */}
                             </div>
                         </div>
                         <div className="horseCard_myHorses_cont_details">

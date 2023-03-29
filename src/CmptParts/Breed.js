@@ -9,7 +9,9 @@ export function Breed({ onChange, className }) {
   return (
     <div className={className}>
       <label className="filter_cont_breed_label">
-        Breed
+        Breed <span className="addHorse_cont_basics_details_name_gender_error">
+          *
+        </span>
       </label>
       <div className="filter_cont_breed">
         <BreedDropdown

@@ -150,11 +150,11 @@ export function HorseDetail() {
                 <div className="horseDetail_cont_information_body">
                   <div className="horseDetail_cont_information_body_height">
                     <label>Height</label>
-                    <p>{HorseObj.height + " Feet"}</p>
+                    <p>{HorseObj.height + " cm"}</p>
                   </div>
                   <div className="horseDetail_cont_information_body_age">
                     <label>Age</label>
-                    <p>{HorseObj.horseAge + " Years"}</p>
+                    <p>{HorseObj.horseAge + " years"}</p>
                   </div>
 
                   <div className="horseDetail_cont_information_body_color">
