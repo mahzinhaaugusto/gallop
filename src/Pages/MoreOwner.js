@@ -40,7 +40,7 @@ export function MoreOwner() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {

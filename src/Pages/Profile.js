@@ -143,7 +143,7 @@ export function Profile() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
     firstLoad();
