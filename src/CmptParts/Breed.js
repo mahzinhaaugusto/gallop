@@ -5,12 +5,11 @@ import breedList from "../breedList.json";
 export function Breed({ onChange, className }) {
   const options = breedList.breedList;
   let optionSelected = onChange;
-  //console.log(a);
 
   return (
     <div className={className}>
       <label className="filter_cont_breed_label">
-        Breed <span className="filter_cont_breed_label_error">*</span>
+        Breed
       </label>
       <div className="filter_cont_breed">
         <BreedDropdown
@@ -25,7 +24,7 @@ export function Breed({ onChange, className }) {
 }
 
 function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
-  //console.log(a);
+
   const [showOptions, setShowOptions] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(null);
@@ -36,7 +35,6 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
 
   const searchRef = useRef();
 
-  // Search
   useEffect(() => {
     setSearchValue("");
     if (showOptions && searchRef.current) {
@@ -87,7 +85,6 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
   const onItemClick = (option) => {
     setSelectedValue(option);
     optionSelected(option.label);
-    //props.onClick(option);
   };
 
   const isSelected = (option) => {

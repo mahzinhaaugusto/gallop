@@ -27,13 +27,13 @@ export function DataAnalytics() {
 
                 for (const key in groupedBreed) {
                     let breeds = {};
-                    let i = 10;
-                    let r = 100;
-                    let g = 120;
-                    let b = 130;
+                    // let i = 10;
+                    // let r = 100;
+                    // let g = 120;
+                    // let b = 130;
                     breeds.breed = key;
                     breeds.quantity = groupedBreed[key].length;
-                    breeds.color = `rgb(${r}, ${g}, ${b})`;
+                    // breeds.color = `rgb(${r}, ${g}, ${b})`;
                     arrBreed.push(breeds);
                 }
 
@@ -47,9 +47,9 @@ export function DataAnalytics() {
                 setHorsesBreed(arrBreed);
                 setHorsesGender(arrGender);
             })
-    }, []);
-    console.log(allHorsesBreed);
-    console.log(allHorsesGender);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    // console.log(allHorsesBreed);
+    // console.log(allHorsesGender);
 
     return (
         <div className="dataAnalytics">
@@ -73,11 +73,16 @@ export function DataAnalytics() {
                                     <h2 className="dataAnalytics_cont_mainContent_breed_title">All Around the World</h2>
                                     <p className="dataAnalytics_cont_mainContent_breed_content">In Gallop, there are many different breeds of horses. Discover the top breeds of horses on Gallop and explore where they are originally from around the world.</p>
                                     <div className="dataAnalytics_cont_mainContent_breed_chart">
-                                        <BarChart width={730} height={250} data={allHorsesBreed}>
-                                            <XAxis dataKey="breed" />
+                                        <BarChart width={1000} height={250} data={allHorsesBreed} margin={{
+                                            top: 5,
+                                            right: 30,
+                                            left: 20,
+                                            bottom: 5,
+                                        }} >
+                                            <XAxis dataKey="breed" interval={0} fontSize={11} />
                                             <YAxis />
                                             <Tooltip />
-                                            <Bar dataKey="quantity" fill={allHorsesBreed[0].color} />
+                                            <Bar dataKey="quantity" fill="#75B367" />
                                         </BarChart>
                                     </div>
                                 </div>
@@ -87,15 +92,8 @@ export function DataAnalytics() {
                                     <div className="dataAnalytics_cont_mainContent_gender_chart">
                                         <PieChart width={730} height={250}>
                                             <Tooltip />
-                                            <Pie data={allHorsesGender} dataKey="quantity" nameKey="gender" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#8884d8" label />
+                                            <Pie data={allHorsesGender} dataKey="quantity" nameKey="gender" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#5A5A5F" label />
                                         </PieChart>
-                                    </div>
-                                </div>
-                                <div className="dataAnalytics_cont_mainContent_liked">
-                                    <h2 className="dataAnalytics_cont_mainContent_liked_title">Most Loved</h2>
-                                    <p className="dataAnalytics_cont_mainContent_liked_content">Check out the most popular horses on Gallop! Our “Most Loved” charts shows which horses are trending on our website, so you can discover the best breeding options that matches our goals.</p>
-                                    <div className="dataAnalytics_cont_mainContent_liked_chart">
-
                                     </div>
                                 </div>
                             </div>
@@ -104,6 +102,6 @@ export function DataAnalytics() {
                     <Footer />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

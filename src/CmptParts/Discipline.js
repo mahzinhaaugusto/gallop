@@ -17,7 +17,6 @@ export function Discipline({ onChange, className }) {
           placeholder="Discipline (up to 3)"
           options={options}
           disciplineSet={disciplineSet}
-        // isOptionDisabled={() => selectedOptions.length >= 3}
         />
       </div>
     </div>
@@ -41,7 +40,6 @@ function DisciplineDropdown({
 
   const searchRef = useRef();
 
-  // Search
   useEffect(() => {
     setSearchValue("");
     if (showOptions && searchRef.current) {
@@ -87,7 +85,6 @@ function DisciplineDropdown({
       return placeholder;
     }
 
-    // Code for multiple selection
     if (isMulti) {
       return (
         <div className="filter_cont_discipline_multiSelection">
@@ -140,6 +137,7 @@ function DisciplineDropdown({
     let skills = "";
     //console.log(newOption[0]);
     for (let i = 0; i < newOption.length; i++) {
+      // eslint-disable-next-line
       if (i == newOption.length - 1) {
         skills += newOption[i].label;
       } else {

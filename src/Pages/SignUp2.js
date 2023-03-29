@@ -15,8 +15,8 @@ export function SignUp2() {
   const [userPhoto, setUserPhoto] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
-  // const [emailVerifying, setEmailVerifying] = useState([]);
-  console.log(sessionStorage.getItem("city"));
+
+  // console.log(sessionStorage.getItem("city"));
   let navigate = useNavigate();
 
   const videoRef = useRef(null);

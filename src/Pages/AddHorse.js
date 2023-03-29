@@ -1,7 +1,6 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import CancelButton from "../icons/CancelButton.svg";
 import SaveButton from "../icons/SaveButton.svg";
-
 import AddMedia from "../icons/AddMedia.svg";
 import BackButton from "../icons/BackButton.svg";
 import { Breed } from "../CmptParts/Breed";
@@ -10,11 +9,9 @@ import { Discipline } from "../CmptParts/Discipline";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { NavBar } from "../Components/NavBar";
-// import { Footer } from "../Components/Footer";
 import { PopUp } from "../Components/PopUp";
 import { Button } from "../Components/Button";
 import { useNavigate } from "react-router-dom";
-// Im using the Favorites icon as a placeholder for future icons
 
 export function AddHorse() {
   const [name, setName] = useState("");
@@ -35,16 +32,18 @@ export function AddHorse() {
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
   let navigate = useNavigate();
+
   let horsePhotos = [];
+
   let location = sessionStorage.getItem("city");
-  console.log(location);
+
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
       console.log("sorry");
       navigate("/login");
     }
-    console.log(localStorage.getItem("id"));
   });
+
   const clickPlus = (event) => {
     const file = event.target.files[0];
     if (horsePhotos.length >= 3) {
@@ -54,9 +53,11 @@ export function AddHorse() {
       console.log(horsePhotos);
     }
   };
+
   const clickPlusOfThumb = () => {
     //document.getElementById("thumb").style.display = "block";
   };
+
   const photoSeleceted = (event) => {
     const file = event.target.files[0];
     console.log(file);
@@ -64,7 +65,7 @@ export function AddHorse() {
     reader.readAsDataURL(file);
     setPhoto(file);
     //console.log(photo);
-    //setPreviewUrl(file);
+    // setPreviewUrl(file);
 
     reader.onload = () => {
       //   let bl = new Blob([reader.result], { type: file.type });
@@ -73,22 +74,27 @@ export function AddHorse() {
       //   setBlob(bl);
     };
   };
+
   const colorClick = (data) => {
     console.log(data);
     setColor(data);
   };
+
   const breedClick = (data) => {
     setBreed(data);
   };
+
   const disciplineClick = (data) => {
     console.log(data);
     setDiscipline(data);
   };
+
   async function uploadPhotos() {
     const storage = getStorage();
     //console.log(horsePhotos);
     let photoArray = [];
 
+    // eslint-disable-next-line
     if (horsePhotos[0] != "") {
       for (let i = 0; i < 3; i++) {
         //console.log(horsePhotos[i].name);
@@ -108,13 +114,15 @@ export function AddHorse() {
     }
     console.log(p);
     return photoArray;
-  }
+  };
+
   const clickSave = () => {
     const storage = getStorage();
     let photoArray = [];
     const storageRef = ref(storage, `Horsephoto/${photo.name}`);
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
+        // eslint-disable-next-line
         if (horsePhotos[0] != "") {
           let uploadPromises = [];
           for (let i = 0; i < 3; i++) {
@@ -175,7 +183,6 @@ export function AddHorse() {
   };
 
   const clickCancel = () => {
-    // console.log("works");
     setShowCancelPopUp(!showCancelPopUp);
   };
   const goBack = () => {
@@ -476,9 +483,9 @@ export function AddHorse() {
                 id="ownerLocation"
                 type="text"
                 placeholder="Location"
-                /* onChange={(e) => {
-                  setLocation(e.sessionStorage.setItem("city", city));
-                }} */
+              /* onChange={(e) => {
+                setLocation(e.sessionStorage.setItem("city", city));
+              }} */
               ></input>
             </div>
             <div className="addHorse_cont_aboutOwner_displayHorse">
@@ -541,8 +548,6 @@ export function AddHorse() {
             classNameContent="btn_cont"
           />
         )}
-
-        {/* <Footer /> */}
       </div>
     </div>
   );

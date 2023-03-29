@@ -11,7 +11,6 @@ import { Age } from "../CmptParts/Age";
 import { Price } from "../CmptParts/Price";
 import { Localization } from "../CmptParts/Localization";
 import { Button } from "../Components/Button";
-import { useNavigate } from "react-router";
 
 export function CloseButton(props) {
   const { onClick } = props;
@@ -103,43 +102,36 @@ function FilterCont({ filterReturn }) {
     setMinPrice(min);
     setMaxPrice(max);
   };
-  const resetFilter = () => {
-    console.log("reset button working");
-    // document.getElementsByClassName("filter_cont_all").value = null;
-  };
-  let navigate = useNavigate();
 
   const applyFilter = () => {
     let filterData = {};
+    // eslint-disable-next-line
     if (gender != "") filterData.gender = gender;
+    // eslint-disable-next-line
     if (bMetod != "") filterData.breedingMethod = bMetod;
+    // eslint-disable-next-line
     if (discipline != "") filterData.discipline = discipline;
+    // eslint-disable-next-line
     if (color != "") filterData.color = color;
+    // eslint-disable-next-line
     if (bred != "") filterData.breed = bred;
+    // eslint-disable-next-line
     if (minHeight != "") {
       filterData.minHeight = minHeight;
       filterData.maxHeight = maxheight;
     }
+    // eslint-disable-next-line
     if (minAge != "") {
       filterData.minAge = minAge;
       filterData.maxAge = maxAge;
     }
+    // eslint-disable-next-line
     if (minPrice != "") {
       filterData.maxPrice = maxPrice;
       filterData.minPrice = minPrice;
     }
-    //console.log(filterReturn);
+
     filterReturn(filterData);
-    // console.log(gender);
-    // console.log(bMetod);
-    // console.log(discipline);
-    // console.log(maxheight);
-    // console.log(minHeight);
-    // console.log(color);
-    // console.log(minAge);
-    // console.log(maxAge);
-    // console.log(minPrice);
-    // console.log(maxPrice);
   };
 
   return (
@@ -160,11 +152,6 @@ function FilterCont({ filterReturn }) {
       <Age handleMessage={setAge} />
       <Price handleMessage={setPrice} />
       <div className="filter_cont_all_buttons">
-        <Button
-          className="resetFilterSelection"
-          title="Reset"
-          onClick={resetFilter}
-        />
         <Button
           className="renderFilterSelection"
           title="Apply"
