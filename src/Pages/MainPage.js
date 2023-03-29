@@ -27,7 +27,7 @@ export function MainPage() {
       sql = sql + "desc;";
       // console.log(sql);
     }
-    Axios.get(`${API_ENDPOINT}priceorder`, {
+    Axios.get(`${process.env.REACT_APP_API_URL}priceorder`, {
       params: { sql },
     }).then((response) => {
       setHorseInfo(response.data);
@@ -133,7 +133,7 @@ export function MainPage() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
@@ -232,7 +232,7 @@ export function MainPage() {
               </div>
             </div>
             <div className="mainPage_cont_horsesCards">
-              <PaginatedItems itemsPerPage={6} />
+              <PaginatedItems itemsPerPage={9} />
             </div>
           </div>
           <Footer />
