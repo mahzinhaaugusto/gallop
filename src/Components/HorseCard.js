@@ -4,8 +4,12 @@ import Plus from "../icons/Plus.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ENDPOINT } from "../server";
+import { useState } from "react";
 
 export function HorseCard({ horseInfo, addFavOnClick }) {
+
+  const [toggle, setToggle] = useState(false);
+
   let navigate = useNavigate();
 
   function moreClicked(horse) {
@@ -28,15 +32,18 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
             console.log(horse.ID);
             // eslint-disable-next-line
             if (favHorses[i].ID == localStorage.getItem("id")) {
+              setToggle(false);
               flag = false;
-              console.log("deleted");
               await axios.post(`${API_ENDPOINT}deletefav`, {
                 id: favHorses[i].favoriteid,
               });
+              window.location.reload();
             }
           }
         }
         if (flag) {
+          // document.getElementById("favoriteIcon").classList.add("favClicked");
+          setToggle(true);
           console.log("added");
           await axios.post(`${API_ENDPOINT}addfavorite`, {
             horseid: horse.horseID,
@@ -56,14 +63,12 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
           <div className="horseCard_cont">
             <div className="horseCard_cont_images">
               <img src={horse.thumbnail} alt="" />
-              <div className="horseCard_cont_images_favorite" id="favIcon">
-                <img
-                  src={FavoriteIcon}
-                  alt=""
-                  onClick={() => {
-                    addFavOnClick(horse);
-                  }}
-                />
+              <div className="horseCard_cont_images_favorite" id="favIcon" onClick={() => {
+                addFavOnClick(horse);
+              }}>
+                {toggle === true ? (
+                  <img src={FavoriteClicked} alt="" />) : (<img src={FavoriteIcon} alt="" />)
+                }
               </div>
             </div>
             <div className="horseCard_cont_details">
@@ -76,7 +81,7 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
                 </h4>
               </div>
               <div className="horseCard_cont_details_description">
-                {horse.description}
+                {horse.description.substring(0, 50)}
               </div>
               <div className="horseCard_cont_details_btn_master">
                 <button
