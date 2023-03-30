@@ -6,9 +6,11 @@ import axios from "axios";
 import { API_ENDPOINT } from "../server";
 import { useState } from "react";
 
-export function HorseCard({ horseInfo, addFavOnClick }) {
-  // const [favHorses, setFavoritehorses] = useState([]);
-  // console.log(horseInfo);
+
+export function HorseCard({ horseInfo, addFavOnClick, className }) {
+
+  const [toggle, setToggle] = useState(false);
+
   let navigate = useNavigate();
 
   function moreClicked(horse) {
@@ -58,7 +60,7 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
   return (
     <>
       {horseInfo.map((horse, i) => (
-        <div key={i} className="horseCard">
+        <div key={i} className={`horseCard ${className}`}>
           <div className="horseCard_cont">
             <div className="horseCard_cont_images">
               <img src={horse.thumbnail} alt="" />
