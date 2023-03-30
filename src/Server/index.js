@@ -79,8 +79,7 @@ app.post("/api/deletefav", (req, res) => {
   const deleteOne = "delete from favoritehorses where favoriteid = ?;";
   const sqlUpdateLikes =
     "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
-  const sqlUpdateLikes =
-    "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
+
   db.query(deleteOne, [id], (er, re) => {
     console.log(re);
   });
