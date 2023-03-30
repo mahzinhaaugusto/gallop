@@ -58,7 +58,6 @@ export function MyHorses() {
       //   setShowEmpty(true);
       // }
       // }
-
     });
 
     // console.log(myHorses);
@@ -147,8 +146,8 @@ export function MyHorsesCard({ myHorse }) {
   const deleteHorse = (id) => {
     // console.log(id);
     Axios.post(`${API_ENDPOINT}deletehorse`, {
-      id: id
-    })
+      id: id,
+    });
     window.location.reload();
     // console.Console.log("yesssss");
   };
@@ -183,7 +182,7 @@ export function MyHorsesCard({ myHorse }) {
                   id="horseCard_myHorses_cont_details_editBtn"
                   type="button"
                   onClick={() => {
-                    editHorse(horse)
+                    editHorse(horse);
                   }}
                 >
                   EDIT
@@ -192,7 +191,9 @@ export function MyHorsesCard({ myHorse }) {
                 <button
                   id="horseCard_myHorses_cont_details_deleteBtn"
                   type="button"
-                  onClick={() => { deleteHorse(horse.horseID) }}
+                  onClick={() => {
+                    deleteHorse(horse.horseID);
+                  }}
                 >
                   DELETE
                   <img src={Trash} alt="" />
@@ -201,8 +202,7 @@ export function MyHorsesCard({ myHorse }) {
             </div>
           </div>
         </div>
-      ))
-      }
+      ))}
     </>
   );
 }

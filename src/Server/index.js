@@ -77,9 +77,15 @@ app.post("/api/delete", (req, res) => {
 app.post("/api/deletefav", (req, res) => {
   const id = req.body.id;
   const deleteOne = "delete from favoritehorses where favoriteid = ?;";
-  const sqlUpdateLikes = "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
+  const sqlUpdateLikes =
+    "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
+
   db.query(deleteOne, [id], (er, re) => {
     console.log(re);
+  });
+  db.query(sqlUpdateLikes, (err, result) => {
+    console.log(result);
+    res.send(result);
   });
   db.query(sqlUpdateLikes, (err, result) => {
     console.log(result);
@@ -211,7 +217,8 @@ app.post("/api/addfavorite", (req, res) => {
   const uid = req.body.uid;
   const sqlInsert =
     "insert into favoritehorses(id,horseID,isFavorite) values (?,?,?);";
-  const sqlUpdateLikes = "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
+  const sqlUpdateLikes =
+    "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
   db.query(sqlInsert, [uid, horseid, 1]),
     (err, result) => {
       console.log(result);
@@ -348,19 +355,18 @@ app.post("/api/reset", (req, res) => {
 });
 
 app.get("/api/auth", async (req, res) => {
-  const accessToken = req.headers.authorization.split(' ')[1];
+  const accessToken = req.headers.authorization.split(" ")[1];
   const googleUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
 
   try {
     const response = await axios.get(googleUrl, {
       headers: {
-        "Authorization": `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     const userInfo = response.data;
     console.log(userInfo);
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error.message);
   }
 });
