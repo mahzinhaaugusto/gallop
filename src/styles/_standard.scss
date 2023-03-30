@@ -1,8 +1,10 @@
-html, body {
+html,
+body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     height: auto;
+    background-color: $accentSand;
 }
 
 #root {

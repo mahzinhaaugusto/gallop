@@ -1,7 +1,6 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import CancelButton from "../icons/CancelButton.svg";
 import SaveButton from "../icons/SaveButton.svg";
-
 import AddMedia from "../icons/AddMedia.svg";
 import BackButton from "../icons/BackButton.svg";
 import { Breed } from "../CmptParts/Breed";
@@ -10,11 +9,9 @@ import { Discipline } from "../CmptParts/Discipline";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { NavBar } from "../Components/NavBar";
-// import { Footer } from "../Components/Footer";
 import { PopUp } from "../Components/PopUp";
 import { Button } from "../Components/Button";
 import { useNavigate } from "react-router-dom";
-// Im using the Favorites icon as a placeholder for future icons
 
 export function AddHorse() {
   const [name, setName] = useState("");
@@ -30,21 +27,22 @@ export function AddHorse() {
   const [previewUrl, setPreviewUrl] = useState("");
   const [photo, setPhoto] = useState("");
   const [p, setP] = useState("");
-  //const [horsePhotos, setHorsePhotos] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [horsePhotos, setHorsePhotos] = useState([]);
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
   let navigate = useNavigate();
-  let horsePhotos = [];
+
   let location = sessionStorage.getItem("city");
-  console.log(location);
+
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      console.log("sorry");
+      // console.log("sorry");
       navigate("/login");
     }
-    console.log(localStorage.getItem("id"));
   });
+
   const clickPlus = (event) => {
     const file = event.target.files[0];
     if (horsePhotos.length >= 3) {
@@ -54,9 +52,11 @@ export function AddHorse() {
       console.log(horsePhotos);
     }
   };
+
   const clickPlusOfThumb = () => {
     //document.getElementById("thumb").style.display = "block";
   };
+
   const photoSeleceted = (event) => {
     const file = event.target.files[0];
     console.log(file);
@@ -64,7 +64,7 @@ export function AddHorse() {
     reader.readAsDataURL(file);
     setPhoto(file);
     //console.log(photo);
-    //setPreviewUrl(file);
+    // setPreviewUrl(file);
 
     reader.onload = () => {
       //   let bl = new Blob([reader.result], { type: file.type });
@@ -73,22 +73,27 @@ export function AddHorse() {
       //   setBlob(bl);
     };
   };
+
   const colorClick = (data) => {
     console.log(data);
     setColor(data);
   };
+
   const breedClick = (data) => {
     setBreed(data);
   };
+
   const disciplineClick = (data) => {
     console.log(data);
     setDiscipline(data);
   };
+
   async function uploadPhotos() {
     const storage = getStorage();
     //console.log(horsePhotos);
     let photoArray = [];
 
+    // eslint-disable-next-line
     if (horsePhotos[0] != "") {
       for (let i = 0; i < 3; i++) {
         //console.log(horsePhotos[i].name);
@@ -108,13 +113,19 @@ export function AddHorse() {
     }
     console.log(p);
     return photoArray;
-  }
+  };
+
   const clickSave = () => {
+    // if (name == "" || gender == "" || breed == "" || age == "" || height == "" || color == "" || breedMethod == "") {
+    //   setErrorMessage("Please revise all required fields");
+    // }
     const storage = getStorage();
     let photoArray = [];
     const storageRef = ref(storage, `Horsephoto/${photo.name}`);
     uploadBytes(storageRef, photo).then(() => {
       getDownloadURL(storageRef).then((result) => {
+
+        // eslint-disable-next-line
         if (horsePhotos[0] != "") {
           let uploadPromises = [];
           for (let i = 0; i < 3; i++) {
@@ -175,11 +186,11 @@ export function AddHorse() {
   };
 
   const clickCancel = () => {
-    // console.log("works");
     setShowCancelPopUp(!showCancelPopUp);
   };
+
   const goBack = () => {
-    console.log("works");
+    navigate(-1);
   };
 
   const redirect = () => {
@@ -216,6 +227,7 @@ export function AddHorse() {
                   id="horseName"
                   type="text"
                   onChange={(e) => {
+                    setErrorMessage("");
                     setName(e.target.value);
                   }}
                 ></input>
@@ -335,7 +347,9 @@ export function AddHorse() {
             </div>
             <div className="addHorse_cont_basics_upload">
               <div className="addHorse_cont_basics_upload_thumbnail">
-                <label>Thumbnail</label>
+                <label>Thumbnail <span className="addHorse_cont_basics_details_name_gender_error">
+                  *
+                </span></label>
                 {/*  <input
                   className="addHorse_cont_basics_upload_thumbnail_input"
                   type="file"
@@ -402,7 +416,9 @@ export function AddHorse() {
           </div>
           <div className="addHorse_cont_detailed">
             <div className="addHorse_cont_detailed_description">
-              <label>Description</label>
+              <label>Description <span className="addHorse_cont_basics_details_name_gender_error">
+                *
+              </span></label>
               <textarea
                 name="description"
                 id="description"
@@ -421,10 +437,7 @@ export function AddHorse() {
               </div>
               <div className="addHorse_cont_detailed_documentation">
                 <label>
-                  Documentation{" "}
-                  <span className="addHorse_cont_detailed_documentation_error">
-                    *
-                  </span>
+                  Documentation
                 </label>
                 <div className="addHorse_cont_detailed_documentation_content">
                   <p>Up to 30MB</p>
@@ -443,6 +456,7 @@ export function AddHorse() {
                   </div>
                 </div>
               </div>
+              <p className="warning">{errorMessage}</p>
             </div>
           </div>
           <div className="addHorse_cont_aboutOwner">
@@ -466,7 +480,7 @@ export function AddHorse() {
               <label>
                 Location {""}
                 <span className="addHorse_cont_aboutOwner_location_error">
-                  (You cannot change your location)
+                  (you cannot change your location)
                 </span>
               </label>
               <input
@@ -476,19 +490,19 @@ export function AddHorse() {
                 id="ownerLocation"
                 type="text"
                 placeholder="Location"
-                /* onChange={(e) => {
-                  setLocation(e.sessionStorage.setItem("city", city));
-                }} */
+              /* onChange={(e) => {
+                setLocation(e.sessionStorage.setItem("city", city));
+              }} */
               ></input>
             </div>
-            <div className="addHorse_cont_aboutOwner_displayHorse">
+            {/* <div className="addHorse_cont_aboutOwner_displayHorse">
               <label className="toggle-control">
-                {/* Display horse on profile */}
+                Display horse on profile
                 <input type="checkbox" checked="checked"></input>
                 <span className="control"></span>
               </label>
-            </div>
-            <p>* required fields</p>
+            </div> */}
+            <p className="requiredFields_error">* required fields</p>
           </div>
           <div className="endButtons">
             <img
@@ -541,8 +555,6 @@ export function AddHorse() {
             classNameContent="btn_cont"
           />
         )}
-
-        {/* <Footer /> */}
       </div>
     </div>
   );

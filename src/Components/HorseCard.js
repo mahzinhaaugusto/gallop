@@ -7,8 +7,8 @@ import { API_ENDPOINT } from "../server";
 import { useState } from "react";
 
 export function HorseCard({ horseInfo, addFavOnClick }) {
-  const [toggle, setToggle] = useState(false);
-
+  // const [favHorses, setFavoritehorses] = useState([]);
+  // console.log(horseInfo);
   let navigate = useNavigate();
 
   function moreClicked(horse) {

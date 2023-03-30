@@ -15,9 +15,13 @@
 }
 
 .mainPage_cont_master {
-    padding: 4rem 4rem 10rem 15rem;
+    padding: 0;
     background: transparent;
     margin: 0;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 3rem 4rem 4rem 12.75rem;
+    }
 
     p {
         margin: 0;
@@ -27,8 +31,13 @@
         color: $gray;
         font-family: 'Asap', sans-serif;
         font-weight: 600;
-        font-size: 28px;
+        font-size: 1.25rem;
         line-height: 150%;
+        letter-spacing: 0.04em;
+
+        @media screen and (min-width: $media-desktop) {
+            font-size: 28px;
+        }
     }
 }
 
@@ -42,11 +51,15 @@
 }
 
 .mainPage_cont_allHorses {
-    padding: $largePadding 4rem;
+    padding: 1.25rem 1.75rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: $largePadding 4rem;
+    }
 
     h1 {
         margin: 0;
@@ -70,8 +83,12 @@
 
 .mainPage_cont_horsesCards_innerCont {
     display: grid;
-    grid-template-columns: auto auto auto;
-    box-sizing: border-box;
+    grid-template-columns: 100%;
+
+    @media screen and (min-width: $media-desktop) {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
 }
 
 // TO BE DELETED
@@ -84,4 +101,16 @@
     width: 100px;
     border: none;
     cursor: pointer;
+}
+
+.pagination li {
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.page-item.active>a {
+    background-color: $primary;
+    color: $white;
+    clip-path: circle();
+    padding: 0.75rem;
 }

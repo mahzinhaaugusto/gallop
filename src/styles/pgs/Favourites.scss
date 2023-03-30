@@ -1,26 +1,46 @@
-.favorites_cont_filterAndSort{
+.favorites_cont_filterAndSort {
     display: flex;
     flex-direction: row;
     justify-content: flex-end; //segue o main axis q foi escolhido pelo direction
-    
+
 }
 
-.favorites{
-    padding: 4rem 4rem 10rem 15rem;
+.favorites_master_inner {
+    padding: 3rem 4rem 4rem 12.75rem;
     background: transparent;
+    margin: 0;
 }
 
-.favorites_cont{
+.favorites_cont_inner {
     background-color: white;
-    border-radius: 15px;
-    //margin: 5rem 5rem 5rem 5rem;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-top: 50px;
-    padding-bottom: 10px;
 }
 
-.favorites > h2{
+.favorites_cont_header_back {
+    align-items: center;
+
+    p {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 150%;
+        color: #5A5A5F;
+    }
+
+    display: flex;
+    justify-content: flex-start;
+}
+
+.favorites_cont_header,
+.favorites_cont_header_back,
+.favorites_cont_filterAndSort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.favorites>h2 {
     color: #5A5A5F;
     font-family: 'Asap';
     font-style: normal;
@@ -29,4 +49,34 @@
     line-height: 150%;
     color: #5A5A5F;
     padding-bottom: 15px;
+
+    letter-spacing: 0.04em;
+}
+
+.showEmpty_header {
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 150%;
+    color: #5A5A5F;
+    text-align: center;
+    padding: 5rem 0;
+    letter-spacing: 0.08em;
+}
+
+.showEmpty_header_sub {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #3C3A3A;
+    text-align: center;
+    padding-bottom: 5rem;
+    letter-spacing: 0.04em;
+}
+
+.myHorses_cont_header_back {
+    display: flex;
+    justify-content: flex-start;
+
 }

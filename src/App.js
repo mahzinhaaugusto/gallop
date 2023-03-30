@@ -29,6 +29,8 @@ navigator.geolocation.getCurrentPosition(function (position) {
             case "locality":
               city = response.results[0].address_components[i].long_name;
               break;
+
+            default:
             /* case "administrative_area_level_1":
                 state = response.results[0].address_components[i].long_name;
                 break;
@@ -38,7 +40,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
           }
         }
       }
-      console.log(city);
+      // console.log(city);
       sessionStorage.setItem("city", city);
     },
     (error) => {
