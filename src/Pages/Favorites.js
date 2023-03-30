@@ -81,7 +81,7 @@ export function Favorites() {
               </div>
             </div>
             <div className="favorites_cont_cards">
-              <HorseCard horseInfo={favHorses} onClick="" addFavOnClick="" />
+              <HorseCard horseInfo={favHorses} onClick="" addFavOnClick="" className="favorite_horseCard" />
             </div>
             {showEmpty && (
               <>
