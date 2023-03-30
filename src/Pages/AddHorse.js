@@ -28,13 +28,11 @@ export function AddHorse() {
   const [photo, setPhoto] = useState("");
   const [p, setP] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  //const [horsePhotos, setHorsePhotos] = useState([]);
+  const [horsePhotos, setHorsePhotos] = useState([]);
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
 
   let navigate = useNavigate();
-
-  let horsePhotos = [];
 
   let location = sessionStorage.getItem("city");
 

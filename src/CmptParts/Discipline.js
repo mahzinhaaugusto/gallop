@@ -163,16 +163,17 @@ function DisciplineDropdown({
   };
 
   return (
-    <div className="filter_cont_discipline_dropdown">
+    <div
+      className="filter_cont_discipline_dropdown"
+      ref={inputRef}
+      onClick={handleInputClick}
+    >
       <div
-        ref={inputRef}
-        onClick={handleInputClick}
         className="filter_cont_discipline_dropdown_selector"
       >
         <div className="filter_cont_discipline_selector_selection">
           {getDisciplineSelection()}
         </div>
-        <DropdownIcon />
       </div>
       {showOptions && (
         <div className="filter_cont_discipline_dropdown_options">
@@ -198,6 +199,7 @@ function DisciplineDropdown({
           ))}
         </div>
       )}
+      <DropdownIcon />
     </div>
   );
 }

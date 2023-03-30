@@ -227,8 +227,8 @@ export function MainPage() {
             <div className="mainPage_cont_allHorses">
               <h2 className="mainPage_cont_allHorses_title">All Horses</h2>
               <div className="mainPage_cont_allHorses_dropdowns">
-                <SortByDropdown sortType={sortType} />
                 <FilterDropdown filterReturn={filterReturn} />
+                <SortByDropdown sortType={sortType} />
               </div>
             </div>
             <div className="mainPage_cont_horsesCards">

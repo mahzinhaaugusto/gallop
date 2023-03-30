@@ -58,34 +58,38 @@ export function Favorites() {
   return (
     <div className="favorites_master">
       <NavBar />
-      <div className="favorites">
-        <h2>Favorites</h2>
-        <div className="favorites_cont">
-          <div className="myHorses_cont_header_back">
-            <img
-              src={BackButton}
-              alt="Back to Main Page"
-              className="myHorses_cont_header_icon"
-            />
-            <p className="myHorses_cont_header_text" onClick={back}>
-              Back
-            </p>
-          </div>
-          <div className="favorites_cont_filterAndSort">
-            <FilterDropdown />
-            <SortByDropdown />
-          </div>
-          <div className="favorites_cont_cards">
-            <HorseCard horseInfo={favHorses} onClick="" addFavOnClick="" />
-          </div>
-          {showEmpty && (
-            <>
-              <h1 className="showEmpty_header">Nothing Here Yet</h1>
-              <h2 className="showEmpty_header_sub">What about adding something here?</h2>
-            </>
-          )}
+      <div className="favorites_master_inner">
+        <div className="favorites">
+          <h2>Favorites</h2>
         </div>
-        <div className="favorites_master_inner">
+        <div className="favorites_cont_inner">
+          <div className="favorites_cont">
+            <div className="favorites_cont_header">
+              <div className="favorites_cont_header_back">
+                <img
+                  src={BackButton}
+                  alt="Back to Main Page"
+                  className="favorites_cont_header_icon"
+                />
+                <p className="favorites_cont_header_text" onClick={back}>
+                  Back
+                </p>
+              </div>
+              <div className="favorites_cont_filterAndSort">
+                <FilterDropdown />
+                <SortByDropdown />
+              </div>
+            </div>
+            <div className="favorites_cont_cards">
+              <HorseCard horseInfo={favHorses} onClick="" addFavOnClick="" />
+            </div>
+            {showEmpty && (
+              <>
+                <h1 className="showEmpty_header">Nothing Here Yet</h1>
+                <h2 className="showEmpty_header_sub">What about adding something here?</h2>
+              </>
+            )}
+          </div>
           <Footer />
         </div>
       </div>

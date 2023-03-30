@@ -98,16 +98,17 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
   };
 
   return (
-    <div className="filter_cont_breed_dropdown">
+    <div
+      className="filter_cont_breed_dropdown"
+      ref={inputRef}
+      onClick={handleInputClick}>
       <div
-        ref={inputRef}
-        onClick={handleInputClick}
         className="filter_cont_breed_dropdown_selector"
       >
         <div className="filter_cont_breed_selector_selection">
           {getBreedSelection()}
+
         </div>
-        <DropdownIcon />
       </div>
       {showOptions && (
         <div className="filter_cont_breed_dropdown_options">
@@ -133,6 +134,7 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
           ))}
         </div>
       )}
+      <DropdownIcon />
     </div>
   );
 }
