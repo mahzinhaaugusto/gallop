@@ -26,10 +26,8 @@ export function Favorites() {
 
   useEffect(() => {
     Axios.get(`${API_ENDPOINT}favhorses`).then((response) => {
-
       Axios.get(`${API_ENDPOINT}allhorses`).then((res) => {
         for (let i = 0; i < response.data.length; i++) {
-
           // eslint-disable-next-line
           if (localStorage.getItem("id") == response.data[i].ID) {
             // console.log("hello");
@@ -53,7 +51,7 @@ export function Favorites() {
   const back = (event) => {
     event.stopPropagation();
     navigate(-1);
-  }
+  };
 
   return (
     <div className="favorites_master">
@@ -86,7 +84,9 @@ export function Favorites() {
             {showEmpty && (
               <>
                 <h1 className="showEmpty_header">Nothing Here Yet</h1>
-                <h2 className="showEmpty_header_sub">What about adding something here?</h2>
+                <h2 className="showEmpty_header_sub">
+                  What about adding something here?
+                </h2>
               </>
             )}
           </div>
