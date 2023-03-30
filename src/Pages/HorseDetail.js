@@ -82,7 +82,9 @@ export function HorseDetail() {
           setUserData(response.data[i]);
       }
     });
+
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   return (
     <div className="horseDetail_master">
@@ -97,7 +99,9 @@ export function HorseDetail() {
             </p>
             <div className="horseDetail_cont_one">
               <div className="horseDetail_cont_image">
+
                 <CarouselHorseDetail HorseObj={HorseObj} />
+
                 {/* <img
                   src={HorseObj.img}
                   height="400px"
@@ -148,6 +152,10 @@ export function HorseDetail() {
                   </div>
                 </div>
                 <div className="horseDetail_cont_information_body">
+                  <div className="horseDetail_cont_information_body_breed">
+                    <label>Breed</label>
+                    <p>{HorseObj.breed}</p>
+                  </div>
                   <div className="horseDetail_cont_information_body_height">
                     <label>Height</label>
                     <p>{HorseObj.height + " cm"}</p>
