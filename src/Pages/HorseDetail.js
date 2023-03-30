@@ -148,96 +148,110 @@ export function HorseDetail() {
                   </div>
                 </div>
                 <div className="horseDetail_cont_information_body">
-                  <div className="horseDetail_cont_information_body_height">
-                    <label>Height</label>
-                    <p>{HorseObj.height + " cm"}</p>
+                  <div className='horseDetail_height_age_cont'>
+                    <div className="horseDetail_cont_information_body_height">
+                      <label>Height</label>
+                      <p>{HorseObj.height + " cm"}</p>
+                    </div>
+                    <div className="horseDetail_cont_information_body_age">
+                      <label>Age</label>
+                      <p>{HorseObj.horseAge + " years"}</p>
+                    </div>
                   </div>
-                  <div className="horseDetail_cont_information_body_age">
-                    <label>Age</label>
-                    <p>{HorseObj.horseAge + " years"}</p>
+                  
+                  <div className='horseDetail_height_color_gender'>
+                    <div className="horseDetail_cont_information_body_color">
+                      <label>Color</label>
+                      <p>{HorseObj.color}</p>
+                    </div>
+                    <div className="horseDetail_cont_information_body_gender">
+                      <label>Gender</label>
+                      <p>{HorseObj.gender}</p>
+                    </div>
                   </div>
-
-                  <div className="horseDetail_cont_information_body_color">
-                    <label>Color</label>
-                    <p>{HorseObj.color}</p>
+                  
+                  <div className='horseDetail_height_breedingMethod_disciplines'>
+                    <div className="horseDetail_cont_information_body_breedingMethod">
+                      <label>Breeding Method</label>
+                      <p>{HorseObj.breedingMethod}</p>
+                    </div>
+                    <div className="horseDetail_cont_information_body_disciplines">
+                      <label>Disciplines</label>
+                      <p>{HorseObj.skills}</p>
+                    </div>
                   </div>
-                  <div className="horseDetail_cont_information_body_gender">
-                    <label>Gender</label>
-                    <p>{HorseObj.gender}</p>
-                  </div>
-
-                  <div className="horseDetail_cont_information_body_breedingMethod">
-                    <label>Breeding Method</label>
-                    <p>{HorseObj.breedingMethod}</p>
-                  </div>
-                  <div className="horseDetail_cont_information_body_disciplines">
-                    <label>Disciplines</label>
-                    <p>{HorseObj.skills}</p>
-                  </div>
+                  
                 </div>
               </div>
             </div>
-            <div className="line"></div>
             <div className="horseDetail_cont_two">
               <div className="horseDetail_cont_description">
                 <h4>Horse Description</h4>
                 <p>{HorseObj.description}</p>
               </div>
-              <div className="line"></div>
             </div>
             <div className="horseDetail_cont_three">
               <div className="horseDetail_cont_contactInfo_heading">
                 <h4>Contact</h4>
               </div>
               <div className="horseDetail_cont_contactInfo_heading_content">
-                <img
-                  className="horseDetail_cont_contactInfo_img"
-                  src={userData.userPhoto}
-                  height="150px"
-                  width="150px"
-                  alt="Owner's profile"
-                ></img>
+                <div className='horseDetail_cont_contactInfo_heading_content_infoCont'>
+                  <img
+                    className="horseDetail_cont_contactInfo_img"
+                    src={userData.userPhoto}
+                    alt="Owner's profile"
+                  ></img>
 
-                <div className="horseDetail_cont_contactInfo_owner">
-                  <h4>{userData.firstName + " " + userData.lastName}</h4>
-                  <div className="horseDetail_cont_contactInfo_owner_location">
-                    <img
-                      src={Location}
-                      height="15px"
-                      width="15px"
-                      alt="Location Icon"
-                    />
-                    <p>{userData.address}</p>
+
+
+                  <div className='horseDetail_contactInfo_owner_forms_container'>
+                    <div className="horseDetail_cont_contactInfo_owner">
+                      <h4>{userData.firstName + " " + userData.lastName}</h4>
+                      <div className="horseDetail_cont_contactInfo_owner_location">
+                        <img
+                          src={Location}
+                          height="15px"
+                          width="15px"
+                          alt="Location Icon"
+                        />
+                        <p>{userData.address}</p>
+                      </div>
+                      <div className="horseDetail_cont_contactInfo_owner_webpage">
+                        <img
+                          src={Link}
+                          height="25px"
+                          width="25px"
+                          alt="WebPage Icon"
+                        />
+                        <a href={userData.website}>{userData.website}</a>
+                      </div>
+                    </div>
+                    <div className="horseDetail_cont_contactInfo_contactForms">
+                      <a href={"mailto:" + userData.email}>
+                        <img
+                          className="horseDetail_cont_contactInfo_contactForms_email"
+                          src={Email}
+                          height="50px"
+                          width="50px"
+                          alt="Email Button"
+                        ></img>
+                      </a>
+                      <a href={"tel: +1" + userData.phoneNumber}>
+                        <img
+                          className="horseDetail_cont_contactInfo_contactForms_phone"
+                          src={Phone}
+                          height="50px"
+                          width="50px"
+                          alt="Phone Button"
+                        ></img>
+                      </a>
+                    </div>
                   </div>
-                  <div className="horseDetail_cont_contactInfo_owner_webpage">
-                    <img
-                      src={Link}
-                      height="25px"
-                      width="25px"
-                      alt="WebPage Icon"
-                    />
-                    <a href={userData.website}>{userData.website}</a>
-                  </div>
-                </div>
-                <div className="horseDetail_cont_contactInfo_contactForms">
-                  <a href={"tel: +1" + userData.phoneNumber}>
-                    <img
-                      className="horseDetail_cont_contactInfo_contactForms_phone"
-                      src={Phone}
-                      height="50px"
-                      width="50px"
-                      alt="Phone Button"
-                    ></img>
-                  </a>
-                  <a href={"mailto:" + userData.email}>
-                    <img
-                      className="horseDetail_cont_contactInfo_contactForms_email"
-                      src={Email}
-                      height="50px"
-                      width="50px"
-                      alt="Email Button"
-                    ></img>
-                  </a>
+
+
+
+
+                  
                 </div>
                 <div className="horseDetail_cont_contactInfo_moreFromOwner">
                   <button
