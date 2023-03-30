@@ -9,9 +9,10 @@ export function Color({ onChange, className }) {
 
   return (
     <div className={className}>
-      <label className="filter_cont_color_label">Colour <span className="addHorse_cont_basics_details_name_gender_error">
-        *
-      </span></label>
+      <label className="filter_cont_color_label">
+        Colour{" "}
+        <span className="addHorse_cont_basics_details_name_gender_error"></span>
+      </label>
       <div className="filter_cont_color">
         <ColorDropdown
           isSearchable
@@ -99,14 +100,12 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
     <div
       className="filter_cont_color_dropdown"
       ref={inputRef}
-      onClick={handleInputClick}>
-      <div
-        className="filter_cont_color_dropdown_selector"
-      >
+      onClick={handleInputClick}
+    >
+      <div className="filter_cont_color_dropdown_selector">
         <div className="filter_cont_color_selector_selection">
           {getColorSelection()}
         </div>
-
       </div>
       {showOptions && (
         <div className="filter_cont_color_dropdown_options">
@@ -127,8 +126,9 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_color_dropdown_options_singleOption ${isSelected(option) && "selected"
-                }`}
+              className={`filter_cont_color_dropdown_options_singleOption ${
+                isSelected(option) && "selected"
+              }`}
             >
               {option.label}
             </div>
