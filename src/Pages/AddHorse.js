@@ -31,6 +31,7 @@ export function AddHorse() {
   const [horsePhotos, setHorsePhotos] = useState([]);
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
+  const [nameError, setNameError] = useState("");
 
   let navigate = useNavigate();
 
@@ -113,35 +114,58 @@ export function AddHorse() {
     }
     console.log(p);
     return photoArray;
-  };
+  }
 
   const clickSave = () => {
-    // if (name == "" || gender == "" || breed == "" || age == "" || height == "" || color == "" || breedMethod == "") {
+    // if (desc thumb name == "" || gender == "" || breed == "" || age == "" || height == "" || color == "" || breedMethod == "") {
     //   setErrorMessage("Please revise all required fields");
     // }
-    const storage = getStorage();
-    let photoArray = [];
-    const storageRef = ref(storage, `Horsephoto/${photo.name}`);
-    uploadBytes(storageRef, photo).then(() => {
-      getDownloadURL(storageRef).then((result) => {
-
-        // eslint-disable-next-line
-        if (horsePhotos[0] != "") {
-          let uploadPromises = [];
-          for (let i = 0; i < 3; i++) {
-            let hName = name + i;
-            if (horsePhotos[i]) {
-              const storageR = ref(storage, `Horsephoto/${hName}`);
-              let promise = uploadBytes(storageR, horsePhotos[i]).then(() => {
-                return getDownloadURL(storageR);
-              });
-              uploadPromises.push(promise);
+    if (name == "") {
+      setNameError("Field Required");
+    } else {
+      const storage = getStorage();
+      let photoArray = [];
+      const storageRef = ref(storage, `Horsephoto/${photo.name}`);
+      uploadBytes(storageRef, photo).then(() => {
+        getDownloadURL(storageRef).then((result) => {
+          // eslint-disable-next-line
+          if (horsePhotos[0] != "") {
+            let uploadPromises = [];
+            for (let i = 0; i < 3; i++) {
+              let hName = name + i;
+              if (horsePhotos[i]) {
+                const storageR = ref(storage, `Horsephoto/${hName}`);
+                let promise = uploadBytes(storageR, horsePhotos[i]).then(() => {
+                  return getDownloadURL(storageR);
+                });
+                uploadPromises.push(promise);
+              }
             }
-          }
-          Promise.all(uploadPromises).then((results) => {
-            results.forEach((res, index) => {
-              photoArray[index] = res;
+            Promise.all(uploadPromises).then((results) => {
+              results.forEach((res, index) => {
+                photoArray[index] = res;
+              });
+              let uid = localStorage.getItem("id");
+              Axios.post("http://localhost:3002/api/insertHorse", {
+                name: name,
+                gender: gender,
+                breed: breed,
+                age: age,
+                height: height,
+                color: color,
+                breedMethod: breedMethod,
+                price: price,
+                description: description,
+                location: location,
+                discipline: discipline,
+                uid: uid,
+                horseThumb: result,
+                horsePhotos1: photoArray[0],
+                horsePhotos2: photoArray[1],
+                horsePhotos3: photoArray[2],
+              });
             });
+          } else {
             let uid = localStorage.getItem("id");
             Axios.post("http://localhost:3002/api/insertHorse", {
               name: name,
@@ -157,32 +181,12 @@ export function AddHorse() {
               discipline: discipline,
               uid: uid,
               horseThumb: result,
-              horsePhotos1: photoArray[0],
-              horsePhotos2: photoArray[1],
-              horsePhotos3: photoArray[2],
             });
-          });
-        } else {
-          let uid = localStorage.getItem("id");
-          Axios.post("http://localhost:3002/api/insertHorse", {
-            name: name,
-            gender: gender,
-            breed: breed,
-            age: age,
-            height: height,
-            color: color,
-            breedMethod: breedMethod,
-            price: price,
-            description: description,
-            location: location,
-            discipline: discipline,
-            uid: uid,
-            horseThumb: result,
-          });
-        }
+          }
+        });
       });
-    });
-    setShowSavePopUp(!showSavePopUp);
+      setShowSavePopUp(!showSavePopUp);
+    }
   };
 
   const clickCancel = () => {
@@ -231,6 +235,7 @@ export function AddHorse() {
                     setName(e.target.value);
                   }}
                 ></input>
+                <p className="require">{nameError}</p>
               </div>
               <div className="addHorse_cont_basics_details_firstRow">
                 <div className="addHorse_cont_basics_details_gender">
@@ -347,9 +352,12 @@ export function AddHorse() {
             </div>
             <div className="addHorse_cont_basics_upload">
               <div className="addHorse_cont_basics_upload_thumbnail">
-                <label>Thumbnail <span className="addHorse_cont_basics_details_name_gender_error">
-                  *
-                </span></label>
+                <label>
+                  Thumbnail{" "}
+                  <span className="addHorse_cont_basics_details_name_gender_error">
+                    *
+                  </span>
+                </label>
                 {/*  <input
                   className="addHorse_cont_basics_upload_thumbnail_input"
                   type="file"
@@ -416,9 +424,12 @@ export function AddHorse() {
           </div>
           <div className="addHorse_cont_detailed">
             <div className="addHorse_cont_detailed_description">
-              <label>Description <span className="addHorse_cont_basics_details_name_gender_error">
-                *
-              </span></label>
+              <label>
+                Description{" "}
+                <span className="addHorse_cont_basics_details_name_gender_error">
+                  *
+                </span>
+              </label>
               <textarea
                 name="description"
                 id="description"
@@ -436,9 +447,7 @@ export function AddHorse() {
                 />
               </div>
               <div className="addHorse_cont_detailed_documentation">
-                <label>
-                  Documentation
-                </label>
+                <label>Documentation</label>
                 <div className="addHorse_cont_detailed_documentation_content">
                   <p>Up to 30MB</p>
                   <div>
@@ -463,18 +472,20 @@ export function AddHorse() {
             <h3>ABOUT OWNER</h3>
             <div className="addHorse_cont_aboutOwner_contactPreferences">
               <label>Contact Preferences</label>
-              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
-                <input type="checkbox" id="ownerEmail"></input>
-                Email
-              </label>
-              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
-                <input type="checkbox" id="ownerCall"></input>
-                Call
-              </label>
-              <label className="addHorse_cont_aboutOwner_contactPreferences_label">
-                <input type="checkbox" id="ownerText"></input>
-                Text
-              </label>
+              <div className="addHorse_cont_aboutOwner_contactPreferences_label">
+                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Email">
+                  <input type="checkbox" id="ownerEmail"></input>
+                  Email
+                </label>
+                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Call">
+                  <input type="checkbox" id="ownerCall"></input>
+                  Call
+                </label>
+                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Text">
+                  <input type="checkbox" id="ownerText"></input>
+                  Text
+                </label>
+              </div>
             </div>
             <div className="addHorse_cont_aboutOwner_location">
               <label>
@@ -490,7 +501,7 @@ export function AddHorse() {
                 id="ownerLocation"
                 type="text"
                 placeholder="Location"
-              /* onChange={(e) => {
+                /* onChange={(e) => {
                 setLocation(e.sessionStorage.setItem("city", city));
               }} */
               ></input>
