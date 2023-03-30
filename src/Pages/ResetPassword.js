@@ -1,7 +1,6 @@
 import horse from "../icons/Horse.png";
 import { Button } from "../Components/Button";
 import { useState } from "react";
-// import { PopUp } from "../Components/PopUp";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ENDPOINT } from "../server";
@@ -52,8 +51,6 @@ export function ResetPassword() {
                 userPassword: hashedPassword,
                 token: token
             })
-            // console.log(password);
-            // console.log(token);
             navigate("/login");
         }
     }
@@ -120,10 +117,8 @@ export function ResetPassword() {
                             )}
                         </div>
                         <p className="warning">{errorMessage}</p>
-                        {/* <p className="warning">{exists}</p> */}
                         <div className="resetPassword_cont_btn">
                             <Button title="Reset Password" className="resetPassword_cont_btn_reset" onClick={resetPass2} />
-                            {/* <Link to="/login">Back to Sign In Page</Link> */}
                         </div>
                     </div>
                 </div>

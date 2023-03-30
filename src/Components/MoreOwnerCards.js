@@ -1,23 +1,6 @@
 import FavoriteIcon from "../icons/FavoriteIcon.svg";
-import HideShowPass from "../icons/HideShowPass.svg";
-import HideVisibility from "../icons/HideVisibility.svg";
 
 export function MoreOwnerCards({ myHorse }) {
-    /* const editHorse = () => {
-        console.log("working");
-    };
-
-    const deleteHorse = () => {
-        Axios.delete(`${API_ENDPOINT}deletehorse`)
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        // alert("check db");
-    }; */
-
 
     return (
         <>
@@ -28,9 +11,7 @@ export function MoreOwnerCards({ myHorse }) {
                             <img src={horse.thumbnail} alt="" />
                             <div className="horseCard_myHorses_cont_images_favorite">
                                 <img src={FavoriteIcon} alt="" />
-                                <p>(CALCULATE LIKES)</p>
-                                {/* <img src={HideShowPass} alt="Show Horse" />
-                                <img src={HideVisibility} alt="Hide Horse" /> */}
+                                {/* <p>{horse.likeNumbers}</p> */}
                             </div>
                         </div>
                         <div className="horseCard_myHorses_cont_details">
@@ -44,24 +25,6 @@ export function MoreOwnerCards({ myHorse }) {
                                     | {horse.horseAge} yr(s) old{" "}
                                 </h4>
                             </div>
-                            {/* <div className="horseCard_myHorses_cont_details_btns">
-                                <button
-                                    id="horseCard_myHorses_cont_details_editBtn"
-                                    type="button"
-                                    onClick={editHorse}
-                                >
-                                    EDIT
-                                    <img src={Edit} alt="" />
-                                </button>
-                                <button
-                                    id="horseCard_myHorses_cont_details_deleteBtn"
-                                    type="button"
-                                    onClick={deleteHorse}
-                                >
-                                    DELETE
-                                    <img src={Trash} alt="" />
-                                </button>
-                            </div> */}
                         </div>
                     </div>
                 </div>

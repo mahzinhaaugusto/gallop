@@ -3,44 +3,21 @@ import WhiteLogo from "../icons/WhiteLogo.svg";
 import { useEffect, useState } from "react";
 import { Button } from "../Components/Button";
 import { useNavigate, Link } from "react-router-dom";
-// import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
-// import { useGoogleLogin } from '@react-oauth/google';
-// import { Login } from "./Login";
+import axios from "axios";
+import { API_ENDPOINT } from "../server";
 
 export function SplashScreen() {
   let navigate = useNavigate();
   useEffect(() => {
     localStorage.clear();
   });
-  // const [showLogin, setShowLogin] = useState(false);
-
-  // const signUpGoogle = useGoogleLogin({
-  //     onSuccess: codeResponse => console.log(codeResponse)
-  // })
-  // () => {
-
-  // onError:
-  //     onSuccess = { credentialResponse => {
-  //     console.log(credentialResponse);
-  // }
-  // }
-  // onError={() => {
-  //     console.log('Login Failed');
-  // }}
-  // Add auth Google
-  // }
-
-  const signUpApple = () => {
-    // Add auth Google
-  };
 
   const signUpPage = () => {
     navigate("/signup");
   };
 
   return (
-    // <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
     <div className="splashScreen_master">
       <div className="splashScreen">
         <div className="splashScreen_image">
@@ -72,21 +49,6 @@ export function SplashScreen() {
           </div>
 
           <div className="splashScreen_cont_btn">
-            {/* <Button title="Continue with Google" className="splashScreen_cont_btn_google" onClick={
-                                useGoogleLogin({
-                                    onSuccess: codeResponse => console.log(codeResponse)
-                                })
-                            } /> */}
-            {/* <GoogleLogin
-                                onSuccess={credentialResponse => {
-                                    console.log(credentialResponse);
-                                    console.log(credentialResponse.credential.name);
-                                }}
-                                onError={() => {
-                                    console.log('Login Failed');
-                                }}
-                            /> */}
-            {/* <button className="splashScreen_cont_btn_google" onClick={() => signUpGoogle()}>Continue with Google</button> */}
             <GoogleOAuthProvider
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             >
@@ -97,29 +59,27 @@ export function SplashScreen() {
               className="splashScreen_cont_btn_email"
               onClick={signUpPage}
             />
-            <Button
-              title="Continue with Apple"
-              className="splashScreen_cont_btn_apple"
-              onClick={signUpApple}
-            />
           </div>
         </div>
       </div>
     </div>
-    // {/* </GoogleOAuthProvider> */ }
   );
 }
 
 function GoogleButton() {
-    const [accessToken, setAccessToken] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
 
-    const signUpGoogle = useGoogleLogin({
-        onSuccess: codeResponse => {
-            const access_token = codeResponse.access_token;
-            setAccessToken(access_token);
-        }
-    })
-    console.log(accessToken);
+  const signUpGoogle = useGoogleLogin({
+    onSuccess: codeResponse => {
+      const access_token = codeResponse.access_token;
+      setAccessToken(access_token);
+    }
+  },
+    axios.get(`${API_ENDPOINT}auth`, {
+      headers: {
+        "Authorization": `Bearer ${accessToken}`,
+      }
+    }))
 
   return (
     <button
