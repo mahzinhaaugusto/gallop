@@ -1,4 +1,4 @@
-import FavoriteIcon from "../icons/FavoriteIcon.svg";
+import favoriteClicked from "../icons/favoriteClicked.svg";
 import { NavBar } from "../Components/NavBar";
 import { Button } from "../Components/Button";
 import { useNavigate } from "react-router-dom";
@@ -75,9 +75,12 @@ export function MyHorses() {
     if (id == myHorses[i].ID) {
       myHorsesArr.push(myHorses[i]);
     }
-    // if (myHorses.length === 0) {
+    // else if (myHorses.length === 0) {
     //   console.log(myHorses);
     //   setShowEmpty(true);
+    // }
+    // if (myHorses.length === 0) {
+
     // }
   }
 
@@ -112,17 +115,15 @@ export function MyHorses() {
                 </p>
               </div>
               <div className="myHorses_cont_header_assets">
-                <SortByDropdown />
                 <FilterDropdown />
+                <SortByDropdown />
               </div>
             </div>
+            {/* {showEmpty && (
+              <h1>TESTING</h1>
+            )} */}
             <div className="myHorses_cont_content">
               <MyHorsesCard myHorse={myHorsesArr} />
-              {/* {() => {
-                if (myHorsesArr.length === 0) {
-                  <h1>LoSER</h1>
-                }
-              }} */}
             </div>
           </div>
         </div>
@@ -160,10 +161,10 @@ export function MyHorsesCard({ myHorse }) {
             <div className="horseCard_myHorses_cont_images">
               <img src={horse.thumbnail} alt="" />
               <div className="horseCard_myHorses_cont_images_favorite">
-                <img src={FavoriteIcon} alt="" />
+                <img src={favoriteClicked} alt="" />
                 <p>{horse.likeNumbers}</p>
-                <img src={HideShowPass} alt="Show Horse" />
-                <img src={HideVisibility} alt="Hide Horse" />
+                {/* <img src={HideShowPass} alt="Show Horse" />
+                <img src={HideVisibility} alt="Hide Horse" /> */}
               </div>
             </div>
             <div className="horseCard_myHorses_cont_details">

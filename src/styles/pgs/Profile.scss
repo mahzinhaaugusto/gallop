@@ -1,7 +1,11 @@
 .profile_cont_master {
-    padding: 4rem 4rem 10rem 15rem;
+    padding: 3rem 0 4rem 0;
     background: transparent;
     margin: 0;
+
+    @media only screen and (min-width: $media-desktop) {
+        padding: 3rem 4rem 4rem 12.75rem;
+    }
 
     p {
         margin: 0;
@@ -10,11 +14,18 @@
     h1 {
         font-family: 'Asap';
         font-style: normal;
-        font-weight: 600;
-        font-size: 28px;
-        line-height: 150%;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
         color: $gray;
         padding-bottom: $largePadding;
+        letter-spacing: 0.02em;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 150%;
+        }
     }
 }
 
@@ -26,10 +37,17 @@
     }
 
     h4 {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 23px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0.02em;
         color: $secondary;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 23px;
+        }
     }
 
     p,
@@ -37,6 +55,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 27px;
+        letter-spacing: 0.02em;
     }
 
     a {
@@ -96,7 +115,7 @@
         // display: block;
         width: 100%;
         // height: auto;
-        background-repeat:no-repeat;
+        background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
         height: 11rem;
@@ -230,10 +249,19 @@
     }
 
     h4 {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 23px;
         color: $secondary;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        /* or 24px */
+
+        letter-spacing: 0.02em;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 23px;
+        }
     }
 
     p {
@@ -330,9 +358,13 @@
         font-weight: 600;
         font-size: 20px;
         line-height: 36px;
-        width: 200px;
+        width: 150px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         cursor: pointer;
+
+        @media only screen and (min-width: $media-desktop) {
+            width: 200px;
+        }
     }
 }
 
@@ -390,4 +422,8 @@
     line-height: 36px;
     letter-spacing: 0.02em;
     cursor: pointer;
+}
+
+.profile_cont_mainContent_cta>.btn_cont {
+    justify-content: flex-end;
 }

@@ -92,16 +92,16 @@ function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
   };
 
   return (
-    <div className="filter_cont_color_dropdown">
+    <div
+      className="filter_cont_color_dropdown"
+      ref={inputRef}
+      onClick={handleInputClick}>
       <div
-        ref={inputRef}
-        onClick={handleInputClick}
         className="filter_cont_color_dropdown_selector"
       >
         <div className="filter_cont_color_selector_selection">
           {getColorSelection()}
         </div>
-        <DropdownIcon />
       </div>
       {showOptions && (
         <div className="filter_cont_color_dropdown_options">
@@ -130,6 +130,7 @@ function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
           ))}
         </div>
       )}
+      <DropdownIcon />
     </div>
   );
 }
