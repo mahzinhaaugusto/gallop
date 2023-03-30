@@ -5,8 +5,11 @@ import { FilterDropdown } from "../Components/Filter";
 import { SortByDropdown } from "../Components/SortBy";
 // import { HorseCard } from "../Components/HorseCard";
 import BackButton from "../icons/BackButton.svg";
+import GreenPhone from "../icons/GreenPhone.svg";
+import Email from "../icons/Email.svg";
 import Location from "../icons/Location.svg";
 import Link from "../icons/Link.svg";
+
 import "../styles/pgs/MoreOwner.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
@@ -14,6 +17,7 @@ import { useState, useEffect } from "react";
 import { API_ENDPOINT } from "../server";
 // import { MyHorsesCard } from "./MyHorses";
 import { MoreOwnerCards } from "../Components/MoreOwnerCards";
+
 
 
 export function MoreOwner() {
@@ -76,18 +80,30 @@ export function MoreOwner() {
                 width="150px"
                 alt="Owner's profile"
               ></img>
-              <div className="moreOwner_cont_header_content_location">
-                <img
-                  src={Location}
-                  height="15px"
-                  width="15px"
-                  alt="Location Icon"
-                />
-                <p>{userData.address}</p>
+              <div className="moreOwner_cont_header_content_fullname">
+                <h1>{userData.firstName} {userData.lastName}</h1>
               </div>
-              <div className="moreOwner_cont_header_content_webpage">
-                <img src={Link} height="25px" width="25px" alt="WebPage Icon" />
-                <a href={userData.website}>{userData.website}</a>
+              <div className="moreOwner_cont_header_content_locationAndWebAdd">
+                <div className="moreOwner_cont_header_content_location">
+                  <img
+                    src={Location}
+                    height="15px"
+                    width="15px"
+                    alt="Location Icon"
+                  />
+                  <p>{userData.address}</p>
+                </div>
+                <div className="moreOwner_cont_header_content_webpage">
+                  <img src={Link} height="25px" width="25px" alt="WebPage Icon" />
+                  <a href={userData.website}>{userData.website}</a>
+                </div>
+              </div>
+              <div className="moreOwner_cont_header_content_bio">
+                <p>{userData.bio}</p>
+              </div>
+              <div className="moreOwner_cont_header_content_buttons">
+                <img src={GreenPhone}></img>
+                <img src={Email}></img>
               </div>
             </div>
           </div>
