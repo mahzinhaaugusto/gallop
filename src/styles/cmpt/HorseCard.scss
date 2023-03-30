@@ -3,9 +3,10 @@
     background: $cards;
     border-radius: $radius;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 5px rgba(0, 0, 0, 0.12);
-    height: 20.5rem;
+    height: 23rem;
     justify-content: flex-start;
     margin: 0 .5rem 1rem;
+    
 
     h3 {
         font-weight: 700;
@@ -27,8 +28,10 @@
 }
 
 .horseCard_cont {
-    max-width: 30rem;
-    min-width: 20rem;
+    width: 100%;
+    position: relative;
+    height: 100%;
+    padding: 0 1rem;
 }
 
 .horseCard_cont_images {
@@ -37,9 +40,8 @@
 }
 
 .horseCard_cont_images img {
-    width: 20rem;
     height: 10rem;
-    margin: 0 2rem;
+    width: 100%;
     border-radius: 0 0 $radius $radius;
 }
 
@@ -49,26 +51,30 @@
     width: 2rem;
     height: 3rem;
     border-radius: 0 0 10px 10px;
-    transform: translate(-1.89rem, -10.2rem);
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
         width: 1rem;
         border-radius: 0;
-        padding-top: $largePadding;
         margin: 0;
-        transform: translateY(-4.5rem);
         cursor: pointer;
     }
 }
 
 .horseCard_cont_details {
-    padding: $largePadding;
     display: flex;
     flex-direction: column;
+    margin-top: 1.25rem;
 }
 
 .horseCard_cont_details_btn_master {
-    position: relative;
+    position: absolute;
+    bottom: 1.25rem;
 
     #horseCard_cont_details_btn {
         margin: 0.25rem;
@@ -80,7 +86,6 @@
         filter: drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14));
         width: fit-content;
         align-items: flex-end;
-        position: absolute;
         // bottom: -5.75rem;
         cursor: pointer;
 
@@ -94,9 +99,9 @@
 
 
 
-#favIcon {
+/* #favIcon {
     display: block;
-}
+} */
 
 #unFavIcon {
     display: none;
