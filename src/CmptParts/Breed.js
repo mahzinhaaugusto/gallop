@@ -5,12 +5,13 @@ import breedList from "../breedList.json";
 export function Breed({ onChange, className }) {
   const options = breedList.breedList;
   let optionSelected = onChange;
-  //console.log(a);
 
   return (
     <div className={className}>
       <label className="filter_cont_breed_label">
-        Breed <span className="filter_cont_breed_label_error">*</span>
+        Breed <span className="addHorse_cont_basics_details_name_gender_error">
+          *
+        </span>
       </label>
       <div className="filter_cont_breed">
         <BreedDropdown
@@ -25,7 +26,7 @@ export function Breed({ onChange, className }) {
 }
 
 function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
-  //console.log(a);
+
   const [showOptions, setShowOptions] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(null);
@@ -36,7 +37,6 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
 
   const searchRef = useRef();
 
-  // Search
   useEffect(() => {
     setSearchValue("");
     if (showOptions && searchRef.current) {
@@ -87,7 +87,6 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
   const onItemClick = (option) => {
     setSelectedValue(option);
     optionSelected(option.label);
-    //props.onClick(option);
   };
 
   const isSelected = (option) => {
@@ -99,16 +98,17 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
   };
 
   return (
-    <div className="filter_cont_breed_dropdown">
+    <div
+      className="filter_cont_breed_dropdown"
+      ref={inputRef}
+      onClick={handleInputClick}>
       <div
-        ref={inputRef}
-        onClick={handleInputClick}
         className="filter_cont_breed_dropdown_selector"
       >
         <div className="filter_cont_breed_selector_selection">
           {getBreedSelection()}
+
         </div>
-        <DropdownIcon />
       </div>
       {showOptions && (
         <div className="filter_cont_breed_dropdown_options">
@@ -134,6 +134,7 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
           ))}
         </div>
       )}
+      <DropdownIcon />
     </div>
   );
 }

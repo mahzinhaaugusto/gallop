@@ -6,6 +6,8 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import camera from "../icons/Camera.svg";
 import horse from "../icons/Horse.png";
 import { API_ENDPOINT } from "../server";
+import { PopUp } from "../Components/PopUp";
+import { Button } from "../Components/Button";
 
 export function SignUp2() {
   const location = useLocation();
@@ -15,8 +17,9 @@ export function SignUp2() {
   const [userPhoto, setUserPhoto] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
-  // const [emailVerifying, setEmailVerifying] = useState([]);
+  const [showPopUpSave, setShowPopUpSave] = useState(false);
 
+  // console.log(sessionStorage.getItem("city"));
   let navigate = useNavigate();
 
   const videoRef = useRef(null);
@@ -67,7 +70,7 @@ export function SignUp2() {
 
   async function checkEmail(email) {
     const response = await Axios.get(`${API_ENDPOINT}checkemail`, {
-      params: { email }
+      params: { email },
     });
     return response.data.emailExists;
   }
@@ -78,8 +81,11 @@ export function SignUp2() {
     }
     if (Address === "") {
       setAddressError("Please enter valid address");
-    } else if (phoneNumber !== "" && Address !== "" && phoneNumber.length === 10) {
-
+    } else if (
+      phoneNumber !== "" &&
+      Address !== "" &&
+      phoneNumber.length === 10
+    ) {
       const email = location.state.Email;
       const emailExists = await checkEmail(email);
 
@@ -87,7 +93,6 @@ export function SignUp2() {
         alert("Email already exists");
         navigate("/signup");
       } else {
-
         Axios.post(`${API_ENDPOINT}insert`, {
           firstName: location.state.firstName,
           lastName: location.state.lastName,
@@ -97,16 +102,15 @@ export function SignUp2() {
           Website: Website,
           phoneNumber: phoneNumber,
           userPhoto: userPhoto,
-        })
-          .then((res) => {
-            let d = res.data;
-            localStorage.setItem("id", d.insertId);
-            alert("data written successfully");
-            navigate("/home");
-          });
+          location1: sessionStorage.getItem("city"),
+        }).then((res) => {
+          let d = res.data;
+          localStorage.setItem("id", d.insertId);
+          setShowPopUpSave(!showPopUpSave);
+        });
       }
     }
-  };
+  }
 
   const profilePicture = () => {
     // cameraOn = true;
@@ -121,6 +125,10 @@ export function SignUp2() {
   const backButton = () => {
     navigate("/signup");
   };
+
+  const goToMain = () => {
+    navigate("/home");
+  }
 
   return (
     <>
@@ -225,6 +233,21 @@ export function SignUp2() {
             </div>
           </div>
         </div>
+        {showPopUpSave && (
+          <PopUp
+            title="Welcome!"
+            description="You have created an account!"
+            addContent={
+              <div className="popUp_btn_cont">
+                <Button
+                  className="popUp_btn_goToMain"
+                  title="Go To Main"
+                  onClick={goToMain}
+                />
+              </div>
+            }
+          />
+        )}
       </div>
     </>
   );

@@ -4,8 +4,6 @@ import bcrypt from "bcryptjs";
 import horse from "../icons/Horse.png";
 import HideShowPass from "../icons/HideShowPass.svg";
 import HideVisibility from "../icons/HideVisibility.svg";
-// import { API_ENDPOINT } from "../server";
-// import Axios from "axios";
 
 export function SignUp() {
   const [Email, setEmail] = useState("");
@@ -16,7 +14,6 @@ export function SignUp() {
   const [firstError, setFirstError] = useState("");
   const [lastError, setLastError] = useState("");
   const [emailError, setEmailError] = useState("");
-  // const [regexEmailError, setRegexEmailError] = useState("");
   const [pError, setPError] = useState("");
   const [cError, setCError] = useState("");
   const [passwordType1, setPasswordType1] = useState("password");
@@ -25,19 +22,9 @@ export function SignUp() {
 
   let navigate = useNavigate();
 
-  // async function checkEmail(email) {
-  //   const response = await Axios.get(`${API_ENDPOINT}checkemail`, {
-  //     params: { email }
-  //   });
-  //   return response.data.emailExists;
-  // }
-
   const nextClicked = () => {
-
     let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
     let a = Email.match(validRegex);
-    // console.log(!a);
 
     if (firstName === "") {
       setFirstError("Please enter first name");
@@ -48,18 +35,9 @@ export function SignUp() {
     if (userPassword === "") {
       setPError("Please enter valid password");
     }
-
     if (Email === "" || !a) {
       setEmailError("Please enter a valid email address");
     }
-
-    // if (!a) {
-    //   // console.log(Email.match(validRegex));
-    //   setRegexEmailError("Please Enter a Valid Email Address");
-    // }
-
-    // alert("Please Enter a Valid Email Address");
-
     if (userPassword !== cPassword) {
       setCError("Password and Confirm Password do not Match");
     } else if (
@@ -71,12 +49,6 @@ export function SignUp() {
     ) {
       const hashedPassword = bcrypt.hashSync(userPassword, 10);
 
-      // const email = Email;
-      // const emailExists = checkEmail(email);
-
-      // if (emailExists) {
-      //   alert("Email already exists");
-      // } else {
       navigate("/signup2", {
         state: {
           firstName: firstName,
@@ -85,9 +57,6 @@ export function SignUp() {
           Email: Email,
         },
       });
-      // }
-      //console.log(hashedPassword);
-
     }
   };
 
@@ -189,7 +158,6 @@ export function SignUp() {
               }}
             ></input>
             <p className="warning">{emailError}</p>
-            {/* <p className="warning">{regexEmailError}</p> */}
             <label className="signUpCont_form_passwordLabel require">
               Password
             </label>

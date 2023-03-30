@@ -17,7 +17,6 @@ export function Discipline({ onChange, className }) {
           placeholder="Discipline (up to 3)"
           options={options}
           disciplineSet={disciplineSet}
-        // isOptionDisabled={() => selectedOptions.length >= 3}
         />
       </div>
     </div>
@@ -41,7 +40,6 @@ function DisciplineDropdown({
 
   const searchRef = useRef();
 
-  // Search
   useEffect(() => {
     setSearchValue("");
     if (showOptions && searchRef.current) {
@@ -87,8 +85,7 @@ function DisciplineDropdown({
       return placeholder;
     }
 
-    // Code for multiple selection
-    if (isMulti && selectedValue.length <= 3) {
+    if (isMulti) {
       return (
         <div className="filter_cont_discipline_multiSelection">
           {selectedValue.map((option) => (
@@ -107,10 +104,8 @@ function DisciplineDropdown({
           ))}
         </div>
       );
-    } else {
-      return placeholder;
-      // selectedValue = [];
     }
+    return selectedValue.label;
   };
 
   const removeOption = (option) => {
@@ -128,7 +123,12 @@ function DisciplineDropdown({
       if (selectedValue.findIndex((opt) => opt.value === option.value) >= 0) {
         newOption = removeOption(option);
       } else {
-        newOption = [...selectedValue, option];
+        if (selectedValue.length < 3) {
+          newOption = [...selectedValue, option];
+        } else {
+          newOption = [...selectedValue];
+          // alert("You're not allowed to select more than 3")
+        }
       }
     } else {
       newOption = option;
@@ -137,6 +137,7 @@ function DisciplineDropdown({
     let skills = "";
     //console.log(newOption[0]);
     for (let i = 0; i < newOption.length; i++) {
+      // eslint-disable-next-line
       if (i == newOption.length - 1) {
         skills += newOption[i].label;
       } else {
@@ -162,16 +163,17 @@ function DisciplineDropdown({
   };
 
   return (
-    <div className="filter_cont_discipline_dropdown">
+    <div
+      className="filter_cont_discipline_dropdown"
+      ref={inputRef}
+      onClick={handleInputClick}
+    >
       <div
-        ref={inputRef}
-        onClick={handleInputClick}
         className="filter_cont_discipline_dropdown_selector"
       >
         <div className="filter_cont_discipline_selector_selection">
           {getDisciplineSelection()}
         </div>
-        <DropdownIcon />
       </div>
       {showOptions && (
         <div className="filter_cont_discipline_dropdown_options">
@@ -197,6 +199,7 @@ function DisciplineDropdown({
           ))}
         </div>
       )}
+      <DropdownIcon />
     </div>
   );
 }

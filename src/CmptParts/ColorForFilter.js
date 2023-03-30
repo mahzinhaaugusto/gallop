@@ -2,29 +2,25 @@ import { DropdownIcon } from "../Components/DropdownIcon";
 import { useState, useEffect, useRef } from "react";
 import colorList from "../colorList.json";
 
-export function Color({ onChange, className }) {
-  let selectColor = onChange;
-
+export function ColorForFilter({ handleMessage }) {
   const options = colorList.colorList;
 
   return (
-    <div className={className}>
-      <label className="filter_cont_color_label">Colour <span className="addHorse_cont_basics_details_name_gender_error">
-        *
-      </span></label>
+    <div>
+      <label className="filter_cont_color_label">Colour</label>
       <div className="filter_cont_color">
         <ColorDropdown
           isSearchable
           placeholder="Colour"
           options={options}
-          selectColor={selectColor}
+          handleMessage={handleMessage}
         />
       </div>
     </div>
   );
 }
 
-function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
+function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
   const [showOptions, setShowOptions] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(null);
@@ -84,7 +80,7 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    selectColor(option.label);
+    handleMessage(option.value);
   };
 
   const isSelected = (option) => {
@@ -106,7 +102,6 @@ function ColorDropdown({ placeholder, options, isSearchable, selectColor }) {
         <div className="filter_cont_color_selector_selection">
           {getColorSelection()}
         </div>
-
       </div>
       {showOptions && (
         <div className="filter_cont_color_dropdown_options">

@@ -3,9 +3,10 @@
     background: $cards;
     border-radius: $radius;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 5px rgba(0, 0, 0, 0.12);
-    width: 25%;
-    height: 20.5rem;
+    height: 23rem;
     justify-content: flex-start;
+    margin: 0 .5rem 1rem;
+    
 
     h3 {
         font-weight: 700;
@@ -26,13 +27,21 @@
     }
 }
 
+.horseCard_cont {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    padding: 0 1rem;
+}
+
 .horseCard_cont_images {
     text-align: center;
 
 }
 
 .horseCard_cont_images img {
-    width: 10rem;
+    height: 10rem;
+    width: 100%;
     border-radius: 0 0 $radius $radius;
 }
 
@@ -42,42 +51,58 @@
     width: 2rem;
     height: 3rem;
     border-radius: 0 0 10px 10px;
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
         width: 1rem;
         border-radius: 0;
-        padding-top: $largePadding;
+        margin: 0;
+        cursor: pointer;
     }
 }
 
 .horseCard_cont_details {
-    padding: $largePadding;
     display: flex;
     flex-direction: column;
+    margin-top: 1.25rem;
 }
 
-#horseCard_cont_details_btn {
-    margin: 0.25rem;
-    border-radius: $radius;
-    padding: 0.5rem;
-    margin-top: $largeMargin;
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid $secondary;
-    filter: drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14));
-    width: fit-content;
-    align-items: flex-end;
+.horseCard_cont_details_btn_master {
+    position: absolute;
+    bottom: 1.25rem;
 
-    img {
-        width: 1rem;
-        padding-left: $largePadding;
+    #horseCard_cont_details_btn {
+        margin: 0.25rem;
+        border-radius: $radius;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid $secondary;
+        filter: drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14));
+        width: fit-content;
+        align-items: flex-end;
+        // bottom: -5.75rem;
+        cursor: pointer;
+
+        img {
+            width: 1rem;
+            padding-left: $largePadding;
+        }
     }
 }
 
 
-#favIcon{
-    display:block;
-}
-#unFavIcon{
+
+
+/* #favIcon {
+    display: block;
+} */
+
+#unFavIcon {
     display: none;
 }

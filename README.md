@@ -151,3 +151,15 @@ npm install googleapis
 ```
 npm i --save lodash
 ```
+
+### 21 - Install IN THE SERVER FOLDER uid-generator
+
+```
+npm install uid-generator --save
+```
+
+### 22 - Install React Paginate
+
+```
+npm install react-paginate --save
+```
