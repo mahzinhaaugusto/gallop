@@ -6,7 +6,8 @@ import axios from "axios";
 import { API_ENDPOINT } from "../server";
 import { useState } from "react";
 
-export function HorseCard({ horseInfo, addFavOnClick }) {
+
+export function HorseCard({ horseInfo, addFavOnClick, className }) {
 
   const [toggle, setToggle] = useState(false);
 
@@ -59,16 +60,22 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
   return (
     <>
       {horseInfo.map((horse, i) => (
-        <div key={i} className="horseCard">
+        <div key={i} className={`horseCard ${className}`}>
           <div className="horseCard_cont">
             <div className="horseCard_cont_images">
               <img src={horse.thumbnail} alt="" />
-              <div className="horseCard_cont_images_favorite" id="favIcon" onClick={() => {
-                addFavOnClick(horse);
-              }}>
+              <div
+                className="horseCard_cont_images_favorite"
+                id="favIcon"
+                onClick={() => {
+                  addFavOnClick(horse);
+                }}
+              >
                 {toggle === true ? (
-                  <img src={FavoriteClicked} alt="" />) : (<img src={FavoriteIcon} alt="" />)
-                }
+                  <img src={FavoriteClicked} alt="" />
+                ) : (
+                  <img src={FavoriteIcon} alt="" />
+                )}
               </div>
             </div>
             <div className="horseCard_cont_details">
@@ -85,17 +92,17 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
               </div>
             </div>
             <div className="horseCard_cont_details_btn_master">
-                <button
-                  id="horseCard_cont_details_btn"
-                  type="button"
-                  onClick={() => {
-                    moreClicked(horse);
-                  }}
-                >
-                  MORE
-                  <img src={Plus} alt="" />
-                </button>
-              </div>
+              <button
+                id="horseCard_cont_details_btn"
+                type="button"
+                onClick={() => {
+                  moreClicked(horse);
+                }}
+              >
+                MORE
+                <img src={Plus} alt="" />
+              </button>
+            </div>
           </div>
         </div>
       ))}
