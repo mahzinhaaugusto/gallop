@@ -1,4 +1,4 @@
-import FavoriteIcon from "../icons/FavoriteIcon.svg";
+import favoriteClicked from "../icons/favoriteClicked.svg";
 import { NavBar } from "../Components/NavBar";
 import { Button } from "../Components/Button";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ export function MyHorses() {
     navigate("/add-horse");
   };
 
-  // const [showEmpty, setShowEmpty] = useState(false);
+  const [showEmpty, setShowEmpty] = useState(false);
 
   let [myHorses, setMyHorses] = useState([]);
   let myHorsesArr = [];
@@ -32,30 +32,60 @@ export function MyHorses() {
       navigate("/login");
     }
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
+      // const horses = response.data;
+      // console.log(horses);
+
+      // if (horses.length === 0) {
+      //   setShowEmpty(true);
+      // } else {
+      //   setMyHorses(horses);
+      // }
+      // setMyHorses(response.data);
       // console.log(id);
       // console.log(response.data[0].horseID);
+      // if(response.data.length === 0) {
+      //   setShowEmpty(true);
+      // } else {}
       setMyHorses(response.data);
+
+      // for (let i = 0; i < myHorses.length; i++) {
+      //   //console.log(myHorses);
+      //   if (id == myHorses[i].ID) {
+      //     myHorsesArr.push(myHorses[i]);
+      //   }
+      // if (myHorses.length === 0) {
+      //   console.log(myHorses);
+      //   setShowEmpty(true);
+      // }
+      // }
     });
-  }, []);
+
+    // console.log(myHorses);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   let id = localStorage.getItem("id");
 
+  // if (myHorses.length === 0) {
+  //   console.log(myHorses);
+  //   setShowEmpty(true);
+  // }
+
   for (let i = 0; i < myHorses.length; i++) {
-    //console.log(myHorses);
+    // eslint-disable-next-line
     if (id == myHorses[i].ID) {
       myHorsesArr.push(myHorses[i]);
     }
-  }
-  //console.log(myHorsesArr);
-  if (myHorsesArr.length != 0) {
-    console.log("you have horses");
-  } else {
-    console.log("NO HORSES YOU POOR");
-    // setShowEmpty(true);
+    // else if (myHorses.length === 0) {
+    //   console.log(myHorses);
+    //   setShowEmpty(true);
+    // }
+    // if (myHorses.length === 0) {
+
+    // }
   }
 
-  const backToMain = (event) => {
+  const back = (event) => {
     event.stopPropagation();
-    navigate("/home");
+    navigate(-1);
   };
 
   return (
@@ -79,21 +109,20 @@ export function MyHorses() {
                   alt="Back to Main Page"
                   className="myHorses_cont_header_icon"
                 />
-                <p className="myHorses_cont_header_text" onClick={backToMain}>
+                <p className="myHorses_cont_header_text" onClick={back}>
                   Back
                 </p>
               </div>
               <div className="myHorses_cont_header_assets">
-                <SortByDropdown />
                 <FilterDropdown />
+                <SortByDropdown />
               </div>
             </div>
+            {/* {showEmpty && (
+              <h1>TESTING</h1>
+            )} */}
             <div className="myHorses_cont_content">
               <MyHorsesCard myHorse={myHorsesArr} />
-
-              {/* {showEmpty && (
-                <h1>LOSER</h1>
-              )} */}
             </div>
           </div>
         </div>
@@ -106,8 +135,6 @@ export function MyHorses() {
 export function MyHorsesCard({ myHorse }) {
   let navigate = useNavigate();
 
-  const [totalFav, setTotalFav] = useState(0);
-
   const editHorse = (horse) => {
     navigate("/edit-horse", {
       state: {
@@ -119,26 +146,11 @@ export function MyHorsesCard({ myHorse }) {
   const deleteHorse = (id) => {
     // console.log(id);
     Axios.post(`${API_ENDPOINT}deletehorse`, {
-      id: id
-    })
+      id: id,
+    });
     window.location.reload();
     // console.Console.log("yesssss");
   };
-
-  const calculateFav = (id) => {
-    // console.log(id);
-    Axios.get(`${API_ENDPOINT}totalfav`, {
-      id: id
-    })
-      .then((response) => {
-        const counting = response.data;
-        console.log(counting);
-        // console.log(response.data.count);
-        // setTotalFav(counting);
-      })
-
-    // console.log(totalFav);
-  }
 
   return (
     <>
@@ -148,10 +160,10 @@ export function MyHorsesCard({ myHorse }) {
             <div className="horseCard_myHorses_cont_images">
               <img src={horse.thumbnail} alt="" />
               <div className="horseCard_myHorses_cont_images_favorite">
-                <img src={FavoriteIcon} alt="" />
-                <p onLoad={() => { calculateFav(horse.horseID) }}>{totalFav}</p>
-                <img src={HideShowPass} alt="Show Horse" />
-                <img src={HideVisibility} alt="Hide Horse" />
+                <img src={favoriteClicked} alt="" />
+                <p>{horse.likeNumbers}</p>
+                {/* <img src={HideShowPass} alt="Show Horse" />
+                <img src={HideVisibility} alt="Hide Horse" /> */}
               </div>
             </div>
             <div className="horseCard_myHorses_cont_details">
@@ -170,7 +182,7 @@ export function MyHorsesCard({ myHorse }) {
                   id="horseCard_myHorses_cont_details_editBtn"
                   type="button"
                   onClick={() => {
-                    editHorse(horse)
+                    editHorse(horse);
                   }}
                 >
                   EDIT
@@ -179,7 +191,9 @@ export function MyHorsesCard({ myHorse }) {
                 <button
                   id="horseCard_myHorses_cont_details_deleteBtn"
                   type="button"
-                  onClick={() => { deleteHorse(horse.horseID) }}
+                  onClick={() => {
+                    deleteHorse(horse.horseID);
+                  }}
                 >
                   DELETE
                   <img src={Trash} alt="" />

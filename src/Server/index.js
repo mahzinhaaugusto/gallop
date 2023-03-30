@@ -77,8 +77,14 @@ app.post("/api/delete", (req, res) => {
 app.post("/api/deletefav", (req, res) => {
   const id = req.body.id;
   const deleteOne = "delete from favoritehorses where favoriteid = ?;";
+  const sqlUpdateLikes =
+    "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
   db.query(deleteOne, [id], (er, re) => {
     console.log(re);
+  });
+  db.query(sqlUpdateLikes, (err, result) => {
+    console.log(result);
+    res.send(result);
   });
 });
 
@@ -206,10 +212,16 @@ app.post("/api/addfavorite", (req, res) => {
   const uid = req.body.uid;
   const sqlInsert =
     "insert into favoritehorses(id,horseID,isFavorite) values (?,?,?);";
+  const sqlUpdateLikes =
+    "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
   db.query(sqlInsert, [uid, horseid, 1]),
     (err, result) => {
       console.log(result);
     };
+  db.query(sqlUpdateLikes, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
 });
 
 app.post("/api/insertHorse", (req, res) => {
@@ -233,7 +245,7 @@ app.post("/api/insertHorse", (req, res) => {
   console.log(horsePhotos1);
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3,likeNumbers) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -253,6 +265,7 @@ app.post("/api/insertHorse", (req, res) => {
       horsePhotos1,
       horsePhotos2,
       horsePhotos3,
+      0,
     ],
     (err, result) => {
       console.log(result);
@@ -337,38 +350,33 @@ app.post("/api/reset", (req, res) => {
 });
 
 app.get("/api/auth", async (req, res) => {
-  const accessToken = req.headers.authorization.split(' ')[1];
+  const accessToken = req.headers.authorization.split(" ")[1];
   const googleUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
 
   try {
     const response = await axios.get(googleUrl, {
       headers: {
-        "Authorization": `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     const userInfo = response.data;
     console.log(userInfo);
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error.message);
   }
 });
 
-app.get("/api/totalfav", (req, res) => {
-  const id = req.body.id;
-  console.log(id);
-
-  const sqlTotalFav = "SELECT COUNT(isFavorite) FROM favoritehorses WHERE horseID = ?;"
-  db.query(sqlTotalFav, [id], (err, result) => {
-    // const response = {
-    //   count: result[0].count
-    // }
-
-    // res.json(response);
-    console.log(result);
-    res.send(result);
-  })
-});
+// app.post("/api/updatebackground", (req, res) => {
+//   const backgroundPhoto = req.body.backgroundPhoto;
+//   const id = req.body.id;
+//   const sqlBackground = "UPDATE userinfo SET backgroundPhoto = ? WHERE ID = ?;"
+//   db.query(sqlBackground, [
+//     backgroundPhoto,
+//     id
+//   ], (err, result) => {
+//     console.log(result);
+//   });
+// });
 
 app.listen(3002, () => {
   console.log("running on port 3002");
