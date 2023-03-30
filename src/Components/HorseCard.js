@@ -58,7 +58,7 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
   return (
     <>
       {horseInfo.map((horse, i) => (
-        <div key={i} className="horseCard">
+        <div key={i} className={`horseCard ${className}`}>
           <div className="horseCard_cont">
             <div className="horseCard_cont_images">
               <img src={horse.thumbnail} alt="" />
