@@ -22,7 +22,7 @@
         font-family: 'Asap';
         font-style: normal;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 1.25rem;
         line-height: 150%;
         color: #5A5A5F;
     }
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 15px;
+    padding: 0.9375rem;
 }
 
 .favorites>h2 {
@@ -45,10 +45,10 @@
     font-family: 'Asap';
     font-style: normal;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 1.75rem;
     line-height: 150%;
     color: #5A5A5F;
-    padding-bottom: 15px;
+    padding-bottom: 0.9375rem;
 
     letter-spacing: 0.04em;
 }
@@ -57,7 +57,7 @@
     font-family: 'Asap';
     font-style: normal;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 1.75rem;
     line-height: 150%;
     color: #5A5A5F;
     text-align: center;
@@ -67,7 +67,7 @@
 
 .showEmpty_header_sub {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 150%;
     color: #3C3A3A;
     text-align: center;
