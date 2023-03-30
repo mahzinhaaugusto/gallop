@@ -83,7 +83,8 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
               <div className="horseCard_cont_details_description">
                 {horse.description.substring(0, 50)}
               </div>
-              <div className="horseCard_cont_details_btn_master">
+            </div>
+            <div className="horseCard_cont_details_btn_master">
                 <button
                   id="horseCard_cont_details_btn"
                   type="button"
@@ -95,7 +96,6 @@ export function HorseCard({ horseInfo, addFavOnClick }) {
                   <img src={Plus} alt="" />
                 </button>
               </div>
-            </div>
           </div>
         </div>
       ))}
