@@ -199,38 +199,42 @@ export function Profile() {
                     {profileInfo.bioContent}
                   </p>
                 </div>
-                <div className="profile_cont_mainContent_name">
-                  <h4 className="profile_cont_mainContent_name_title">Name:</h4>
-                  <p className="profile_cont_mainContent_name_content">
-                    {profileInfo.fullName}
-                  </p>
+                <div className='profile_cont_mainContent_name_phoneNumber_cont'>
+                  <div className="profile_cont_mainContent_name">
+                    <h4 className="profile_cont_mainContent_name_title">Name:</h4>
+                    <p className="profile_cont_mainContent_name_content">
+                      {profileInfo.fullName}
+                    </p>
+                  </div>
+                  <div className="profile_cont_mainContent_phoneNumber">
+                    <h4 className="profile_cont_mainContent_phoneNumber_title">
+                      Phone Number:
+                    </h4>
+                    <p className="profile_cont_mainContent_phoneNumber_content">
+                      {profileInfo.phoneNumber}
+                    </p>
+                  </div>
                 </div>
-                <div className="profile_cont_mainContent_phoneNumber">
-                  <h4 className="profile_cont_mainContent_phoneNumber_title">
-                    Phone Number:
-                  </h4>
-                  <p className="profile_cont_mainContent_phoneNumber_content">
-                    {profileInfo.phoneNumber}
-                  </p>
-                </div>
-                <div className="profile_cont_mainContent_email">
-                  <h4 className="profile_cont_mainContent_email_title">
-                    Email:
-                  </h4>
-                  <p className="profile_cont_mainContent_email_content">
-                    {profileInfo.email}
-                  </p>
-                </div>
-                <div className="profile_cont_mainContent_website">
-                  <h4 className="profile_cont_mainContent_website_title">
-                    Website:
-                  </h4>
-                  <a
-                    className="profile_cont_mainContent_website_content"
-                    href={profileInfo.websiteInfo}
-                  >
-                    {profileInfo.websiteInfo}
-                  </a>
+                <div className='profile_cont_mainContent_email_website_cont'>
+                  <div className="profile_cont_mainContent_email">
+                    <h4 className="profile_cont_mainContent_email_title">
+                      Email:
+                    </h4>
+                    <p className="profile_cont_mainContent_email_content">
+                      {profileInfo.email}
+                    </p>
+                  </div>
+                  <div className="profile_cont_mainContent_website">
+                    <h4 className="profile_cont_mainContent_website_title">
+                      Website:
+                    </h4>
+                    <a
+                      className="profile_cont_mainContent_website_content"
+                      href={profileInfo.websiteInfo}
+                    >
+                      {profileInfo.websiteInfo}
+                    </a>
+                  </div>
                 </div>
                 <div className="profile_cont_mainContent_cta">
                   <Button

@@ -19,7 +19,11 @@
 }
 
 .profile_cont_mainContent {
-    padding: 5rem;
+    padding: 1.875rem;
+
+    @media only screen and (min-width: $media-desktop) {
+        padding: 5rem;
+    }
 
     h4 {
         font-weight: 500;
@@ -50,6 +54,19 @@
     background-color: $white;
 }
 
+.profile_cont_header_content {
+    position: absolute;
+    left: 1.875rem;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+
+    @media only screen and (min-width: $media-desktop) {
+        left: 5rem;
+    }
+}
+
 .profile_cont_header_content_edit {
     margin: $largeMargin;
     background: $white;
@@ -64,23 +81,30 @@
 
 .profile_cont_mainContent {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
 }
 
 .profile_cont_header {
-    // position: relative;
-    // width: 50%;
-    // max-width: 300px;
-    // display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 
     .profile_cont_header_background {
         // display: block;
         width: 100%;
         // height: auto;
-        background-size: contain;
-        background-position: top left;
+        background-repeat:no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 11rem;
+        opacity: 0.3;
+
+        @media only screen and (min-width: $media-desktop) {
+            height: 29.75rem;
+        }
     }
 
     // .overlay {
@@ -101,11 +125,45 @@
 
     .profile_cont_header_content_pic {
         clip-path: circle(50% at 50% 50%);
-        // width: 18vw;
+        height: 9rem;
+        width: 9rem;
+
+        @media only screen and (min-width: $media-desktop) {
+            height: 14rem;
+            width: 14rem;
+        }
+    }
+}
+
+.profile_cont_mainContent_name_phoneNumber_cont,
+.profile_cont_mainContent_email_website_cont {
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (min-width: $media-desktop) {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 1.875rem;
+        width: 70%;
+    }
+}
+
+.profile_cont_mainContent_bio,
+.profile_cont_mainContent_name,
+.profile_cont_mainContent_phoneNumber,
+.profile_cont_mainContent_email,
+.profile_cont_mainContent_website {
+    padding: .5rem 0;
+    border-bottom: 1px solid #ECECEC;
+
+    @media only screen and (min-width: $media-desktop) {
+        padding: 0;
+        border-bottom: unset;
     }
 }
 
 .profile_cont_mainContent_cta_signOut {
+    margin-top: 5rem;
     font-family: 'Asap';
     font-style: normal;
     font-weight: 600;
@@ -126,6 +184,7 @@
     display: flex;
     align-items: center;
     padding: $largeMargin;
+    cursor: pointer;
 
     p {
         font-family: 'Asap';
@@ -136,6 +195,20 @@
         color: #5A5A5F;
         padding-left: $largePadding;
     }
+}
+
+.profile_cont_header_background_editing {
+    position: absolute;
+    right: 2.375rem;
+    bottom: 1.5rem;
+}
+
+.profile_cont_header_content_pic_editing {
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .profile_cont_header_background_editing,
@@ -150,7 +223,11 @@
 }
 
 .profile_cont_mainContent_editing {
-    padding: 5rem;
+    padding: 1.875rem;
+
+    @media only screen and (min-width: $media-desktop) {
+        padding: 5rem;
+    }
 
     h4 {
         font-weight: 500;
@@ -166,20 +243,40 @@
 
 .profile_cont_mainContent_editing_bio {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     padding: 1rem 0;
+    position: relative;
+
+    @media only screen and (min-width: $media-desktop) {
+        flex-direction: row;
+    }
 
     textarea {
-        width: 70%;
         border-radius: $radius;
         padding: $largePadding;
+
+        @media only screen and (min-width: $media-desktop) {
+            width: 70%;
+        }
     }
 
     textarea::placeholder {
         font-weight: 400;
         font-size: 16px;
         line-height: 27px;
+    }
+}
+
+#profile_cont_mainContent_editing_bio_title_ {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    bottom: 1.5rem;
+
+    @media only screen and (min-width: $media-desktop) {
+        bottom: 2rem;
+        right: 1rem;
     }
 }
 
@@ -191,19 +288,27 @@
 .profile_cont_mainContent_editing_password,
 .profile_cont_mainContent_editing_cta {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     padding: 1rem 0;
+
+    @media only screen and (min-width: $media-desktop) {
+        flex-direction: row;
+    }
 
     input {
         border-radius: $radius;
         padding: $largePadding;
         border: 1px solid $fourSec;
-        width: 25%;
+
+        @media only screen and (min-width: $media-desktop) {
+            width: 25%;
+        }
     }
 }
 
 .profile_cont_mainContent_editing_cta {
+    flex-direction: row;
     align-items: center;
 
     p {
