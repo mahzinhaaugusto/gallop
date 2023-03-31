@@ -11,7 +11,6 @@ import { Footer } from "../Components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { API_ENDPOINT } from "../server";
 import { CarouselHorseDetail } from "../Components/CarouselHorseDetail";
 
 export function HorseDetail() {
@@ -26,7 +25,7 @@ export function HorseDetail() {
 
   async function addFavOnClick(horse) {
     try {
-      await Axios.get(`${API_ENDPOINT}favhorses`).then(async (response) => {
+      await Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(async (response) => {
         const favHorses = response.data;
         console.log(favHorses);
         let flag = true;
@@ -40,7 +39,7 @@ export function HorseDetail() {
             if (favHorses[i].ID == localStorage.getItem("id")) {
               flag = false;
               console.log("deleted");
-              await Axios.post(`${API_ENDPOINT}deletefav`, {
+              await Axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
                 id: favHorses[i].favoriteid,
               });
             }
@@ -48,7 +47,7 @@ export function HorseDetail() {
         }
         if (flag) {
           console.log("added");
-          await Axios.post(`${API_ENDPOINT}addfavorite`, {
+          await Axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
             horseid: horse.horseID,
             uid: localStorage.getItem("id"),
           });
@@ -75,7 +74,7 @@ export function HorseDetail() {
       // console.log("sorry");
       navigate("/login");
     }
-    Axios.get(`${API_ENDPOINT}get`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}get`).then((response) => {
       for (let i = 0; i < response.data.length; i++) {
         // eslint-disable-next-line
         if (response.data[i].ID == location.state.horse.ID)
@@ -158,7 +157,7 @@ export function HorseDetail() {
                       <p>{HorseObj.horseAge + " years"}</p>
                     </div>
                   </div>
-                  
+
                   <div className='horseDetail_height_color_gender'>
                     <div className="horseDetail_cont_information_body_color">
                       <label>Color</label>
@@ -169,7 +168,7 @@ export function HorseDetail() {
                       <p>{HorseObj.gender}</p>
                     </div>
                   </div>
-                  
+
                   <div className='horseDetail_height_breedingMethod_disciplines'>
                     <div className="horseDetail_cont_information_body_breedingMethod">
                       <label>Breeding Method</label>
@@ -180,7 +179,7 @@ export function HorseDetail() {
                       <p>{HorseObj.skills}</p>
                     </div>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
@@ -251,7 +250,7 @@ export function HorseDetail() {
 
 
 
-                  
+
                 </div>
                 <div className="horseDetail_cont_contactInfo_moreFromOwner">
                   <button

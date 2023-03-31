@@ -5,7 +5,6 @@ import { BarChart, XAxis, YAxis, Tooltip, Bar, PieChart, Pie } from "recharts";
 import { groupBy } from "lodash";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
 
 
 export function DataAnalytics() {
@@ -20,7 +19,7 @@ export function DataAnalytics() {
     let arrGender = [];
 
     useEffect(() => {
-        axios.get(`${API_ENDPOINT}allhorses`)
+        axios.get(`${process.env.REACT_APP_API_URL}allhorses`)
             .then((response) => {
                 const groupedBreed = groupBy(response.data, "breed");
                 const groupedGender = groupBy(response.data, "gender");
@@ -74,13 +73,8 @@ export function DataAnalytics() {
                                     <h3 className="dataAnalytics_cont_mainContent_breed_title">All Around the World</h3>
                                     <p className="dataAnalytics_cont_mainContent_breed_content">In Gallop, there are many different breeds of horses. Discover the top breeds of horses on Gallop and explore where they are originally from around the world.</p>
                                     <div className="dataAnalytics_cont_mainContent_breed_chart">
-                                        <BarChart className="barChart" width={1000} height={250} data={allHorsesBreed} margin={{
-                                            top: 5,
-                                            right: 30,
-                                            left: 20,
-                                            bottom: 5,
-                                        }} domain={['auto', 'auto']} >
-                                            <XAxis dataKey="breed" interval={0} fontSize={10} />
+                                        <BarChart className="barChart" width={1800} height={250} data={allHorsesBreed} >
+                                            <XAxis dataKey="breed" interval={0} tick={{ fontSize: 11, fontFamily: "sans-serif" }} />
                                             <YAxis />
                                             <Tooltip />
                                             <Bar dataKey="quantity" fill="#75B367" barSize={25} />

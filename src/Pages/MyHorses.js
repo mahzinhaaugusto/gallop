@@ -12,7 +12,6 @@ import HideVisibility from "../icons/HideVisibility.svg";
 import Edit from "../icons/Edit.svg";
 import Trash from "../icons/Trash.svg";
 import { Footer } from "../Components/Footer";
-import { API_ENDPOINT } from "../server";
 
 export function MyHorses() {
   let navigate = useNavigate();
@@ -32,7 +31,7 @@ export function MyHorses() {
       // console.log("sorry");
       navigate("/login");
     }
-    Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}allhorses`).then((response) => {
       // const horses = response.data;
       // console.log(horses);
 
@@ -159,7 +158,7 @@ export function MyHorsesCard({ myHorse }) {
 
   const deleteHorse = (id) => {
     // console.log(id);
-    Axios.post(`${API_ENDPOINT}deletehorse`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}deletehorse`, {
       id: id,
     });
     window.location.reload();
@@ -167,7 +166,7 @@ export function MyHorsesCard({ myHorse }) {
   };
 
   const showHorse = (horseID) => {
-    Axios.post(`${API_ENDPOINT}horseVisibility`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}horseVisibility`, {
       horseID: horseID,
       showInfo: 1,
     });
@@ -175,7 +174,7 @@ export function MyHorsesCard({ myHorse }) {
     // console.Console.log("yesssss");
   };
   const hideHorse = (horseID) => {
-    Axios.post(`${API_ENDPOINT}horseVisibility`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}horseVisibility`, {
       horseID: horseID,
       showInfo: 0,
     });

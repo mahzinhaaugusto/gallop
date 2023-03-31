@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { Footer } from "../Components/Footer";
 import Axios from "axios";
-import { API_ENDPOINT } from "../server";
 import { useLocation } from "react-router-dom";
 
 export function MainPage() {
@@ -145,8 +144,9 @@ export function MainPage() {
       navigate("/login");
     }
     let newHorse = [];
-    Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}allhorses`).then((response) => {
       for (let i = 0; i < response.data.length; i++) {
+        // eslint-disable-next-line
         if (response.data[i].showInfo == 1) newHorse.push(response.data[i]);
       }
 
@@ -170,6 +170,7 @@ export function MainPage() {
               horseInfo={[item]}
               onClick={goToHorseDetail}
               addFavOnClick={addToFavorites}
+              className="mainPage_horseCard"
             />
           ))}
       </div>

@@ -3,9 +3,8 @@ import { Button } from "../Components/Button";
 import { useState } from "react";
 import { PopUp } from "../Components/PopUp";
 // import { useNavigate } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
 
 
 export function ForgotPassword() {
@@ -18,7 +17,7 @@ export function ForgotPassword() {
     // let navigate = useNavigate();
 
     const checkEmail = async (email) => {
-        const response = await axios.get(`${API_ENDPOINT}checkemail`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}checkemail`, {
             params: { email }
         });
         return response.data.emailExists;
@@ -42,7 +41,7 @@ export function ForgotPassword() {
             if (!emailExists) {
                 setExists("This is not a valid email, please provide a valid email");
             } else {
-                axios.post(`${API_ENDPOINT}forgotpassword`, {
+                axios.post(`${process.env.REACT_APP_API_URL}forgotpassword`, {
                     email: email
                 })
                 setShowPopUP(!showPopUp);

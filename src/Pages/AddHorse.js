@@ -128,41 +128,59 @@ export function AddHorse() {
   const clickSave = () => {
     console.log(breedMethod);
     if (
+      // eslint-disable-next-line
       name == "" ||
+      // eslint-disable-next-line
       gender == "" ||
+      // eslint-disable-next-line
       breed == "" ||
+      // eslint-disable-next-line
       age == "" ||
+      // eslint-disable-next-line
       height == undefined ||
+      // eslint-disable-next-line
       breedMethod == "" ||
+      // eslint-disable-next-line
       photo == "" ||
+      // eslint-disable-next-line
       horsePhotos[0] == "" ||
+      // eslint-disable-next-line
       description == ""
     ) {
       //   setErrorMessage("Please revise all required fields");
+      // eslint-disable-next-line
       if (name == "") {
         setNameError("Field Required");
       }
+      // eslint-disable-next-line
       if (gender == "") {
         setGenderError("Field Required");
       }
+      // eslint-disable-next-line
       if (breed == "") {
         setBreedError("Field Required");
       }
+      // eslint-disable-next-line
       if (age == "") {
         setAgeError("Field Required");
       }
+      // eslint-disable-next-line
       if (height == undefined) {
         setHeightError("Field Required");
       }
+      // eslint-disable-next-line
       if (breedMethod == "") {
         setBreedingMethodError("Field Required");
       }
+      // eslint-disable-next-line
       if (description == "") {
         setDescriptionError("Field Required");
       }
+      // eslint-disable-next-line
       if (photo == "") {
         setThumbnailError("Field Required");
       }
+      // eslint-disable-next-line
       if (horsePhotos.length == 0) {
         setPhotoError("Field Required");
       }
@@ -257,161 +275,164 @@ export function AddHorse() {
       <div className="addHorse">
         <h2>Add Horse</h2>
         <div className="addHorse_cont">
-          <p className="addHorse_cont_backButton" onClick={goBack}>
-            <img src={BackButton} height="30px" width="30px" alt="Go Back" />
-            Back
-          </p>
-          <div className="addHorse_cont_basics">
-            <h3>ABOUT HORSE</h3>
-            <div className="addHorse_cont_basics_details">
-              <div className="addHorse_cont_basics_details_name">
-                <label>
-                  Horse Name{" "}
-                  <span className="addHorse_cont_basics_details_name_error">
-                    *
-                  </span>
-                </label>
-                <input
-                  required
-                  name="horseName"
-                  id="horseName"
-                  type="text"
-                  onChange={(e) => {
-                    setNameError("");
-                    setName(e.target.value);
-                  }}
-                ></input>
-                <p className="warning">{nameError}</p>
-              </div>
-              <div className="addHorse_cont_basics_details_firstRow">
-                <div className="addHorse_cont_basics_details_gender">
+          <div className="addHorse_cont_header">
+            <p className="addHorse_cont_backButton" onClick={goBack}>
+              <img src={BackButton} height="30px" width="30px" alt="Go Back" />
+              Back
+            </p>
+          </div>
+          <div className="addHorse_cont_inner">
+            <div className="addHorse_cont_basics">
+              <h3>ABOUT HORSE</h3>
+              <div className="addHorse_cont_basics_details">
+                <div className="addHorse_cont_basics_details_name">
                   <label>
-                    Gender{" "}
+                    Horse Name{" "}
+                    <span className="addHorse_cont_basics_details_name_error">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    required
+                    name="horseName"
+                    id="horseName"
+                    type="text"
+                    onChange={(e) => {
+                      setNameError("");
+                      setName(e.target.value);
+                    }}
+                  ></input>
+                  <p className="warning">{nameError}</p>
+                </div>
+                <div className="addHorse_cont_basics_details_firstRow">
+                  <div className="addHorse_cont_basics_details_gender">
+                    <label>
+                      Gender{" "}
+                      <span className="addHorse_cont_basics_details_name_gender_error">
+                        *
+                      </span>
+                    </label>
+                    <select
+                      required
+                      name="gender"
+                      id="gender"
+                      onChange={(e) => {
+                        setGender(e.target.value);
+                      }}
+                    >
+                      <option value="" disabled selected>
+                        Gender
+                      </option>
+                      <option value="Stallion">Stallion</option>
+                      <option value="Mare">Mare</option>
+                    </select>
+                    <p className="warning">{genderError}</p>
+                  </div>
+                  <div className="addHorse_cont_basics_details_breed">
+                    <Breed
+                      className="addHorse_cont_basics_details_breed_cont"
+                      onChange={breedClick}
+                    />
+                    <p className="warning">{breedError}</p>
+                  </div>
+                </div>
+                <div className="addHorse_cont_basics_details_secondRow">
+                  <div className="addHorse_cont_basics_details_height">
+                    <label>
+                      Height{" "}
+                      <span className="addHorse_cont_basics_details_height_error">
+                        *
+                      </span>
+                    </label>
+                    <input
+                      required
+                      name="height"
+                      id="height"
+                      type="number"
+                      placeholder="Centimeters"
+                      onChange={(e) => {
+                        setHeight(e.target.value);
+                      }}
+                      onWheel={(e) => e.target.blur()}
+                    ></input>
+                    <p className="warning">{heightError}</p>
+                  </div>
+                  <div className="addHorse_cont_basics_details_color">
+                    <Color
+                      onChange={colorClick}
+                      className="addHorse_cont_basics_details_color_cont"
+                    />
+                  </div>
+
+                </div>
+                <div className="addHorse_cont_basics_details_thirdRow">
+                  <div className="addHorse_cont_basics_details_age">
+                    <label>
+                      Age{" "}
+                      <span className="addHorse_cont_basics_details_age_error">
+                        *
+                      </span>
+                    </label>
+                    <input
+                      required
+                      name="age"
+                      id="age"
+                      type="number"
+                      placeholder="Years"
+                      onChange={(e) => {
+                        setAge(e.target.value);
+                      }}
+                      onWheel={(e) => e.target.blur()}
+                    ></input>
+                    <p className="warning">{ageError}</p>
+                  </div>
+                  <div className="addHorse_cont_basics_details_breedingMethod">
+                    <label>
+                      Breeding Method{" "}
+                      <span className="addHorse_cont_basics_details_breedingMethod_error">
+                        *
+                      </span>
+                    </label>
+                    <select
+                      required
+                      name="breedingMethod"
+                      id="breedingMethod"
+                      onChange={(e) => {
+                        setBreedMethod(e.target.value);
+                      }}
+                    >
+                      <option value="" disabled selected>
+                        Breeding Method
+                      </option>
+                      <option value="Natural">Natural</option>
+                      <option value="Artificial">Insemination</option>
+                    </select>
+                    <p className="warning">{breedingMethodError}</p>
+                  </div>
+                </div>
+                <div className="addHorse_cont_basics_details_price">
+                  <label>Price</label>
+                  <input
+                    name="price"
+                    id="price"
+                    type="number"
+                    placeholder="Dollars"
+                    onChange={(e) => {
+                      setPrice(e.target.value);
+                    }}
+                    onWheel={(e) => e.target.blur()}
+                  ></input>
+                </div>
+              </div>
+              <div className="addHorse_cont_basics_upload">
+                <div className="addHorse_cont_basics_upload_thumbnail">
+                  <label>
+                    Thumbnail{" "}
                     <span className="addHorse_cont_basics_details_name_gender_error">
                       *
                     </span>
                   </label>
-                  <select
-                    required
-                    name="gender"
-                    id="gender"
-                    onChange={(e) => {
-                      setGender(e.target.value);
-                    }}
-                  >
-                    <option value="" disabled selected>
-                      Gender
-                    </option>
-                    <option value="Stallion">Stallion</option>
-                    <option value="Mare">Mare</option>
-                  </select>
-                  <p className="warning">{genderError}</p>
-                </div>
-                <div className="addHorse_cont_basics_details_breed">
-                  <Breed
-                    className="addHorse_cont_basics_details_breed_cont"
-                    onChange={breedClick}
-                  />
-                  <p className="warning">{breedError}</p>
-                </div>
-              </div>
-              <div className="addHorse_cont_basics_details_secondRow">
-                <div className="addHorse_cont_basics_details_height">
-                  <label>
-                    Height{" "}
-                    <span className="addHorse_cont_basics_details_height_error">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    required
-                    name="height"
-                    id="height"
-                    type="number"
-                    placeholder="Centimeters"
-                    onChange={(e) => {
-                      setHeight(e.target.value);
-                    }}
-                    onWheel={(e) => e.target.blur()}
-                  ></input>
-                  <p className="warning">{heightError}</p>
-                </div>
-                <div className="addHorse_cont_basics_details_color">
-                  <Color
-                    onChange={colorClick}
-                    className="addHorse_cont_basics_details_color_cont"
-                  />
-                </div>
-                
-              </div>
-              <div className="addHorse_cont_basics_details_thirdRow">
-                <div className="addHorse_cont_basics_details_age">
-                  <label>
-                    Age{" "}
-                    <span className="addHorse_cont_basics_details_age_error">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    required
-                    name="age"
-                    id="age"
-                    type="number"
-                    placeholder="Years"
-                    onChange={(e) => {
-                      setAge(e.target.value);
-                    }}
-                    onWheel={(e) => e.target.blur()}
-                  ></input>
-                  <p className="warning">{ageError}</p>
-                </div>
-                <div className="addHorse_cont_basics_details_breedingMethod">
-                  <label>
-                    Breeding Method{" "}
-                    <span className="addHorse_cont_basics_details_breedingMethod_error">
-                      *
-                    </span>
-                  </label>
-                  <select
-                    required
-                    name="breedingMethod"
-                    id="breedingMethod"
-                    onChange={(e) => {
-                      setBreedMethod(e.target.value);
-                    }}
-                  >
-                    <option value="" disabled selected>
-                      Breeding Method
-                    </option>
-                    <option value="Natural">Natural</option>
-                    <option value="Artificial">Insemination</option>
-                  </select>
-                  <p className="warning">{breedingMethodError}</p>
-                </div>
-              </div>
-              <div className="addHorse_cont_basics_details_price">
-                <label>Price</label>
-                <input
-                  name="price"
-                  id="price"
-                  type="number"
-                  placeholder="Dollars"
-                  onChange={(e) => {
-                    setPrice(e.target.value);
-                  }}
-                  onWheel={(e) => e.target.blur()}
-                ></input>
-              </div>
-            </div>
-            <div className="addHorse_cont_basics_upload">
-              <div className="addHorse_cont_basics_upload_thumbnail">
-                <label>
-                  Thumbnail{" "}
-                  <span className="addHorse_cont_basics_details_name_gender_error">
-                    *
-                  </span>
-                </label>
-                {/*  <input
+                  {/*  <input
                   className="addHorse_cont_basics_upload_thumbnail_input"
                   type="file"
                   id="thumb"
@@ -420,177 +441,180 @@ export function AddHorse() {
                   onChange={photoSeleceted}
                 /> */}
 
-                {previewUrl && (
-                  <img
-                    src={previewUrl}
-                    alt="Preview"
-                    height="150px"
-                    width="150px"
-                  />
-                )}
-
-                <div
-                  id="thumbBox"
-                  className="addHorse_cont_basics_upload_thumbnail_content"
-                >
-                  <p>Upload Thumbnail</p>
-                  <div onClick={clickPlusOfThumb}>
-                    <label for="thumb">
-                      <img src={AddMedia} alt="not " />
-                    </label>
-                    <input
-                      type="file"
-                      accept="image/png, image/jpeg"
-                      className="addHorse_cont_basics_upload_thumbnail_input"
-                      name="newBackground"
-                      id="thumb"
-                      onChange={photoSeleceted}
+                  {previewUrl && (
+                    <img
+                      src={previewUrl}
+                      alt="Preview"
+                      height="150px"
+                      width="150px"
                     />
+                  )}
+
+                  <div
+                    id="thumbBox"
+                    className="addHorse_cont_basics_upload_thumbnail_content"
+                  >
+                    <p>Upload Thumbnail</p>
+                    <div onClick={clickPlusOfThumb}>
+                      <label for="thumb">
+                        <img src={AddMedia} alt="not " />
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/png, image/jpeg"
+                        className="addHorse_cont_basics_upload_thumbnail_input"
+                        name="newBackground"
+                        id="thumb"
+                        onChange={photoSeleceted}
+                      />
+                    </div>
                   </div>
+                  <p className="warning">{thumbnailError}</p>
                 </div>
-                <p className="warning">{thumbnailError}</p>
+                <div className="addHorse_cont_basics_upload_media">
+                  <label>
+                    Photos{" "}
+                    <span className="addHorse_cont_basics_upload_media_error">
+                      *
+                    </span>
+                  </label>
+                  <div className="addHorse_cont_basics_upload_media_content">
+                    <p>Up to 3 photos </p>
+                    <div>
+                      <label for="thumbforphotos">
+                        <img alt="Add horse media" src={AddMedia} />
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/png, image/jpeg"
+                        className="addHorse_cont_basics_upload_media_content_image"
+                        name="horsePhotos"
+                        id="thumbforphotos"
+                        onChange={clickPlus}
+                      />
+                    </div>
+                  </div>
+                  <p className="warning">{photoError}</p>
+                </div>
               </div>
-              <div className="addHorse_cont_basics_upload_media">
+
+            </div>
+            <div className="addHorse_cont_detailed">
+              <div className="addHorse_cont_detailed_description">
                 <label>
-                  Photos{" "}
-                  <span className="addHorse_cont_basics_upload_media_error">
+                  Description{" "}
+                  <span className="addHorse_cont_basics_details_name_gender_error">
                     *
                   </span>
                 </label>
-                <div className="addHorse_cont_basics_upload_media_content">
-                  <p>Up to 3 photos </p>
-                  <div>
-                    <label for="thumbforphotos">
-                      <img alt="Add horse media" src={AddMedia} />
-                    </label>
-                    <input
-                      type="file"
-                      accept="image/png, image/jpeg"
-                      className="addHorse_cont_basics_upload_media_content_image"
-                      name="horsePhotos"
-                      id="thumbforphotos"
-                      onChange={clickPlus}
-                    />
+                <div>
+                  <textarea
+                    name="description"
+                    id="description"
+                    cols="50"
+                    rows="6"
+                    placeholder="Write a short description"
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                  ></textarea>
+                  <p className="warning">{descriptionError}</p>
+                </div>
+                <div className="addHorse_cont_detailed_discipline">
+                  <Discipline
+                    className="addHorse_cont_detailed_discipline_content"
+                    onChange={disciplineClick}
+                  />
+                </div>
+                <div className="addHorse_cont_detailed_documentation">
+                  <label>Documentation</label>
+                  <div className="addHorse_cont_detailed_documentation_content">
+                    <p>Up to 30MB</p>
+                    <div>
+                      <label for="thumbfordocuments">
+                        <img alt="Add horse media" src={AddMedia} />
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/png, image/jpeg, .pdf, .doc, .docx, .xls, .xlsx, text"
+                        className="addHorse_cont_basics_upload_media_content_image"
+                        name="horseDocuments"
+                        id="thumbfordocuments"
+                        onChange={clickPlus}
+                      />
+                    </div>
                   </div>
                 </div>
-                <p className="warning">{photoError}</p>
+                <p className="warning">{errorMessage}</p>
               </div>
             </div>
-          </div>
-          <div className="addHorse_cont_detailed">
-            <div className="addHorse_cont_detailed_description">
-              <label>
-                Description{" "}
-                <span className="addHorse_cont_basics_details_name_gender_error">
-                  *
-                </span>
-              </label>
-              <div>
-                <textarea
-                  name="description"
-                  id="description"
-                  cols="50"
-                  rows="6"
-                  placeholder="Write a short description"
-                  onChange={(e) => {
-                    setDescription(e.target.value);
+            <div className="addHorse_cont_aboutOwner">
+              <h3>ABOUT OWNER</h3>
+              <div className="addHorse_cont_aboutOwner_contactPreferences">
+                <label>Contact Preferences</label>
+                <div className="addHorse_cont_aboutOwner_contactPreferences_label">
+                  <label className="addHorse_cont_aboutOwner_contactPreferences_label_Email" id="ownerEmailCont">
+                    <input type="checkbox" id="ownerEmail"></input>
+                    Email
+                  </label>
+                  <label className="addHorse_cont_aboutOwner_contactPreferences_label_Call">
+                    <input type="checkbox" id="ownerCall"></input>
+                    Call
+                  </label>
+                  <label className="addHorse_cont_aboutOwner_contactPreferences_label_Text">
+                    <input type="checkbox" id="ownerText"></input>
+                    Text
+                  </label>
+                </div>
+              </div>
+              <div className="addHorse_cont_aboutOwner_location">
+                <label>
+                  Location {""}
+                  <span className="addHorse_cont_aboutOwner_location_error">
+                    (you cannot change your location)
+                  </span>
+                </label>
+                <input
+                  required
+                  name="ownerLocation"
+                  value={location}
+                  id="ownerLocation"
+                  type="text"
+                  placeholder="Location"
+                /* onChange={(e) => {
+                setLocation(e.sessionStorage.setItem("city", city));
+              }} */
+                ></input>
+              </div>
+              <div className="addHorse_cont_aboutOwner_displayHorse">
+                {/* <label className="toggle-control"> */}
+                Display horse on profile
+                <input
+                  type="checkbox"
+                  id="toggle"
+                  onClick={(e) => {
+                    setShowInfo(e.target.checked);
                   }}
-                ></textarea>
-                <p className="warning">{descriptionError}</p>
+                ></input>
+                <span id="slider"></span>
+                {/* </label> */}
               </div>
-              <div className="addHorse_cont_detailed_discipline">
-                <Discipline
-                  className="addHorse_cont_detailed_discipline_content"
-                  onChange={disciplineClick}
-                />
-              </div>
-              <div className="addHorse_cont_detailed_documentation">
-                <label>Documentation</label>
-                <div className="addHorse_cont_detailed_documentation_content">
-                  <p>Up to 30MB</p>
-                  <div>
-                    <label for="thumbfordocuments">
-                      <img alt="Add horse media" src={AddMedia} />
-                    </label>
-                    <input
-                      type="file"
-                      accept="image/png, image/jpeg, .pdf, .doc, .docx, .xls, .xlsx, text"
-                      className="addHorse_cont_basics_upload_media_content_image"
-                      name="horseDocuments"
-                      id="thumbfordocuments"
-                      onChange={clickPlus}
-                    />
-                  </div>
-                </div>
-              </div>
-              <p className="warning">{errorMessage}</p>
+              <p className="requiredFields_error">* required fields</p>
             </div>
-          </div>
-          <div className="addHorse_cont_aboutOwner">
-            <h3>ABOUT OWNER</h3>
-            <div className="addHorse_cont_aboutOwner_contactPreferences">
-              <label>Contact Preferences</label>
-              <div className="addHorse_cont_aboutOwner_contactPreferences_label">
-                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Email" id="ownerEmailCont">
-                  <input type="checkbox" id="ownerEmail"></input>
-                  Email
-                </label>
-                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Call">
-                  <input type="checkbox" id="ownerCall"></input>
-                  Call
-                </label>
-                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Text">
-                  <input type="checkbox" id="ownerText"></input>
-                  Text
-                </label>
-              </div>
+            <div className="endButtons">
+              <img
+                alt="Save horse"
+                className="endButtons_saveButton"
+                src={SaveButton}
+                onClick={clickSave}
+              ></img>
+              <img
+                alt="Cancel adding horse"
+                className="endButtons_cancelButton"
+                src={CancelButton}
+                onClick={clickCancel}
+              ></img>
             </div>
-            <div className="addHorse_cont_aboutOwner_location">
-              <label>
-                Location {""}
-                <span className="addHorse_cont_aboutOwner_location_error">
-                  (you cannot change your location)
-                </span>
-              </label>
-              <input
-                required
-                name="ownerLocation"
-                value={location}
-                id="ownerLocation"
-                type="text"
-                placeholder="Location"
-              /* onChange={(e) => {
-              setLocation(e.sessionStorage.setItem("city", city));
-            }} */
-              ></input>
-            </div>
-            <div className="addHorse_cont_aboutOwner_displayHorse">
-              {/* <label className="toggle-control"> */}
-              Display horse on profile
-              <input
-                type="checkbox"
-                onClick={(e) => {
-                  setShowInfo(e.target.checked);
-                }}
-              ></input>
-              <span className="control"></span>
-              {/* </label> */}
-            </div>
-            <p className="requiredFields_error">* required fields</p>
-          </div>
-          <div className="endButtons">
-            <img
-              alt="Save horse"
-              className="endButtons_saveButton"
-              src={SaveButton}
-              onClick={clickSave}
-            ></img>
-            <img
-              alt="Cancel adding horse"
-              className="endButtons_cancelButton"
-              src={CancelButton}
-              onClick={clickCancel}
-            ></img>
           </div>
         </div>
 

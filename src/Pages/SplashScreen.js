@@ -5,7 +5,6 @@ import { Button } from "../Components/Button";
 import { useNavigate, Link } from "react-router-dom";
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
 
 export function SplashScreen() {
   let navigate = useNavigate();
@@ -75,7 +74,7 @@ function GoogleButton() {
       setAccessToken(access_token);
     }
   },
-    axios.get(`${API_ENDPOINT}auth`, {
+    axios.get(`${process.env.REACT_APP_API_URL}auth`, {
       headers: {
         "Authorization": `Bearer ${accessToken}`,
       }

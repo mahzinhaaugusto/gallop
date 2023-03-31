@@ -1,4 +1,3 @@
-// import { API_ENDPOINT } from "../server";
 import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
@@ -177,7 +176,7 @@ export function Profile() {
       const storageRef = ref(storage, `Horsephoto/${file.name}`);
       uploadBytes(storageRef, file).then(() => {
         getDownloadURL(storageRef).then((result) => {
-          profileEdit.profilePhoto = result;
+          profileEdit.userPhoto = result;
           console.log(result);
         });
       });
@@ -364,93 +363,95 @@ export function Profile() {
                     {showCount}/150
                   </p>
                 </div>
-                <div className="profile_cont_mainContent_editing_name">
-                  <h4 className="profile_cont_mainContent_editing_name_title">
-                    Name:
-                  </h4>
-                  <input
-                    className="profile_cont_mainContent_editing_name_info"
-                    type="text"
-                    maxLength={profileEditing.inputLength}
-                    placeholder="Hunter Smith"
-                    defaultValue={profileInfo.fullName}
-                    onChange={(event) => {
-                      const myString = event.target.value.split(" ");
-                      // eslint-disable-next-line
-                      if (myString.length == 1) {
-                        profileEdit.firstName = myString;
-                        profileEdit.lastName = "";
-                      } else {
-                        profileEdit.firstName = myString[0];
-                        let lastName = "";
-                        for (let i = 1; i < myString.length; i++) {
-                          lastName += myString[i];
+                <div className="profile_cont_mainContent_editing_grid">
+                  <div className="profile_cont_mainContent_editing_name">
+                    <h4 className="profile_cont_mainContent_editing_name_title">
+                      Name:
+                    </h4>
+                    <input
+                      className="profile_cont_mainContent_editing_name_info"
+                      type="text"
+                      maxLength={profileEditing.inputLength}
+                      placeholder="Hunter Smith"
+                      defaultValue={profileInfo.fullName}
+                      onChange={(event) => {
+                        const myString = event.target.value.split(" ");
+                        // eslint-disable-next-line
+                        if (myString.length == 1) {
+                          profileEdit.firstName = myString;
+                          profileEdit.lastName = "";
+                        } else {
+                          profileEdit.firstName = myString[0];
+                          let lastName = "";
+                          for (let i = 1; i < myString.length; i++) {
+                            lastName += myString[i];
+                          }
+                          profileEdit.lastName = lastName;
                         }
-                        profileEdit.lastName = lastName;
-                      }
-                      //profileEdit.fullName = event.target.value;
-                    }}
-                  />
-                </div>
-                <div className="profile_cont_mainContent_editing_phoneNumber">
-                  <h4 className="profile_cont_mainContent_editing_phoneNumber_title">
-                    Phone Number:
-                  </h4>
-                  <input
-                    className="profile_cont_mainContent_editing_phoneNumber_info"
-                    type="number"
-                    placeholder="1234567890"
-                    defaultValue={profileInfo.phoneNumber}
-                    onChange={(event) => {
-                      profileEdit.phoneNumber = event.target.value;
-                    }}
-                    onWheel={(e) => e.target.blur()}
-                  />
-                </div>
-                <div className="profile_cont_mainContent_editing_email">
-                  <h4 className="profile_cont_mainContent_editing_email_title">
-                    Email:
-                  </h4>
-                  <input
-                    className="profile_cont_mainContent_editing_email_info"
-                    type="email"
-                    max="10"
-                    placeholder="hsmith@mylangara.ca"
-                    defaultValue={profileInfo.email}
-                    onChange={(event) => {
-                      profileEdit.email = event.target.value;
-                    }}
-                  />
-                </div>
-                <div className="profile_cont_mainContent_editing_location">
-                  <h4 className="profile_cont_mainContent_editing_location_title">
-                    Location:
-                  </h4>
-                  <input
-                    className="profile_cont_mainContent_editing_location_info"
-                    type="text"
-                    maxLength={profileEditing.inputLength}
-                    placeholder="Vancouver"
-                    defaultValue={sessionStorage.getItem("city")}
-                    onChange={(event) => {
-                      profileEdit.address = event.target.value;
-                    }}
-                  />
-                </div>
-                <div className="profile_cont_mainContent_editing_website">
-                  <h4 className="profile_cont_mainContent_editing_website_title">
-                    Website:
-                  </h4>
-                  <input
-                    className="profile_cont_mainContent_editing_website_info"
-                    type="text"
-                    maxLength={profileEditing.inputLength}
-                    placeholder="thegallopapp.com"
-                    defaultValue={profileInfo.websiteInfo}
-                    onChange={(event) => {
-                      profileEdit.website = event.target.value;
-                    }}
-                  />
+                        //profileEdit.fullName = event.target.value;
+                      }}
+                    />
+                  </div>
+                  <div className="profile_cont_mainContent_editing_phoneNumber">
+                    <h4 className="profile_cont_mainContent_editing_phoneNumber_title">
+                      Phone Number:
+                    </h4>
+                    <input
+                      className="profile_cont_mainContent_editing_phoneNumber_info"
+                      type="number"
+                      placeholder="1234567890"
+                      defaultValue={profileInfo.phoneNumber}
+                      onChange={(event) => {
+                        profileEdit.phoneNumber = event.target.value;
+                      }}
+                      onWheel={(e) => e.target.blur()}
+                    />
+                  </div>
+                  <div className="profile_cont_mainContent_editing_email">
+                    <h4 className="profile_cont_mainContent_editing_email_title">
+                      Email:
+                    </h4>
+                    <input
+                      className="profile_cont_mainContent_editing_email_info"
+                      type="email"
+                      max="10"
+                      placeholder="hsmith@mylangara.ca"
+                      defaultValue={profileInfo.email}
+                      onChange={(event) => {
+                        profileEdit.email = event.target.value;
+                      }}
+                    />
+                  </div>
+                  <div className="profile_cont_mainContent_editing_location">
+                    <h4 className="profile_cont_mainContent_editing_location_title">
+                      Location:
+                    </h4>
+                    <input
+                      className="profile_cont_mainContent_editing_location_info"
+                      type="text"
+                      maxLength={profileEditing.inputLength}
+                      placeholder="Vancouver"
+                      defaultValue={sessionStorage.getItem("city")}
+                      onChange={(event) => {
+                        profileEdit.address = event.target.value;
+                      }}
+                    />
+                  </div>
+                  <div className="profile_cont_mainContent_editing_website">
+                    <h4 className="profile_cont_mainContent_editing_website_title">
+                      Website:
+                    </h4>
+                    <input
+                      className="profile_cont_mainContent_editing_website_info"
+                      type="text"
+                      maxLength={profileEditing.inputLength}
+                      placeholder="thegallopapp.com"
+                      defaultValue={profileInfo.websiteInfo}
+                      onChange={(event) => {
+                        profileEdit.website = event.target.value;
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="profile_cont_mainContent_editing_cta">
                   <p
