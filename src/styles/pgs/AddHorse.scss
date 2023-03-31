@@ -47,6 +47,7 @@
 }
 
 .addHorse {
+
     label {
         color: #5A5A5F;
         margin-bottom: 0.3125rem;
@@ -57,16 +58,14 @@
         font-weight: 500;
         font-size: 1.25rem;
         line-height: 150%;
-        
     }
 
     font-size: 1rem;
-    padding: 2rem 0rem 5rem 0rem;
+    padding: 0rem 0rem 4rem 0rem;
     background: transparent;
 
     @media only screen and (min-width: 1024px) {
-        padding: 4rem 4rem 10rem 15rem;
-        background: transparent;
+        padding: 3rem 4rem 4rem 12.75rem;
     }
 
 
@@ -102,6 +101,10 @@
 
 .addHorse_cont {
     background-color: white;
+}
+
+
+.addHorse_cont_inner {
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 1rem;
@@ -120,13 +123,8 @@
 .addHorse_cont_backButton {
     display: flex;
     position: relative;
-    // left: -71%;
-    // right: 76.57%;
-    // top: 42%;
-    // bottom: 90.29%;
-    cursor:pointer;
-    
-    padding-left: 2rem;
+    cursor: pointer;
+    padding: 15px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -136,8 +134,10 @@
     font-size: 1.25rem;
     line-height: 150%;
     color: #5A5A5F;
-    transform: translateX(-11.25rem);
-    // back button for mobile!! FIX
+}
+
+.addHorse_cont_header {
+    padding: 15px;
 }
 
 //add horse title
@@ -150,21 +150,20 @@
     // padding-right: 12.5rem;
     // padding-top: 100rem;
 
-    padding-left: 1rem;
+    margin: 1.75rem;
     font-family: 'Asap', sans-serif;
     font-style: normal;
-    font-weight: 600;
-    font-size: 1.75rem;
+    font-weight: 700;
+    font-size: 24px;
     line-height: 150%;
     color: #5A5A5F;
+    letter-spacing: 0.02em;
 
     @media only screen and (min-width: 1024px) {
-        font-family: 'Asap', sans-serif;
-        font-style: normal;
+        margin: 0 0 1.125rem 0;
         font-weight: 600;
         font-size: 1.75rem;
-        line-height: 150%;
-        color: #5A5A5F;
+        letter-spacing: 0.04em;
     }
 
 }
@@ -180,7 +179,8 @@
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
-    @media only screen and (min-width: 1024px){
+
+    @media only screen and (min-width: 1024px) {
         width: 25vw;
         margin-right: 0.2rem;
     }
@@ -191,10 +191,11 @@
 }
 
 #gender::after {
-    content: "\25BE"; /* Unicode downward arrow icon */
+    content: "\25BE";
+    /* Unicode downward arrow icon */
     display: inline-block;
     margin-right: 50px;
-  }
+}
 
 .addHorse_cont_basics_details_gender>#gender {
     font-family: "Roboto";
@@ -211,7 +212,8 @@
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
-    @media only screen and (min-width: 1024px){
+
+    @media only screen and (min-width: 1024px) {
         width: 25vw;
         margin-right: 0.2rem;
     }
@@ -223,7 +225,8 @@
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
-    @media only screen and (min-width: 1024px){
+
+    @media only screen and (min-width: 1024px) {
         width: 25vw;
         margin-right: 0.2rem;
     }
@@ -235,7 +238,8 @@
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
-    @media only screen and (min-width: 1024px){
+
+    @media only screen and (min-width: 1024px) {
         width: 25vw;
     }
 }
@@ -246,7 +250,8 @@
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
-    @media only screen and (min-width: 1024px){
+
+    @media only screen and (min-width: 1024px) {
         width: 25vw;
     }
 }
@@ -268,7 +273,7 @@
     margin: 0rem;
     box-sizing: border-box;
 
-    img{
+    img {
         margin-right: -0.6rem;
         width: 0.6rem;
     }
@@ -278,7 +283,7 @@
     }
 
     .filter_cont_color {
-        
+
         margin: 0rem;
         box-sizing: border-box;
         border: 0.125rem solid #B6B6BB;
@@ -291,9 +296,10 @@
         padding-left: 0.5rem;
         color: #5A5A5F;
     }
-    @media only screen and (min-width: 1024px){
+
+    @media only screen and (min-width: 1024px) {
         width: 25vw;
-        
+
     }
 }
 
@@ -303,7 +309,7 @@
     margin: 0rem;
     box-sizing: border-box;
 
-    img{
+    img {
         margin-right: -0.6rem;
         width: 0.6rem;
     }
@@ -320,7 +326,7 @@
         color: #5A5A5F;
     }
 
-    @media only screen and (min-width: 1024px){
+    @media only screen and (min-width: 1024px) {
         width: 25vw;
     }
 
@@ -353,11 +359,11 @@
     background: #FFFFFF;
     border: 0.125rem solid #B6B6BB;
     border-radius: 0.9375rem;
-    
+
     width: 100%;
     padding: 0.9375rem;
     box-sizing: border-box;
-    
+
 }
 
 .addHorse_cont_basics_details_name {
@@ -377,8 +383,8 @@
     align-items: flex-end;
     justify-content: space-between;
 
-    img{
-        cursor:pointer;
+    img {
+        cursor: pointer;
     }
 
     p {
@@ -409,8 +415,8 @@
     align-items: flex-end;
     justify-content: space-between;
 
-    img{
-        cursor:pointer;
+    img {
+        cursor: pointer;
     }
 
     p {
@@ -433,8 +439,8 @@
     justify-content: space-between;
     width: 100%;
 
-    img{
-        cursor:pointer;
+    img {
+        cursor: pointer;
     }
 
     p {
@@ -643,7 +649,7 @@ $toggle-control-size: $toggle-height - ($toggle-gutter * 2);
 .addHorse_cont_detailed_discipline_content {
     width: 100%;
 
-    img{
+    img {
         margin-right: -0.6rem;
         width: 0.6rem;
     }
