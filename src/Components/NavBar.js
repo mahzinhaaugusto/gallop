@@ -40,7 +40,7 @@ function NavBarCont() {
                 onClick={() => handleMenuClick('profile')}
             />
             <MyHorses
-                className={activeMenu === 'my-horses' ? 'activeMyHorses' : 'navBar_cont_myHorses'}
+                className={activeMenu === 'my-horses' || activeMenu === "add-horse" || activeMenu === "edit-horse" ? 'activeMyHorses' : 'navBar_cont_myHorses'}
                 onClick={() => handleMenuClick('my-horses')}
             />
             <Favorites

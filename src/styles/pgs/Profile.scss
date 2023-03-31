@@ -1,5 +1,5 @@
 .profile_cont_master {
-    padding: 3rem 0 4rem 0;
+    padding: 0rem 0rem 4rem 0rem;
     background: transparent;
     margin: 0;
 
@@ -18,14 +18,24 @@
         font-size: 24px;
         line-height: 36px;
         color: $gray;
-        padding-bottom: $largePadding;
+        margin: 1.75rem;
         letter-spacing: 0.02em;
 
         @media only screen and (min-width: $media-desktop) {
             font-weight: 600;
             font-size: 28px;
-            line-height: 150%;
+            margin: 0 0 1.125rem 0;
+            letter-spacing: 0.04em;
         }
+    }
+
+    input {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 27px;
+        letter-spacing: 0.02em;
     }
 }
 
@@ -146,6 +156,7 @@
         clip-path: circle(50% at 50% 50%);
         height: 9rem;
         width: 9rem;
+        border: solid 1px black;
 
         @media only screen and (min-width: $media-desktop) {
             height: 14rem;
@@ -164,6 +175,13 @@
         justify-content: space-between;
         margin-top: 1.875rem;
         width: 70%;
+    }
+}
+
+
+.profile_cont_mainContent_website {
+    @media only screen and (min-width: $media-desktop) {
+        margin-right: 3.9rem;
     }
 }
 
@@ -322,6 +340,7 @@
 
     @media only screen and (min-width: $media-desktop) {
         flex-direction: row;
+        align-items: center;
     }
 
     input {
@@ -330,7 +349,7 @@
         border: 1px solid $fourSec;
 
         @media only screen and (min-width: $media-desktop) {
-            width: 25%;
+            width: 60%;
         }
     }
 }
@@ -426,4 +445,26 @@
 
 .profile_cont_mainContent_cta>.btn_cont {
     justify-content: flex-end;
+}
+
+// .profile_cont_mainContent_editing_bio_content::placeholder {
+//     font-family: "Roboto";
+// }
+
+textarea {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    letter-spacing: 0.02em;
+}
+
+
+.profile_cont_mainContent_editing_grid {
+    @media only screen and (min-width: $media-desktop) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 3rem;
+        align-items: center;
+    }
 }
