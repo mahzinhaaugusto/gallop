@@ -1,0 +1,41 @@
+.editHorse{
+    .addHorse_cont{
+        padding: 1rem;
+    }
+    #height{
+        @media only screen and (min-width: 1024px) {
+            width: 37vw;
+        }
+    }
+    #price{
+        @media only screen and (min-width: 1024px) {
+            width: 37vw;
+        }
+    }
+    #age{
+        @media only screen and (min-width: 1024px) {
+            width: 37vw;
+        }
+    }
+    #breedingMethod{
+        @media only screen and (min-width: 1024px) {
+            width: 37vw;
+            
+        }
+    }
+    #gender{
+        @media only screen and (min-width: 1024px) {
+            width: 37vw;
+        }
+    }
+    .addHorse_cont_basics_details_breed_cont {
+        @media only screen and (min-width: 1024px) {
+            width: 37vw;
+        }
+    }
+    .addHorse_cont_basics_details_color_cont{
+        @media only screen and (min-width: 1024px) {
+            width: 37vw;
+        }
+    }
+}

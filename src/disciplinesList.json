@@ -1,0 +1,80 @@
+{
+    "disciplinesList": [
+        {
+            "value": "barrelRacing",
+            "label": "Barrel Racing"
+        },
+        {
+            "value": "combinedDriving",
+            "label": "Combined Driving"
+        },
+        {
+            "value": "crossCountry",
+            "label": "Cross Country"
+        },
+        {
+            "value": "dressage",
+            "label": "Dressage"
+        },
+        {
+            "value": "endurance",
+            "label": "Endurance"
+        },
+        {
+            "value": "eventing",
+            "label": "Eventing"
+        },
+        {
+            "value": "flatRacing",
+            "label": "Flat Racing"
+        },
+        {
+            "value": "gymkhana",
+            "label": "Gymkhana"
+        },
+        {
+            "value": "harnessRacing",
+            "label": "Harness Racing"
+        },
+        {
+            "value": "horseball",
+            "label": "Horseball"
+        },
+        {
+            "value": "jumpRacing",
+            "label": "Jump Racing"
+        },
+        {
+            "value": "paraEquestrianDressage",
+            "label": "Para-equestrian Dressage"
+        },
+        {
+            "value": "paraEquestrianDriving",
+            "label": "Para-equestrian Driving"
+        },
+        {
+            "value": "polo",
+            "label": "Polo"
+        },
+        {
+            "value": "reining",
+            "label": "Reining"
+        },
+        {
+            "value": "showJumping",
+            "label": "Show Jumping"
+        },
+        {
+            "value": "skijoring",
+            "label": "Skijoring"
+        },
+        {
+            "value": "vaulting",
+            "label": "Vaulting"
+        },
+        {
+            "value": "westernDressage",
+            "label": "Western Dressage"
+        }
+    ]
+}

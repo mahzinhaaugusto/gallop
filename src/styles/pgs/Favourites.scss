@@ -1,0 +1,154 @@
+.favorites {
+    // padding: 1.75rem;
+
+    @media screen and (min-width: 1024px) {
+        padding: 0;
+    }
+}
+
+.favorites_cont {
+    // padding: 1.75rem;
+
+    @media screen and (min-width: 1024px) {
+        // padding: 5rem;
+    }
+}
+
+.favorites_cont_filterAndSort {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; //segue o main axis q foi escolhido pelo direction
+
+}
+
+.favorites_master_inner {
+    padding: 0rem 0rem 4rem 0rem;
+    background: transparent;
+    margin: 0;
+
+    @media only screen and (min-width: 1024px) {
+        padding: 3rem 4rem 4rem 12.75rem;
+    }
+}
+
+.favorites_cont_cards {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+    margin-top: 2.5rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+
+    @media screen and (min-width: 1024px) {
+        grid-template-columns: 50% 50%;
+        padding: 0 1.875rem;
+    }
+}
+
+.favorite_horseCard {
+    height: 12rem;
+
+    .horseCard_cont {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .horseCard_cont_images {
+        width: 50%;
+    }
+
+    .horseCard_cont_images_favorite {
+        display: none;
+    }
+
+    .horseCard_cont_details {
+        margin-left: 1.25rem;
+
+        .horseCard_cont_details_label {
+            display: none;
+        }
+    }
+
+    .horseCard_cont_details_btn_master {
+        right: 1.25rem;
+    }
+}
+
+.favorites_cont_inner {
+    background-color: white;
+}
+
+.favorites_cont_header_back {
+    align-items: center;
+    cursor: pointer;
+
+    p {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1.25rem;
+        line-height: 150%;
+        color: #5A5A5F;
+    }
+
+    display: flex;
+    justify-content: flex-start;
+}
+
+.favorites_cont_header,
+.favorites_cont_header_back,
+.favorites_cont_filterAndSort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.9375rem;
+
+}
+
+.favorites>h2 {
+    color: #5A5A5F;
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 24px;
+    line-height: 150%;
+    color: #5A5A5F;
+    // padding-bottom: 0;
+    margin: 1.75rem;
+
+    @media screen and (min-width: 1024px) {
+        margin: 0 0 1.125rem 0;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        font-size: 1.75rem;
+    }
+}
+
+.showEmpty_header {
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.75rem;
+    line-height: 150%;
+    color: #5A5A5F;
+    text-align: center;
+    padding: 5rem 0;
+    letter-spacing: 0.08em;
+}
+
+.showEmpty_header_sub {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 150%;
+    color: #3C3A3A;
+    text-align: center;
+    padding-bottom: 5rem;
+    letter-spacing: 0.04em;
+}
+
+.myHorses_cont_header_back {
+    display: flex;
+    justify-content: flex-start;
+
+}

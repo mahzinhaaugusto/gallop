@@ -1,0 +1,257 @@
+.myHorses_cont_master {
+    padding: 0rem 0rem 4rem 0rem;
+    background: transparent;
+
+    @media only screen and (min-width: 1024px) {
+        padding: 3rem 4rem 4rem 12.75rem;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.myHorses_cont_master_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .myHorses_cont_master_btn {
+        cursor: pointer;
+        background: $primary;
+        color: $white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: $radius;
+        padding: $smallPadding $largePadding;
+        border: none;
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.04em;
+        margin-right: 1rem;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-size: 18px;
+            line-height: 27px;
+            letter-spacing: 0.08em;
+        }
+    }
+
+    .myHorses_title {
+        color: $gray;
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 150%;
+        color: $gray;
+        // padding-bottom: $largePadding;
+        letter-spacing: 0.04em;
+        margin: 1.75rem;
+
+        @media only screen and (min-width: 1024px) {
+            margin: 0 0 1.125rem 0;
+            font-size: 28px;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+    }
+}
+
+.myHorses_cont_master_inner {
+    background-color: $white;
+}
+
+.myHorses_cont_header,
+.myHorses_cont_header_back,
+.myHorses_cont_header_assets {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $largePadding;
+}
+
+.myHorses_cont_header_back {
+    align-items: center;
+
+    p {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 150%;
+        color: $gray;
+    }
+}
+
+.horseCard_myHorses {
+    display: flex;
+    background: $cards;
+    border-radius: $radius;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    width: 45%;
+    height: 10.5rem;
+    justify-content: flex-start;
+}
+
+.horseCard_myHorses_cont_images {
+    text-align: center;
+
+}
+
+.horseCard_myHorses_cont_images>img {
+    width: 10rem;
+    border-radius: 0 0 $radius $radius;
+    margin-left: $largeMargin;
+
+}
+
+.horseCard_cont_images_favorite {
+    background: $accentBeige;
+    float: right;
+    width: 2rem;
+    height: 3rem;
+    border-radius: 0 0 10px 10px;
+
+    img {
+        width: 1rem;
+        border-radius: 0;
+    }
+}
+
+#horseCard_cont_details_btn {
+    margin: 0.25rem;
+    border-radius: $radius;
+    background: $oneSec;
+    padding: 0.5rem;
+    // margin-top: $largeMargin;
+    display: flex;
+    justify-content: space-between;
+
+    img {
+        width: 1rem;
+        padding-left: $largePadding;
+    }
+}
+
+.horseCard_myHorses_cont_details_btns {
+    display: flex;
+    // justify-content: space-between;
+}
+
+#horseCard_myHorses_cont_details_editBtn,
+#horseCard_myHorses_cont_details_deleteBtn {
+    cursor: pointer;
+    margin: 0.25rem 0.25rem 0.25rem 1.875rem;
+    border-radius: $radius;
+    padding: 0.5rem;
+    margin-top: $largeMargin;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $secondary;
+    filter: drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14)) drop-shadow(0px 2px 2px rgba(153, 153, 153, 0.14));
+    width: 100px;
+    align-items: flex-end;
+
+    img {
+        width: 1rem;
+        padding-left: $largePadding;
+    }
+}
+
+.myHorses_cont_content {
+    display: flex;
+    gap: $largeMargin;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: $largePadding 40px;
+}
+
+.myHorses_cont_header_back {
+    cursor: pointer;
+}
+
+.horseCard_myHorses_cont_images_favorite {
+    background: $accentBeige;
+    float: right;
+    width: 2rem;
+    height: 3rem;
+    border-radius: 0 0 10px 10px;
+    transform: translateX(-2rem);
+
+    p {
+        color: #E9AB3C;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 150%;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-size: 14px;
+            line-height: 150%;
+        }
+    }
+}
+
+.horseCard_myHorses_cont {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    h3 {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        color: #3C3A3A;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+    }
+
+    h4 {
+        color: #3C3A3A;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        overflow-wrap: break-word;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+}
+
+.horseCard_myHorses_cont_details {
+    margin-top: 1.8rem;
+}
+
+.showEmpty_header1 {
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 150%;
+    color: #5A5A5F;
+    text-align: center;
+    padding: 5rem 0;
+    letter-spacing: 0.08em;
+    background-color: white;
+}
+
+.showEmpty_header_sub1 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #3C3A3A;
+    text-align: center;
+    background-color: white;
+    padding-bottom: 5rem;
+    letter-spacing: 0.04em;
+}

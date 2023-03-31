@@ -1,0 +1,449 @@
+.horseDetail_master {
+    // background-color: #F5F5F5;
+
+
+    h3 {
+        //margin-top: 20px;
+        position: relative;
+        color: black;
+        font-weight: 900;
+    }
+
+    h3::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #5A5A5F;
+    }
+
+    h1 {
+        font-weight: bolder;
+        font-size: 1.7em;
+        padding-bottom: 5px;
+    }
+
+    h4 {
+        font-weight: bold;
+        font-size: 1rem;
+
+        @media screen and (min-width: $media-desktop) {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.horseDetail {
+    padding: 0rem 0rem 4rem 0rem;
+    background: transparent;
+    margin: 0;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 3rem 4rem 4rem 12.75rem;
+    }
+}
+
+.horseDetail_master_inner {
+    background-color: white;
+}
+
+
+.horseDetail_title {
+    display: flex;
+    position: relative;
+    color: #5A5A5F;
+    font-size: 1.5em;
+    font-weight: 600;
+    align-self: flex-end;
+    margin: 1.75rem;
+    display: flex;
+    align-items: flex-end;
+
+    @media screen and (min-width: $media-desktop) {
+        margin: 0 0 1.125rem 0;
+    }
+
+}
+
+.horseDetail_cont_backButton {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    left: -47%;
+    right: 76.57%;
+    top: 42%;
+    bottom: 90.29%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #5A5A5F;
+}
+
+
+
+.horseDetail_cont {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 5rem;
+    }
+}
+
+.horseDetail_cont_information_heading_title_buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 20px;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.horseDetail_cont_information_heading_location {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.horseDetail_cont_one {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.horseDetail_cont_information_heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+
+.horseDetail_cont_information_heading_secondLine {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-start;
+    align-self: flex-start;
+    margin-left: 12%;
+}
+
+.horseDetail_cont_information_heading_title {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.horseDetail_cont_information_heading_locationAndPrice {
+    display: flex;
+    flex-direction: row;
+    margin-right: 130px;
+    align-items: center;
+
+}
+
+.horseDetail_cont_information_heading_locationAndPrice_price {
+    margin-left: 10px;
+}
+
+.horseDetail_cont_information_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
+    align-content: center;
+    background-color: #FDFCFB;
+    border-radius: 1rem;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+    }
+
+    label {
+        margin: 0px;
+        padding: .5rem 0;
+        font-weight: bolder;
+        background-color: $accentSand;
+        width: 100%;
+        text-align: center;
+        font-size: 1rem;
+
+        @media screen and (min-width: $media-desktop) {
+            padding: 1rem 0;
+            font-size: 1.25rem;
+        }
+    }
+
+    p {
+        padding: .5rem 0;
+        width: 100%;
+        text-align: center;
+
+        @media screen and (min-width: $media-desktop) {
+            padding: 1rem 0;
+        }
+    }
+}
+
+
+
+
+.horseDetail_height_age_cont,
+.horseDetail_height_color_gender,
+.horseDetail_height_breedingMethod_disciplines {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.horseDetail_cont_information_body_height,
+.horseDetail_cont_information_body_age,
+.horseDetail_cont_information_body_color,
+.horseDetail_cont_information_body_gender,
+.horseDetail_cont_information_body_breedingMethod,
+.horseDetail_cont_information_body_disciplines {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.horseDetail_cont_information_body_height>label,
+.horseDetail_cont_information_body_color>label,
+.horseDetail_cont_information_body_breedingMethod>label {
+    border-radius: 1rem 0 0 1rem;
+}
+
+.horseDetail_cont_information_body_color>label,
+.horseDetail_cont_information_body_breedingMethod>label {
+    @media screen and (min-width: $media-desktop) {
+        border-radius: unset;
+    }
+}
+
+.horseDetail_cont_information_body_disciplines>label,
+.horseDetail_cont_information_body_gender>label {
+    border-radius: 0 1rem 1rem 0;
+}
+
+.horseDetail_cont_information_body_gender>label {
+    @media screen and (min-width: $media-desktop) {
+        border-radius: unset;
+    }
+}
+
+.horseDetail_cont_information_body_age>label {
+    border-radius: 0 1rem 1rem 0;
+
+    @media screen and (min-width: $media-desktop) {
+        border-radius: unset;
+    }
+}
+
+.line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.horseDetail_cont_description {
+    display: flex;
+    flex-direction: column;
+    padding: .75rem 1.125rem;
+    background-color: #FDFCFB;
+    border-radius: 1rem;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 1.125rem 2.5rem;
+        border: 3px solid $accentSand;
+    }
+
+    p {
+        margin-top: 15px;
+    }
+
+}
+
+
+
+.horseDetail_cont_one,
+.horseDetail_cont_two,
+.horseDetail_cont_three {
+    width: 100%;
+}
+
+.horseDetail_cont_one {
+    display: flex;
+    flex-direction: column;
+}
+
+.horseDetail_cont_two {
+    margin: 2rem 0;
+}
+
+// container 3
+
+.horseDetail_cont_three {
+    display: flex;
+    flex-direction: column;
+    background-color: #FDFCFB;
+    border-radius: 1rem;
+    padding: 1.125rem 0;
+
+    @media screen and (min-width: $media-desktop) {
+        border: 3px solid $accentSand;
+    }
+}
+
+.horseDetail_cont_contactInfo_heading,
+.horseDetail_cont_contactInfo_heading_content {
+    padding: 0.75rem 1.125rem;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 0 2.5rem;
+    }
+}
+
+.horseDetail_cont_contactInfo_heading_content {
+    padding-top: 0;
+}
+
+.horseDetail_cont_contactInfo_heading_content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.horseDetail_contactInfo_owner_forms_container {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+    }
+}
+
+.horseDetail_cont_contactInfo_heading_content_infoCont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: .625rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-top: 1rem;
+    }
+
+}
+
+.horseDetail_cont_contactInfo_img {
+    border-radius: 50%;
+    height: 7rem;
+    width: 7rem;
+}
+
+.horseDetail_cont_contactInfo_owner {
+    margin-left: 1rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-left: 1.25rem;
+    }
+}
+
+.horseDetail_cont_contactInfo_owner>h4 {
+    display: none;
+
+    @media screen and (min-width: $media-desktop) {
+        display: block;
+    }
+}
+
+.horseDetail_cont_contactInfo_owner_location {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-bottom: .625rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin: 1rem 0 0 0;
+    }
+}
+
+.horseDetail_cont_contactInfo_owner_webpage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.horseDetail_cont_contactInfo_contactForms {
+    margin: 0 0 .625rem 1rem;
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-left: 6rem;
+    }
+}
+
+.horseDetail_cont_contactInfo_contactForms_email {
+    margin-right: .625rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-right: 1.25rem;
+    }
+}
+
+.horseDetail_cont_contactInfo_moreFromOwner {
+    align-self: center;
+    margin-top: 2rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin: 0;
+        align-self: unset;
+    }
+}
+
+.horseDetail_cont_contactInfo_moreFromOwner_btn {
+    cursor: pointer;
+    border: 1px solid $primary;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: $radius;
+    padding: $smallPadding $largePadding;
+    width: fit-content;
+    background-color: $white;
+    color: $primary;
+    font-family: 'Asap';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+}
