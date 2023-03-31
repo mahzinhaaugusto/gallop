@@ -74,8 +74,8 @@ export function DataAnalytics() {
                                     <h3 className="dataAnalytics_cont_mainContent_breed_title">All Around the World</h3>
                                     <p className="dataAnalytics_cont_mainContent_breed_content">In Gallop, there are many different breeds of horses. Discover the top breeds of horses on Gallop and explore where they are originally from around the world.</p>
                                     <div className="dataAnalytics_cont_mainContent_breed_chart">
-                                        <BarChart className="barChart" width={1000} height={250} data={allHorsesBreed} >
-                                            <XAxis dataKey="breed" interval={0} tick={{ fontSize: 10, fontFamily: "sans-serif" }} />
+                                        <BarChart className="barChart" width={1800} height={250} data={allHorsesBreed} >
+                                            <XAxis dataKey="breed" interval={0} tick={{ fontSize: 11, fontFamily: "sans-serif" }} />
                                             <YAxis />
                                             <Tooltip />
                                             <Bar dataKey="quantity" fill="#75B367" barSize={25} />
