@@ -6,22 +6,22 @@ const mysql = require("mysql");
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 require("dotenv").config();
-let apikey = process.env.APIKEY;
-const OAuth2 = google.auth.OAuth2;
-const UIDGenerator = require("uid-generator");
-const uidgen = new UIDGenerator();
+
+//const OAuth2 = google.auth.OAuth2;
+//const UIDGenerator = require("uid-generator");
+//const uidgen = new UIDGenerator();
 const axios = require("axios");
 
-const oauth2Client = new OAuth2(
-  process.env.OAUTH_CLIENTID,
-  process.env.OAUTH_CLIENT_SECRET,
-  "https://developers.google.com/oauthplayground"
-);
+// const oauth2Client = new OAuth2(
+//   process.env.OAUTH_CLIENTID,
+//   process.env.OAUTH_CLIENT_SECRET,
+//   "https://developers.google.com/oauthplayground"
+// );
 
-oauth2Client.setCredentials({
-  refresh_token: process.env.OAUTH_REFRESH_TOKEN,
-});
-const accessToken = oauth2Client.getAccessToken();
+// oauth2Client.setCredentials({
+//   refresh_token: process.env.OAUTH_REFRESH_TOKEN,
+// });
+// const accessToken = oauth2Client.getAccessToken();
 
 const db = mysql.createPool({
   host: process.env.HOST,
@@ -297,89 +297,89 @@ app.post("/api/deletehorse", (req, res) => {
   });
 });
 
-app.post("/api/forgotpassword", (req, res) => {
-  const email = req.body.email;
-  const uid = uidgen.generateSync();
-  // console.log(uid);
+// app.post("/api/forgotpassword", (req, res) => {
+//   const email = req.body.email;
+//   const uid = uidgen.generateSync();
+//   // console.log(uid);
 
-  const sqlFindEmail = "SELECT * FROM userinfo WHERE email = ?;";
+//   const sqlFindEmail = "SELECT * FROM userinfo WHERE email = ?;";
 
-  const sqlIncludeToken = "UPDATE userinfo SET token = ? WHERE email = ?;";
+//   const sqlIncludeToken = "UPDATE userinfo SET token = ? WHERE email = ?;";
 
-  db.query(sqlIncludeToken, [uid, email], (er, re) => {
-    // console.log(uid);
-    // console.log(email);
-  });
+//   db.query(sqlIncludeToken, [uid, email], (er, re) => {
+//     // console.log(uid);
+//     // console.log(email);
+//   });
 
-  db.query(sqlFindEmail, [email], (er, re) => {
-    // console.log(email);
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        type: "OAuth2",
-        user: process.env.GOOGLE_EMAIL_ACCOUNT,
-        pass: process.env.GOOGLE_EMAIL_PASSWORD,
-        clientId: process.env.OAUTH_CLIENTID,
-        clientSecret: process.env.OAUTH_CLIENT_SECRET,
-        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-        accessToken: accessToken,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
+//   db.query(sqlFindEmail, [email], (er, re) => {
+//     // console.log(email);
+//     const transporter = nodemailer.createTransport({
+//       service: "gmail",
+//       auth: {
+//         type: "OAuth2",
+//         user: process.env.GOOGLE_EMAIL_ACCOUNT,
+//         pass: process.env.GOOGLE_EMAIL_PASSWORD,
+//         clientId: process.env.OAUTH_CLIENTID,
+//         clientSecret: process.env.OAUTH_CLIENT_SECRET,
+//         refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+//         accessToken: accessToken,
+//       },
+//       tls: {
+//         rejectUnauthorized: false,
+//       },
+//     });
 
-    const mailOptions = {
-      from: "thegallopapp@gmail.com",
-      to: `${email}`,
-      subject: "Forgot Password Requested - Gallop",
-      text:
-        "You are receiving this email because there was a request for resetting the password for your account.\n\n" +
-        "Please click on the following link, or paste this into your browser to complete the process.\n\n" +
-        `http://localhost:3000/reset-password\n\n` +
-        `Please provide the following token to allow you to make changes to your password: ${uid}\n\n` +
-        "If you did not request this, please ignore this email and your password remain unchanged.\n\n" +
-        "Cheers from Gallop\n\n",
-    };
+//     const mailOptions = {
+//       from: "thegallopapp@gmail.com",
+//       to: `${email}`,
+//       subject: "Forgot Password Requested - Gallop",
+//       text:
+//         "You are receiving this email because there was a request for resetting the password for your account.\n\n" +
+//         "Please click on the following link, or paste this into your browser to complete the process.\n\n" +
+//         `http://localhost:3000/reset-password\n\n` +
+//         `Please provide the following token to allow you to make changes to your password: ${uid}\n\n` +
+//         "If you did not request this, please ignore this email and your password remain unchanged.\n\n" +
+//         "Cheers from Gallop\n\n",
+//     };
 
-    transporter.sendMail(mailOptions, (er, re) => {
-      if (er) {
-        console.error("Error: ", er);
-      } else {
-        console.log("Response: ", re);
-        res.status(200).json("Recovery email sent");
-      }
-    });
-  });
-});
+//     transporter.sendMail(mailOptions, (er, re) => {
+//       if (er) {
+//         console.error("Error: ", er);
+//       } else {
+//         console.log("Response: ", re);
+//         res.status(200).json("Recovery email sent");
+//       }
+//     });
+//   });
+// });
 
-app.post("/api/reset", (req, res) => {
-  const token = req.body.token;
-  // console.log(token);
-  const password = req.body.userPassword;
-  // console.log(password);
-  const sqlReset = "UPDATE userinfo SET userPassword = ?  WHERE token = ?";
-  db.query(sqlReset, [password, token], (err, result) => {
-    console.log(err);
-  });
-});
+// app.post("/api/reset", (req, res) => {
+//   const token = req.body.token;
+//   // console.log(token);
+//   const password = req.body.userPassword;
+//   // console.log(password);
+//   const sqlReset = "UPDATE userinfo SET userPassword = ?  WHERE token = ?";
+//   db.query(sqlReset, [password, token], (err, result) => {
+//     console.log(err);
+//   });
+// });
 
-app.get("/api/auth", async (req, res) => {
-  const accessToken = req.headers.authorization.split(" ")[1];
-  const googleUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
+// app.get("/api/auth", async (req, res) => {
+//   const accessToken = req.headers.authorization.split(" ")[1];
+//   const googleUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
 
-  try {
-    const response = await axios.get(googleUrl, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    const userInfo = response.data;
-    console.log(userInfo);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+//   try {
+//     const response = await axios.get(googleUrl, {
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//     });
+//     const userInfo = response.data;
+//     console.log(userInfo);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// });
 
 // app.post("/api/updatebackground", (req, res) => {
 //   const backgroundPhoto = req.body.backgroundPhoto;
