@@ -311,11 +311,6 @@ export function AddHorse() {
                   />
                   <p className="warning">{breedError}</p>
                 </div>
-
-
-
-
-
               </div>
               <div className="addHorse_cont_basics_details_secondRow">
                 <div className="addHorse_cont_basics_details_height">
