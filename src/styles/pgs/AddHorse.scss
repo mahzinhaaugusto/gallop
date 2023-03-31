@@ -57,6 +57,7 @@
         font-weight: 500;
         font-size: 1.25rem;
         line-height: 150%;
+        
     }
 
     font-size: 1rem;
@@ -134,6 +135,7 @@
     line-height: 150%;
     color: #5A5A5F;
     transform: translateX(-11.25rem);
+    // back button for mobile!! FIX
 }
 
 //add horse title
@@ -172,10 +174,14 @@
 
 #gender {
     height: 3rem;
-    width: 11.5rem;
+    width: 45vw;
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
+    @media only screen and (min-width: 1024px){
+        width: 25vw;
+        margin-right: 0.2rem;
+    }
 
     option {
         font-size: 1rem;
@@ -193,34 +199,48 @@
 
 #age {
     height: 3rem;
-    width: 11.5rem;
+    width: 45vw;
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
+    @media only screen and (min-width: 1024px){
+        width: 25vw;
+        margin-right: 0.2rem;
+    }
 }
 
 #height {
     height: 3rem;
-    width: 11.5rem;
+    width: 45vw;
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
+    @media only screen and (min-width: 1024px){
+        width: 25vw;
+        margin-right: 0.2rem;
+    }
 }
 
 #price {
     height: 3rem;
-    width: 11.5rem;
+    width: 45vw;
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
+    @media only screen and (min-width: 1024px){
+        width: 25vw;
+    }
 }
 
 #breedingMethod {
     height: 3rem;
-    width: 11.5rem;
+    width: 45vw;
     border-radius: 0.9375rem;
     border: 0.125rem solid #B6B6BB;
     box-sizing: border-box;
+    @media only screen and (min-width: 1024px){
+        width: 25vw;
+    }
 }
 
 .addHorse_cont_basics_details_breedingMethod>#breedingMethod {
@@ -236,7 +256,7 @@
 
 // Color
 .addHorse_cont_basics_details_color_cont {
-    width: 11.5rem;
+    width: 45vw;
     margin: 0rem;
     box-sizing: border-box;
 
@@ -245,7 +265,7 @@
     }
 
     .filter_cont_color {
-        width: 11.5rem;
+        
         margin: 0rem;
         box-sizing: border-box;
         border: 0.125rem solid #B6B6BB;
@@ -258,11 +278,15 @@
         padding-left: 0.5rem;
         color: #5A5A5F;
     }
+    @media only screen and (min-width: 1024px){
+        width: 25vw;
+        
+    }
 }
 
 // Breed
 .addHorse_cont_basics_details_breed_cont {
-    width: 11.5rem;
+    width: 45vw;
     margin: 0rem;
     box-sizing: border-box;
 
@@ -276,6 +300,10 @@
         font-size: 1.2em;
         padding-left: 0.5rem;
         color: #5A5A5F;
+    }
+
+    @media only screen and (min-width: 1024px){
+        width: 25vw;
     }
 
 }
@@ -297,18 +325,21 @@
     justify-content: space-between;
 }
 
-.addHorse_cont_basics_details_secondRow {
+.addHorse_cont_basics_details_thirdRow {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 #horseName {
     background: #FFFFFF;
     border: 0.125rem solid #B6B6BB;
     border-radius: 0.9375rem;
+    
     width: 100%;
     padding: 0.9375rem;
     box-sizing: border-box;
+    
 }
 
 .addHorse_cont_basics_details_name {
@@ -428,6 +459,7 @@
     align-items: flex-start;
 }
 
+
 .addHorse_cont_aboutOwner_contactPreferences {
     display: flex;
     flex-direction: row;
@@ -435,6 +467,7 @@
     align-items: center;
     margin-top: 0.9375rem;
     flex-wrap: wrap;
+    justify-content: flex-start;
 
     label {
         margin: 0rem;
@@ -446,6 +479,7 @@
         line-height: 1.25rem;
         color: #5A5A5F;
         accent-color: #33562B;
+        width: 50vh;
     }
 }
 
