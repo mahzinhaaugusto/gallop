@@ -1,34 +1,22 @@
-
-
-.moreOwner_cont_filterAndSort{
+.moreOwner_cont_filterAndSort {
     display: flex;
     flex-direction: row;
     justify-content: flex-end; //segue o main axis q foi escolhido pelo direction
-    
+
 }
 
-.moreOwner_cont_header_backButton {
-    display: flex;
-    position: relative;
-    left: -47%;
-    right: 76.57%;
-    top: 42%;
-    bottom: 90.29%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    color: #5A5A5F;
-}
-
-.moreOwner{
-    padding: 4rem 4rem 10rem 15rem;
+.moreOwner {
+    padding: 0rem 0rem 4rem 0rem;
     background: transparent;
+
+    @media only screen and (min-width: 1024px) {
+        padding: 3rem 4rem 4rem 12.75rem;
+    }
 }
 
-.moreOwner_cont{
+.moreOwner_cont {
     background-color: white;
-    border-radius: 15px;
+    // border-radius: 15px;
     //margin: 5rem 5rem 5rem 5rem;
     /* padding-left: 200px;
     padding-right: 200px;
@@ -36,20 +24,64 @@
     padding-bottom: 10px; */
 }
 
-.moreOwner > h2{
-    padding-bottom: 15px;
-    font-size: 28px;
+.moreOwner>h2 {
+    font-size: 24px;
     color: #5A5A5F;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Asap";
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    margin: 1.75rem;
+
+    @media only screen and (min-width: 1024px) {
+        margin: 0 0 1.125rem 0;
+        font-size: 28px;
+        letter-spacing: 0.04em;
+        font-weight: 600;
+    }
+}
+
+.moreOwner_cont_header_backButton {
+    transform: translateX(-15rem);
+    cursor: pointer;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     font-weight: 600;
+    color: #5A5A5F;
+
+    @media only screen and (min-width: 1024px) {
+        transform: translateX(-35rem);
+    }
+
+    p {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+        letter-spacing: 0.04em;
+
+        @media only screen and (min-width: 1024px) {
+            font-size: 20px;
+            line-height: 150%;
+        }
+    }
 }
 
 .moreOwner_cont_header_content_img {
     border: 1px solid black;
-    margin-top: 10px;
+    // margin-top: 10px;
     border-radius: 50%;
-    width: 228px;
-    height: 228px;
+    width: 5rem;
+    height: 5rem;
+
+    @media only screen and (min-width: 1024px) {
+        width: 228px;
+        height: 228px;
+    }
 }
 
 .moreOwner_cont_header_content_location {
@@ -66,36 +98,131 @@
 
 // add background image here 
 
-.moreOwner_cont_header{
-    
-    background-image: url("../../icons/Grayish.svg");
-    background-size: 100%;
+.moreOwner_cont_header {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: center;
+
+    .moreOwner_cont_header_background {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 11rem;
+        opacity: 0.3;
+
+        @media only screen and (min-width: 1024px) {
+            height: 29.75rem;
+        }
+    }
 }
 
-.moreOwner_cont_header_content_locationAndWebAdd{
+.moreOwner_cont_header_content_locationAndWebAdd {
     display: flex;
     flex-direction: row;
+    gap: 15px;
 }
 
-.moreOwner_cont_header_content_buttons img{
-    width:42px ;
-    height:48px ;
-    padding-right: 15px;
+.moreOwner_cont_header_content_buttons img {
+    width: 42px;
+    height: 48px;
+    padding: 0 5px;
+    cursor: pointer;
+    display: none;
+
+    @media only screen and (min-width: 1024px) {
+        display: inline;
+    }
 }
 
-.moreOwner_cont_header_content{
+.moreOwner_cont_content_head {
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 150%;
+        letter-spacing: 0.04em;
+        color: #5A5A5F;
+    }
+
+    @media screen and (min-width: 1024px) {
+        padding: 15px 4rem;
+    }
+}
+
+.moreOwner_cont_header_content {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: center;
+    padding-top: 4rem;
+    height: 100%;
+
+    @media only screen and (min-width: 1024px) {
+        gap: 5px;
+        padding-top: 3rem;
+    }
+
+    h1 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 0.04em;
+        color: #000000;
+
+        @media only screen and (min-width: 1024px) {
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 42px;
+        }
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+
+        @media only screen and (min-width: 1024px) {
+            font-size: 16px;
+        }
+    }
+
+    .moreOwner_cont_header_content_bio {
+        padding: 0.25rem 0;
+    }
+
+    .moreOwner_cont_header_content_location {
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+    }
 }
 
-.moreOwner_cont{
-    padding-bottom: 150px;
+.moreOwner_cont_filterAndSort {
+    // padding: 15px 4rem;
+}
+
+.moreOwner_cont_cards {
+    padding: 15px 40px;
 }
