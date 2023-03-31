@@ -124,6 +124,8 @@
     // right: 76.57%;
     // top: 42%;
     // bottom: 90.29%;
+    cursor:pointer;
+    
     padding-left: 2rem;
     flex-direction: row;
     justify-content: flex-start;
@@ -375,6 +377,9 @@
     align-items: flex-end;
     justify-content: space-between;
 
+    img{
+        cursor:pointer;
+    }
 
     p {
         padding: 1.25rem;
@@ -404,6 +409,10 @@
     align-items: flex-end;
     justify-content: space-between;
 
+    img{
+        cursor:pointer;
+    }
+
     p {
         padding: 1.25rem;
         margin-bottom: 0.125rem;
@@ -423,6 +432,10 @@
     align-items: flex-end;
     justify-content: space-between;
     width: 100%;
+
+    img{
+        cursor:pointer;
+    }
 
     p {
         padding: 1.25rem;
@@ -463,11 +476,17 @@
 }
 
 // Contact preferences
-#ownerEmail {}
+#ownerEmail {
+    cursor: pointer;
+}
 
-#ownerCall {}
+#ownerCall {
+    cursor: pointer;
+}
 
-#ownerText {}
+#ownerText {
+    cursor: pointer;
+}
 
 .addHorse_cont_aboutOwner_contactPreferences_label {
     display: flex;
