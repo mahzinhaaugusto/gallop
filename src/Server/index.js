@@ -4,13 +4,13 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
 const nodemailer = require("nodemailer");
-const { google } = require("googleapis");
+// const { google } = require("googleapis");
 require("dotenv").config();
 let apikey = process.env.APIKEY;
 /* const OAuth2 = google.auth.OAuth2; */
 /* const UIDGenerator = require("uid-generator");
 const uidgen = new UIDGenerator(); */
-const axios = require("axios");
+// const axios = require("axios");
 
 /* const oauth2Client = new OAuth2(
   process.env.OAUTH_CLIENTID,
@@ -364,9 +364,9 @@ app.post("/api/reset", (req, res) => {
   });
 });
 
-app.get("/api/auth", async (req, res) => {
-  const accessToken = req.headers.authorization.split(" ")[1];
-  const googleUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
+// app.get("/api/auth", async (req, res) => {
+//   const accessToken = req.headers.authorization.split(" ")[1];
+//   const googleUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
 
   try {
     const response = await axios.get(googleUrl, {

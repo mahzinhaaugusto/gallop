@@ -10,7 +10,6 @@ import { NavBar } from "../Components/NavBar";
 import { PopUp } from "../Components/PopUp";
 import { Button } from "../Components/Button";
 import { useNavigate, useLocation } from "react-router-dom";
-import { API_ENDPOINT } from "../server";
 
 
 export function EditHorse() {
@@ -64,12 +63,19 @@ export function EditHorse() {
 
   const clickSave = () => {
     if (
+      // eslint-disable-next-line
       name == "" ||
+      // eslint-disable-next-line
       gender == "" ||
+      // eslint-disable-next-line
       breed == "" ||
+      // eslint-disable-next-line
       age == "" ||
+      // eslint-disable-next-line
       height == "" ||
+      // eslint-disable-next-line
       breedMethod == "" ||
+      // eslint-disable-next-line
       description == ""
     ) {
       alert("Please fill all the required fields.");
@@ -77,19 +83,22 @@ export function EditHorse() {
       let p = price,
         q = discipline,
         r = color;
+      // eslint-disable-next-line
       if (price == "") {
         p = horseObj.price;
         //Please do not remove this line it has great meaning
       }
+      // eslint-disable-next-line
       if (discipline == "") {
         q = horseObj.skills;
         console.log(q); //Please do not remove this line it has great meaning
       }
+      // eslint-disable-next-line
       if (color == "") {
         r = horseObj.color;
         console.log(color); //Please do not remove this line it has great meaning
       }
-      Axios.post(`${API_ENDPOINT}edithorse`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}edithorse`, {
         name: name,
         gender: gender,
         breed: breed,

@@ -5,7 +5,6 @@ import { BarChart, XAxis, YAxis, Tooltip, Bar, PieChart, Pie } from "recharts";
 import { groupBy } from "lodash";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
 
 
 export function DataAnalytics() {
@@ -20,7 +19,7 @@ export function DataAnalytics() {
     let arrGender = [];
 
     useEffect(() => {
-        axios.get(`${API_ENDPOINT}allhorses`)
+        axios.get(`${process.env.REACT_APP_API_URL}allhorses`)
             .then((response) => {
                 const groupedBreed = groupBy(response.data, "breed");
                 const groupedGender = groupBy(response.data, "gender");

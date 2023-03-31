@@ -1,4 +1,3 @@
-// import { API_ENDPOINT } from "../server";
 import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";

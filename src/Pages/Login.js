@@ -6,7 +6,6 @@ import bcrypt from "bcryptjs";
 import horse from "../icons/Horse.png";
 import WhiteLogo from "../icons/WhiteLogo.svg";
 import { useNavigate, Link } from "react-router-dom";
-import { API_ENDPOINT } from "../server.js";
 
 export function Login() {
   const [credential, setCredential] = useState([]);
@@ -99,7 +98,7 @@ export function Login() {
     // if (userPassword == "") {
     //   setPError("Please provide a password");
     // }
-    Axios.get(`${API_ENDPOINT}get`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}get`).then((response) => {
       setCredential(response.data);
     });
   }, []);
