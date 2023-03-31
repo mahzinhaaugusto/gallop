@@ -12,12 +12,13 @@
         font-weight: 700;
         font-size: 1.3rem;
         line-height: 1.875rem;
-        margin-left: -1.2rem;
+        
         color: #3C3A3A;
 
         @media screen and (min-width: 1024px) {
             padding-left: 1.25rem;
             padding-bottom: 0.1rem;
+            margin-left: -1.2rem;
             color: #3C3A3A;
         }
     }
