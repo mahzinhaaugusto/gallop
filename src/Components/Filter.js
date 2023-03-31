@@ -132,6 +132,8 @@ function FilterCont({ filterReturn }) {
     }
 
     filterReturn(filterData);
+    console.log("reach");
+    filterData = {};
   };
 
   return (

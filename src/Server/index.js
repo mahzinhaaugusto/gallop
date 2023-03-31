@@ -79,13 +79,8 @@ app.post("/api/deletefav", (req, res) => {
   const deleteOne = "delete from favoritehorses where favoriteid = ?;";
   const sqlUpdateLikes =
     "UPDATE horseinfo SET likeNumbers = (SELECT COUNT(isFavorite)FROM favoritehorses WHERE horseinfo.horseID = favoritehorses.horseID);";
-
   db.query(deleteOne, [id], (er, re) => {
     console.log(re);
-  });
-  db.query(sqlUpdateLikes, (err, result) => {
-    console.log(result);
-    res.send(result);
   });
   db.query(sqlUpdateLikes, (err, result) => {
     console.log(result);
@@ -186,6 +181,7 @@ app.post("/api/edithorse", (req, res) => {
   const height = req.body.height;
   const description = req.body.description;
   const horseID = req.body.horseID;
+  console.log(price);
 
   const sqlUpdateHorse =
     "UPDATE horseinfo SET horseName = ?, horseAge = ?, breedingMethod = ?, skills = ?, color = ?, gender = ?, breed = ?, price = ?, height = ?, description = ? WHERE horseID = ?;";
@@ -206,7 +202,7 @@ app.post("/api/edithorse", (req, res) => {
       horseID,
     ],
     (err, res) => {
-      console.log(res);
+      console.log(err);
       // res.send(res);
     }
   );

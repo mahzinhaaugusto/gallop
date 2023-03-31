@@ -6,9 +6,7 @@ import axios from "axios";
 import { API_ENDPOINT } from "../server";
 import { useState } from "react";
 
-
 export function HorseCard({ horseInfo, addFavOnClick, className }) {
-
   const [toggle, setToggle] = useState(false);
 
   let navigate = useNavigate();

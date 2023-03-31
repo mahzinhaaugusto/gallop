@@ -1,6 +1,10 @@
 {
     "colorList": [
         {
+            "value": "",
+            "label": "Select"
+        },
+        {
             "value": "bay",
             "label": "Bay"
         },

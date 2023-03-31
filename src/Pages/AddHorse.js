@@ -32,6 +32,14 @@ export function AddHorse() {
   const [showSavePopUp, setShowSavePopUp] = useState(false);
   const [showCancelPopUp, setShowCancelPopUp] = useState(false);
   const [nameError, setNameError] = useState("");
+  const [genderError, setGenderError] = useState("");
+  const [ageError, setAgeError] = useState("");
+  const [breedError, setBreedError] = useState("");
+  const [heightError, setHeightError] = useState("");
+  const [breedingMethodError, setBreedingMethodError] = useState("");
+  const [thumbnailError, setThumbnailError] = useState("");
+  const [photoError, setPhotoError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
 
   let navigate = useNavigate();
 
@@ -50,7 +58,7 @@ export function AddHorse() {
       alert("you cannot select more than three photos");
     } else {
       horsePhotos.push(file);
-      console.log(horsePhotos);
+      // console.log(horsePhotos);
     }
   };
 
@@ -117,11 +125,46 @@ export function AddHorse() {
   }
 
   const clickSave = () => {
-    // if (desc thumb name == "" || gender == "" || breed == "" || age == "" || height == "" || color == "" || breedMethod == "") {
-    //   setErrorMessage("Please revise all required fields");
-    // }
-    if (name == "") {
-      setNameError("Field Required");
+    console.log(breedMethod);
+    if (
+      name == "" ||
+      gender == "" ||
+      breed == "" ||
+      age == "" ||
+      height == undefined ||
+      breedMethod == "" ||
+      photo == "" ||
+      horsePhotos[0] == "" ||
+      description == ""
+    ) {
+      //   setErrorMessage("Please revise all required fields");
+      if (name == "") {
+        setNameError("Field Required");
+      }
+      if (gender == "") {
+        setGenderError("Field Required");
+      }
+      if (breed == "") {
+        setBreedError("Field Required");
+      }
+      if (age == "") {
+        setAgeError("Field Required");
+      }
+      if (height == undefined) {
+        setHeightError("Field Required");
+      }
+      if (breedMethod == "") {
+        setBreedingMethodError("Field Required");
+      }
+      if (description == "") {
+        setDescriptionError("Field Required");
+      }
+      if (photo == "") {
+        setThumbnailError("Field Required");
+      }
+      if (horsePhotos.length == 0) {
+        setPhotoError("Field Required");
+      }
     } else {
       const storage = getStorage();
       let photoArray = [];
@@ -231,11 +274,11 @@ export function AddHorse() {
                   id="horseName"
                   type="text"
                   onChange={(e) => {
-                    setErrorMessage("");
+                    setNameError("");
                     setName(e.target.value);
                   }}
                 ></input>
-                <p className="require">{nameError}</p>
+                <p className="warning">{nameError}</p>
               </div>
               <div className="addHorse_cont_basics_details_firstRow">
                 <div className="addHorse_cont_basics_details_gender">
@@ -259,12 +302,14 @@ export function AddHorse() {
                     <option value="Stallion">Stallion</option>
                     <option value="Mare">Mare</option>
                   </select>
+                  <p className="warning">{genderError}</p>
                 </div>
                 <div className="addHorse_cont_basics_details_breed">
                   <Breed
                     className="addHorse_cont_basics_details_breed_cont"
                     onChange={breedClick}
                   />
+                  <p className="warning">{breedError}</p>
                 </div>
 
                 <div className="addHorse_cont_basics_details_age">
@@ -285,6 +330,7 @@ export function AddHorse() {
                     }}
                     onWheel={(e) => e.target.blur()}
                   ></input>
+                  <p className="warning">{ageError}</p>
                 </div>
               </div>
               <div className="addHorse_cont_basics_details_secondRow">
@@ -306,6 +352,7 @@ export function AddHorse() {
                     }}
                     onWheel={(e) => e.target.blur()}
                   ></input>
+                  <p className="warning">{heightError}</p>
                 </div>
                 <div className="addHorse_cont_basics_details_color">
                   <Color
@@ -334,6 +381,7 @@ export function AddHorse() {
                     <option value="Natural">Natural</option>
                     <option value="Artificial">Insemination</option>
                   </select>
+                  <p className="warning">{breedingMethodError}</p>
                 </div>
               </div>
               <div className="addHorse_cont_basics_details_price">
@@ -395,6 +443,7 @@ export function AddHorse() {
                     />
                   </div>
                 </div>
+                <p className="warning">{thumbnailError}</p>
               </div>
               <div className="addHorse_cont_basics_upload_media">
                 <label>
@@ -419,6 +468,7 @@ export function AddHorse() {
                     />
                   </div>
                 </div>
+                <p className="warning">{photoError}</p>
               </div>
             </div>
           </div>
@@ -430,16 +480,19 @@ export function AddHorse() {
                   *
                 </span>
               </label>
-              <textarea
-                name="description"
-                id="description"
-                cols="50"
-                rows="6"
-                placeholder="Write a short description"
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              ></textarea>
+              <div>
+                <textarea
+                  name="description"
+                  id="description"
+                  cols="50"
+                  rows="6"
+                  placeholder="Write a short description"
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                ></textarea>
+                <p className="warning">{descriptionError}</p>
+              </div>
               <div className="addHorse_cont_detailed_discipline">
                 <Discipline
                   className="addHorse_cont_detailed_discipline_content"
