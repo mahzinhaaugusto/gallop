@@ -166,6 +166,23 @@ export function MyHorsesCard({ myHorse }) {
     // console.Console.log("yesssss");
   };
 
+  const showHorse = (horseID) => {
+    Axios.post(`${API_ENDPOINT}horseVisibility`, {
+      horseID: horseID,
+      showInfo: 1,
+    });
+
+    // console.Console.log("yesssss");
+  };
+  const hideHorse = (horseID) => {
+    Axios.post(`${API_ENDPOINT}horseVisibility`, {
+      horseID: horseID,
+      showInfo: 0,
+    });
+
+    // console.Console.log("yesssss");
+  };
+
   return (
     <>
       {myHorse.map((horse, i) => (
@@ -176,8 +193,20 @@ export function MyHorsesCard({ myHorse }) {
               <div className="horseCard_myHorses_cont_images_favorite">
                 <img src={favoriteClicked} alt="" />
                 <p>{horse.likeNumbers}</p>
-                {/* <img src={HideShowPass} alt="Show Horse" />
-                <img src={HideVisibility} alt="Hide Horse" /> */}
+                <img
+                  src={HideShowPass}
+                  alt="Show Horse"
+                  onClick={() => {
+                    showHorse(horse.horseID);
+                  }}
+                />
+                <img
+                  src={HideVisibility}
+                  alt="Hide Horse"
+                  onClick={() => {
+                    hideHorse(horse.horseID);
+                  }}
+                />
               </div>
             </div>
             <div className="horseCard_myHorses_cont_details">

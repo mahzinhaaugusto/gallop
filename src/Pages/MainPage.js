@@ -144,9 +144,14 @@ export function MainPage() {
       // console.log("sorry");
       navigate("/login");
     }
+    let newHorse = [];
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
-      setHorseInfo(response.data);
-      setHorseInfoCopy(response.data);
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].showInfo == 1) newHorse.push(response.data[i]);
+      }
+
+      setHorseInfo([...newHorse]);
+      setHorseInfoCopy([...newHorse]);
 
       //console.log(allHorses);
     });
@@ -155,12 +160,12 @@ export function MainPage() {
   const items = allHorses;
 
   function Items({ currentItems }) {
-    // console.log(currentItems);
+    //console.log(currentItems);
 
     return (
       <div className="mainPage_cont_horsesCards_innerCont">
         {currentItems &&
-          currentItems.map((item) => (
+          currentItems.map((item, i) => (
             <HorseCard
               horseInfo={[item]}
               onClick={goToHorseDetail}

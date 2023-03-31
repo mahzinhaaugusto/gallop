@@ -102,7 +102,7 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
             </div>
           </div>
         </div>
-      ))}
+      ))}{" "}
     </>
   );
 }
