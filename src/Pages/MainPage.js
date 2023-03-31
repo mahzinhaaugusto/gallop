@@ -22,6 +22,7 @@ export function MainPage() {
   const [filterData, setFilter] = useState();
 
   const sortType = (data) => {
+    console.log(data);
     let sql = "select * from horseinfo order by price ";
     // eslint-disable-next-line
     if (data == "high") {
