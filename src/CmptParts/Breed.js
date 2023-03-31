@@ -9,7 +9,8 @@ export function Breed({ onChange, className }) {
   return (
     <div className={className}>
       <label className="filter_cont_breed_label">
-        Breed <span className="addHorse_cont_basics_details_name_gender_error">
+        Breed{" "}
+        <span className="addHorse_cont_basics_details_name_gender_error">
           *
         </span>
       </label>
@@ -26,7 +27,6 @@ export function Breed({ onChange, className }) {
 }
 
 function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
-
   const [showOptions, setShowOptions] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(null);
@@ -101,19 +101,20 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
     <div
       className="filter_cont_breed_dropdown"
       ref={inputRef}
-      onClick={handleInputClick}>
-      <div
-        className="filter_cont_breed_dropdown_selector"
-      >
+      onClick={handleInputClick}
+    >
+      <div className="filter_cont_breed_dropdown_selector">
         <div className="filter_cont_breed_selector_selection">
           {getBreedSelection()}
-
         </div>
       </div>
       {showOptions && (
         <div className="filter_cont_breed_dropdown_options">
           {isSearchable && (
-            <div onClick={(e) => e.stopPropagation()} className="filter_cont_breed_dropdown_search">
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="filter_cont_breed_dropdown_search"
+            >
               <input
                 type="text"
                 onChange={onSearch}
@@ -122,12 +123,20 @@ function BreedDropdown({ placeholder, options, isSearchable, optionSelected }) {
               />
             </div>
           )}
+          <div
+            onClick={() => onItemClick({ label: "" })}
+            className={`filter_cont_breed_dropdown_options_singleOption 
+            }`}
+          >
+            Select
+          </div>
           {getOptions().map((option) => (
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_breed_dropdown_options_singleOption ${isSelected(option) && "selected"
-                }`}
+              className={`filter_cont_breed_dropdown_options_singleOption ${
+                isSelected(option) && "selected"
+              }`}
             >
               {option.label}
             </div>

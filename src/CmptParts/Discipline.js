@@ -109,12 +109,30 @@ function DisciplineDropdown({
   };
 
   const removeOption = (option) => {
+    //console.log("removed");
+    let newOption = selectedValue.filter((opt) => opt.value !== option.value);
+    let skills = "";
+    // console.log(newOption);
+    for (let i = 0; i < newOption.length; i++) {
+      // eslint-disable-next-line
+      if (i == newOption.length - 1) {
+        skills += newOption[i].label;
+      } else {
+        skills += newOption[i].label + ", ";
+      }
+    }
+    console.log(skills);
+    disciplineSet(skills);
+
     return selectedValue.filter((opt) => opt.value !== option.value);
   };
 
   const optionRemove = (event, option) => {
     event.stopPropagation();
+    //console.log("removed");
+    // console.log(option);
     setSelectedValue(removeOption(option));
+    // console.log(option);
   };
 
   const onItemClick = (option) => {
@@ -134,8 +152,9 @@ function DisciplineDropdown({
       newOption = option;
     }
     setSelectedValue(newOption);
+    //disciplineSet("");
     let skills = "";
-    //console.log(newOption[0]);
+    console.log(newOption);
     for (let i = 0; i < newOption.length; i++) {
       // eslint-disable-next-line
       if (i == newOption.length - 1) {
@@ -144,8 +163,9 @@ function DisciplineDropdown({
         skills += newOption[i].label + ", ";
       }
     }
-    //console.log(skills);
+    console.log(skills);
     disciplineSet(skills);
+    skills = "";
   };
 
   const isSelected = (option) => {
@@ -168,9 +188,7 @@ function DisciplineDropdown({
       ref={inputRef}
       onClick={handleInputClick}
     >
-      <div
-        className="filter_cont_discipline_dropdown_selector"
-      >
+      <div className="filter_cont_discipline_dropdown_selector">
         <div className="filter_cont_discipline_selector_selection">
           {getDisciplineSelection()}
         </div>
@@ -178,7 +196,10 @@ function DisciplineDropdown({
       {showOptions && (
         <div className="filter_cont_discipline_dropdown_options">
           {isSearchable && (
-            <div onClick={(e) => e.stopPropagation()} className="filter_cont_discipline_dropdown_search">
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="filter_cont_discipline_dropdown_search"
+            >
               <input
                 type="text"
                 onChange={onSearch}
@@ -191,8 +212,9 @@ function DisciplineDropdown({
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_discipline_dropdown_options_singleOption ${isSelected(option) && "selected"
-                }`}
+              className={`filter_cont_discipline_dropdown_options_singleOption ${
+                isSelected(option) && "selected"
+              }`}
             >
               {option.label}
             </div>
