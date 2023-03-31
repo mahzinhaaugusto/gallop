@@ -7,7 +7,6 @@ import { HorseCard } from "../Components/HorseCard";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { API_ENDPOINT } from "../server";
 import BackButton from "../icons/BackButton.svg";
 
 export function Favorites() {
@@ -25,8 +24,8 @@ export function Favorites() {
   let favorites = [];
 
   useEffect(() => {
-    Axios.get(`${API_ENDPOINT}favhorses`).then((response) => {
-      Axios.get(`${API_ENDPOINT}allhorses`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then((response) => {
+      Axios.get(`${process.env.REACT_APP_API_URL}allhorses`).then((res) => {
         for (let i = 0; i < response.data.length; i++) {
           // eslint-disable-next-line
           if (localStorage.getItem("id") == response.data[i].ID) {

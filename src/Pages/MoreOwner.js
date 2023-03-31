@@ -14,7 +14,6 @@ import "../styles/pgs/MoreOwner.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { API_ENDPOINT } from "../server";
 // import { MyHorsesCard } from "./MyHorses";
 import { MoreOwnerCards } from "../Components/MoreOwnerCards";
 
@@ -47,7 +46,7 @@ export function MoreOwner() {
       // console.log("sorry");
       navigate("/login");
     }
-    Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}allhorses`).then((response) => {
       //console.log(id);
       // console.log(response.data[0].horseID);
       setMyHorses(response.data);
@@ -109,10 +108,10 @@ export function MoreOwner() {
               </div>
               <div className="moreOwner_cont_header_content_buttons">
                 <a href={"tel: +1" + userData.phoneNumber}>
-                  <img src={GreenPhone}></img>
+                  <img alt="Contact owner through phone" src={GreenPhone}></img>
                 </a>
                 <a href={"mailto:" + userData.email}>
-                  <img src={Email}></img>
+                  <img alt="Contact owner through email" src={Email}></img>
                 </a>
               </div>
             </div>

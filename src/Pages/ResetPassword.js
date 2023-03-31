@@ -3,7 +3,6 @@ import { Button } from "../Components/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
 import HideShowPass from "../icons/HideShowPass.svg";
 import HideVisibility from "../icons/HideVisibility.svg";
 import bcrypt from "bcryptjs";
@@ -47,7 +46,7 @@ export function ResetPassword() {
         } else {
             const hashedPassword = bcrypt.hashSync(password, 10);
 
-            axios.post(`${API_ENDPOINT}reset`, {
+            axios.post(`${process.env.REACT_APP_API_URL}reset`, {
                 userPassword: hashedPassword,
                 token: token
             })
