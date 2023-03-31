@@ -122,7 +122,7 @@ app.post("/api/editprofile", (req, res) => {
       profileInfo.address,
       profileInfo.website,
       profileInfo.password,
-      profileInfo.profilePhoto,
+      profileInfo.userPhoto,
       profileInfo.background,
       id,
     ],
