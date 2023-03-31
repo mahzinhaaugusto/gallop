@@ -81,7 +81,7 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
                 <h4 id="horseCard_cont_details_labels">
                   {horse.breed.charAt(0).toUpperCase() + horse.breed.slice(1)} |{" "}
                   {horse.gender.charAt(0).toUpperCase() + horse.gender.slice(1)}{" "}
-                  | {horse.horseAge} yr(s) old{" "}
+                  | {horse.horseAge} y/o{" "}
                 </h4>
               </div>
               <div className="horseCard_cont_details_description">

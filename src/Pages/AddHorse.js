@@ -573,11 +573,12 @@ export function AddHorse() {
                 Display horse on profile
                 <input
                   type="checkbox"
+                  id="toggle"
                   onClick={(e) => {
                     setShowInfo(e.target.checked);
                   }}
                 ></input>
-                <span className="control"></span>
+                <span id="slider"></span>
                 {/* </label> */}
               </div>
               <p className="requiredFields_error">* required fields</p>

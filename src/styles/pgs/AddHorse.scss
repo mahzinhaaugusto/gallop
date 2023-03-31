@@ -46,6 +46,47 @@
     display: none;
 }
 
+// there is something stopping me from configuring these ids on user agent stylesheet input[type="checkbox" i] {}
+.addHorse_cont_aboutOwner_displayHorse {
+    input #toggle {
+        display: none;
+    }
+
+    /* Style the slider */
+    #toggle #slider {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+        border-radius: 12px;
+        background-color: #ccc;
+    }
+
+    /* Style the slider's thumb */
+    #toggle #slider::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: white;
+        transition: transform 0.2s;
+    }
+
+    /* Style the slider when the checkbox is checked */
+    #toggle input:checked+#slider {
+        background-color: #2196F3;
+    }
+
+    /* Move the slider's thumb when the checkbox is checked */
+    #toggle input:checked+#slider::before {
+        transform: translateX(26px);
+    }
+
+}
+
 .addHorse {
 
     label {
