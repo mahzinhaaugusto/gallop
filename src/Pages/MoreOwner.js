@@ -69,9 +69,15 @@ export function MoreOwner() {
         <h2>More from {userData.firstName}</h2>
         <div className="moreOwner_cont">
           <div className="moreOwner_cont_header">
-            <p className="moreOwner_cont_header_backButton" onClick={goBack}>
-              <img alt="Back to previous page" src={BackButton}></img> Back
-            </p>
+            <div className="moreOwner_cont_header_backButton">
+              <img alt="Back to previous page" src={BackButton}></img>
+              <p onClick={goBack}>Back</p>
+            </div>
+            <img
+              className="moreOwner_cont_header_background"
+              src={userData.backgroundPhoto}
+              alt="Owner's profile"
+            />
             <div className="moreOwner_cont_header_content">
               <img
                 className="moreOwner_cont_header_content_img"
@@ -102,16 +108,26 @@ export function MoreOwner() {
                 <p>{userData.bio}</p>
               </div>
               <div className="moreOwner_cont_header_content_buttons">
-                <img src={GreenPhone}></img>
-                <img src={Email}></img>
+                <a href={"tel: +1" + userData.phoneNumber}>
+                  <img src={GreenPhone}></img>
+                </a>
+                <a href={"mailto:" + userData.email}>
+                  <img src={Email}></img>
+                </a>
               </div>
             </div>
           </div>
-          <div className="moreOwner_cont_filterAndSort">
-            <FilterDropdown />
-            <SortByDropdown />
+          <div className="moreOwner_cont_content">
+            <div className="moreOwner_cont_content_head">
+              <h2 className="moreOwner_cont_content_title">{userData.firstName}'s Horses</h2>
+              <div className="moreOwner_cont_filterAndSort">
+                <FilterDropdown />
+                <SortByDropdown />
+              </div>
+            </div>
+
+            <div className="moreOwner_cont_cards"><MoreOwnerCards myHorse={myHorsesArr} /></div>
           </div>
-          <div className="moreOwner_cont_cards"><MoreOwnerCards myHorse={myHorsesArr} /></div>
         </div>
         <div className="moreOwner_master_inner">
           <Footer />
