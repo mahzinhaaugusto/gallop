@@ -6,11 +6,13 @@ export function BreedingMethod(props) {
 
   const handlerNatural = () => {
     setCheckedNatural(!checkedNatural);
+    setCheckedArtificial(!checkedArtificial);
     // console.log("natural");
     props.handleMessage("natural");
   };
   const handlerArtificial = () => {
     setCheckedArtificial(!checkedArtificial);
+    setCheckedNatural(!checkedNatural);
     props.handleMessage("artificial");
     //console.log("artificial");
   };
@@ -23,8 +25,7 @@ export function BreedingMethod(props) {
             name="breedingMethod"
             id="natural"
             type="radio"
-            checked={checkedNatural}
-            onChange={handlerNatural}
+            onClick={handlerNatural}
           />
           Natural
         </label>
@@ -35,8 +36,7 @@ export function BreedingMethod(props) {
             name="breedingMethod"
             id="artificial"
             type="radio"
-            checked={checkedArtificial}
-            onChange={handlerArtificial}
+            onClick={handlerArtificial}
           />
           Insemination
         </label>

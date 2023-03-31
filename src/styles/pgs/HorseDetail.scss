@@ -28,13 +28,22 @@
 
     h4 {
         font-weight: bold;
+        font-size: 1rem;
+
+        @media screen and (min-width: $media-desktop) {
+            font-size: 1.25rem;
+        }
     }
 }
 
 .horseDetail {
-    padding: 4rem 4rem 10rem 15rem;
+    padding: 0;
     background: transparent;
     margin: 0;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 4rem 4rem 10rem 15rem;
+    }
 }
 
 .horseDetail_master_inner {
@@ -49,10 +58,13 @@
     font-size: 1.5em;
     font-weight: 600;
     align-self: flex-end;
-    margin-left: 12%;
+    margin: 1.75rem;
     display: flex;
     align-items: flex-end;
 
+    @media screen and (min-width: $media-desktop) {
+        margin: 0 0 1.125rem 0;
+    }
 
 }
 
@@ -73,16 +85,16 @@
 
 
 .horseDetail_cont {
-    // background-color: white;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 50px;
-    padding-bottom: 10px;
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 5rem;
+    }
 }
 
 .horseDetail_cont_information_heading_title_buttons {
@@ -145,63 +157,98 @@
 
 .horseDetail_cont_information_body {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 30px;
-    align-content: space-between;
-    gap: 40px;
+    align-content: center;
+    background-color: #FDFCFB;
+    border-radius: 1rem;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+    }
 
     label {
         margin: 0px;
-        padding: 0px;
+        padding: .5rem 0;
         font-weight: bolder;
+        background-color: $accentSand;
+        width: 100%;
+        text-align: center;
+        font-size: 1rem;
+
+        @media screen and (min-width: $media-desktop) {
+            padding: 1rem 0;
+            font-size: 1.25rem;
+        }
     }
 
     p {
-        margin-top: 10px;
+        padding: .5rem 0;
+        width: 100%;
+        text-align: center;
+
+        @media screen and (min-width: $media-desktop) {
+            padding: 1rem 0;
+        }
     }
 }
 
-.horseDetail_cont_information_body_breed{
-    align-items: center;
+
+
+
+.horseDetail_height_age_cont,
+.horseDetail_height_color_gender,
+.horseDetail_height_breedingMethod_disciplines {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
 }
 
-.horseDetail_cont_information_body_height {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.horseDetail_cont_information_body_age {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.horseDetail_cont_information_body_color {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.horseDetail_cont_information_body_gender {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.horseDetail_cont_information_body_breedingMethod {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
+.horseDetail_cont_information_body_height,
+.horseDetail_cont_information_body_age,
+.horseDetail_cont_information_body_color,
+.horseDetail_cont_information_body_gender,
+.horseDetail_cont_information_body_breedingMethod,
 .horseDetail_cont_information_body_disciplines {
     align-items: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.horseDetail_cont_information_body_height>label,
+.horseDetail_cont_information_body_color>label,
+.horseDetail_cont_information_body_breedingMethod>label {
+    border-radius: 1rem 0 0 1rem;
+}
+
+.horseDetail_cont_information_body_color>label,
+.horseDetail_cont_information_body_breedingMethod>label {
+    @media screen and (min-width: $media-desktop) {
+        border-radius: unset;
+    }
+}
+
+.horseDetail_cont_information_body_disciplines>label,
+.horseDetail_cont_information_body_gender>label {
+    border-radius: 0 1rem 1rem 0;
+}
+
+.horseDetail_cont_information_body_gender>label {
+    @media screen and (min-width: $media-desktop) {
+        border-radius: unset;
+    }
+}
+
+.horseDetail_cont_information_body_age>label {
+    border-radius: 0 1rem 1rem 0;
+
+    @media screen and (min-width: $media-desktop) {
+        border-radius: unset;
+    }
 }
 
 .line {
@@ -215,18 +262,17 @@
     margin-bottom: 30px;
 }
 
-
-
-.horseDetail_cont_one {
-    display: flex;
-    flex-direction: row;
-    margin-right: 30px;
-}
-
 .horseDetail_cont_description {
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: .75rem 1.125rem;
+    background-color: #FDFCFB;
+    border-radius: 1rem;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 1.125rem 2.5rem;
+        border: 3px solid $accentSand;
+    }
 
     p {
         margin-top: 15px;
@@ -236,36 +282,114 @@
 
 
 
+.horseDetail_cont_one,
+.horseDetail_cont_two,
+.horseDetail_cont_three {
+    width: 100%;
+}
+
 .horseDetail_cont_one {
     display: flex;
     flex-direction: column;
-    margin-right: 30px;
 }
 
+.horseDetail_cont_two {
+    margin: 2rem 0;
+}
 // container 3
 
 .horseDetail_cont_three {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    background-color: #FDFCFB;
+    border-radius: 1rem;
+    padding: 1.125rem 0;
+
+    @media screen and (min-width: $media-desktop) {
+        border: 3px solid $accentSand;
+    }
+}
+
+.horseDetail_cont_contactInfo_heading,
+.horseDetail_cont_contactInfo_heading_content {
+    padding: 0.75rem 1.125rem;
+
+    @media screen and (min-width: $media-desktop) {
+        padding: 0 2.5rem;
+    }
+}
+
+.horseDetail_cont_contactInfo_heading_content {
+    padding-top: 0;
 }
 
 .horseDetail_cont_contactInfo_heading_content {
     display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+        align-items: center;    
+    }
+}
+
+.horseDetail_contactInfo_owner_forms_container {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+    }
+}
+
+.horseDetail_cont_contactInfo_heading_content_infoCont {
+    display: flex;
     flex-direction: row;
     align-items: center;
-    align-content: center;
-    gap: 70px;
+    margin-top: .625rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-top: 1rem;
+    }
+    
 }
 
 .horseDetail_cont_contactInfo_img {
-    margin-top: 10px;
     border-radius: 50%;
+    height: 7rem;
+    width: 7rem;
+}
+
+.horseDetail_cont_contactInfo_owner {
+    margin-left: 1rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-left: 1.25rem;
+    }
+}
+
+.horseDetail_cont_contactInfo_owner>h4 {
+    display: none;
+
+    @media screen and (min-width: $media-desktop) {
+        display: block;
+    }
 }
 
 .horseDetail_cont_contactInfo_owner_location {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    margin-bottom: .625rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin: 1rem 0 0 0;
+    }
 }
 
 .horseDetail_cont_contactInfo_owner_webpage {
@@ -274,13 +398,32 @@
     align-items: center;
 }
 
-.horseDetail_cont_contactInfo_contactForms_phone {
-    margin-right: 20px;
+.horseDetail_cont_contactInfo_contactForms {
+    margin: 0 0 .625rem 1rem;
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-left: 6rem;
+    }
 }
 
-.horseDetail_cont_contactInfo_owner_location {
-    margin-left: 5px;
-    margin-top: 10px;
+.horseDetail_cont_contactInfo_contactForms_email {
+    margin-right: .625rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-right: 1.25rem;
+    }
+}
+
+.horseDetail_cont_contactInfo_moreFromOwner {
+    align-self: center;
+    margin-top: 2rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin: 0;
+        align-self: unset;
+    }
 }
 
 .horseDetail_cont_contactInfo_moreFromOwner_btn {
@@ -289,7 +432,6 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: $radius;
     padding: $smallPadding $largePadding;
-    margin-bottom: $largeMargin;
     width: fit-content;
     background-color: $white;
     color: $primary;

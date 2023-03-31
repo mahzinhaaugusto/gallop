@@ -19,11 +19,13 @@ function SortBy({ sortType }) {
 
   const handlerHigh = () => {
     setCheckedHigh(!checkedHigh);
+    console.log("h");
     sortType("high");
   };
 
   const handlerLow = () => {
     setCheckedLow(!checkedLow);
+    console.log("l");
     sortType("low");
   };
 
@@ -46,40 +48,22 @@ function SortBy({ sortType }) {
         <div className="sortBy">
           <div className="sortBy_cont">
             <div className="sortBy_cont_high">
-              <label>
-                <input
-                  name="sortBy"
-                  id="high"
-                  type="radio"
-                  checked={checkedHigh}
-                  onChange={handlerHigh}
-                ></input>
-                High Price
-              </label>
+              <input
+                name="sortBy"
+                id="high"
+                type="radio"
+                onClick={handlerHigh}
+              ></input>
+              <label htmlFor="high">High Price</label>
             </div>
             <div className="sortBy_cont_low">
-              <label>
-                <input
-                  name="sortBy"
-                  id="low"
-                  type="radio"
-                  checked={checkedLow}
-                  onChange={handlerLow}
-                ></input>
-                Low Price
-              </label>
-            </div>
-            <div className="sortBy_cont_likes">
-              <label>
-                <input
-                  name="sortBy"
-                  id="likes"
-                  type="radio"
-                  checked={checkedLikes}
-                  onChange={handlerLikes}
-                ></input>
-                Most Liked
-              </label>
+              <input
+                name="sortBy"
+                id="low"
+                type="radio"
+                onClick={handlerLow}
+              ></input>
+              <label htmlFor="low">Low Price</label>
             </div>
           </div>
         </div>

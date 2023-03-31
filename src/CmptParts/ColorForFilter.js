@@ -90,15 +90,18 @@ function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
 
     return selectedValue.value === option.value;
   };
+  // const resetAll = () => {
+  //   setSearchValue("");
+  //   handleMessage("");
+  // };
 
   return (
     <div
       className="filter_cont_color_dropdown"
       ref={inputRef}
-      onClick={handleInputClick}>
-      <div
-        className="filter_cont_color_dropdown_selector"
-      >
+      onClick={handleInputClick}
+    >
+      <div className="filter_cont_color_dropdown_selector">
         <div className="filter_cont_color_selector_selection">
           {getColorSelection()}
         </div>
@@ -118,12 +121,19 @@ function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
               />
             </div>
           )}
+          {/* <div
+            onClick={resetAll}
+            className="filter_cont_color_dropdown_options_singleOption"
+          >
+            Select
+          </div> */}
           {getOptions().map((option) => (
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_color_dropdown_options_singleOption ${isSelected(option) && "selected"
-                }`}
+              className={`filter_cont_color_dropdown_options_singleOption ${
+                isSelected(option) && "selected"
+              }`}
             >
               {option.label}
             </div>

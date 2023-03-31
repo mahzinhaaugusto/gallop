@@ -23,21 +23,14 @@ export function Gender(props) {
             name="genres"
             id="stallion"
             type="radio"
-            checked={checkedStallion}
-            onChange={handlerStallion}
+            onClick={handlerStallion}
           />
           Stallion
         </label>
       </div>
       <div className="filter_cont_gender_mare">
         <label>
-          <input
-            name="genres"
-            id="mare"
-            type="radio"
-            checked={checkedMare}
-            onChange={handlerMare}
-          />
+          <input name="genres" id="mare" type="radio" onClick={handlerMare} />
           Mare
         </label>
       </div>
