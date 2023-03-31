@@ -312,26 +312,10 @@ export function AddHorse() {
                   <p className="warning">{breedError}</p>
                 </div>
 
-                <div className="addHorse_cont_basics_details_age">
-                  <label>
-                    Age{" "}
-                    <span className="addHorse_cont_basics_details_age_error">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    required
-                    name="age"
-                    id="age"
-                    type="number"
-                    placeholder="Years"
-                    onChange={(e) => {
-                      setAge(e.target.value);
-                    }}
-                    onWheel={(e) => e.target.blur()}
-                  ></input>
-                  <p className="warning">{ageError}</p>
-                </div>
+
+
+
+
               </div>
               <div className="addHorse_cont_basics_details_secondRow">
                 <div className="addHorse_cont_basics_details_height">
@@ -359,6 +343,29 @@ export function AddHorse() {
                     onChange={colorClick}
                     className="addHorse_cont_basics_details_color_cont"
                   />
+                </div>
+                
+              </div>
+              <div className="addHorse_cont_basics_details_thirdRow">
+                <div className="addHorse_cont_basics_details_age">
+                  <label>
+                    Age{" "}
+                    <span className="addHorse_cont_basics_details_age_error">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    required
+                    name="age"
+                    id="age"
+                    type="number"
+                    placeholder="Years"
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
+                    onWheel={(e) => e.target.blur()}
+                  ></input>
+                  <p className="warning">{ageError}</p>
                 </div>
                 <div className="addHorse_cont_basics_details_breedingMethod">
                   <label>
@@ -526,7 +533,7 @@ export function AddHorse() {
             <div className="addHorse_cont_aboutOwner_contactPreferences">
               <label>Contact Preferences</label>
               <div className="addHorse_cont_aboutOwner_contactPreferences_label">
-                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Email">
+                <label className="addHorse_cont_aboutOwner_contactPreferences_label_Email" id="ownerEmailCont">
                   <input type="checkbox" id="ownerEmail"></input>
                   Email
                 </label>
@@ -554,9 +561,9 @@ export function AddHorse() {
                 id="ownerLocation"
                 type="text"
                 placeholder="Location"
-                /* onChange={(e) => {
-                setLocation(e.sessionStorage.setItem("city", city));
-              }} */
+              /* onChange={(e) => {
+              setLocation(e.sessionStorage.setItem("city", city));
+            }} */
               ></input>
             </div>
             {/* <div className="addHorse_cont_aboutOwner_displayHorse">
