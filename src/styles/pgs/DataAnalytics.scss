@@ -85,10 +85,6 @@
 .dataAnalytics_cont_mainContent_breed_chart {
     overflow-x: scroll;
 
-    @media screen and (min-width: $media-desktop) {
-        overflow-x: hidden;
-    }
-
     .recharts-text.recharts-cartesian-axis-tick-value {
         // transform: rotate(3deg);
     }
