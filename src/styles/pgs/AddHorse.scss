@@ -59,11 +59,32 @@
         line-height: 150%;
     }
 
-    padding: 4rem 4rem 10rem 15rem;
+    font-size: 1rem;
+    padding: 2rem 0rem 5rem 0rem;
     background: transparent;
 
-    .addHorse_cont_aboutOwner_location{
+    @media only screen and (min-width: 1024px) {
+        padding: 4rem 4rem 10rem 15rem;
+        background: transparent;
+    }
+
+
+
+    .addHorse_cont_aboutOwner_location {
         width: 100%;
+
+        #ownerLocation {
+            font-size: 1.2rem;
+            font-family: "Roboto";
+            padding-left: 0rem;
+            padding-right: 1rem;
+
+            color: #5A5A5F;
+
+            @media only screen and (min-width: 1024px) {
+                padding-left: 1rem;
+            }
+        }
     }
 
     .addHorse_cont_aboutOwner_location_error {
@@ -74,16 +95,25 @@
 
     .requiredFields_error {
         color: #C9431A;
+        padding-top: 0.3rem;
     }
 }
 
 .addHorse_cont {
     background-color: white;
-    // margin: 1.875rem 12.5rem 50rem 250rem;
-    padding-left: 12.5rem;
-    padding-right: 12.5rem;
-    padding-top: 3.125rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
     padding-bottom: 0.625rem;
+
+    @media only screen and (min-width: 1024px) {
+
+        // margin: 1.875rem 12.5rem 50rem 250rem;
+        padding-left: 12.5rem;
+        padding-right: 12.5rem;
+        padding-top: 3.125rem;
+        padding-bottom: 0.625rem;
+    }
 }
 
 .addHorse_cont_backButton {
@@ -93,6 +123,7 @@
     // right: 76.57%;
     // top: 42%;
     // bottom: 90.29%;
+    padding-left: 2rem;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -114,12 +145,24 @@
     // padding-left: 300rem;
     // padding-right: 12.5rem;
     // padding-top: 100rem;
+
+    padding-left: 1rem;
     font-family: 'Asap', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 1.75rem;
     line-height: 150%;
     color: #5A5A5F;
+
+    @media only screen and (min-width: 1024px) {
+        font-family: 'Asap', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1.75rem;
+        line-height: 150%;
+        color: #5A5A5F;
+    }
+
 }
 
 // * error signal
@@ -135,9 +178,18 @@
     box-sizing: border-box;
 
     option {
-        font-size: 1.875rem;
+        font-size: 1rem;
     }
 }
+
+.addHorse_cont_basics_details_gender>#gender {
+    font-family: "Roboto";
+    font-size: 1.2em;
+    padding-left: 1.2rem;
+    color: #5A5A5F;
+}
+
+
 
 #age {
     height: 3rem;
@@ -171,6 +223,17 @@
     box-sizing: border-box;
 }
 
+.addHorse_cont_basics_details_breedingMethod>#breedingMethod {
+    font-family: "Roboto";
+    font-size: 1.1em;
+    padding-left: 1rem;
+    color: #5A5A5F;
+
+    option {
+        font-size: 1rem;
+    }
+}
+
 // Color
 .addHorse_cont_basics_details_color_cont {
     width: 11.5rem;
@@ -188,6 +251,13 @@
         border: 0.125rem solid #B6B6BB;
         padding: 0.5625rem;
     }
+
+    .filter_cont_color_selector_selection {
+        font-family: "Roboto";
+        font-size: 1.2em;
+        padding-left: 0.5rem;
+        color: #5A5A5F;
+    }
 }
 
 // Breed
@@ -200,7 +270,16 @@
         border: 0.125rem solid #B6B6BB;
         padding: 0.5625rem;
     }
+
+    .filter_cont_breed_selector_selection {
+        font-family: "Roboto";
+        font-size: 1.2em;
+        padding-left: 0.5rem;
+        color: #5A5A5F;
+    }
+
 }
+
 
 .addHorse_cont_basics {
     margin-top: 1rem;
@@ -324,7 +403,7 @@
         padding: 1.25rem;
         margin-bottom: 0.125rem;
         height: 9.625rem;
-        
+
     }
 }
 
@@ -342,6 +421,12 @@
 #ownerCall {}
 
 #ownerText {}
+
+.addHorse_cont_aboutOwner_contactPreferences_label {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
 
 .addHorse_cont_aboutOwner_contactPreferences {
     display: flex;
@@ -365,13 +450,18 @@
 }
 
 // Location
+
 #ownerLocation {
     background: #FFFFFF;
     border: 0.125rem solid #B6B6BB;
     border-radius: 0.9375rem;
     width: 100%;
     height: 3rem;
-    padding-left: 0.3125rem;
+
+    @media only screen and (min-width: 1024px) {
+
+        padding-left: 0.3125rem;
+    }
 }
 
 // Display horse
@@ -413,13 +503,7 @@ textarea::placeholder {
 }
 
 
-#ownerLocation {
-    background: #FFFFFF;
-    border: 0.0625rem solid #B6B6BB;
-    border-radius: 0.4375rem;
-    width: 100%;
-    height: 3rem
-}
+
 
 
 //toggle button
@@ -444,7 +528,7 @@ $toggle-control-size: $toggle-height - ($toggle-gutter * 2);
     padding-left: $toggle-width;
     margin-bottom: 10.125rem;
     cursor: pointer;
-    font-size: 20.125rem;
+    font-size: 0.125rem;
     user-select: none;
 
     input[type="checkbox"] {
@@ -493,6 +577,10 @@ $toggle-control-size: $toggle-height - ($toggle-gutter * 2);
     .filter_cont_discipline {
         border: 0.125rem solid #B6B6BB;
         padding: 0.5625rem;
+        font-family: "Roboto";
+        font-size: 1.2em;
+        padding-left: 1rem;
+        color: #5A5A5F;
     }
 }
 
