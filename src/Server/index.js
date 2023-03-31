@@ -110,7 +110,7 @@ app.post("/api/editprofile", (req, res) => {
   console.log(profileInfo);
   const id = req.body.id;
   const sqlEdit =
-    "UPDATE userinfo SET bio = ?, firstName = ?, lastName = ?, phoneNumber = ?, email = ?, address = ?, website = ?, userPassword = ?  WHERE ID =  ?";
+    "UPDATE userinfo SET bio = ?, firstName = ?, lastName = ?, phoneNumber = ?, email = ?, address = ?, website = ?, userPassword = ?, userPhoto = ?, backgroundPhoto = ?  WHERE ID =  ?";
   db.query(
     sqlEdit,
     [
@@ -122,6 +122,8 @@ app.post("/api/editprofile", (req, res) => {
       profileInfo.address,
       profileInfo.website,
       profileInfo.password,
+      profileInfo.profilePhoto,
+      profileInfo.background,
       id,
     ],
     (err, result) => {
