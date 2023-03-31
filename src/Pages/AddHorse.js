@@ -40,6 +40,7 @@ export function AddHorse() {
   const [thumbnailError, setThumbnailError] = useState("");
   const [photoError, setPhotoError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
+  const [showInfo, setShowInfo] = useState(false);
 
   let navigate = useNavigate();
 
@@ -206,6 +207,7 @@ export function AddHorse() {
                 horsePhotos1: photoArray[0],
                 horsePhotos2: photoArray[1],
                 horsePhotos3: photoArray[2],
+                showInfo: showInfo,
               });
             });
           } else {
@@ -224,6 +226,7 @@ export function AddHorse() {
               discipline: discipline,
               uid: uid,
               horseThumb: result,
+              showInfo: showInfo,
             });
           }
         });
@@ -561,13 +564,18 @@ export function AddHorse() {
             }} */
               ></input>
             </div>
-            {/* <div className="addHorse_cont_aboutOwner_displayHorse">
-              <label className="toggle-control">
-                Display horse on profile
-                <input type="checkbox" checked="checked"></input>
-                <span className="control"></span>
-              </label>
-            </div> */}
+            <div className="addHorse_cont_aboutOwner_displayHorse">
+              {/* <label className="toggle-control"> */}
+              Display horse on profile
+              <input
+                type="checkbox"
+                onClick={(e) => {
+                  setShowInfo(e.target.checked);
+                }}
+              ></input>
+              <span className="control"></span>
+              {/* </label> */}
+            </div>
             <p className="requiredFields_error">* required fields</p>
           </div>
           <div className="endButtons">
