@@ -14,7 +14,7 @@
         line-height: 30px;
 
         @media screen and (min-width: 1024px) {
-            padding: 1.25rem;
+            padding: 0;
         }
     }
 
@@ -30,8 +30,22 @@
         line-height: 24px;
 
         @media screen and (min-width: 1024px) {
-            padding: 1rem;
+            padding: 0;
         }
+    }
+}
+
+.mainPage .mainPage_horseCard {
+
+    h3,
+    .horseCard_cont_details_description {
+        @media screen and (min-width: 1024px) {
+            padding: 0;
+        }
+    }
+
+    #horseCard_cont_details_btn{
+        margin: 0;
     }
 }
 

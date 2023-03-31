@@ -170,6 +170,7 @@ export function MainPage() {
               horseInfo={[item]}
               onClick={goToHorseDetail}
               addFavOnClick={addToFavorites}
+              className="mainPage_horseCard"
             />
           ))}
       </div>
