@@ -77,7 +77,7 @@
         #ownerLocation {
             font-size: 1.2rem;
             font-family: "Roboto";
-            padding-left: 0rem;
+            padding-left: 1rem;
             padding-right: 1rem;
 
             color: #5A5A5F;
@@ -124,6 +124,8 @@
     // right: 76.57%;
     // top: 42%;
     // bottom: 90.29%;
+    cursor:pointer;
+    
     padding-left: 2rem;
     flex-direction: row;
     justify-content: flex-start;
@@ -187,6 +189,12 @@
         font-size: 1rem;
     }
 }
+
+#gender::after {
+    content: "\25BE"; /* Unicode downward arrow icon */
+    display: inline-block;
+    margin-right: 50px;
+  }
 
 .addHorse_cont_basics_details_gender>#gender {
     font-family: "Roboto";
@@ -260,6 +268,11 @@
     margin: 0rem;
     box-sizing: border-box;
 
+    img{
+        margin-right: -0.6rem;
+        width: 0.6rem;
+    }
+
     .filter_cont_color_label {
         padding-left: 0rem;
     }
@@ -289,6 +302,11 @@
     width: 45vw;
     margin: 0rem;
     box-sizing: border-box;
+
+    img{
+        margin-right: -0.6rem;
+        width: 0.6rem;
+    }
 
     .filter_cont_breed {
         border: 0.125rem solid #B6B6BB;
@@ -359,6 +377,9 @@
     align-items: flex-end;
     justify-content: space-between;
 
+    img{
+        cursor:pointer;
+    }
 
     p {
         padding: 1.25rem;
@@ -388,6 +409,10 @@
     align-items: flex-end;
     justify-content: space-between;
 
+    img{
+        cursor:pointer;
+    }
+
     p {
         padding: 1.25rem;
         margin-bottom: 0.125rem;
@@ -408,6 +433,10 @@
     justify-content: space-between;
     width: 100%;
 
+    img{
+        cursor:pointer;
+    }
+
     p {
         padding: 1.25rem;
         margin-bottom: 0.125rem;
@@ -427,7 +456,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    width: 100%;
+    width: 99%;
     height: 9.625rem;
 
     p {
@@ -447,11 +476,17 @@
 }
 
 // Contact preferences
-#ownerEmail {}
+#ownerEmail {
+    cursor: pointer;
+}
 
-#ownerCall {}
+#ownerCall {
+    cursor: pointer;
+}
 
-#ownerText {}
+#ownerText {
+    cursor: pointer;
+}
 
 .addHorse_cont_aboutOwner_contactPreferences_label {
     display: flex;
@@ -489,11 +524,11 @@
     background: #FFFFFF;
     border: 0.125rem solid #B6B6BB;
     border-radius: 0.9375rem;
-    width: 100%;
+    width: 94%;
     height: 3rem;
 
     @media only screen and (min-width: 1024px) {
-
+        width: 96%;
         padding-left: 0.3125rem;
     }
 }
@@ -607,6 +642,11 @@ $toggle-control-size: $toggle-height - ($toggle-gutter * 2);
 
 .addHorse_cont_detailed_discipline_content {
     width: 100%;
+
+    img{
+        margin-right: -0.6rem;
+        width: 0.6rem;
+    }
 
     .filter_cont_discipline {
         border: 0.125rem solid #B6B6BB;

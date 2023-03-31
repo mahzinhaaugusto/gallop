@@ -22,6 +22,7 @@ export function MyHorses() {
   };
 
   const [showEmpty, setShowEmpty] = useState(false);
+  const [flag, setFlag] = useState(true);
 
   let [myHorses, setMyHorses] = useState([]);
   let myHorsesArr = [];
@@ -46,19 +47,20 @@ export function MyHorses() {
       // if(response.data.length === 0) {
       //   setShowEmpty(true);
       // } else {}
+      // let x=0;
       setMyHorses(response.data);
-
-      // for (let i = 0; i < myHorses.length; i++) {
-      //   //console.log(myHorses);
-      //   if (id == myHorses[i].ID) {
-      //     myHorsesArr.push(myHorses[i]);
-      //   }
-      // if (myHorses.length === 0) {
-      //   console.log(myHorses);
-      //   setShowEmpty(true);
-      // }
-      // }
     });
+
+    // for (let i = 0; i < myHorses.length; i++) {
+    //   //console.log(myHorses);
+    //   if (id == myHorses[i].ID) {
+    //     myHorsesArr.push(myHorses[i]);
+    //   }
+    // if (myHorses.length === 0) {
+    //   console.log(myHorses);
+    //   setShowEmpty(true);
+    // }
+    // }
 
     // console.log(myHorses);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -73,6 +75,7 @@ export function MyHorses() {
     // eslint-disable-next-line
     if (id == myHorses[i].ID) {
       myHorsesArr.push(myHorses[i]);
+      //  setFlag(false);
     }
     // else if (myHorses.length === 0) {
     //   console.log(myHorses);
@@ -82,6 +85,7 @@ export function MyHorses() {
 
     // }
   }
+  console.log(flag);
 
   const back = (event) => {
     event.stopPropagation();
@@ -126,6 +130,15 @@ export function MyHorses() {
             </div>
           </div>
         </div>
+
+        {!myHorsesArr.length && (
+          <>
+            <h1 className="showEmpty_header1">Nothing Here Yet</h1>
+            <h2 className="showEmpty_header_sub1">
+              What about adding something here?
+            </h2>
+          </>
+        )}
         <Footer />
       </div>
     </div>
@@ -133,6 +146,7 @@ export function MyHorses() {
 }
 
 export function MyHorsesCard({ myHorse }) {
+  console.log(myHorse);
   let navigate = useNavigate();
 
   const editHorse = (horse) => {

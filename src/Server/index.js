@@ -110,7 +110,7 @@ app.post("/api/editprofile", (req, res) => {
   console.log(profileInfo);
   const id = req.body.id;
   const sqlEdit =
-    "UPDATE userinfo SET bio = ?, firstName = ?, lastName = ?, phoneNumber = ?, email = ?, address = ?, website = ?, userPassword = ?  WHERE ID =  ?";
+    "UPDATE userinfo SET bio = ?, firstName = ?, lastName = ?, phoneNumber = ?, email = ?, address = ?, website = ?, userPassword = ?, userPhoto = ?, backgroundPhoto = ?  WHERE ID =  ?";
   db.query(
     sqlEdit,
     [
@@ -122,6 +122,8 @@ app.post("/api/editprofile", (req, res) => {
       profileInfo.address,
       profileInfo.website,
       profileInfo.password,
+      profileInfo.profilePhoto,
+      profileInfo.background,
       id,
     ],
     (err, result) => {
@@ -242,11 +244,12 @@ app.post("/api/insertHorse", (req, res) => {
   const horsePhotos1 = req.body.horsePhotos1;
   const horsePhotos2 = req.body.horsePhotos2;
   const horsePhotos3 = req.body.horsePhotos3;
+  const showInfo = req.body.showInfo;
 
   console.log(horsePhotos1);
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3,likeNumbers) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3,likeNumbers,showInfo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -267,6 +270,7 @@ app.post("/api/insertHorse", (req, res) => {
       horsePhotos2,
       horsePhotos3,
       0,
+      showInfo,
     ],
     (err, result) => {
       console.log(result);
