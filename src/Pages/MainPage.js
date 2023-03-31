@@ -15,6 +15,7 @@ export function MainPage() {
   let location = useLocation();
 
   let [allHorses, setHorseInfo] = useState([]);
+  let [allHorsesCopy, setHorseInfoCopy] = useState([]);
 
   let navigate = useNavigate();
 
@@ -35,10 +36,14 @@ export function MainPage() {
   };
 
   const filterReturn = (data) => {
-    setFilter(data);
+    setHorseInfo(allHorsesCopy);
     console.log(data);
+    //console.log(horseDatas);
+    setFilter(data);
+
+    // console.log(data);
     //console.log(allHorses);
-    let horseDatas = [...allHorses];
+    let horseDatas = [...allHorsesCopy];
     console.log(horseDatas);
     for (const key in data) {
       let newList = [];
@@ -65,7 +70,9 @@ export function MainPage() {
       // eslint-disable-next-line
       if (key == "discipline") {
         for (let i = 0; i < horseDatas.length; i++) {
+          // console.log(data[key]);
           if (horseDatas[i].skills.includes(data[key])) {
+            //console.log(horseDatas[i]);
             newList.push(horseDatas[i]);
           }
         }
@@ -138,6 +145,7 @@ export function MainPage() {
     }
     Axios.get(`${API_ENDPOINT}allhorses`).then((response) => {
       setHorseInfo(response.data);
+      setHorseInfoCopy(response.data);
 
       //console.log(allHorses);
     });
@@ -206,7 +214,7 @@ export function MainPage() {
         />
       </>
     );
-  };
+  }
 
   const goToHorseDetail = () => {
     console.log("working");
