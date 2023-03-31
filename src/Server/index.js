@@ -227,6 +227,16 @@ app.post("/api/addfavorite", (req, res) => {
   });
 });
 
+app.post("/api/horseVisibility", (req, res) => {
+  const horseID = req.body.horseID;
+  const showInfo = req.body.showInfo;
+
+  const sqlUpdate = "update horseinfo set showInfo = ? where horseID = ?;";
+  db.query(sqlUpdate, [showInfo, horseID], (err, res) => {
+    console.log(err);
+  });
+});
+
 app.post("/api/insertHorse", (req, res) => {
   const horseName = req.body.name;
   const horseGender = req.body.gender;
