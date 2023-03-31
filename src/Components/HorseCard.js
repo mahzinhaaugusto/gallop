@@ -36,7 +36,6 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
               await axios.post(`${API_ENDPOINT}deletefav`, {
                 id: favHorses[i].favoriteid,
               });
-              window.location.reload();
             }
           }
         }

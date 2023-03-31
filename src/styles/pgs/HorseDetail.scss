@@ -37,12 +37,12 @@
 }
 
 .horseDetail {
-    padding: 0;
+    padding: 0rem 0rem 4rem 0rem;
     background: transparent;
     margin: 0;
 
     @media screen and (min-width: $media-desktop) {
-        padding: 4rem 4rem 10rem 15rem;
+        padding: 3rem 4rem 4rem 12.75rem;
     }
 }
 
@@ -70,6 +70,7 @@
 
 .horseDetail_cont_backButton {
     display: flex;
+    cursor: pointer;
     position: relative;
     left: -47%;
     right: 76.57%;
@@ -102,6 +103,10 @@
     flex-direction: row;
     gap: 10px;
     margin-left: 20px;
+
+    img {
+        cursor: pointer;
+    }
 }
 
 .horseDetail_cont_information_heading_location {
@@ -296,6 +301,7 @@
 .horseDetail_cont_two {
     margin: 2rem 0;
 }
+
 // container 3
 
 .horseDetail_cont_three {
@@ -333,7 +339,7 @@
 
     @media screen and (min-width: $media-desktop) {
         flex-direction: row;
-        align-items: center;    
+        align-items: center;
     }
 }
 
@@ -355,7 +361,7 @@
     @media screen and (min-width: $media-desktop) {
         margin-top: 1rem;
     }
-    
+
 }
 
 .horseDetail_cont_contactInfo_img {

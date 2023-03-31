@@ -1,6 +1,40 @@
 import FavoriteIcon from "../icons/FavoriteIcon.svg";
+import Axios from "axios";
+
 
 export function MoreOwnerCards({ myHorse }) {
+
+    async function addFavOnClick(horse) {
+        try {
+            await Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(async (response) => {
+                const favHorses = response.data;
+                console.log(favHorses);
+                let flag = true;
+                for (let i = 0; i < favHorses.length; i++) {
+                    // eslint-disable-next-line
+                    if (horse.horseID == favHorses[i].horseID) {
+                        // eslint-disable-next-line
+                        if (favHorses[i].ID == localStorage.getItem("id")) {
+                            flag = false;
+                            console.log("deleted");
+                            await Axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
+                                id: favHorses[i].favoriteid,
+                            });
+                        }
+                    }
+                }
+                if (flag) {
+                    console.log("added");
+                    await Axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
+                        horseid: horse.horseID,
+                        uid: localStorage.getItem("id"),
+                    });
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <>
@@ -10,7 +44,11 @@ export function MoreOwnerCards({ myHorse }) {
                         <div className="horseCard_myHorses_cont_images">
                             <img src={horse.thumbnail} alt="" />
                             <div className="horseCard_myHorses_cont_images_favorite">
-                                <img src={FavoriteIcon} alt="" />
+                                <img
+                                    src={FavoriteIcon}
+                                    alt=""
+                                    onClick={() => { addFavOnClick(horse) }}
+                                />
                                 {/* <p>{horse.likeNumbers}</p> */}
                             </div>
                         </div>
