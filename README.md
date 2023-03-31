@@ -122,14 +122,44 @@ npm i swiper
 npm i bcryptjs
 ```
 
-### 16 - Install dotenv
-
-```
-npm install dotenv --save
-```
-
-### 17 - Install Google Auth
+### 16 - Install Google Auth
 
 ```
 npm install @react-oauth/google@latest
+```
+
+### 17 - Install Recharts
+
+```
+npm install recharts
+```
+
+### 18 - Install IN THE SERVER FOLDER Nodemailer
+
+```
+npm install nodemailer
+```
+
+### 19 - Install IN THE SERVER FOLDER GoogleAPI
+
+```
+npm install googleapis
+```
+
+### 20 - Install Lodash
+
+```
+npm i --save lodash
+```
+
+### 21 - Install IN THE SERVER FOLDER uid-generator
+
+```
+npm install uid-generator --save
+```
+
+### 22 - Install React Paginate
+
+```
+npm install react-paginate --save
 ```
