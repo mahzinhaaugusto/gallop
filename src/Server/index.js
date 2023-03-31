@@ -244,11 +244,12 @@ app.post("/api/insertHorse", (req, res) => {
   const horsePhotos1 = req.body.horsePhotos1;
   const horsePhotos2 = req.body.horsePhotos2;
   const horsePhotos3 = req.body.horsePhotos3;
+  const showInfo = req.body.showInfo;
 
   console.log(horsePhotos1);
 
   const sqlInsert =
-    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3,likeNumbers) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
+    "INSERT INTO horseinfo(horseName,horseAge,description,breedingMethod,skills,color,gender,breed,price,height,location,ID,thumbnail,photo1,photo2,photo3,likeNumbers,showInfo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ";
   db.query(
     sqlInsert,
     [
@@ -269,6 +270,7 @@ app.post("/api/insertHorse", (req, res) => {
       horsePhotos2,
       horsePhotos3,
       0,
+      showInfo,
     ],
     (err, result) => {
       console.log(result);
