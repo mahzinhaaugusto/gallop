@@ -7,12 +7,12 @@ const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 require("dotenv").config();
 let apikey = process.env.APIKEY;
-const OAuth2 = google.auth.OAuth2;
-const UIDGenerator = require("uid-generator");
-const uidgen = new UIDGenerator();
+/* const OAuth2 = google.auth.OAuth2; */
+/* const UIDGenerator = require("uid-generator");
+const uidgen = new UIDGenerator(); */
 const axios = require("axios");
 
-const oauth2Client = new OAuth2(
+/* const oauth2Client = new OAuth2(
   process.env.OAUTH_CLIENTID,
   process.env.OAUTH_CLIENT_SECRET,
   "https://developers.google.com/oauthplayground"
@@ -22,7 +22,7 @@ oauth2Client.setCredentials({
   refresh_token: process.env.OAUTH_REFRESH_TOKEN,
 });
 const accessToken = oauth2Client.getAccessToken();
-
+ */
 const db = mysql.createPool({
   host: process.env.HOST,
   user: process.env.USER_NAME,
@@ -297,7 +297,7 @@ app.post("/api/deletehorse", (req, res) => {
   });
 });
 
-app.post("/api/forgotpassword", (req, res) => {
+/* app.post("/api/forgotpassword", (req, res) => {
   const email = req.body.email;
   const uid = uidgen.generateSync();
   // console.log(uid);
@@ -379,7 +379,7 @@ app.get("/api/auth", async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
-});
+}); */
 
 // app.post("/api/updatebackground", (req, res) => {
 //   const backgroundPhoto = req.body.backgroundPhoto;

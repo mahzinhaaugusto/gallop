@@ -48,7 +48,7 @@
 
 // there is something stopping me from configuring these ids on user agent stylesheet input[type="checkbox" i] {}
 .addHorse_cont_aboutOwner_displayHorse {
-    input #toggle {
+    #toggle{
         display: none;
     }
 
@@ -76,12 +76,12 @@
     }
 
     /* Style the slider when the checkbox is checked */
-    #toggle input:checked+#slider {
+    #toggle:checked+#slider {
         background-color: #2196F3;
     }
 
     /* Move the slider's thumb when the checkbox is checked */
-    #toggle input:checked+#slider::before {
+    #toggle:checked+#slider::before {
         transform: translateX(26px);
     }
 
