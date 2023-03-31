@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Edit from "../icons/Edit.svg";
 import axios from "axios";
 import { googleLogout } from "@react-oauth/google";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export function Profile() {
@@ -73,7 +74,6 @@ export function Profile() {
     //       })
     //   })
 
-
     axios.post(`${process.env.REACT_APP_API_URL}editprofile`, {
       profileEdit: profileEdit,
       id: id,
@@ -132,7 +132,7 @@ export function Profile() {
         }
       }
     });
-  };
+  }
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
@@ -148,11 +148,41 @@ export function Profile() {
   };
 
   const changeBackground = (event) => {
-    // const file = event.target.files[0];
-    // // console.log(file);
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // setBackground(file);
+    const file = event.target.files[0];
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      const storage = getStorage();
+      const storageRef = ref(storage, `Horsephoto/${file.name}`);
+      uploadBytes(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then((result) => {
+          profileEdit.background = result;
+          console.log(result);
+        });
+      });
+      document.getElementById("backgroundPhoto").src = reader.result;
+    };
+  };
+
+  const changeProfilePhoto = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      const storage = getStorage();
+      const storageRef = ref(storage, `Horsephoto/${file.name}`);
+      uploadBytes(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then((result) => {
+          profileEdit.profilePhoto = result;
+          console.log(result);
+        });
+      });
+      document.getElementById("profilePhoto").src = reader.result;
+    };
   };
 
   return (
@@ -196,9 +226,11 @@ export function Profile() {
                     {profileInfo.bioContent}
                   </p>
                 </div>
-                <div className='profile_cont_mainContent_name_phoneNumber_cont'>
+                <div className="profile_cont_mainContent_name_phoneNumber_cont">
                   <div className="profile_cont_mainContent_name">
-                    <h4 className="profile_cont_mainContent_name_title">Name:</h4>
+                    <h4 className="profile_cont_mainContent_name_title">
+                      Name:
+                    </h4>
                     <p className="profile_cont_mainContent_name_content">
                       {profileInfo.fullName}
                     </p>
@@ -212,7 +244,7 @@ export function Profile() {
                     </p>
                   </div>
                 </div>
-                <div className='profile_cont_mainContent_email_website_cont'>
+                <div className="profile_cont_mainContent_email_website_cont">
                   <div className="profile_cont_mainContent_email">
                     <h4 className="profile_cont_mainContent_email_title">
                       Email:
@@ -265,6 +297,7 @@ export function Profile() {
               </div>
               <div className="profile_cont_header">
                 <img
+                  id="backgroundPhoto"
                   src={profileInfo.background}
                   alt="profile background"
                   className="profile_cont_header_background"
@@ -286,14 +319,25 @@ export function Profile() {
                 />
                 <div className="profile_cont_header_content">
                   <img
+                    id="profilePhoto"
                     src={profileInfo.userPhoto}
                     alt="profile pic"
                     className="profile_cont_header_content_pic"
                   />
-                  <img
-                    src={Camera}
-                    alt="change profile"
-                    className="profile_cont_header_content_pic_editing"
+                  <label htmlFor="profileChange">
+                    <img
+                      src={Camera}
+                      alt="change profile"
+                      className="profile_cont_header_content_pic_editing"
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    className="profile_cont_header_background_editing_selection"
+                    name="newBackground"
+                    id="profileChange"
+                    onChange={changeProfilePhoto}
                   />
                 </div>
               </div>
@@ -320,96 +364,93 @@ export function Profile() {
                     {showCount}/150
                   </p>
                 </div>
-                <div className="profile_cont_mainContent_editing_grid">
-
-                  <div className="profile_cont_mainContent_editing_name">
-                    <h4 className="profile_cont_mainContent_editing_name_title">
-                      Name:
-                    </h4>
-                    <input
-                      className="profile_cont_mainContent_editing_name_info"
-                      type="text"
-                      maxLength={profileEditing.inputLength}
-                      placeholder="Hunter Smith"
-                      defaultValue={profileInfo.fullName}
-                      onChange={(event) => {
-                        const myString = event.target.value.split(" ");
-                        // eslint-disable-next-line
-                        if (myString.length == 1) {
-                          profileEdit.firstName = myString;
-                          profileEdit.lastName = "";
-                        } else {
-                          profileEdit.firstName = myString[0];
-                          let lastName = "";
-                          for (let i = 1; i < myString.length; i++) {
-                            lastName += myString[i];
-                          }
-                          profileEdit.lastName = lastName;
+                <div className="profile_cont_mainContent_editing_name">
+                  <h4 className="profile_cont_mainContent_editing_name_title">
+                    Name:
+                  </h4>
+                  <input
+                    className="profile_cont_mainContent_editing_name_info"
+                    type="text"
+                    maxLength={profileEditing.inputLength}
+                    placeholder="Hunter Smith"
+                    defaultValue={profileInfo.fullName}
+                    onChange={(event) => {
+                      const myString = event.target.value.split(" ");
+                      // eslint-disable-next-line
+                      if (myString.length == 1) {
+                        profileEdit.firstName = myString;
+                        profileEdit.lastName = "";
+                      } else {
+                        profileEdit.firstName = myString[0];
+                        let lastName = "";
+                        for (let i = 1; i < myString.length; i++) {
+                          lastName += myString[i];
                         }
-                        //profileEdit.fullName = event.target.value;
-                      }}
-                    />
-                  </div>
-                  <div className="profile_cont_mainContent_editing_phoneNumber">
-                    <h4 className="profile_cont_mainContent_editing_phoneNumber_title">
-                      Phone Number:
-                    </h4>
-                    <input
-                      className="profile_cont_mainContent_editing_phoneNumber_info"
-                      type="number"
-                      placeholder="1234567890"
-                      defaultValue={profileInfo.phoneNumber}
-                      onChange={(event) => {
-                        profileEdit.phoneNumber = event.target.value;
-                      }}
-                      onWheel={(e) => e.target.blur()}
-                    />
-                  </div>
-                  <div className="profile_cont_mainContent_editing_email">
-                    <h4 className="profile_cont_mainContent_editing_email_title">
-                      Email:
-                    </h4>
-                    <input
-                      className="profile_cont_mainContent_editing_email_info"
-                      type="email"
-                      max="10"
-                      placeholder="hsmith@mylangara.ca"
-                      defaultValue={profileInfo.email}
-                      onChange={(event) => {
-                        profileEdit.email = event.target.value;
-                      }}
-                    />
-                  </div>
-                  <div className="profile_cont_mainContent_editing_location">
-                    <h4 className="profile_cont_mainContent_editing_location_title">
-                      Address:
-                    </h4>
-                    <input
-                      className="profile_cont_mainContent_editing_location_info"
-                      type="text"
-                      maxLength={profileEditing.inputLength}
-                      placeholder="Vancouver"
-                      defaultValue={sessionStorage.getItem("city")}
-                      onChange={(event) => {
-                        profileEdit.address = event.target.value;
-                      }}
-                    />
-                  </div>
-                  <div className="profile_cont_mainContent_editing_website">
-                    <h4 className="profile_cont_mainContent_editing_website_title">
-                      Website:
-                    </h4>
-                    <input
-                      className="profile_cont_mainContent_editing_website_info"
-                      type="text"
-                      maxLength={profileEditing.inputLength}
-                      placeholder="thegallopapp.com"
-                      defaultValue={profileInfo.websiteInfo}
-                      onChange={(event) => {
-                        profileEdit.website = event.target.value;
-                      }}
-                    />
-                  </div>
+                        profileEdit.lastName = lastName;
+                      }
+                      //profileEdit.fullName = event.target.value;
+                    }}
+                  />
+                </div>
+                <div className="profile_cont_mainContent_editing_phoneNumber">
+                  <h4 className="profile_cont_mainContent_editing_phoneNumber_title">
+                    Phone Number:
+                  </h4>
+                  <input
+                    className="profile_cont_mainContent_editing_phoneNumber_info"
+                    type="number"
+                    placeholder="1234567890"
+                    defaultValue={profileInfo.phoneNumber}
+                    onChange={(event) => {
+                      profileEdit.phoneNumber = event.target.value;
+                    }}
+                    onWheel={(e) => e.target.blur()}
+                  />
+                </div>
+                <div className="profile_cont_mainContent_editing_email">
+                  <h4 className="profile_cont_mainContent_editing_email_title">
+                    Email:
+                  </h4>
+                  <input
+                    className="profile_cont_mainContent_editing_email_info"
+                    type="email"
+                    max="10"
+                    placeholder="hsmith@mylangara.ca"
+                    defaultValue={profileInfo.email}
+                    onChange={(event) => {
+                      profileEdit.email = event.target.value;
+                    }}
+                  />
+                </div>
+                <div className="profile_cont_mainContent_editing_location">
+                  <h4 className="profile_cont_mainContent_editing_location_title">
+                    Location:
+                  </h4>
+                  <input
+                    className="profile_cont_mainContent_editing_location_info"
+                    type="text"
+                    maxLength={profileEditing.inputLength}
+                    placeholder="Vancouver"
+                    defaultValue={sessionStorage.getItem("city")}
+                    onChange={(event) => {
+                      profileEdit.address = event.target.value;
+                    }}
+                  />
+                </div>
+                <div className="profile_cont_mainContent_editing_website">
+                  <h4 className="profile_cont_mainContent_editing_website_title">
+                    Website:
+                  </h4>
+                  <input
+                    className="profile_cont_mainContent_editing_website_info"
+                    type="text"
+                    maxLength={profileEditing.inputLength}
+                    placeholder="thegallopapp.com"
+                    defaultValue={profileInfo.websiteInfo}
+                    onChange={(event) => {
+                      profileEdit.website = event.target.value;
+                    }}
+                  />
                 </div>
                 <div className="profile_cont_mainContent_editing_cta">
                   <p
