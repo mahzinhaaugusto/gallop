@@ -89,7 +89,7 @@ export function DataAnalytics() {
                                         <div className="dataAnalytics_cont_mainContent_gender_chart">
                                             <PieChart className="pieChart" width={250} height={250}>
                                                 <Tooltip />
-                                                <Pie data={allHorsesGender} dataKey="quantity" nameKey="gender" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#5A5A5F" label />
+                                                <Pie data={allHorsesGender} dataKey="quantity" nameKey="gender" cx="50%" cy="50%" outerRadius={80} fill="#5A5A5F" label />
                                             </PieChart>
                                         </div>
                                     </div>
