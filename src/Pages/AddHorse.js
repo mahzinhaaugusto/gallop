@@ -588,7 +588,7 @@ export function AddHorse() {
               </div>
               <div className="addHorse_cont_aboutOwner_displayHorse">
                 {/* <label className="toggle-control"> */}
-                Display horse on profile
+                Display Horse on Profile
                 <input
                   type="checkbox"
                   id="toggle"

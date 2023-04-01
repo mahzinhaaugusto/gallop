@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import horse from "../icons/Horse.png";
 import HideShowPass from "../icons/HideShowPass.svg";
 import HideVisibility from "../icons/HideVisibility.svg";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 
 export function SignUp() {
   const [Email, setEmail] = useState("");
@@ -84,6 +85,11 @@ export function SignUp() {
     <div className="signUp">
       <div className="signUpImage">
         <img className="signUpImage" src={horse} alt="not found" />
+        <img
+          className="splashScreen_logo"
+          src={WhiteLogo}
+          alt="Gallop App Logo"
+        />
       </div>
       <div className="signUpForm">
         <div className="signUpCont">
@@ -171,7 +177,7 @@ export function SignUp() {
               }}
             ></input>
             <div
-              className="profile_cont_mainContent_editing_password_toggle"
+              className="profile_cont_mainContent_editing_password_toggle_pass"
               onClick={togglePassword1}
             >
               {passwordType1 === "password" ? (
@@ -194,7 +200,7 @@ export function SignUp() {
               }}
             ></input>
             <div
-              className="profile_cont_mainContent_editing_password_toggle"
+              className="profile_cont_mainContent_editing_password_toggle_pass"
               onClick={togglePassword2}
             >
               {passwordType2 === "password" ? (

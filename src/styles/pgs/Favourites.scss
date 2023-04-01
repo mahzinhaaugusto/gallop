@@ -47,6 +47,12 @@
 
 .favorite_horseCard {
     height: 12rem;
+    width: 98%;
+
+    @media screen and (min-width: 1024px) {
+        width: 97%;
+    }
+    
 
     .horseCard_cont {
         display: flex;

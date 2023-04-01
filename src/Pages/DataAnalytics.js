@@ -5,7 +5,7 @@ import { BarChart, XAxis, YAxis, Tooltip, Bar, PieChart, Pie } from "recharts";
 import { groupBy } from "lodash";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import Gallop from "../Assets/Images/gallop.png";
 
 export function DataAnalytics() {
     // const goBack = () => {
@@ -82,14 +82,23 @@ export function DataAnalytics() {
                                     </div>
                                 </div>
                                 <hr />
-                                <div className="dataAnalytics_cont_mainContent_gender">
-                                    <h3 className="dataAnalytics_cont_mainContent_gender_title">Gender</h3>
-                                    <p className="dataAnalytics_cont_mainContent_gender_content">Those are the Stallions and Mare on Gallop. Easily track the number of stallions and mares by viewing the percentage of males and females listed on our plataform.</p>
-                                    <div className="dataAnalytics_cont_mainContent_gender_chart">
-                                        <PieChart className="pieChart" width={250} height={250}>
-                                            <Tooltip />
-                                            <Pie data={allHorsesGender} dataKey="quantity" nameKey="gender" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#5A5A5F" label />
-                                        </PieChart>
+                                <div className="dataAnalytics_cont_mainContent_secondRow">
+                                    <div className="dataAnalytics_cont_mainContent_gender">
+                                        <h3 className="dataAnalytics_cont_mainContent_gender_title">Gender</h3>
+                                        <p className="dataAnalytics_cont_mainContent_gender_content">Those are the Stallions and Mare on Gallop. Easily track the number of stallions and mares by viewing the percentage of males and females listed on our plataform.</p>
+                                        <div className="dataAnalytics_cont_mainContent_gender_chart">
+                                            <PieChart className="pieChart" width={250} height={250}>
+                                                <Tooltip />
+                                                <Pie data={allHorsesGender} dataKey="quantity" nameKey="gender" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#5A5A5F" label />
+                                            </PieChart>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="dataAnalytics_cont_mainContent_photo">
+                                        <img
+                                            src={Gallop}
+                                            alt="Gallop banner"
+                                        />
                                     </div>
                                 </div>
                             </div>
