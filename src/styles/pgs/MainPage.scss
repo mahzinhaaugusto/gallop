@@ -84,6 +84,7 @@
 .mainPage_cont_horsesCards_innerCont {
     display: grid;
     grid-template-columns: 100%;
+    gap: 1rem;
 
     @media screen and (min-width: $media-desktop) {
         display: grid;

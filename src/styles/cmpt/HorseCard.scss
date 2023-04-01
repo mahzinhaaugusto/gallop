@@ -6,13 +6,19 @@
     height: 23rem;
     justify-content: flex-start;
     margin: 0 .5rem 1rem;
-    
+    width: 25rem;
+
+    @media screen and (min-width: 1024px) {
+        width: 20rem;
+    }
+
+
 
     h3 {
         font-weight: 700;
         font-size: 1.3rem;
         line-height: 1.875rem;
-        
+
         color: #3C3A3A;
 
         @media screen and (min-width: 1024px) {
@@ -31,7 +37,7 @@
         font-weight: 300;
         font-size: .875rem;
         line-height: 24px;
-        
+
 
         @media screen and (min-width: 1024px) {
             padding: 0;
@@ -48,7 +54,7 @@
         }
     }
 
-    #horseCard_cont_details_btn{
+    #horseCard_cont_details_btn {
         margin: 0;
     }
 }

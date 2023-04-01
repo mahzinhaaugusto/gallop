@@ -2,28 +2,54 @@
     display: flex;
     flex-direction: row;
     gap: 7rem;
-    background-color: $white;
+
+    @media only screen and (min-width: $media-desktop) {
+        background-color: $white;
+    }
+
 
     h1 {
-        font-family: "Asap", sans-serif !important;
+        font-family: 'Asap';
         font-style: normal;
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 56px;
-        /* identical to box height, or 140% */
-
-        display: flex;
-        align-items: flex-end;
-        letter-spacing: 0.08em;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 150%;
+        /* identical to box height, or 42px */
+        letter-spacing: 0.04em;
+        justify-content: center;
         margin-bottom: 2rem;
         color: $secondary;
+        display: flex;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 56px;
+            /* identical to box height, or 140% */
+            letter-spacing: 0.08em;
+            justify-content: flex-start;
+        }
     }
 
     label {
         font-weight: 500;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 150%;
-        color: $secondary;
+        color: $gray;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-size: 20px;
+        }
+    }
+
+    input::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-size: 20px;
+        }
     }
 }
 
@@ -37,6 +63,11 @@
 
 .horizontalCont_Para {
     margin-top: 2px;
+    color: $gray;
+
+    @media screen and (min-width: $media-desktop) {
+        color: $secondary;
+    }
 }
 
 .horizontalCont_leftHorizon,
@@ -66,13 +97,18 @@
     color: #5A5A5F;
     position: absolute;
     top: 45%;
-    left: 5%;
+    left: 8%;
     transform: translate(-50%, -50%);
     font-family: 'Asap', sans-serif !important;
-    // font-style: normal;
     font-weight: 600;
-    font-size: 24px;
     line-height: 150%;
+    font-size: 20px;
+    letter-spacing: 0.04em;
+
+    @media screen and (min-width: $media-desktop) {
+        font-size: 24px;
+        left: 6%;
+    }
 }
 
 .drawCircle1 {
@@ -103,7 +139,6 @@
     left: 62%;
     height: 40px;
     width: 40px;
-
     border-radius: 50%;
     background-color: #F8F6F2;
     display: inline-block;
@@ -114,67 +149,133 @@
     color: #5A5A5F;
     position: absolute;
     top: 12px;
-    left: 67%;
+    left: 70%;
     transform: translate(-50%, -50%);
     font-family: 'Asap', sans-serif !important;
     // font-style: normal;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 150%;
+
+    @media screen and (min-width: $media-desktop) {
+        font-size: 24px;
+        left: 68%;
+    }
 }
 
 .signUpCont_icons_rectangle {
-    width: 330px;
+    width: 12rem;
     position: absolute;
     height: 5px;
     top: 31%;
-    left: 10%;
+    left: 15%;
     background-image: linear-gradient(to right, #4A6F38, #E8F2E6);
     border-radius: 10px;
     border: none;
     z-index: 1;
+
+    @media screen and (min-width: $media-desktop) {
+        width: 19rem;
+        left: 10%;
+    }
 }
 
 .signUp2Cont_icons_rectangle {
-    width: 327px;
+    width: 12rem;
     position: absolute;
     height: 5px;
     top: 31%;
-    left: 10%;
+    left: 15%;
     background-color: #4A6F38;
     border-radius: 10px;
     z-index: 1;
     border: none;
+
+    @media screen and (min-width: $media-desktop) {
+        width: 19rem;
+        left: 10%;
+    }
 }
 
 .signUpCont_steps,
 .signUp2Cont_steps {
     display: flex;
     flex-direction: row;
-    gap: 326px;
+    gap: 15rem;
     font-weight: 400;
     font-size: 20px;
     line-height: 150%;
+
+    @media screen and (min-width: $media-desktop) {
+        gap: 17.75rem;
+    }
+
+    p {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        color: $gray;
+
+        @media screen and (min-width: $media-desktop) {
+            font-size: 20px;
+        }
+    }
 }
 
 .signUp2Cont_form_image {
     align-self: center;
+    text-align: center;
 }
 
 .signUpForm {
     margin: 6rem;
+
+    @media screen and (min-width: $media-desktop) {
+        margin-left: 49vw;
+        margin-top: 20vh;
+        position: absolute;
+    }
+
+    .buttonArray {
+        flex-direction: column-reverse;
+
+        @media screen and (min-width: $media-desktop) {
+            flex-direction: row;
+            gap: 1rem;
+        }
+    }
+
+    .secondaryBtn,
+    .primaryBtn {
+        width: 70%;
+
+        @media screen and (min-width: $media-desktop) {
+            margin-top: 0;
+            width: 50%;
+        }
+    }
 }
 
 .signUpCont_form_name {
     display: flex;
-    flex-direction: row;
-    gap: 0.75rem;
+    flex-direction: column;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    input {}
 
 }
 
 .signUpCont_form_name_first_input,
 .signUpCont_form_name_last_input {
-    width: 241px !important;
+    width: 100%;
+
+    @media screen and (min-width: $media-desktop) {
+        width: 15rem !important;
+    }
 }
 
 .signUpCont_form_name_first .signUpCont_form_name_last {
@@ -193,10 +294,14 @@
     z-index: 999;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 
     video {
-        width: 50%;
+        width: 70%;
+
+        @media screen and (min-width: $media-desktop) {
+            width: 50%;
+        }
     }
 }
 
@@ -238,7 +343,12 @@
 }
 
 #profilePhoto {
+    width: 50%;
     border-radius: $radius;
+
+    @media screen and (min-width: $media-desktop) {
+        width: 100%;
+    }
 }
 
 #canvas {
@@ -256,7 +366,15 @@ input::-webkit-inner-spin-button {
 }
 
 .warning {
-    color: red;
+    color: $semanticAlert;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+
+    @media screen and (min-width: $media-desktop) {
+        font-size: 20px;
+    }
+
 }
 
 .popUp_btn_goToMain {
@@ -278,4 +396,42 @@ input::-webkit-inner-spin-button {
         padding: $largePadding;
         // width: 50%;
     }
+}
+
+.profile_cont_mainContent_editing_password_toggle {
+    cursor: pointer;
+}
+
+.signUpImage {
+    display: none;
+
+    @media only screen and (min-width: $media-desktop) {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 33rem;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.signUp2Cont_form {
+    @media only screen and (min-width: $media-desktop) {
+        width: 492px;
+    }
+}
+
+.profile_cont_mainContent_editing_password_toggle_pass {
+    position: relative;
+
+    img {
+        position: absolute;
+        bottom: 1.05rem;
+        left: 18.5rem;
+
+        @media only screen and (min-width: $media-desktop) {
+            left: 28.5rem;
+        }
+    }
+
 }

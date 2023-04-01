@@ -9,9 +9,16 @@
         margin-top: 1.25rem;
         position: relative;
         color: #5A5A5F;
-        font-weight: 700;
-        font-size: 1.5rem;
-        line-height: 2.25rem;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: 0.04em;
+
+        @media screen and (min-width: 1024px) {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 36px;
+        }
     }
 
     h3::after {
@@ -30,12 +37,23 @@
         font-weight: 400;
         font-size: 1.25rem;
         line-height: 150%;
+
     }
 
     textarea::placeholder {
         font-weight: 400;
         font-size: 1.25rem;
         line-height: 150%;
+
+    }
+
+    .addHorse_cont_detailed_discipline_content .filter_cont_discipline_selector_selection {
+        font-weight: 400;
+        font-size: 16px;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
     }
 
 }
@@ -48,8 +66,9 @@
 
 // there is something stopping me from configuring these ids on user agent stylesheet input[type="checkbox" i] {}
 .addHorse_cont_aboutOwner_displayHorse {
-    #toggle{
-        display: none;
+    #toggle {
+        // display: none;
+        accent-color: #33562B;
     }
 
     /* Style the slider */
@@ -97,8 +116,14 @@
         margin-top: 1.25rem;
         padding-left: 0rem;
         font-weight: 500;
-        font-size: 1.25rem;
-        line-height: 150%;
+        font-size: 16px;
+        line-height: 24px;
+        color: #5A5A5F;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+            line-height: 150%;
+        }
     }
 
     font-size: 1rem;
@@ -109,21 +134,38 @@
         padding: 3rem 4rem 4rem 12.75rem;
     }
 
+    input::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
 
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
+    }
+
+    textarea::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
+    }
 
     .addHorse_cont_aboutOwner_location {
         width: 100%;
 
         #ownerLocation {
-            font-size: 1.2rem;
-            font-family: "Roboto";
-            padding-left: 1rem;
-            padding-right: 1rem;
-
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
             color: #5A5A5F;
 
             @media only screen and (min-width: 1024px) {
                 padding-left: 1rem;
+                font-size: 20px;
             }
         }
     }
@@ -239,10 +281,15 @@
 }
 
 .addHorse_cont_basics_details_gender>#gender {
-    font-family: "Roboto";
-    font-size: 1.2em;
     padding-left: 1.2rem;
     color: #5A5A5F;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    @media screen and (min-width: 1024px) {
+        font-size: 20px;
+    }
 }
 
 
@@ -298,10 +345,15 @@
 }
 
 .addHorse_cont_basics_details_breedingMethod>#breedingMethod {
-    font-family: "Roboto";
-    font-size: 1.1em;
     padding-left: 1rem;
     color: #5A5A5F;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    @media screen and (min-width: 1024px) {
+        font-size: 20px;
+    }
 
     option {
         font-size: 1rem;
@@ -332,10 +384,14 @@
     }
 
     .filter_cont_color_selector_selection {
-        font-family: "Roboto";
-        font-size: 1.2em;
         padding-left: 0.5rem;
         color: #5A5A5F;
+        font-weight: 400;
+        font-size: 16px;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
     }
 
     @media only screen and (min-width: 1024px) {
@@ -361,10 +417,14 @@
     }
 
     .filter_cont_breed_selector_selection {
-        font-family: "Roboto";
-        font-size: 1.2em;
         padding-left: 0.5rem;
         color: #5A5A5F;
+        font-weight: 400;
+        font-size: 16px;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
     }
 
     @media only screen and (min-width: 1024px) {
@@ -431,11 +491,15 @@
     p {
         padding: 1.25rem;
         margin-bottom: 0.125rem;
-        font-weight: 400;
-        font-size: 1.25rem;
-        line-height: 150%;
         color: #5A5A5F;
         height: 9.625rem;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
     }
 
     .addHorse_cont_basics_upload_thumbnail_addImg_icon {
@@ -463,11 +527,15 @@
     p {
         padding: 1.25rem;
         margin-bottom: 0.125rem;
-        font-weight: 400;
-        font-size: 1.25rem;
-        line-height: 150%;
         color: #5A5A5F;
         height: 9.625rem;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
     }
 }
 
@@ -487,11 +555,15 @@
     p {
         padding: 1.25rem;
         margin-bottom: 0.125rem;
-        font-weight: 400;
-        font-size: 1.25rem;
-        line-height: 150%;
         color: #5A5A5F;
         height: 9.625rem;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 20px;
+        }
     }
 }
 
