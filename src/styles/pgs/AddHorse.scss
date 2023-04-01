@@ -818,3 +818,17 @@ $toggle-control-size: $toggle-height - ($toggle-gutter * 2);
     font-size: 1.5rem;
     line-height: 2.25rem;
 }
+
+.addHorse_cont_aboutOwner_displayHorse {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    margin-top: 1rem;
+    color: #5A5A5F;
+
+    @media screen and (min-width: 1024px) {
+
+        font-size: 20px;
+
+    }
+}

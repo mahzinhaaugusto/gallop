@@ -7,10 +7,10 @@ import "swiper/css/pagination";
 
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper";
-import image1 from "../Assets/Images/helena-lopes-lIeqGEdvex0-unsplash.jpg";
-import image2 from "../Assets/Images/luisa-peter-Olt577JtPM0-unsplash.jpg";
-import image3 from "../Assets/Images/mikayla-storms-9h_bJdGqzCk-unsplash.jpg";
-import image4 from "../Assets/Images/pieter-van-noorden-cjSUZMA2iW8-unsplash.jpg";
+import image1 from "../Assets/Images/bella.png";
+import image2 from "../Assets/Images/flash.png";
+import image3 from "../Assets/Images/titan.png";
+import image4 from "../Assets/Images/rosie.png";
 
 export function CarouselMain() {
   return (
