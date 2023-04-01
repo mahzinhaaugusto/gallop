@@ -7,6 +7,7 @@ import camera from "../icons/Camera.svg";
 import horse from "../icons/Horse.png";
 import { PopUp } from "../Components/PopUp";
 import { Button } from "../Components/Button";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 
 export function SignUp2() {
   const location = useLocation();
@@ -134,6 +135,11 @@ export function SignUp2() {
       <div className="signUp">
         <div className="signUpImage">
           <img className="signUpImage" src={horse} alt="not found" />
+          <img
+            className="splashScreen_logo"
+            src={WhiteLogo}
+            alt="Gallop App Logo"
+          />
         </div>
         <div className="signUpForm">
           <div className="signUp2Cont">
@@ -188,7 +194,7 @@ export function SignUp2() {
               </div>
 
               <label className="signUp2Cont_form_phoneNumberLabel require">
-                PhoneNumber
+                Phone Number
               </label>
               <input
                 type="number"

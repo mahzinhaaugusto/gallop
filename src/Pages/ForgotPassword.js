@@ -5,6 +5,7 @@ import { PopUp } from "../Components/PopUp";
 // import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 
 
 export function ForgotPassword() {
@@ -54,8 +55,13 @@ export function ForgotPassword() {
         <>
             <div className="forgotPassword_master">
                 <div className="forgotPassword">
-                    <div className="forgotPassword_image">
+                    <div className="splashScreen_image">
                         <img className="splashScreen_background" src={horse} alt="Splash Screen" />
+                        <img
+                            className="splashScreen_logo"
+                            src={WhiteLogo}
+                            alt="Gallop App Logo"
+                        />
                     </div>
 
                     <div className="forgotPassword_cont_content">

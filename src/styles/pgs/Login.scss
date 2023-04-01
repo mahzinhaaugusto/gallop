@@ -8,9 +8,15 @@
 
 
     .loginCont_Remember>label {
-        font-weight: 400;
-        font-size: 20px;
+        font-weight: 300;
+        font-size: 16px;
         line-height: 150%;
+        color: $gray;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-weight: 400;
+            font-size: 20px;
+        }
     }
 
     input {
@@ -20,9 +26,14 @@
         border-radius: $radius;
         accent-color: $primary;
         background-color: $white;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding-left: $largePadding;
 
         @media only screen and (min-width: $media-desktop) {
             padding-left: $largePadding;
+            width: auto;
         }
     }
 
@@ -43,13 +54,42 @@
     }
 }
 
+.loginCont {
+    h1 {
+        font-family: 'Asap';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 150%;
+        /* identical to box height, or 42px */
+        letter-spacing: 0.04em;
+        justify-content: center;
+        margin-bottom: 2rem;
+        color: $secondary;
+        display: flex;
+
+        @media only screen and (min-width: $media-desktop) {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 56px;
+            /* identical to box height, or 140% */
+            letter-spacing: 0.08em;
+            justify-content: flex-start;
+        }
+    }
+}
+
 .loginCont_label {
     color: $gray;
     padding: $smallPadding 0;
     padding-top: $largePadding;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 150%;
+
+    @media only screen and (min-width: $media-desktop) {
+        font-size: 20px;
+    }
 }
 
 .require::after {
@@ -143,11 +183,16 @@
 }
 
 .link {
-    color: $secondary;
+    color: $gray;
     text-decoration: none;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 150%;
+
+    @media only screen and (min-width: $media-desktop) {
+        font-size: 20px;
+        color: $secondary;
+    }
 }
 
 .link:last-child {
@@ -189,12 +234,15 @@
     font-family: 'Asap';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
-    line-height: 36px;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.08em;
 
     @media only screen and (min-width: $media-desktop) {
         align-self: auto;
         width: 50%;
+        font-size: 20px;
+        line-height: 36px;
     }
 }
 
@@ -210,8 +258,14 @@
     font-family: 'Asap';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
-    line-height: 36px;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.08em;
+
+    @media only screen and (min-width: $media-desktop) {
+        font-size: 20px;
+        line-height: 36px;
+    }
 
 }
 
