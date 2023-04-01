@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import camera from "../icons/Camera.svg";
 import horse from "../icons/Horse.png";
-import { API_ENDPOINT } from "../server";
 import { PopUp } from "../Components/PopUp";
 import { Button } from "../Components/Button";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 
 export function SignUp2() {
   const location = useLocation();
@@ -69,7 +69,7 @@ export function SignUp2() {
   };
 
   async function checkEmail(email) {
-    const response = await Axios.get(`${API_ENDPOINT}checkemail`, {
+    const response = await Axios.get(`${process.env.REACT_APP_API_URL}checkemail`, {
       params: { email },
     });
     return response.data.emailExists;
@@ -93,7 +93,7 @@ export function SignUp2() {
         alert("Email already exists");
         navigate("/signup");
       } else {
-        Axios.post(`${API_ENDPOINT}insert`, {
+        Axios.post(`${process.env.REACT_APP_API_URL}insert`, {
           firstName: location.state.firstName,
           lastName: location.state.lastName,
           userPassword: location.state.userPassword,
@@ -135,6 +135,11 @@ export function SignUp2() {
       <div className="signUp">
         <div className="signUpImage">
           <img className="signUpImage" src={horse} alt="not found" />
+          <img
+            className="splashScreen_logo"
+            src={WhiteLogo}
+            alt="Gallop App Logo"
+          />
         </div>
         <div className="signUpForm">
           <div className="signUp2Cont">
@@ -189,7 +194,7 @@ export function SignUp2() {
               </div>
 
               <label className="signUp2Cont_form_phoneNumberLabel require">
-                PhoneNumber
+                Phone Number
               </label>
               <input
                 type="number"

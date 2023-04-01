@@ -10,7 +10,6 @@ import { NavBar } from "../Components/NavBar";
 import { PopUp } from "../Components/PopUp";
 import { Button } from "../Components/Button";
 import { useNavigate, useLocation } from "react-router-dom";
-import { API_ENDPOINT } from "../server";
 
 
 export function EditHorse() {
@@ -64,12 +63,19 @@ export function EditHorse() {
 
   const clickSave = () => {
     if (
+      // eslint-disable-next-line
       name == "" ||
+      // eslint-disable-next-line
       gender == "" ||
+      // eslint-disable-next-line
       breed == "" ||
+      // eslint-disable-next-line
       age == "" ||
+      // eslint-disable-next-line
       height == "" ||
+      // eslint-disable-next-line
       breedMethod == "" ||
+      // eslint-disable-next-line
       description == ""
     ) {
       alert("Please fill all the required fields.");
@@ -77,19 +83,22 @@ export function EditHorse() {
       let p = price,
         q = discipline,
         r = color;
+      // eslint-disable-next-line
       if (price == "") {
         p = horseObj.price;
         //Please do not remove this line it has great meaning
       }
+      // eslint-disable-next-line
       if (discipline == "") {
         q = horseObj.skills;
         console.log(q); //Please do not remove this line it has great meaning
       }
+      // eslint-disable-next-line
       if (color == "") {
         r = horseObj.color;
         console.log(color); //Please do not remove this line it has great meaning
       }
-      Axios.post(`${API_ENDPOINT}edithorse`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}edithorse`, {
         name: name,
         gender: gender,
         breed: breed,
@@ -129,186 +138,191 @@ export function EditHorse() {
         <div className="addHorse">
           <h2>Edit Horse</h2>
           <div className="addHorse_cont">
-            <p className="addHorse_cont_backButton" onClick={goBack}>
-              <img src={BackButton} height="30px" width="30px" alt="Go Back" />
-              Back
-            </p>
-            <div className="addHorse_cont_basics">
-              <h3>EDIT HORSE</h3>
-              <div className="addHorse_cont_basics_details">
-                <div className="addHorse_cont_basics_details_name">
-                  <label>
-                    Horse Name{" "}
-                    <span className="addHorse_cont_basics_details_name_error">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    required
-                    name="horseName"
-                    id="horseName"
-                    type="text"
-                    onChange={(e) => {
-                      setNameError("");
-                      setName(e.target.value);
-                    }}
-                  ></input>
-                  <p className="warning">{nameError}</p>
-                </div>
-                <div className="addHorse_cont_basics_details_firstRow">
-                  <div className="addHorse_cont_basics_details_gender">
+            <div className="addHorse_cont_header">
+              <p className="addHorse_cont_backButton" onClick={goBack}>
+                <img src={BackButton} height="30px" width="30px" alt="Go Back" />
+                Back
+              </p>
+            </div>
+
+            <div className="addHorse_cont_inner">
+              <div className="addHorse_cont_basics">
+                <h3>EDIT HORSE</h3>
+                <div className="addHorse_cont_basics_details">
+                  <div className="addHorse_cont_basics_details_name">
                     <label>
-                      Gender{" "}
-                      <span className="addHorse_cont_basics_details_name_gender_error">
-                        *
-                      </span>
-                    </label>
-                    <select
-                      required
-                      name="gender"
-                      id="gender"
-                      onChange={(e) => {
-                        setGender(e.target.value);
-                      }}
-                    >
-                      <option value="" disabled selected>
-                        Gender
-                      </option>
-                      <option value="Stallion">Stallion</option>
-                      <option value="Mare">Mare</option>
-                    </select>
-                    <p className="warning">{genderError}</p>
-                  </div>
-                  <div className="addHorse_cont_basics_details_breed">
-                    <Breed
-                      className="addHorse_cont_basics_details_breed_cont"
-                      onChange={breedClick}
-                    />
-                    <p className="warning">{breedError}</p>
-                  </div>
-                </div>
-                <div className="addHorse_cont_basics_details_secondRow">
-                  <div className="addHorse_cont_basics_details_height">
-                    <label>
-                      Height{" "}
-                      <span className="addHorse_cont_basics_details_height_error">
+                      Horse Name{" "}
+                      <span className="addHorse_cont_basics_details_name_error">
                         *
                       </span>
                     </label>
                     <input
                       required
-                      name="height"
-                      id="height"
-                      type="number"
-                      placeholder="Centimeters"
+                      name="horseName"
+                      id="horseName"
+                      type="text"
                       onChange={(e) => {
-                        setHeight(e.target.value);
+                        setNameError("");
+                        setName(e.target.value);
+                      }}
+                    ></input>
+                    <p className="warning">{nameError}</p>
+                  </div>
+                  <div className="addHorse_cont_basics_details_firstRow">
+                    <div className="addHorse_cont_basics_details_gender">
+                      <label>
+                        Gender{" "}
+                        <span className="addHorse_cont_basics_details_name_gender_error">
+                          *
+                        </span>
+                      </label>
+                      <select
+                        required
+                        name="gender"
+                        id="gender"
+                        onChange={(e) => {
+                          setGender(e.target.value);
+                        }}
+                      >
+                        <option value="" disabled selected>
+                          Gender
+                        </option>
+                        <option value="Stallion">Stallion</option>
+                        <option value="Mare">Mare</option>
+                      </select>
+                      <p className="warning">{genderError}</p>
+                    </div>
+                    <div className="addHorse_cont_basics_details_breed">
+                      <Breed
+                        className="addHorse_cont_basics_details_breed_cont"
+                        onChange={breedClick}
+                      />
+                      <p className="warning">{breedError}</p>
+                    </div>
+                  </div>
+                  <div className="addHorse_cont_basics_details_secondRow">
+                    <div className="addHorse_cont_basics_details_height">
+                      <label>
+                        Height{" "}
+                        <span className="addHorse_cont_basics_details_height_error">
+                          *
+                        </span>
+                      </label>
+                      <input
+                        required
+                        name="height"
+                        id="height"
+                        type="number"
+                        placeholder="Centimeters"
+                        onChange={(e) => {
+                          setHeight(e.target.value);
+                        }}
+                        onWheel={(e) => e.target.blur()}
+                      ></input>
+                      <p className="warning">{heightError}</p>
+                    </div>
+                    <div className="addHorse_cont_basics_details_color">
+                      <Color
+                        onChange={colorClick}
+                        className="addHorse_cont_basics_details_color_cont"
+                      />
+                    </div>
+                  </div>
+                  <div className="addHorse_cont_basics_details_thirdRow">
+                    <div className="addHorse_cont_basics_details_age">
+                      <label>
+                        Age{" "}
+                        <span className="addHorse_cont_basics_details_age_error">
+                          *
+                        </span>
+                      </label>
+                      <input
+                        required
+                        name="age"
+                        id="age"
+                        type="number"
+                        placeholder="Years"
+                        onChange={(e) => {
+                          setAge(e.target.value);
+                        }}
+                        onWheel={(e) => e.target.blur()}
+                      ></input>
+                      <p className="warning">{ageError}</p>
+                    </div>
+                    <div className="addHorse_cont_basics_details_breedingMethod">
+                      <label>
+                        Breeding Method{" "}
+                        <span className="addHorse_cont_basics_details_breedingMethod_error">
+                          *
+                        </span>
+                      </label>
+                      <select
+                        required
+                        name="breedingMethod"
+                        id="breedingMethod"
+                        onChange={(e) => {
+                          setBreedMethod(e.target.value);
+                        }}
+                      >
+                        <option value="" disabled selected>
+                          Breeding Method
+                        </option>
+                        <option value="Natural">Natural</option>
+                        <option value="Artificial">Insemination</option>
+                      </select>
+                      <p className="warning">{breedingMethodError}</p>
+                    </div>
+                  </div>
+                  <div className="addHorse_cont_basics_details_price">
+                    <label>Price</label>
+                    <input
+                      name="price"
+                      id="price"
+                      type="number"
+                      placeholder="Dollars"
+                      onChange={(e) => {
+                        setPrice(e.target.value);
                       }}
                       onWheel={(e) => e.target.blur()}
                     ></input>
-                    <p className="warning">{heightError}</p>
                   </div>
-                  <div className="addHorse_cont_basics_details_color">
-                    <Color
-                      onChange={colorClick}
-                      className="addHorse_cont_basics_details_color_cont"
+                </div>
+              </div>
+              <div className="addHorse_cont_detailed">
+                <div className="addHorse_cont_detailed_description">
+                  <label className="require">Description</label>
+                  <textarea
+                    name="description"
+                    id="description"
+                    cols="50"
+                    rows="6"
+                    placeholder="Write a short description"
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                  ></textarea>
+                  <div className="addHorse_cont_detailed_discipline">
+                    <Discipline
+                      className="addHorse_cont_detailed_discipline_content"
+                      onChange={disciplineClick}
                     />
                   </div>
                 </div>
-                <div className="addHorse_cont_basics_details_thirdRow">
-                  <div className="addHorse_cont_basics_details_age">
-                    <label>
-                      Age{" "}
-                      <span className="addHorse_cont_basics_details_age_error">
-                        *
-                      </span>
-                    </label>
-                    <input
-                      required
-                      name="age"
-                      id="age"
-                      type="number"
-                      placeholder="Years"
-                      onChange={(e) => {
-                        setAge(e.target.value);
-                      }}
-                      onWheel={(e) => e.target.blur()}
-                    ></input>
-                    <p className="warning">{ageError}</p>
-                  </div>
-                  <div className="addHorse_cont_basics_details_breedingMethod">
-                    <label>
-                      Breeding Method{" "}
-                      <span className="addHorse_cont_basics_details_breedingMethod_error">
-                        *
-                      </span>
-                    </label>
-                    <select
-                      required
-                      name="breedingMethod"
-                      id="breedingMethod"
-                      onChange={(e) => {
-                        setBreedMethod(e.target.value);
-                      }}
-                    >
-                      <option value="" disabled selected>
-                        Breeding Method
-                      </option>
-                      <option value="Natural">Natural</option>
-                      <option value="Artificial">Insemination</option>
-                    </select>
-                    <p className="warning">{breedingMethodError}</p>
-                  </div>
-                </div>
-                <div className="addHorse_cont_basics_details_price">
-                  <label>Price</label>
-                  <input
-                    name="price"
-                    id="price"
-                    type="number"
-                    placeholder="Dollars"
-                    onChange={(e) => {
-                      setPrice(e.target.value);
-                    }}
-                    onWheel={(e) => e.target.blur()}
-                  ></input>
-                </div>
               </div>
-            </div>
-            <div className="addHorse_cont_detailed">
-              <div className="addHorse_cont_detailed_description">
-                <label className="require">Description</label>
-                <textarea
-                  name="description"
-                  id="description"
-                  cols="50"
-                  rows="6"
-                  placeholder="Write a short description"
-                  onChange={(e) => {
-                    setDescription(e.target.value);
-                  }}
-                ></textarea>
-                <div className="addHorse_cont_detailed_discipline">
-                  <Discipline
-                    className="addHorse_cont_detailed_discipline_content"
-                    onChange={disciplineClick}
-                  />
-                </div>
+              <div className="endButtons">
+                <img
+                  alt="Save horse"
+                  className="endButtons_saveButton"
+                  src={SaveButton}
+                  onClick={clickSave}
+                ></img>
+                <img
+                  alt="Cancel editing horse"
+                  className="endButtons_cancelButton"
+                  src={CancelButton}
+                  onClick={clickCancel}
+                ></img>
               </div>
-            </div>
-            <div className="endButtons">
-              <img
-                alt="Save horse"
-                className="endButtons_saveButton"
-                src={SaveButton}
-                onClick={clickSave}
-              ></img>
-              <img
-                alt="Cancel editing horse"
-                className="endButtons_cancelButton"
-                src={CancelButton}
-                onClick={clickCancel}
-              ></img>
             </div>
           </div>
           {showSavePopUp && (

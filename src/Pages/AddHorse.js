@@ -128,41 +128,59 @@ export function AddHorse() {
   const clickSave = () => {
     console.log(breedMethod);
     if (
+      // eslint-disable-next-line
       name == "" ||
+      // eslint-disable-next-line
       gender == "" ||
+      // eslint-disable-next-line
       breed == "" ||
+      // eslint-disable-next-line
       age == "" ||
+      // eslint-disable-next-line
       height == undefined ||
+      // eslint-disable-next-line
       breedMethod == "" ||
+      // eslint-disable-next-line
       photo == "" ||
+      // eslint-disable-next-line
       horsePhotos[0] == "" ||
+      // eslint-disable-next-line
       description == ""
     ) {
       //   setErrorMessage("Please revise all required fields");
+      // eslint-disable-next-line
       if (name == "") {
         setNameError("Field Required");
       }
+      // eslint-disable-next-line
       if (gender == "") {
         setGenderError("Field Required");
       }
+      // eslint-disable-next-line
       if (breed == "") {
         setBreedError("Field Required");
       }
+      // eslint-disable-next-line
       if (age == "") {
         setAgeError("Field Required");
       }
+      // eslint-disable-next-line
       if (height == undefined) {
         setHeightError("Field Required");
       }
+      // eslint-disable-next-line
       if (breedMethod == "") {
         setBreedingMethodError("Field Required");
       }
+      // eslint-disable-next-line
       if (description == "") {
         setDescriptionError("Field Required");
       }
+      // eslint-disable-next-line
       if (photo == "") {
         setThumbnailError("Field Required");
       }
+      // eslint-disable-next-line
       if (horsePhotos.length == 0) {
         setPhotoError("Field Required");
       }
@@ -570,7 +588,7 @@ export function AddHorse() {
               </div>
               <div className="addHorse_cont_aboutOwner_displayHorse">
                 {/* <label className="toggle-control"> */}
-                Display horse on profile
+                Display Horse on Profile
                 <input
                   type="checkbox"
                   id="toggle"

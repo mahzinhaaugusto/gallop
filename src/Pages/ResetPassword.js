@@ -3,10 +3,10 @@ import { Button } from "../Components/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
 import HideShowPass from "../icons/HideShowPass.svg";
 import HideVisibility from "../icons/HideVisibility.svg";
 import bcrypt from "bcryptjs";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 
 export function ResetPassword() {
     let navigate = useNavigate();
@@ -47,7 +47,7 @@ export function ResetPassword() {
         } else {
             const hashedPassword = bcrypt.hashSync(password, 10);
 
-            axios.post(`${API_ENDPOINT}reset`, {
+            axios.post(`${process.env.REACT_APP_API_URL}reset`, {
                 userPassword: hashedPassword,
                 token: token
             })
@@ -59,8 +59,13 @@ export function ResetPassword() {
         <>
             <div className="resetPassword_master">
                 <div className="resetPassword">
-                    <div className="resetPassword_image">
+                    <div className="splashScreen_image">
                         <img className="splashScreen_background" src={horse} alt="Splash Screen" />
+                        <img
+                            className="splashScreen_logo"
+                            src={WhiteLogo}
+                            alt="Gallop App Logo"
+                        />
                     </div>
 
                     <div className="resetPassword_cont_content">

@@ -3,9 +3,9 @@ import { Button } from "../Components/Button";
 import { useState } from "react";
 import { PopUp } from "../Components/PopUp";
 // import { useNavigate } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 
 
 export function ForgotPassword() {
@@ -18,7 +18,7 @@ export function ForgotPassword() {
     // let navigate = useNavigate();
 
     const checkEmail = async (email) => {
-        const response = await axios.get(`${API_ENDPOINT}checkemail`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}checkemail`, {
             params: { email }
         });
         return response.data.emailExists;
@@ -42,7 +42,7 @@ export function ForgotPassword() {
             if (!emailExists) {
                 setExists("This is not a valid email, please provide a valid email");
             } else {
-                axios.post(`${API_ENDPOINT}forgotpassword`, {
+                axios.post(`${process.env.REACT_APP_API_URL}forgotpassword`, {
                     email: email
                 })
                 setShowPopUP(!showPopUp);
@@ -55,8 +55,13 @@ export function ForgotPassword() {
         <>
             <div className="forgotPassword_master">
                 <div className="forgotPassword">
-                    <div className="forgotPassword_image">
+                    <div className="splashScreen_image">
                         <img className="splashScreen_background" src={horse} alt="Splash Screen" />
+                        <img
+                            className="splashScreen_logo"
+                            src={WhiteLogo}
+                            alt="Gallop App Logo"
+                        />
                     </div>
 
                     <div className="forgotPassword_cont_content">

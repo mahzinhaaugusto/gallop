@@ -36,14 +36,23 @@
     grid-template-columns: 100%;
     justify-content: center;
     margin-top: 2.5rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
 
     @media screen and (min-width: 1024px) {
         grid-template-columns: 50% 50%;
+        padding: 0 1.875rem;
     }
 }
 
 .favorite_horseCard {
     height: 12rem;
+    width: 98%;
+
+    @media screen and (min-width: 1024px) {
+        width: 97%;
+    }
+    
 
     .horseCard_cont {
         display: flex;

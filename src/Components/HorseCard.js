@@ -3,7 +3,6 @@ import FavoriteClicked from "../icons/favoriteClicked.svg";
 import Plus from "../icons/Plus.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_ENDPOINT } from "../server";
 import { useState } from "react";
 
 export function HorseCard({ horseInfo, addFavOnClick, className }) {
@@ -21,7 +20,7 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
 
   async function addFavOnClick(horse) {
     try {
-      await axios.get(`${API_ENDPOINT}favhorses`).then(async (response) => {
+      await axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(async (response) => {
         const favHorses = response.data;
         console.log(favHorses);
         let flag = true;
@@ -33,7 +32,7 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
             if (favHorses[i].ID == localStorage.getItem("id")) {
               setToggle(false);
               flag = false;
-              await axios.post(`${API_ENDPOINT}deletefav`, {
+              await axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
                 id: favHorses[i].favoriteid,
               });
             }
@@ -43,7 +42,7 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
           // document.getElementById("favoriteIcon").classList.add("favClicked");
           setToggle(true);
           console.log("added");
-          await axios.post(`${API_ENDPOINT}addfavorite`, {
+          await axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
             horseid: horse.horseID,
             uid: localStorage.getItem("id"),
           });

@@ -1,4 +1,3 @@
-// import { API_ENDPOINT } from "../server";
 import { useState, useEffect } from "react";
 import { NavBar } from "../Components/NavBar";
 import { Footer } from "../Components/Footer";
@@ -181,7 +180,7 @@ export function Profile() {
           console.log(result);
         });
       });
-      document.getElementById("profilePhoto").src = reader.result;
+      document.getElementById("profilePhoto2").src = reader.result;
     };
   };
 
@@ -319,7 +318,7 @@ export function Profile() {
                 />
                 <div className="profile_cont_header_content">
                   <img
-                    id="profilePhoto"
+                    id="profilePhoto2"
                     src={profileInfo.userPhoto}
                     alt="profile pic"
                     className="profile_cont_header_content_pic"
