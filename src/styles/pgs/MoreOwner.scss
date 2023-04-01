@@ -224,5 +224,12 @@
 }
 
 .moreOwner_cont_cards {
-    padding: 15px 40px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 100%;
+
+    @media screen and (min-width: 1024px) {
+        grid-template-columns: 50% 50%;
+        padding: 2.5rem 5rem;
+    }
 }
