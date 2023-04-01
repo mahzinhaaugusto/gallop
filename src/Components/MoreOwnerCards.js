@@ -39,7 +39,7 @@ export function MoreOwnerCards({ myHorse }) {
     return (
         <>
             {myHorse.map((horse, i) => (
-                <div key={i} className="horseCard_myHorses">
+                <div key={i} className="horseCard_myHorses horseCard">
                     <div className="horseCard_myHorses_cont">
                         <div className="horseCard_myHorses_cont_images">
                             <img src={horse.thumbnail} alt="" />
