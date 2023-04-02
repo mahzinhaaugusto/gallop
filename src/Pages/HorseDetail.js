@@ -12,8 +12,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { CarouselHorseDetail } from "../Components/CarouselHorseDetail";
+import FavoriteIcon from "../icons/FavoriteIcon.svg";
+import FavoriteClicked from "../icons/favoriteClicked.svg";
 
 export function HorseDetail() {
+  const [toggle, setToggle] = useState(false);
   let navigate = useNavigate();
 
   let location = useLocation();
@@ -25,34 +28,38 @@ export function HorseDetail() {
 
   async function addFavOnClick(horse) {
     try {
-      await Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(async (response) => {
-        const favHorses = response.data;
-        console.log(favHorses);
-        let flag = true;
-        for (let i = 0; i < favHorses.length; i++) {
-          ////console.log(horse.ID);
-          // console.log(favHorses[i].ID);
-          // eslint-disable-next-line
-          if (horse.horseID == favHorses[i].horseID) {
-            console.log(horse.ID);
+      await Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(
+        async (response) => {
+          const favHorses = response.data;
+          console.log(favHorses);
+          let flag = true;
+          for (let i = 0; i < favHorses.length; i++) {
+            ////console.log(horse.ID);
+            // console.log(favHorses[i].ID);
             // eslint-disable-next-line
-            if (favHorses[i].ID == localStorage.getItem("id")) {
-              flag = false;
-              console.log("deleted");
-              await Axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
-                id: favHorses[i].favoriteid,
-              });
+            if (horse.horseID == favHorses[i].horseID) {
+              console.log(horse.ID);
+              // eslint-disable-next-line
+              if (favHorses[i].ID == localStorage.getItem("id")) {
+                flag = false;
+                setToggle(false);
+                console.log("deleted");
+                await Axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
+                  id: favHorses[i].favoriteid,
+                });
+              }
             }
           }
+          if (flag) {
+            console.log("added");
+            setToggle(true);
+            await Axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
+              horseid: horse.horseID,
+              uid: localStorage.getItem("id"),
+            });
+          }
         }
-        if (flag) {
-          console.log("added");
-          await Axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
-            horseid: horse.horseID,
-            uid: localStorage.getItem("id"),
-          });
-        }
-      });
+      );
     } catch (error) {
       console.error(error);
     }
@@ -120,7 +127,7 @@ export function HorseDetail() {
                           alt="button phone"
                         ></img>
                       </a>
-                      <img
+                      {/* <img
                         src={Favorite}
                         height="50px"
                         width="50px"
@@ -128,7 +135,32 @@ export function HorseDetail() {
                         onClick={() => {
                           addFavOnClick(HorseObj);
                         }}
-                      ></img>
+                      ></img> */}
+
+                      {/* <div
+                        id="favIcon"
+                        onClick={() => {
+                          addFavOnClick(HorseObj);
+                        }}
+                      > */}
+                      {toggle === true ? (
+                        <img
+                          src={FavoriteClicked}
+                          alt=""
+                          onClick={() => {
+                            addFavOnClick(HorseObj);
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={FavoriteIcon}
+                          alt=""
+                          onClick={() => {
+                            addFavOnClick(HorseObj);
+                          }}
+                        />
+                      )}
+                      {/* <img src={photoKun} alt="" /> */}
                     </div>
                   </div>
                   <div className="horseDetail_cont_information_heading_locationAndPrice">
@@ -147,7 +179,7 @@ export function HorseDetail() {
                   </div>
                 </div>
                 <div className="horseDetail_cont_information_body">
-                  <div className='horseDetail_height_age_cont'>
+                  <div className="horseDetail_height_age_cont">
                     <div className="horseDetail_cont_information_body_height">
                       <label>Height</label>
                       <p>{HorseObj.height + " cm"}</p>
@@ -158,7 +190,7 @@ export function HorseDetail() {
                     </div>
                   </div>
 
-                  <div className='horseDetail_height_color_gender'>
+                  <div className="horseDetail_height_color_gender">
                     <div className="horseDetail_cont_information_body_color">
                       <label>Color</label>
                       <p>{HorseObj.color}</p>
@@ -169,7 +201,7 @@ export function HorseDetail() {
                     </div>
                   </div>
 
-                  <div className='horseDetail_height_breedingMethod_disciplines'>
+                  <div className="horseDetail_height_breedingMethod_disciplines">
                     <div className="horseDetail_cont_information_body_breedingMethod">
                       <label>Breeding Method</label>
                       <p>{HorseObj.breedingMethod}</p>
@@ -179,7 +211,6 @@ export function HorseDetail() {
                       <p>{HorseObj.skills}</p>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -194,16 +225,14 @@ export function HorseDetail() {
                 <h4>Contact</h4>
               </div>
               <div className="horseDetail_cont_contactInfo_heading_content">
-                <div className='horseDetail_cont_contactInfo_heading_content_infoCont'>
+                <div className="horseDetail_cont_contactInfo_heading_content_infoCont">
                   <img
                     className="horseDetail_cont_contactInfo_img"
                     src={userData.userPhoto}
                     alt="Owner's profile"
                   ></img>
 
-
-
-                  <div className='horseDetail_contactInfo_owner_forms_container'>
+                  <div className="horseDetail_contactInfo_owner_forms_container">
                     <div className="horseDetail_cont_contactInfo_owner">
                       <h4>{userData.firstName + " " + userData.lastName}</h4>
                       <div className="horseDetail_cont_contactInfo_owner_location">
@@ -246,11 +275,6 @@ export function HorseDetail() {
                       </a>
                     </div>
                   </div>
-
-
-
-
-
                 </div>
                 <div className="horseDetail_cont_contactInfo_moreFromOwner">
                   <button
