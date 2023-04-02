@@ -91,7 +91,7 @@
 }
 
 .barChart {
-    padding: 5rem 0;
+    padding: 2rem 0;
 }
 
 .dataAnalytics_cont_mainContent_gender_chart {
@@ -103,6 +103,49 @@
     }
 
     .pieChart {
-        padding-top: 5rem;
+        padding-top: 2rem;
     }
+}
+
+.dataAnalytics_cont_mainContent_gender {
+    width: 100%;
+
+    @media screen and (min-width: $media-desktop) {
+        width: 50%;
+    }
+}
+
+.dataAnalytics_cont_mainContent_secondRow {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $media-desktop) {
+        flex-direction: row;
+    }
+
+    hr {
+        display: none;
+
+        @media screen and (min-width: $media-desktop) {
+            display: block;
+            margin: 1rem;
+        }
+    }
+
+    .dataAnalytics_cont_mainContent_photo {
+
+        @media screen and (min-width: $media-desktop) {
+            align-self: center;
+        }
+
+        img {
+            display: none;
+
+            @media screen and (min-width: $media-desktop) {
+                display: block;
+                width: 34rem;
+            }
+        }
+    }
+
 }

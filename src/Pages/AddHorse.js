@@ -208,7 +208,7 @@ export function AddHorse() {
                 photoArray[index] = res;
               });
               let uid = localStorage.getItem("id");
-              Axios.post("http://localhost:3002/api/insertHorse", {
+              Axios.post(`${process.env.REACT_APP_API_URL}insertHorse`, {
                 name: name,
                 gender: gender,
                 breed: breed,
@@ -230,7 +230,7 @@ export function AddHorse() {
             });
           } else {
             let uid = localStorage.getItem("id");
-            Axios.post("http://localhost:3002/api/insertHorse", {
+            Axios.post(`${process.env.REACT_APP_API_URL}insertHorse`, {
               name: name,
               gender: gender,
               breed: breed,
@@ -588,7 +588,7 @@ export function AddHorse() {
               </div>
               <div className="addHorse_cont_aboutOwner_displayHorse">
                 {/* <label className="toggle-control"> */}
-                Display horse on profile
+                Display Horse on Profile
                 <input
                   type="checkbox"
                   id="toggle"
