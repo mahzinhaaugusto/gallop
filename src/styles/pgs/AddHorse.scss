@@ -483,6 +483,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    position: relative;
 
     img {
         cursor: pointer;
@@ -505,6 +506,13 @@
     .addHorse_cont_basics_upload_thumbnail_addImg_icon {
         cursor: pointer;
     }
+}
+
+.addHorse_cont_basics_upload_thumbnail_image {
+    position: absolute;
+    padding: 3rem;
+    width: 8rem;
+    height: 8rem;
 }
 
 .addHorse_cont_basics_upload_thumbnail_input {

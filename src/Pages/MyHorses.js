@@ -170,7 +170,7 @@ export function MyHorsesCard({ myHorse }) {
       horseID: horseID,
       showInfo: 1,
     });
-
+    // document.getElementById("show").
     // console.Console.log("yesssss");
   };
   const hideHorse = (horseID) => {
@@ -192,20 +192,7 @@ export function MyHorsesCard({ myHorse }) {
               <div className="horseCard_myHorses_cont_images_favorite">
                 <img src={favoriteClicked} alt="" />
                 <p>{horse.likeNumbers}</p>
-                <img
-                  src={HideShowPass}
-                  alt="Show Horse"
-                  onClick={() => {
-                    showHorse(horse.horseID);
-                  }}
-                />
-                <img
-                  src={HideVisibility}
-                  alt="Hide Horse"
-                  onClick={() => {
-                    hideHorse(horse.horseID);
-                  }}
-                />
+
               </div>
             </div>
             <div className="horseCard_myHorses_cont_details">
@@ -218,6 +205,24 @@ export function MyHorsesCard({ myHorse }) {
                   {horse.gender.charAt(0).toUpperCase() + horse.gender.slice(1)}{" "}
                   | {horse.horseAge} yr(s) old{" "}
                 </h4>
+              </div>
+              <div className="horseCard_myHorses_cont_images_visibility">
+                <img
+                  src={HideShowPass}
+                  alt="Show Horse"
+                  id="show"
+                  onClick={() => {
+                    showHorse(horse.horseID);
+                  }}
+                />
+                <img
+                  src={HideVisibility}
+                  alt="Hide Horse"
+                  id="hide"
+                  onClick={() => {
+                    hideHorse(horse.horseID);
+                  }}
+                />
               </div>
               <div className="horseCard_myHorses_cont_details_btns">
                 <button

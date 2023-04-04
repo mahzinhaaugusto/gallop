@@ -186,6 +186,10 @@
     height: 3rem;
     border-radius: 0 0 10px 10px;
     transform: translateX(-2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     p {
         color: #E9AB3C;
@@ -197,6 +201,11 @@
             font-size: 14px;
             line-height: 150%;
         }
+    }
+
+    img {
+        width: 1rem;
+        border-radius: 0;
     }
 }
 
