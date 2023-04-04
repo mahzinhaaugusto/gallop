@@ -8,12 +8,12 @@ export function BreedingMethod(props) {
     setCheckedNatural(!checkedNatural);
     setCheckedArtificial(!checkedArtificial);
     // console.log("natural");
-    props.handleMessage("natural");
+    props.handleMessage("Natural");
   };
   const handlerArtificial = () => {
     setCheckedArtificial(!checkedArtificial);
     setCheckedNatural(!checkedNatural);
-    props.handleMessage("artificial");
+    props.handleMessage("Artificial");
     //console.log("artificial");
   };
 
