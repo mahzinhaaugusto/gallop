@@ -42,7 +42,7 @@ export function HorseDetail() {
               // eslint-disable-next-line
               if (favHorses[i].ID == localStorage.getItem("id")) {
                 flag = false;
-                setToggle(false);
+                setToggle(true);
                 console.log("deleted");
                 await Axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
                   id: favHorses[i].favoriteid,
@@ -52,7 +52,7 @@ export function HorseDetail() {
           }
           if (flag) {
             console.log("added");
-            setToggle(true);
+            setToggle(false);
             await Axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
               horseid: horse.horseID,
               uid: localStorage.getItem("id"),
@@ -88,6 +88,37 @@ export function HorseDetail() {
           setUserData(response.data[i]);
       }
     });
+
+    Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(
+      async (response) => {
+        const favHorses = response.data;
+        //console.log(favHorses);
+        let flag = true;
+        for (let i = 0; i < favHorses.length; i++) {
+          // eslint-disable-next-line
+          if (horse.horseID == favHorses[i].horseID) {
+            //console.log(horse.ID);
+            // eslint-disable-next-line
+            if (favHorses[i].ID == localStorage.getItem("id")) {
+              setToggle(false);
+              // setPhoto(FavoriteIcon);
+              flag = false;
+              // setPhoto(FavoriteClicked);
+
+              // imageElement.src = FavoriteIcon;
+            }
+          }
+        }
+        if (flag) {
+          // document.getElementById("favoriteIcon").classList.add("favClicked");
+          setToggle(true);
+          //check = true;
+          //setPhoto(FavoriteIcon);
+          // console.log("added");
+          //imageElement.src = FavoriteClicked;
+        }
+      }
+    );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -143,7 +174,7 @@ export function HorseDetail() {
                           addFavOnClick(HorseObj);
                         }}
                       > */}
-                      {toggle === true ? (
+                      {toggle === false ? (
                         <img
                           src={FavoriteClicked}
                           alt=""
