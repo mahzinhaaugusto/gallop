@@ -21,7 +21,7 @@ export function AddHorse() {
   const [height, setHeight] = useState();
   const [color, setColor] = useState("");
   const [breedMethod, setBreedMethod] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [discipline, setDiscipline] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
