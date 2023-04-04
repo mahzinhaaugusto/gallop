@@ -56,7 +56,7 @@ export function AddHorse() {
   const clickPlus = (event) => {
     const file = event.target.files[0];
     if (horsePhotos.length >= 3) {
-      alert("you cannot select more than three photos");
+      alert("You cannot select more than three photos");
     } else {
       horsePhotos.push(file);
       // console.log(horsePhotos);
@@ -263,6 +263,7 @@ export function AddHorse() {
 
   const redirect = () => {
     navigate("/my-horses");
+    // window.location.reload();
   };
 
   const cancel = () => {
@@ -440,8 +441,6 @@ export function AddHorse() {
                   onChange={photoSeleceted}
                 /> */}
 
-                  
-
                   <div
                     id="thumbBox"
                     className="addHorse_cont_basics_upload_thumbnail_content"
@@ -478,6 +477,9 @@ export function AddHorse() {
                       *
                     </span>
                   </label>
+
+
+
                   <div className="addHorse_cont_basics_upload_media_content">
                     <p>Up to 3 photos </p>
                     <div>

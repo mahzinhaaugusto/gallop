@@ -71,7 +71,7 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
               if (favHorses[i].ID == localStorage.getItem("id")) {
                 setToggle(false);
                 setPhoto(FavoriteIcon);
-                console.log("removed");
+                // console.log("removed");
                 check = false;
                 flag = false;
                 await axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
@@ -82,7 +82,7 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
           }
           if (flag) {
             setToggle(true);
-            console.log("added");
+            // console.log( "added");
             setPhoto(FavoriteClicked);
             check = true;
             await axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
