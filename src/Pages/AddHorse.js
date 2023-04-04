@@ -21,7 +21,7 @@ export function AddHorse() {
   const [height, setHeight] = useState();
   const [color, setColor] = useState("");
   const [breedMethod, setBreedMethod] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [discipline, setDiscipline] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
@@ -363,7 +363,6 @@ export function AddHorse() {
                       className="addHorse_cont_basics_details_color_cont"
                     />
                   </div>
-
                 </div>
                 <div className="addHorse_cont_basics_details_thirdRow">
                   <div className="addHorse_cont_basics_details_age">
@@ -497,7 +496,6 @@ export function AddHorse() {
                   <p className="warning">{photoError}</p>
                 </div>
               </div>
-
             </div>
             <div className="addHorse_cont_detailed">
               <div className="addHorse_cont_detailed_description">
@@ -553,7 +551,10 @@ export function AddHorse() {
               <div className="addHorse_cont_aboutOwner_contactPreferences">
                 <label>Contact Preferences</label>
                 <div className="addHorse_cont_aboutOwner_contactPreferences_label">
-                  <label className="addHorse_cont_aboutOwner_contactPreferences_label_Email" id="ownerEmailCont">
+                  <label
+                    className="addHorse_cont_aboutOwner_contactPreferences_label_Email"
+                    id="ownerEmailCont"
+                  >
                     <input type="checkbox" id="ownerEmail"></input>
                     Email
                   </label>
@@ -581,7 +582,7 @@ export function AddHorse() {
                   id="ownerLocation"
                   type="text"
                   placeholder="Location"
-                /* onChange={(e) => {
+                  /* onChange={(e) => {
                 setLocation(e.sessionStorage.setItem("city", city));
               }} */
                 ></input>
