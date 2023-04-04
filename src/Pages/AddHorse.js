@@ -441,14 +441,7 @@ export function AddHorse() {
                   onChange={photoSeleceted}
                 /> */}
 
-                  {previewUrl && (
-                    <img
-                      src={previewUrl}
-                      alt="Preview"
-                      height="150px"
-                      width="150px"
-                    />
-                  )}
+                  
 
                   <div
                     id="thumbBox"
@@ -468,6 +461,14 @@ export function AddHorse() {
                         onChange={photoSeleceted}
                       />
                     </div>
+                    {previewUrl && (
+                    <img
+                      src={previewUrl}
+                      alt="Preview"
+                      height="165px"
+                      width="165px"
+                    />
+                  )}
                   </div>
                   <p className="warning">{thumbnailError}</p>
                 </div>
