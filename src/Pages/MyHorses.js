@@ -170,6 +170,7 @@ export function MyHorsesCard({ myHorse }) {
       horseID: horseID,
       showInfo: 1,
     });
+    window.location.reload();
     // document.getElementById("show").
     // console.Console.log("yesssss");
   };
@@ -178,7 +179,7 @@ export function MyHorsesCard({ myHorse }) {
       horseID: horseID,
       showInfo: 0,
     });
-
+    window.location.reload();
     // console.Console.log("yesssss");
   };
 
@@ -192,7 +193,6 @@ export function MyHorsesCard({ myHorse }) {
               <div className="horseCard_myHorses_cont_images_favorite">
                 <img src={favoriteClicked} alt="" />
                 <p>{horse.likeNumbers}</p>
-
               </div>
             </div>
             <div className="horseCard_myHorses_cont_details">
@@ -207,22 +207,30 @@ export function MyHorsesCard({ myHorse }) {
                 </h4>
               </div>
               <div className="horseCard_myHorses_cont_images_visibility">
-                <img
-                  src={HideShowPass}
-                  alt="Show Horse"
-                  id="show"
-                  onClick={() => {
-                    showHorse(horse.horseID);
-                  }}
-                />
-                <img
-                  src={HideVisibility}
-                  alt="Hide Horse"
-                  id="hide"
-                  onClick={() => {
-                    hideHorse(horse.horseID);
-                  }}
-                />
+                {!horse.showInfo && (
+                  <div>
+                    <img
+                      src={HideShowPass}
+                      alt="Show Horse"
+                      id="show"
+                      onClick={() => {
+                        showHorse(horse.horseID);
+                      }}
+                    />
+                  </div>
+                )}
+                {horse.showInfo == 1 && (
+                  <div>
+                    <img
+                      src={HideVisibility}
+                      alt="Hide Horse"
+                      id="hide"
+                      onClick={() => {
+                        hideHorse(horse.horseID);
+                      }}
+                    />
+                  </div>
+                )}
               </div>
               <div className="horseCard_myHorses_cont_details_btns">
                 <button
