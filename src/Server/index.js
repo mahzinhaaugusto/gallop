@@ -283,7 +283,7 @@ app.post("/api/insertHorse", (req, res) => {
       showInfo,
     ],
     (err, result) => {
-      console.log(result);
+      console.log(err);
     }
   );
 });
