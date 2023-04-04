@@ -64,6 +64,17 @@
     display: none;
 }
 
+#thumbBox {
+    position: relative;
+}
+
+#thumbBox > img {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    border-radius: 10px;
+}
+
 // there is something stopping me from configuring these ids on user agent stylesheet input[type="checkbox" i] {}
 .addHorse_cont_aboutOwner_displayHorse {
     #toggle {
@@ -483,6 +494,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    position: relative;
 
     img {
         cursor: pointer;
@@ -505,6 +517,13 @@
     .addHorse_cont_basics_upload_thumbnail_addImg_icon {
         cursor: pointer;
     }
+}
+
+.addHorse_cont_basics_upload_thumbnail_image {
+    position: absolute;
+    padding: 3rem;
+    width: 8rem;
+    height: 8rem;
 }
 
 .addHorse_cont_basics_upload_thumbnail_input {

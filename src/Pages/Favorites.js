@@ -52,6 +52,10 @@ export function Favorites() {
     navigate(-1);
   };
 
+  // const reload = () => {
+  //   window.location.reload();
+  // }
+
   return (
     <div className="favorites_master">
       <NavBar />
