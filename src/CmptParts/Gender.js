@@ -6,12 +6,12 @@ export function Gender(props) {
   // console.log(props.handleMessage);
   const handlerStallion = () => {
     setCheckedStallion(!checkedStallion);
-    props.handleMessage("stallion");
+    props.handleMessage("Stallion");
     // console.log("stallion");
   };
   const handlerMare = () => {
     setCheckedMare(!checkedMare);
-    props.handleMessage("mare");
+    props.handleMessage("Mare");
     // console.log("mare");
   };
 

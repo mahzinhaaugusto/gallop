@@ -80,7 +80,7 @@ function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    handleMessage(option.value);
+    handleMessage(option.label);
   };
 
   const isSelected = (option) => {
@@ -121,12 +121,7 @@ function ColorDropdown({ placeholder, options, isSearchable, handleMessage }) {
               />
             </div>
           )}
-          {/* <div
-            onClick={resetAll}
-            className="filter_cont_color_dropdown_options_singleOption"
-          >
-            Select
-          </div> */}
+
           {getOptions().map((option) => (
             <div
               onClick={() => onItemClick(option)}

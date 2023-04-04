@@ -22,7 +22,7 @@ export function MainPage() {
 
   const sortType = (data) => {
     console.log(data);
-    let sql = "select * from horseinfo order by price ";
+    let sql = "select * from horseinfo where showInfo = 1 order by price ";
     // eslint-disable-next-line
     if (data == "high") {
       sql = sql + "desc;";
@@ -37,14 +37,14 @@ export function MainPage() {
 
   const filterReturn = (data) => {
     setHorseInfo(allHorsesCopy);
-    console.log(data);
+    //console.log(data);
     //console.log(horseDatas);
     setFilter(data);
 
     // console.log(data);
     //console.log(allHorses);
     let horseDatas = [...allHorsesCopy];
-    console.log(horseDatas);
+    //console.log(horseDatas);
     for (const key in data) {
       let newList = [];
       // eslint-disable-next-line
