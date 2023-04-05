@@ -14,7 +14,6 @@ import { EffectCoverflow, Pagination } from "swiper";
 // import image4 from "../Assets/Images/pieter-van-noorden-cjSUZMA2iW8-unsplash.jpg";
 
 export function CarouselHorseDetail({ HorseObj }) {
-  // console.log(HorseObj);
   return (
     <div className="carouselHorseDetail">
       <Swiper
@@ -36,12 +35,16 @@ export function CarouselHorseDetail({ HorseObj }) {
         <SwiperSlide>
           <img alt="Horse 1" src={HorseObj.photo1} />
         </SwiperSlide>
-        <SwiperSlide>
-          <img alt="Horse 2" src={HorseObj.photo2} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img alt="Horse 3" src={HorseObj.photo3} />
-        </SwiperSlide>
+        {HorseObj.photo2 && (
+          <SwiperSlide>
+            <img alt="Horse 2" src={HorseObj.photo2} />
+          </SwiperSlide>
+        )}
+        {HorseObj.photo3 && (
+          <SwiperSlide>
+            <img alt="Horse 3" src={HorseObj.photo3} />
+          </SwiperSlide>
+        )}
       </Swiper>
     </div>
   );

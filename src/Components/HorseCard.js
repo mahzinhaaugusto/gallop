@@ -3,10 +3,49 @@ import FavoriteClicked from "../icons/favoriteClicked.svg";
 import Plus from "../icons/Plus.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function HorseCard({ horseInfo, addFavOnClick, className }) {
   const [toggle, setToggle] = useState(false);
+  const [photoKun, setPhoto] = useState(FavoriteClicked);
+  let arr = [];
+  let check = false;
+  useEffect(() => {
+    //let imageElement = document.getElementById("fav");
+    //imageElement.src = FavoriteIcon;
+
+    axios
+      .get(`${process.env.REACT_APP_API_URL}favhorses`)
+      .then(async (response) => {
+        const favHorses = response.data;
+        //console.log(favHorses);
+        let flag = true;
+        for (let i = 0; i < favHorses.length; i++) {
+          // eslint-disable-next-line
+          if (horseInfo[0].horseID == favHorses[i].horseID) {
+            //console.log(horse.ID);
+            // eslint-disable-next-line
+            if (favHorses[i].ID == localStorage.getItem("id")) {
+              setToggle(false);
+              // setPhoto(FavoriteIcon);
+              flag = false;
+              setPhoto(FavoriteClicked);
+
+              // imageElement.src = FavoriteIcon;
+            }
+          }
+        }
+        if (flag) {
+          // document.getElementById("favoriteIcon").classList.add("favClicked");
+          setToggle(true);
+          check = true;
+          setPhoto(FavoriteIcon);
+          // console.log("added");
+          //imageElement.src = FavoriteClicked;
+        }
+      });
+    //console.log(photoKun);
+  });
 
   let navigate = useNavigate();
 
@@ -20,37 +59,42 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
 
   async function addFavOnClick(horse) {
     try {
-      await axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(async (response) => {
-        const favHorses = response.data;
-        console.log(favHorses);
-        let flag = true;
-        for (let i = 0; i < favHorses.length; i++) {
-          // eslint-disable-next-line
-          if (horse.horseID == favHorses[i].horseID) {
-            console.log(horse.ID);
-            // eslint-disable-next-line
-            if (favHorses[i].ID == localStorage.getItem("id")) {
-              setToggle(false);
-              flag = false;
-              await axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
-                id: favHorses[i].favoriteid,
-              });
+      await axios
+        .get(`${process.env.REACT_APP_API_URL}favhorses`)
+        .then(async (response) => {
+          const favHorses = response.data;
+          // console.log(favHorses);
+          let flag = true;
+          for (let i = 0; i < favHorses.length; i++) {
+            if (horse.horseID == favHorses[i].horseID) {
+              console.log(horse.ID);
+              if (favHorses[i].ID == localStorage.getItem("id")) {
+                setToggle(false);
+                setPhoto(FavoriteIcon);
+                // console.log("removed");
+                check = false;
+                flag = false;
+                await axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
+                  id: favHorses[i].favoriteid,
+                });
+              }
             }
           }
-        }
-        if (flag) {
-          // document.getElementById("favoriteIcon").classList.add("favClicked");
-          setToggle(true);
-          console.log("added");
-          await axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
-            horseid: horse.horseID,
-            uid: localStorage.getItem("id"),
-          });
-        }
-      });
+          if (flag) {
+            setToggle(true);
+            // console.log( "added");
+            setPhoto(FavoriteClicked);
+            check = true;
+            await axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
+              horseid: horse.horseID,
+              uid: localStorage.getItem("id"),
+            });
+          }
+        });
     } catch (error) {
       console.error(error);
     }
+    arr[0] = toggle;
   }
 
   return (
@@ -67,11 +111,12 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
                   addFavOnClick(horse);
                 }}
               >
-                {toggle === true ? (
+                {toggle === false ? (
                   <img src={FavoriteClicked} alt="" />
                 ) : (
                   <img src={FavoriteIcon} alt="" />
                 )}
+                {/* <img src={photoKun} alt="" /> */}
               </div>
             </div>
             <div className="horseCard_cont_details">

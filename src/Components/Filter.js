@@ -112,7 +112,7 @@ function FilterCont({ filterReturn }) {
     // eslint-disable-next-line
     if (discipline != "") filterData.discipline = discipline;
     // eslint-disable-next-line
-    if (color != "") filterData.color = color;
+    if (color != "" && color != "Select") filterData.color = color;
     // eslint-disable-next-line
     if (bred != "") filterData.breed = bred;
     // eslint-disable-next-line

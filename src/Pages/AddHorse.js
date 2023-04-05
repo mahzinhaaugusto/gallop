@@ -56,7 +56,7 @@ export function AddHorse() {
   const clickPlus = (event) => {
     const file = event.target.files[0];
     if (horsePhotos.length >= 3) {
-      alert("you cannot select more than three photos");
+      alert("You cannot select more than three photos");
     } else {
       horsePhotos.push(file);
       // console.log(horsePhotos);
@@ -263,6 +263,7 @@ export function AddHorse() {
 
   const redirect = () => {
     navigate("/my-horses");
+    // window.location.reload();
   };
 
   const cancel = () => {
@@ -363,7 +364,6 @@ export function AddHorse() {
                       className="addHorse_cont_basics_details_color_cont"
                     />
                   </div>
-
                 </div>
                 <div className="addHorse_cont_basics_details_thirdRow">
                   <div className="addHorse_cont_basics_details_age">
@@ -441,15 +441,6 @@ export function AddHorse() {
                   onChange={photoSeleceted}
                 /> */}
 
-                  {previewUrl && (
-                    <img
-                      src={previewUrl}
-                      alt="Preview"
-                      height="150px"
-                      width="150px"
-                    />
-                  )}
-
                   <div
                     id="thumbBox"
                     className="addHorse_cont_basics_upload_thumbnail_content"
@@ -468,6 +459,14 @@ export function AddHorse() {
                         onChange={photoSeleceted}
                       />
                     </div>
+                    {previewUrl && (
+                    <img
+                      src={previewUrl}
+                      alt="Preview"
+                      height="165px"
+                      width="165px"
+                    />
+                  )}
                   </div>
                   <p className="warning">{thumbnailError}</p>
                 </div>
@@ -478,6 +477,9 @@ export function AddHorse() {
                       *
                     </span>
                   </label>
+
+
+
                   <div className="addHorse_cont_basics_upload_media_content">
                     <p>Up to 3 photos </p>
                     <div>
@@ -497,7 +499,6 @@ export function AddHorse() {
                   <p className="warning">{photoError}</p>
                 </div>
               </div>
-
             </div>
             <div className="addHorse_cont_detailed">
               <div className="addHorse_cont_detailed_description">
@@ -553,7 +554,10 @@ export function AddHorse() {
               <div className="addHorse_cont_aboutOwner_contactPreferences">
                 <label>Contact Preferences</label>
                 <div className="addHorse_cont_aboutOwner_contactPreferences_label">
-                  <label className="addHorse_cont_aboutOwner_contactPreferences_label_Email" id="ownerEmailCont">
+                  <label
+                    className="addHorse_cont_aboutOwner_contactPreferences_label_Email"
+                    id="ownerEmailCont"
+                  >
                     <input type="checkbox" id="ownerEmail"></input>
                     Email
                   </label>
@@ -581,7 +585,7 @@ export function AddHorse() {
                   id="ownerLocation"
                   type="text"
                   placeholder="Location"
-                /* onChange={(e) => {
+                  /* onChange={(e) => {
                 setLocation(e.sessionStorage.setItem("city", city));
               }} */
                 ></input>
