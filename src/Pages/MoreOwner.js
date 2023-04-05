@@ -43,12 +43,9 @@ export function MoreOwner() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${process.env.REACT_APP_API_URL}allhorses`).then((response) => {
-      //console.log(id);
-      // console.log(response.data[0].horseID);
       setMyHorses(response.data);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -60,7 +57,6 @@ export function MoreOwner() {
     }
   }
 
-  //console.log(myHorsesArr);
   return (
     <div className="moreOwner_master">
       <NavBar />

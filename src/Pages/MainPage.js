@@ -21,12 +21,10 @@ export function MainPage() {
   const [filterData, setFilter] = useState();
 
   const sortType = (data) => {
-    console.log(data);
     let sql = "select * from horseinfo where showInfo = 1 order by price ";
     // eslint-disable-next-line
     if (data == "high") {
       sql = sql + "desc;";
-      // console.log(sql);
     }
     Axios.get(`${process.env.REACT_APP_API_URL}priceorder`, {
       params: { sql },
@@ -37,14 +35,9 @@ export function MainPage() {
 
   const filterReturn = (data) => {
     setHorseInfo(allHorsesCopy);
-    //console.log(data);
-    //console.log(horseDatas);
     setFilter(data);
 
-    // console.log(data);
-    //console.log(allHorses);
     let horseDatas = [...allHorsesCopy];
-    //console.log(horseDatas);
     for (const key in data) {
       let newList = [];
       // eslint-disable-next-line
@@ -70,9 +63,7 @@ export function MainPage() {
       // eslint-disable-next-line
       if (key == "discipline") {
         for (let i = 0; i < horseDatas.length; i++) {
-          // console.log(data[key]);
           if (horseDatas[i].skills.includes(data[key])) {
-            //console.log(horseDatas[i]);
             newList.push(horseDatas[i]);
           }
         }
@@ -140,7 +131,6 @@ export function MainPage() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      // console.log("sorry");
       navigate("/login");
     }
     let newHorse = [];
@@ -152,15 +142,12 @@ export function MainPage() {
 
       setHorseInfo([...newHorse]);
       setHorseInfoCopy([...newHorse]);
-
-      //console.log(allHorses);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const items = allHorses;
 
   function Items({ currentItems }) {
-    //console.log(currentItems);
 
     return (
       <div className="mainPage_cont_horsesCards_innerCont">
@@ -191,9 +178,6 @@ export function MainPage() {
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
       const newOffset = (event.selected * itemsPerPage) % items.length;
-      // console.log(
-      //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-      // );
       setItemOffset(newOffset);
     };
 
@@ -224,11 +208,11 @@ export function MainPage() {
   }
 
   const goToHorseDetail = () => {
-    console.log("working");
+    // console.log("working");
   };
 
   const addToFavorites = () => {
-    console.log("add fav working");
+    // console.log("add fav working");
   };
 
   return (

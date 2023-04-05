@@ -88,7 +88,6 @@ export function Profile() {
   const confirmDelete = () => {
     // Add the delete command for the db
     let id = localStorage.getItem("id");
-    console.log(id);
     axios.post(`${process.env.REACT_APP_API_URL}delete`, {
       id: id,
     });
@@ -107,11 +106,9 @@ export function Profile() {
     axios.get(`${process.env.REACT_APP_API_URL}get`).then((response) => {
       credential = response.data;
       let id = localStorage.getItem("id");
-      // console.log(id);
       for (let i = 0; i < credential.length; i++) {
         // eslint-disable-next-line
         if (credential[i].ID == id) {
-          // console.log(credential[i]);
           setProfileInfo({
             background: "",
             profile: "",
@@ -127,7 +124,6 @@ export function Profile() {
             firstName: credential[i].firstName,
             lastName: credential[i].lastName,
           });
-          // console.log(profileInfo.userPhoto);
         }
       }
     });
@@ -135,7 +131,6 @@ export function Profile() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      // console.log("sorry");
       navigate("/login");
     }
     firstLoad();
@@ -148,7 +143,6 @@ export function Profile() {
 
   const changeBackground = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -158,7 +152,6 @@ export function Profile() {
       uploadBytes(storageRef, file).then(() => {
         getDownloadURL(storageRef).then((result) => {
           profileEdit.background = result;
-          console.log(result);
         });
       });
       document.getElementById("backgroundPhoto").src = reader.result;
@@ -167,7 +160,6 @@ export function Profile() {
 
   const changeProfilePhoto = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -177,7 +169,6 @@ export function Profile() {
       uploadBytes(storageRef, file).then(() => {
         getDownloadURL(storageRef).then((result) => {
           profileEdit.userPhoto = result;
-          console.log(result);
         });
       });
       document.getElementById("profilePhoto2").src = reader.result;

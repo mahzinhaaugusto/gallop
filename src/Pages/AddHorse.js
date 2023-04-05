@@ -48,7 +48,6 @@ export function AddHorse() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      // console.log("sorry");
       navigate("/login");
     }
   });
@@ -59,7 +58,6 @@ export function AddHorse() {
       alert("You cannot select more than three photos");
     } else {
       horsePhotos.push(file);
-      // console.log(horsePhotos);
     }
   };
 
@@ -69,11 +67,9 @@ export function AddHorse() {
 
   const photoSeleceted = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
     setPhoto(file);
-    //console.log(photo);
     // setPreviewUrl(file);
 
     reader.onload = () => {
@@ -85,7 +81,6 @@ export function AddHorse() {
   };
 
   const colorClick = (data) => {
-    console.log(data);
     setColor(data);
   };
 
@@ -94,39 +89,32 @@ export function AddHorse() {
   };
 
   const disciplineClick = (data) => {
-    console.log(data);
     setDiscipline(data);
   };
 
   async function uploadPhotos() {
     const storage = getStorage();
-    //console.log(horsePhotos);
     let photoArray = [];
 
     // eslint-disable-next-line
     if (horsePhotos[0] != "") {
       for (let i = 0; i < 3; i++) {
-        //console.log(horsePhotos[i].name);
         let hName = name + i;
         if (horsePhotos[i]) {
-          //console.log(horsePhotos[i]);
           const storageR = ref(storage, `Horsephoto/${hName}`);
           await uploadBytes(storageR, horsePhotos[i]).then(() => {
             getDownloadURL(storageR).then((res) => {
               photoArray[i] = res;
               setP(res);
-              //console.log(p);
             });
           });
         }
       }
     }
-    console.log(p);
     return photoArray;
   }
 
   const clickSave = () => {
-    console.log(breedMethod);
     if (
       // eslint-disable-next-line
       name == "" ||
@@ -460,13 +448,13 @@ export function AddHorse() {
                       />
                     </div>
                     {previewUrl && (
-                    <img
-                      src={previewUrl}
-                      alt="Preview"
-                      height="165px"
-                      width="165px"
-                    />
-                  )}
+                      <img
+                        src={previewUrl}
+                        alt="Preview"
+                        height="165px"
+                        width="165px"
+                      />
+                    )}
                   </div>
                   <p className="warning">{thumbnailError}</p>
                 </div>
@@ -585,9 +573,9 @@ export function AddHorse() {
                   id="ownerLocation"
                   type="text"
                   placeholder="Location"
-                  /* onChange={(e) => {
-                setLocation(e.sessionStorage.setItem("city", city));
-              }} */
+                /* onChange={(e) => {
+              setLocation(e.sessionStorage.setItem("city", city));
+            }} */
                 ></input>
               </div>
               <div className="addHorse_cont_aboutOwner_displayHorse">
