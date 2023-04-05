@@ -149,7 +149,6 @@
 #horseCard_myHorses_cont_details_editBtn,
 #horseCard_myHorses_cont_details_deleteBtn {
     cursor: pointer;
-    margin: 0.25rem 0.25rem 0.25rem 1.875rem;
     border-radius: $radius;
     padding: 0.5rem;
     margin-top: $largeMargin;
@@ -164,6 +163,14 @@
         width: 1rem;
         padding-left: $largePadding;
     }
+}
+
+#horseCard_myHorses_cont_details_editBtn {
+    margin: 0.25rem 1rem 0.25rem 0;
+}
+
+#horseCard_myHorses_cont_details_deleteBtn {
+    margin: 0.25rem 0;
 }
 
 .myHorses_cont_content {
