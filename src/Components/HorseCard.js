@@ -18,12 +18,10 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
       .get(`${process.env.REACT_APP_API_URL}favhorses`)
       .then(async (response) => {
         const favHorses = response.data;
-        //console.log(favHorses);
         let flag = true;
         for (let i = 0; i < favHorses.length; i++) {
           // eslint-disable-next-line
           if (horseInfo[0].horseID == favHorses[i].horseID) {
-            //console.log(horse.ID);
             // eslint-disable-next-line
             if (favHorses[i].ID == localStorage.getItem("id")) {
               setToggle(false);
@@ -40,11 +38,9 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
           setToggle(true);
           check = true;
           setPhoto(FavoriteIcon);
-          // console.log("added");
           //imageElement.src = FavoriteClicked;
         }
       });
-    //console.log(photoKun);
   });
 
   let navigate = useNavigate();
@@ -63,15 +59,14 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
         .get(`${process.env.REACT_APP_API_URL}favhorses`)
         .then(async (response) => {
           const favHorses = response.data;
-          // console.log(favHorses);
           let flag = true;
           for (let i = 0; i < favHorses.length; i++) {
+            // eslint-disable-next-line
             if (horse.horseID == favHorses[i].horseID) {
-              console.log(horse.ID);
+              // eslint-disable-next-line
               if (favHorses[i].ID == localStorage.getItem("id")) {
                 setToggle(false);
                 setPhoto(FavoriteIcon);
-                // console.log("removed");
                 check = false;
                 flag = false;
                 await axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
@@ -82,7 +77,6 @@ export function HorseCard({ horseInfo, addFavOnClick, className }) {
           }
           if (flag) {
             setToggle(true);
-            // console.log( "added");
             setPhoto(FavoriteClicked);
             check = true;
             await axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {

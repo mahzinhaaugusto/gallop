@@ -8,7 +8,6 @@ export function MoreOwnerCards({ myHorse }) {
         try {
             await Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(async (response) => {
                 const favHorses = response.data;
-                // console.log(favHorses);
                 let flag = true;
                 for (let i = 0; i < favHorses.length; i++) {
                     // eslint-disable-next-line
@@ -16,7 +15,6 @@ export function MoreOwnerCards({ myHorse }) {
                         // eslint-disable-next-line
                         if (favHorses[i].ID == localStorage.getItem("id")) {
                             flag = false;
-                            // console.log("deleted");
 
                             await Axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
                                 id: favHorses[i].favoriteid,
@@ -25,7 +23,6 @@ export function MoreOwnerCards({ myHorse }) {
                     }
                 }
                 if (flag) {
-                    console.log("added");
                     await Axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
                         horseid: horse.horseID,
                         uid: localStorage.getItem("id"),

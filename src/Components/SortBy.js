@@ -19,13 +19,11 @@ function SortBy({ sortType }) {
 
   const handlerHigh = () => {
     setCheckedHigh(!checkedHigh);
-    console.log("h");
     sortType("high");
   };
 
   const handlerLow = () => {
     setCheckedLow(!checkedLow);
-    console.log("l");
     sortType("low");
   };
 

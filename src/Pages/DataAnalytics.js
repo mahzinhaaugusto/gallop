@@ -8,9 +8,6 @@ import axios from "axios";
 import Gallop from "../Assets/Images/gallop.png";
 
 export function DataAnalytics() {
-    // const goBack = () => {
-    //     console.log("working");
-    // }
 
     const [allHorsesBreed, setHorsesBreed] = useState([]);
     const [allHorsesGender, setHorsesGender] = useState([]);
@@ -47,8 +44,6 @@ export function DataAnalytics() {
                 setHorsesGender(arrGender);
             })
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
-    // console.log(allHorsesBreed);
-    // console.log(allHorsesGender);
 
     return (
         <div className="dataAnalytics">

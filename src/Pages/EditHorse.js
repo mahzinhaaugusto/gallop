@@ -38,10 +38,8 @@ export function EditHorse() {
   let location = useLocation();
 
   const horseObj = location.state.horse;
-  console.log(horseObj);
 
   const horseID = horseObj.horseID;
-  // console.log(horseID);
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {

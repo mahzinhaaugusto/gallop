@@ -19,7 +19,6 @@ export function SignUp2() {
   const [addressError, setAddressError] = useState("");
   const [showPopUpSave, setShowPopUpSave] = useState(false);
 
-  // console.log(sessionStorage.getItem("city"));
   let navigate = useNavigate();
 
   const videoRef = useRef(null);
@@ -57,7 +56,6 @@ export function SignUp2() {
     setUserPhoto(photo.toDataURL());
 
     photo.toBlob((blob) => {
-      console.log(blob);
       const storage = getStorage();
       const storageRef = ref(storage, `gallop/${location.state.firstName}`);
       uploadBytes(storageRef, blob).then(() => {
