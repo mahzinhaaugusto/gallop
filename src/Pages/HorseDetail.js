@@ -66,7 +66,7 @@ export function HorseDetail() {
   }
 
   const HorseObj = location.state.horse;
-  // console.log("OLHA AQ", HorseObj);
+  console.log("OLHA AQ", HorseObj);
   let [userData, setUserData] = useState([]);
   const moreClick = () => {
     navigate("/more-owner", {
@@ -96,7 +96,7 @@ export function HorseDetail() {
         let flag = true;
         for (let i = 0; i < favHorses.length; i++) {
           // eslint-disable-next-line
-          if (horse.horseID == favHorses[i].horseID) {
+          if (HorseObj.horseID == favHorses[i].horseID) {
             //console.log(horse.ID);
             // eslint-disable-next-line
             if (favHorses[i].ID == localStorage.getItem("id")) {
@@ -174,7 +174,7 @@ export function HorseDetail() {
                           addFavOnClick(HorseObj);
                         }}
                       > */}
-                      {toggle === false ? (
+                      {toggle === false && HorseObj.showInfo ? (
                         <img
                           src={FavoriteClicked}
                           alt=""
