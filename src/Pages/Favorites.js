@@ -12,7 +12,6 @@ import BackButton from "../icons/BackButton.svg";
 export function Favorites() {
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      // console.log("sorry");
       navigate("/login");
     }
   });
@@ -29,7 +28,6 @@ export function Favorites() {
         for (let i = 0; i < response.data.length; i++) {
           // eslint-disable-next-line
           if (localStorage.getItem("id") == response.data[i].ID) {
-            // console.log("hello");
             for (let j = 0; j < res.data.length; j++) {
               // eslint-disable-next-line
               if (response.data[i].horseID == res.data[j].horseID)

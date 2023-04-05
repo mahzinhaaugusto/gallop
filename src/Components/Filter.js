@@ -87,7 +87,6 @@ function FilterCont({ filterReturn }) {
     setBMethod(info);
   };
   const disciplineClick = (data) => {
-    //console.log(data);
     setDiscipline(data);
   };
   const setHeight = (min, max) => {
@@ -132,7 +131,6 @@ function FilterCont({ filterReturn }) {
     }
 
     filterReturn(filterData);
-    console.log("reach");
     filterData = {};
   };
 

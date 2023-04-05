@@ -31,19 +31,14 @@ export function HorseDetail() {
       await Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(
         async (response) => {
           const favHorses = response.data;
-          console.log(favHorses);
           let flag = true;
           for (let i = 0; i < favHorses.length; i++) {
-            ////console.log(horse.ID);
-            // console.log(favHorses[i].ID);
             // eslint-disable-next-line
             if (horse.horseID == favHorses[i].horseID) {
-              console.log(horse.ID);
               // eslint-disable-next-line
               if (favHorses[i].ID == localStorage.getItem("id")) {
                 flag = false;
                 setToggle(true);
-                console.log("deleted");
                 await Axios.post(`${process.env.REACT_APP_API_URL}deletefav`, {
                   id: favHorses[i].favoriteid,
                 });
@@ -51,7 +46,6 @@ export function HorseDetail() {
             }
           }
           if (flag) {
-            console.log("added");
             setToggle(false);
             await Axios.post(`${process.env.REACT_APP_API_URL}addfavorite`, {
               horseid: horse.horseID,
@@ -66,7 +60,6 @@ export function HorseDetail() {
   }
 
   const HorseObj = location.state.horse;
-  console.log("OLHA AQ", HorseObj);
   let [userData, setUserData] = useState([]);
   const moreClick = () => {
     navigate("/more-owner", {
@@ -78,7 +71,6 @@ export function HorseDetail() {
   };
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${process.env.REACT_APP_API_URL}get`).then((response) => {
@@ -92,12 +84,10 @@ export function HorseDetail() {
     Axios.get(`${process.env.REACT_APP_API_URL}favhorses`).then(
       async (response) => {
         const favHorses = response.data;
-        //console.log(favHorses);
         let flag = true;
         for (let i = 0; i < favHorses.length; i++) {
           // eslint-disable-next-line
           if (HorseObj.horseID == favHorses[i].horseID) {
-            //console.log(horse.ID);
             // eslint-disable-next-line
             if (favHorses[i].ID == localStorage.getItem("id")) {
               setToggle(false);
@@ -114,7 +104,6 @@ export function HorseDetail() {
           setToggle(true);
           //check = true;
           //setPhoto(FavoriteIcon);
-          // console.log("added");
           //imageElement.src = FavoriteClicked;
         }
       }

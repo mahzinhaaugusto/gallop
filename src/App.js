@@ -7,14 +7,11 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import "firebase/storage";
 
-// console.log(process.env.REACT_APP_APIKEY);
 Geocode.setApiKey(process.env.REACT_APP_APIKEY);
 Geocode.setLocationType("ROOFTOP");
 let city;
 
 navigator.geolocation.getCurrentPosition(function (position) {
-  /* console.log("Latitude is :", position.coords.latitude);
-  console.log("Longitude is :", position.coords.longitude);  */
 
   Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
     (response) => {
@@ -40,7 +37,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
           }
         }
       }
-      // console.log(city);
+
       sessionStorage.setItem("city", city);
     },
     (error) => {

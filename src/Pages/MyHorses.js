@@ -28,47 +28,13 @@ export function MyHorses() {
 
   useEffect(() => {
     if (localStorage.getItem("id") === null) {
-      // console.log("sorry");
       navigate("/login");
     }
     Axios.get(`${process.env.REACT_APP_API_URL}allhorses`).then((response) => {
-      // const horses = response.data;
-      // console.log(horses);
-
-      // if (horses.length === 0) {
-      //   setShowEmpty(true);
-      // } else {
-      //   setMyHorses(horses);
-      // }
-      // setMyHorses(response.data);
-      // console.log(id);
-      // console.log(response.data[0].horseID);
-      // if(response.data.length === 0) {
-      //   setShowEmpty(true);
-      // } else {}
-      // let x=0;
       setMyHorses(response.data);
     });
-
-    // for (let i = 0; i < myHorses.length; i++) {
-    //   //console.log(myHorses);
-    //   if (id == myHorses[i].ID) {
-    //     myHorsesArr.push(myHorses[i]);
-    //   }
-    // if (myHorses.length === 0) {
-    //   console.log(myHorses);
-    //   setShowEmpty(true);
-    // }
-    // }
-
-    // console.log(myHorses);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   let id = localStorage.getItem("id");
-
-  // if (myHorses.length === 0) {
-  //   console.log(myHorses);
-  //   setShowEmpty(true);
-  // }
 
   for (let i = 0; i < myHorses.length; i++) {
     // eslint-disable-next-line
@@ -76,15 +42,7 @@ export function MyHorses() {
       myHorsesArr.push(myHorses[i]);
       //  setFlag(false);
     }
-    // else if (myHorses.length === 0) {
-    //   console.log(myHorses);
-    //   setShowEmpty(true);
-    // }
-    // if (myHorses.length === 0) {
-
-    // }
   }
-  console.log(flag);
 
   const back = (event) => {
     event.stopPropagation();
@@ -145,7 +103,6 @@ export function MyHorses() {
 }
 
 export function MyHorsesCard({ myHorse }) {
-  console.log(myHorse);
   let navigate = useNavigate();
 
   const editHorse = (horse) => {
@@ -157,12 +114,10 @@ export function MyHorsesCard({ myHorse }) {
   };
 
   const deleteHorse = (id) => {
-    // console.log(id);
     Axios.post(`${process.env.REACT_APP_API_URL}deletehorse`, {
       id: id,
     });
     window.location.reload();
-    // console.Console.log("yesssss");
   };
 
   const showHorse = (horseID) => {
@@ -171,16 +126,14 @@ export function MyHorsesCard({ myHorse }) {
       showInfo: 1,
     });
     window.location.reload();
-    // document.getElementById("show").
-    // console.Console.log("yesssss");
   };
+
   const hideHorse = (horseID) => {
     Axios.post(`${process.env.REACT_APP_API_URL}horseVisibility`, {
       horseID: horseID,
       showInfo: 0,
     });
     window.location.reload();
-    // console.Console.log("yesssss");
   };
 
   return (
@@ -219,18 +172,19 @@ export function MyHorsesCard({ myHorse }) {
                     />
                   </div>
                 )}
-                {horse.showInfo == 1 && (
-                  <div>
-                    <img
-                      src={HideVisibility}
-                      alt="Hide Horse"
-                      id="hide"
-                      onClick={() => {
-                        hideHorse(horse.horseID);
-                      }}
-                    />
-                  </div>
-                )}
+                {// eslint-disable-next-line
+                  horse.showInfo == 1 && (
+                    <div>
+                      <img
+                        src={HideVisibility}
+                        alt="Hide Horse"
+                        id="hide"
+                        onClick={() => {
+                          hideHorse(horse.horseID);
+                        }}
+                      />
+                    </div>
+                  )}
               </div>
               <div className="horseCard_myHorses_cont_details_btns">
                 <button

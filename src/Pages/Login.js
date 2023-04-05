@@ -19,30 +19,6 @@ export function Login() {
   //const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
 
-  // let email, pass;
-
-  // if (localStorage.checkbox && localStorage.checkbox !== "") {
-  //   setRmCheck(true);
-  //   email = localStorage.username;
-  //   pass = localStorage.password;
-  // } else {
-  //   //rmCheck.removeAttribute("checked");
-  //   //emailInput.value = "";
-  //   //pass.value = "";
-  // }
-
-  // const isRemembered = () => {
-  //   console.log(rmCheck);
-  //   if (rmCheck && userEmail !== "" && userPassword !== "") {
-  //     localStorage.username = userEmail;
-  //     localStorage.checkbox = rmCheck;
-  //     localStorage.password = userPassword;
-  //   } else {
-  //     localStorage.username = "";
-  //     localStorage.checkbox = "";
-  //     localStorage.password = "";
-  //   }
-  // };
   const loginClicked = () => {
     let promises = [];
 

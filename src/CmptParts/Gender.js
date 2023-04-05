@@ -3,16 +3,15 @@ import { useState } from "react";
 export function Gender(props) {
   const [checkedStallion, setCheckedStallion] = useState(false);
   const [checkedMare, setCheckedMare] = useState(false);
-  // console.log(props.handleMessage);
+
   const handlerStallion = () => {
     setCheckedStallion(!checkedStallion);
     props.handleMessage("Stallion");
-    // console.log("stallion");
   };
+
   const handlerMare = () => {
     setCheckedMare(!checkedMare);
     props.handleMessage("Mare");
-    // console.log("mare");
   };
 
   return (

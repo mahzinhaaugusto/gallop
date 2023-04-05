@@ -7,14 +7,12 @@ export function BreedingMethod(props) {
   const handlerNatural = () => {
     setCheckedNatural(!checkedNatural);
     setCheckedArtificial(!checkedArtificial);
-    // console.log("natural");
     props.handleMessage("Natural");
   };
   const handlerArtificial = () => {
     setCheckedArtificial(!checkedArtificial);
     setCheckedNatural(!checkedNatural);
     props.handleMessage("Artificial");
-    //console.log("artificial");
   };
 
   return (

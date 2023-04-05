@@ -109,10 +109,8 @@ function DisciplineDropdown({
   };
 
   const removeOption = (option) => {
-    //console.log("removed");
     let newOption = selectedValue.filter((opt) => opt.value !== option.value);
     let skills = "";
-    // console.log(newOption);
     for (let i = 0; i < newOption.length; i++) {
       // eslint-disable-next-line
       if (i == newOption.length - 1) {
@@ -121,7 +119,6 @@ function DisciplineDropdown({
         skills += newOption[i].label + ", ";
       }
     }
-    console.log(skills);
     disciplineSet(skills);
 
     return selectedValue.filter((opt) => opt.value !== option.value);
@@ -129,10 +126,7 @@ function DisciplineDropdown({
 
   const optionRemove = (event, option) => {
     event.stopPropagation();
-    //console.log("removed");
-    // console.log(option);
     setSelectedValue(removeOption(option));
-    // console.log(option);
   };
 
   const onItemClick = (option) => {
@@ -154,7 +148,6 @@ function DisciplineDropdown({
     setSelectedValue(newOption);
     //disciplineSet("");
     let skills = "";
-    console.log(newOption);
     for (let i = 0; i < newOption.length; i++) {
       // eslint-disable-next-line
       if (i == newOption.length - 1) {
@@ -163,7 +156,6 @@ function DisciplineDropdown({
         skills += newOption[i].label + ", ";
       }
     }
-    console.log(skills);
     disciplineSet(skills);
     skills = "";
   };
@@ -212,9 +204,8 @@ function DisciplineDropdown({
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
-              className={`filter_cont_discipline_dropdown_options_singleOption ${
-                isSelected(option) && "selected"
-              }`}
+              className={`filter_cont_discipline_dropdown_options_singleOption ${isSelected(option) && "selected"
+                }`}
             >
               {option.label}
             </div>
