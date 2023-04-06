@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCreative } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -16,19 +17,18 @@ export function CarouselMain() {
   return (
     <div className="carouselMain">
       <Swiper
-        effect={"coverflow"}
         grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
+        effect={"creative"}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: [0, 0, -400],
+          },
+          next: {
+            translate: ["100%", 0, 0],
+          },
         }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[EffectCreative]}
         className="mySwiper"
       >
         <SwiperSlide><img alt="Horse 1" src={image1} /></SwiperSlide>

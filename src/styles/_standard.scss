@@ -5,10 +5,15 @@ body {
     box-sizing: border-box;
     height: auto;
     background-color: $accentSand;
+    max-width: 1400px;
 }
 
 #root {
     background-color: $accentSand;
+}
+
+button {
+    cursor: pointer;
 }
 
 // h1 {
