@@ -18,6 +18,10 @@
     padding: 0rem 0rem 4rem 0rem;
     background: transparent;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
 
     @media screen and (min-width: $media-desktop) {
         padding: 3rem 4rem 4rem 12.75rem;
@@ -31,13 +35,13 @@
         color: $gray;
         font-family: 'Asap', sans-serif;
         font-weight: 700;
-        font-size: 24px;
+        font-size: 20px;
         line-height: 150%;
         letter-spacing: 0.02em;
-        margin: 1.75rem;
+        margin: 1rem 0 1rem 1rem;
 
         @media screen and (min-width: $media-desktop) {
-            font-size: 28px;
+            font-size: 24px;
             margin: 0 0 1.125rem 0;
             font-weight: 600;
             letter-spacing: 0.04em;
@@ -51,7 +55,7 @@
 }
 
 .mainPage_cont_allHorses {
-    padding: 1.25rem 1.75rem;
+    padding: 1.25rem 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
