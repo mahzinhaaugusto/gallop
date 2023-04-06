@@ -129,7 +129,7 @@
 #horseCard_cont_details_btn {
     margin: 0.25rem;
     border-radius: $radius;
-    background: $oneSec;
+    // background: $oneSec;
     padding: 0.5rem;
     // margin-top: $largeMargin;
     display: flex;
@@ -277,6 +277,7 @@
     letter-spacing: 0.04em;
 }
 
-#show,#hide:hover{
+#show,
+#hide:hover {
     cursor: pointer;
 }
