@@ -1,6 +1,6 @@
 import FavoriteIcon from "../icons/FavoriteIcon.svg";
 import FavoriteClicked from "../icons/favoriteClicked.svg";
-import Plus from "../icons/Plus.svg";
+import Plus from "../icons/Button/Small/Plus.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
