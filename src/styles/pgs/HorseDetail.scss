@@ -136,6 +136,29 @@
     }
 }
 
+.horseDetail_cont_information_heading_title_buttons_phoneCont,
+.horseDetail_cont_information_heading_title_buttons_favCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 1rem;
+}
+
+.horseDetail_cont_information_heading_title_buttons_phoneCont>img{
+    width: 55px;
+    height: 50px;
+}
+
+.horseDetail_cont_information_heading_title_buttons_favCont {
+    background-color: #F8E9CF;
+}
+
+.horseDetail_cont_information_heading_title_buttons_favCont>img {
+    width: 1.5rem;
+}
+
 .horseDetail_cont_information_heading_location {
     display: flex;
     flex-direction: row;
