@@ -16,17 +16,17 @@
 
 .filter {
     position: absolute;
-    width: 90vw;
+    width: 100vw;
     padding: $smallPadding;
     border-radius: $radius;
     background: $accentSand;
     z-index: 98;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-    transform: translate(-12.25rem);
+    left: 0;
 
     @media screen and (min-width: $media-desktop) {
         width: 24rem;
-        transform: translate(0);
+        left: unset;
     }
 
     h3 {
