@@ -1,7 +1,7 @@
 .carouselMain {
     .swiper {
         @media screen and (min-width: $media-desktop) {
-            height: 20rem;
+            height: 22rem;
         }
     }
 
@@ -10,12 +10,13 @@
         justify-content: center;
         align-items: center;
         background: no-repeat centre centre;
-
+        border-radius: 1rem;
         img {
             width: 90%;
 
             @media screen and (min-width: $media-desktop) {
                 width: 70%;
+                height: 100%;
             }
         }
     }

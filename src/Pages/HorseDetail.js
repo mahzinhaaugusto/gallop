@@ -139,11 +139,11 @@ export function HorseDetail() {
                         HorseObj.horseName.slice(1)}
                     </h1>
                     <div className="horseDetail_cont_information_heading_title_buttons">
-                      <a href={"tel: +1" + userData.phoneNumber}>
+                      <a 
+                        className='horseDetail_cont_information_heading_title_buttons_phoneCont'
+                        href={"tel: +1" + userData.phoneNumber}>
                         <img
                           src={Phone}
-                          height="50px"
-                          width="50px"
                           alt="button phone"
                         ></img>
                       </a>
@@ -164,21 +164,31 @@ export function HorseDetail() {
                         }}
                       > */}
                       {toggle === false && HorseObj.showInfo ? (
-                        <img
-                          src={FavoriteClicked}
-                          alt=""
-                          onClick={() => {
-                            addFavOnClick(HorseObj);
-                          }}
-                        />
+                        <a
+                          className="horseDetail_cont_information_heading_title_buttons_favCont"
+                        >
+                          <img
+                            src={FavoriteClicked}
+                            alt=""
+                            onClick={() => {
+                              addFavOnClick(HorseObj);
+                            }}
+                          />
+                        </a>
+                        
                       ) : (
-                        <img
-                          src={FavoriteIcon}
-                          alt=""
-                          onClick={() => {
-                            addFavOnClick(HorseObj);
-                          }}
-                        />
+                        <a 
+                          className="horseDetail_cont_information_heading_title_buttons_favCont"
+                        >
+                          <img
+                            src={FavoriteIcon}
+                            alt=""
+                            onClick={() => {
+                              addFavOnClick(HorseObj);
+                            }}
+                          />
+                        </a>
+                        
                       )}
                       {/* <img src={photoKun} alt="" /> */}
                     </div>
